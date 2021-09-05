@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1064595304748",
+    "project_id": "munkybox-chef",
+    "storage_bucket": "munkybox-chef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064595304748:android:4e7cd1fdb38eb1334d3c89",
+        "android_client_info": {
+          "package_name": "com.sumitranjan245.munkyboxchef"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064595304748-plrhg4u2u61gfgb83fgrtcfufr9pvfsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAnbZtGzr5nFDw-6WXSv2HpowF-Az0KXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064595304748-plrhg4u2u61gfgb83fgrtcfufr9pvfsf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1064595304748-f2g4tteih690mt6vip207bnoklqiroa7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sumitranjan245.munkyboxchef",
+                "app_store_id": "1572712048"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
