@@ -16,7 +16,7 @@ import Item from "../components/pastorders/Item";
 
 export default function PastOrders({navigation}) {
   const [orders, setOrders] = useState([]);
-  const restaurant = useSelector((state) => state.restaurant.restaurant);
+  const restaurant = useSelector((state) => state.restaurant);
   const getApiData = async () => {
     const response = await axios.get("http://munkybox-admin.herokuapp.com/api/orders");
     const orders = await response.data;

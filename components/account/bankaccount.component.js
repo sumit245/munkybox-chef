@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 export default function BankAccount() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [editable, setEditable] = useState(false);
-  const profile = useSelector((state) => state.restaurant.restaurant);
+  const profile = useSelector((state) => state.restaurant);
   const { bank_info } = profile;
   const { account_name, account_number, bank_name, branch_number } = bank_info;
   return (

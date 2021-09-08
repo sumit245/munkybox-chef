@@ -4,12 +4,12 @@ import { Searchbar } from "react-native-paper";
 import Header from "../components/Header";
 import OrderItem from "../components/OrderItem";
 import { useSelector, useDispatch } from "react-redux";
-import { getOrder } from "../store/actions/actions";
+import { getOrder } from "../actions/actions";
 import axios from "axios";
 import ToggleLunchDinner from "../components/ToggleLunchDinner";
 
 export default function Orders() {
-  const restaurant = useSelector((state) => state.restaurant.restaurant);
+  const restaurant = useSelector((state) => state.restaurant);
   const [orders, setOrders] = useState([]);
   const [meal, setMeal] = useState({});
   const days = [

@@ -14,7 +14,7 @@ import PersonalDetails from "./personal.component";
 const { width, height } = Dimensions.get("window");
 
 export default function Profile() {
-  const profile = useSelector((state) => state.restaurant.restaurant);
+  const profile = useSelector((state) => state.restaurant);
   const [isEnabled, setisEnabled] = useState(false);
   const {
     _id,

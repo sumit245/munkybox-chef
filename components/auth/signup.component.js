@@ -3,14 +3,16 @@ const { width, height } = Dimensions.get("window");
 import {
   View,
   StyleSheet,
-  TextInput,
   Text,
   TouchableOpacity,
   Dimensions,
+  ImageBackground,
+  SafeAreaView,
 } from "react-native";
-import { Checkbox } from "react-native-paper";
+import { Checkbox, TextInput } from "react-native-paper";
 import { PARTNER_REQUEST } from "../../EndPoints";
 import axios from "axios";
+import { screenWidth } from "../../Dimens";
 
 export default function Signup({ navigation }) {
   const [checked, setChecked] = React.useState(false);
@@ -44,144 +46,182 @@ export default function Signup({ navigation }) {
     console.log(restaurant);
   };
   return (
-    <View style={styles.container}>
-      <View style={{ flexDirection: "row", marginBottom: 30 }}>
-        <Text style={{ fontSize: 28, color: "white" }}>Munky</Text>
-        <Text style={{ fontSize: 28, color: "white" }}>Box</Text>
-      </View>
-      {/* <View style={{ flexDirection: "row" }}> */}
-      <TextInput
-        style={styles.TextInput}
-        placeholder="First Name"
-        placeholderTextColor="#003f5c"
-        onChangeText={(data) => setFirstName(data)}
-      />
-
-      <TextInput
-        style={styles.TextInput}
-        placeholder="Last Name"
-        placeholderTextColor="#003f5c"
-        onChangeText={(data) => setLastName(data)}
-      />
-      {/* </View> */}
-
-      <TextInput
-        style={styles.TextInput}
-        placeholder="Postal Code"
-        type="number"
-        placeholderTextColor="#003f5c"
-        onChangeText={(data) => setPostalCode(data)}
-      />
-      <TextInput
-        style={styles.TextInput}
-        placeholder="Phone"
-        type="number"
-        placeholderTextColor="#003f5c"
-        onChangeText={(data) => setPhone(data)}
-      />
-      <TextInput
-        style={styles.TextInput}
-        placeholder="username@domain.com"
-        type="email"
-        placeholderTextColor="#003f5c"
-        onChangeText={(data) => setEmail(data)}
-      />
-      <View
-        style={{ flexDirection: "row", paddingHorizontal: 1, width: "100%" }}
-      >
-        <Checkbox
-          color="#fff"
-          status={checked ? "checked" : "unchecked"}
-          uncheckedColor="#ff8499"
-          onPress={() => setChecked(!checked)}
-        />
-        <Text
-          style={{
-            color: "#fff",
-            textAlign: "justify",
-            fontSize: width / 23,
-          }}
-        >
-          Yes,I agree to the Terms of service and{"\n"} privacy policy{" "}
-        </Text>
-      </View>
-      <View
-        style={{
-          alignSelf: "flex-start",
-          padding: 10,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#ff8499",
-            borderRadius: 14,
-            paddingHorizontal: 10,
-            paddingVertical: 6,
-          }}
-          disabled={!checked}
-          onPress={submitRequest}
-        >
-          <Text
-            style={{ color: "#FFF", fontSize: width / 16, fontWeight: "bold" }}
-          >
-            Submit
+    <ImageBackground
+      source={require("../../assets/chef-background.jpg")}
+      style={{ width: screenWidth, flex: 1, alignItems: "center" }}
+    >
+      <SafeAreaView style={styles.container}>
+        <View style={styles.image}>
+          <Text style={{ color: "#fff", fontSize: 34, fontWeight: "bold" }}>
+            Munky
           </Text>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={{ flexDirection: "row", alignSelf: "flex-start", padding: 10 }}
-      >
-        <Text style={{ color: "#fff", fontSize: width / 22 }}>
-          Already registered?
-        </Text>
-        <TouchableOpacity>
+          <Text style={{ color: "#fff", fontSize: 34, fontWeight: "bold" }}>
+            Box
+          </Text>
+        </View>
+        <View
+          style={{
+            backgroundColor: "rgba(255,255,255,0.9)",
+            borderRadius: 20,
+            paddingVertical: 20,
+            paddingHorizontal: 4,
+            marginTop: -16,
+          }}
+        >
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <TextInput
+              style={[styles.TextInput, { width: "49%" }]}
+              label="First Name"
+              mode="outlined"
+              placeholderTextColor="#003f5c"
+              onChangeText={(data) => setFirstName(data)}
+              theme={{
+                colors: { text: "black", primary: "rgb(33, 151, 186)" },
+              }}
+            />
+
+            <TextInput
+              style={[styles.TextInput, { width: "49%" }]}
+              label="Last Name"
+              mode="outlined"
+              onChangeText={(data) => setLastName(data)}
+              theme={{
+                colors: { text: "black", primary: "rgb(33, 151, 186)" },
+              }}
+            />
+          </View>
+
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <TextInput
+              style={[styles.TextInput, { width: "49%" }]}
+              label="Postal Code"
+              type="number"
+              mode="outlined"
+              placeholder="110011"
+              onChangeText={(data) => setPostalCode(data)}
+              theme={{
+                colors: {
+                  text: "black",
+                  primary: "rgb(33, 151, 186)",
+                  accent: "#f1c40f",
+                },
+              }}
+            />
+            <TextInput
+              style={[styles.TextInput, { width: "49%" }]}
+              label="Phone"
+              type="number"
+              keyboardType="phone-pad"
+              mode="outlined"
+              maxLength={14}
+              onChangeText={(data) => setPhone(data)}
+              theme={{
+                colors: { text: "black", primary: "rgb(33, 151, 186)" },
+              }}
+            />
+          </View>
+
+          <TextInput
+            style={styles.TextInput}
+            label="Email"
+            placeholder="username@domain.com"
+            keyboardType="email-address"
+            type="email"
+            mode="outlined"
+            theme={{ colors: { text: "black", primary: "rgb(33, 151, 186)" } }}
+            onChangeText={(data) => setEmail(data)}
+          />
+
+          <View
+            style={{
+              flexDirection: "row",
+              marginTop: 4,
+            }}
+          >
+            <Checkbox
+              color="rgb(80, 151, 226)"
+              status={checked ? "checked" : "unchecked"}
+              uncheckedColor="rgb(33, 151, 186)"
+              onPress={() => setChecked(!checked)}
+            />
+            <Text
+              style={{
+                color: "rgb(33, 151, 186)",
+                textAlign: "left",
+                fontSize: width / 22,
+              }}
+            >
+              Yes,I agree to the Terms of service and{"\n"} privacy policy{" "}
+            </Text>
+          </View>
+
+          <TouchableOpacity
+            style={{
+              backgroundColor: "rgb(33, 151, 186)",
+              borderRadius: 12,
+              width: "50%",
+              marginVertical: 28,
+              paddingHorizontal: 10,
+              paddingVertical: 8,
+              alignSelf: "center",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            disabled={!checked}
+            onPress={submitRequest}
+          >
+            <Text
+              style={{
+                color: "#FFF",
+                fontSize: 18,
+                textTransform: "uppercase",
+                fontWeight: "bold",
+              }}
+            >
+              Submit
+            </Text>
+          </TouchableOpacity>
+
           <Text
             style={{
-              color: "#fff",
-              fontStyle: "italic",
-              borderBottomWidth: 1,
-              borderBottomColor: "#ddd",
-              fontSize: width / 22,
+              color: "rgb(33, 151, 186)",
+              fontSize: 16,
+              fontWeight: "bold",
+              textDecorationLine: "underline",
+              textAlign: "center",
             }}
             onPress={() => navigation.navigate("Login")}
           >
-            LogIn
+            Already registered? Login
           </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    backgroundColor: "rgba(25,25,25,0.45)",
+    width: width,
+  },
+  image: {
+    marginTop: 60,
+    marginBottom: 120,
+    flexDirection: "row",
     justifyContent: "center",
-    backgroundColor: "#560319",
   },
   TextInput: {
     textAlign: "left",
-    borderWidth: 1,
-    borderRadius: 4,
-    paddingHorizontal: 6,
-    width: "96%",
-    height: 45,
+    height: 48,
     marginBottom: 4,
-    backgroundColor: "#fff",
-    elevation: 2,
-  },
-  name: {
-    textAlign: "left",
-    borderWidth: 1,
-    borderRadius: 4,
-    paddingHorizontal: 6,
-    width: "47%",
-    height: 45,
-    margin: 4,
-    elevation: 2,
-    backgroundColor: "#fff",
+    color: "white",
+    backgroundColor: "rgb(255,255,255)",
+    borderRadius: 5,
   },
 });

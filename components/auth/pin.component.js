@@ -1,16 +1,12 @@
 import Icon from "react-native-vector-icons/Ionicons";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  ImageBackground,
-  SafeAreaView,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { ImageBackground, View, SafeAreaView, Text } from "react-native";
 import ReactNativePinView from "react-native-pin-view";
 import { useSelector, useDispatch } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { setRestaurant } from "../../store/actions/actions";
+import { setRestaurant, SET_RESTAURANT } from "../../actions/actions";
+import { styles } from "./auth.style";
+import BackButton from "../BackButton";
 const PinPage = ({ route, navigation, entry }) => {
   try {
     const { entry } = route.params;
@@ -21,17 +17,22 @@ const PinPage = ({ route, navigation, entry }) => {
   const [showRemoveButton, setShowRemoveButton] = useState(false);
   const [enteredPin, setEnteredPin] = useState("");
   const [showCompletedButton, setShowCompletedButton] = useState(false);
+  const [confirmation, setConfirmation] = useState(false);
   const [pin, setPin] = useState("");
-  const restaurant = useSelector((state) => state.restaurant.restaurant);
+  const [confirmPIN, setConfirmPIN] = useState("");
+  const restaurant = useSelector((state) => state.restaurant);
+
   const dispatch = useDispatch();
 
   const setLocalData = () => {
-    console.log(restaurant);
     let rest = JSON.stringify(restaurant);
     AsyncStorage.setItem("restaurant", rest)
-      .then((res) => {})
+      .then((res) => {
+        alert("Pin saved");
+      })
       .catch((err) => alert(err));
   };
+
   const getApiData = () => {
     AsyncStorage.getItem("credential")
       .then((res) => {
@@ -43,31 +44,43 @@ const PinPage = ({ route, navigation, entry }) => {
         alert(err);
       });
   };
-  const unlock = () => {
-    setLocalData();
-    pinView.current.clearAll();
-    if (entry) {
-      const credential = {
-        entry: false,
-        pin: enteredPin,
-      };
 
-      AsyncStorage.setItem("credential", JSON.stringify(credential)).then(
-        () => {
-          navigation.navigate("Main");
+  const unlock = () => {
+    setConfirmation(true);
+    if (entry) {
+      if (confirmation) {
+        setConfirmPIN(enteredPin);
+        if (pin === confirmPIN) {
+          const credential = {
+            entry: false,
+            pin: confirmPIN,
+          };
+          AsyncStorage.setItem("credential", JSON.stringify(credential)).then(
+            () => {
+              setLocalData();
+              pinView.current.clearAll();
+              navigation.navigate("Main");
+            }
+          );
+        } else {
+          alert("Confirmation and Entered PIN code does not match");
         }
-      );
+      } else {
+        setPin(enteredPin);
+        pinView.current.clearAll();
+      }
     } else {
+      getApiData();
       if (pin === enteredPin) {
         dispatch(setRestaurant());
         navigation.navigate("Main");
       } else {
-        alert("Wrong input");
+        alert("Wrong PIN");
       }
     }
   };
+
   useEffect(() => {
-    AsyncStorage.clear()
     enteredPin.length > 0
       ? setShowRemoveButton(true)
       : setShowRemoveButton(false);
@@ -75,39 +88,36 @@ const PinPage = ({ route, navigation, entry }) => {
     enteredPin.length === 4
       ? setShowCompletedButton(true)
       : setShowCompletedButton(false);
-    // return () => clearTimeout();
   }, [enteredPin]);
   return (
-    <>
-      <StatusBar barStyle="light-content" />
-      <SafeAreaView
-        style={{
-          flex: 1,
-          backgroundColor: "#E11D74",
-        }}
-      >
-        {entry && (
-          <>
-            <TouchableOpacity
-              style={{ alignSelf: "flex-start", padding: 10 }}
-              onPress={() => navigation.pop()}
-            >
-              <Icon name="chevron-back" size={34} color="#FBECEC" />
-            </TouchableOpacity>
-            <Text>Hello</Text>
-          </>
+    <ImageBackground
+      source={require("../../assets/chef-background.jpg")}
+      style={styles.imageBackground}
+    >
+      <SafeAreaView style={styles.container}>
+        {entry ? (
+          <BackButton goBack={navigation.goBack} />
+        ) : (
+          <View style={{ marginBottom: 80 }} />
         )}
 
-        <Text
-          style={{
-            padding: 20,
-            color: "#FBECEC",
-            fontSize: 18,
-            textAlign: "center",
-          }}
-        >
-          Enter 4 Digits PIN
-        </Text>
+        <View style={styles.pinMsgView}>
+          {confirmation ? (
+            <>
+              <Text style={styles.pinMsg}>Confirm PIN Code</Text>
+            </>
+          ) : (
+            entry && (
+              <>
+                <Text style={styles.pinMsg}>
+                  Create a PIN code for your account.
+                </Text>
+              </>
+            )
+          )}
+          <Text style={styles.pinMsg}>Enter 4 Digits PIN</Text>
+        </View>
+
         <ReactNativePinView
           inputSize={32}
           ref={pinView}
@@ -117,16 +127,14 @@ const PinPage = ({ route, navigation, entry }) => {
           buttonAreaStyle={{
             marginTop: 24,
           }}
-          inputAreaStyle={{
-            marginBottom: 24,
-          }}
+          inputAreaStyle={styles.pinInputAreaStyle}
           inputViewEmptyStyle={{
             backgroundColor: "transparent",
             borderWidth: 1,
             borderColor: "#FBECEC",
           }}
           inputViewFilledStyle={{
-            backgroundColor: "#F5EFEF",
+            backgroundColor: "#FFFFFF",
           }}
           buttonViewStyle={{
             borderWidth: 2,
@@ -155,21 +163,11 @@ const PinPage = ({ route, navigation, entry }) => {
             ) : undefined
           }
         />
-        <Text
-          style={{
-            paddingTop: 40,
-            color: "#FBECEC",
-            fontSize: 18,
-            textDecorationLine: "underline",
-            textAlign: "center",
-            textAlignVertical: "bottom",
-          }}
-          onPress={() => navigation.pop()}
-        >
+        <Text style={styles.forgot_button} onPress={() => navigation.pop()}>
           Forgot PIN?
         </Text>
       </SafeAreaView>
-    </>
+    </ImageBackground>
   );
 };
 export default PinPage;

@@ -15,7 +15,7 @@ const days = [
   "Saturday",
 ];
 export default function TopPage({ navigation }) {
-  const restaurant = useSelector((state) => state.restaurant.restaurant);
+  const restaurant = useSelector((state) => state.restaurant);
   console.log(restaurant);
   const [currentDay, setCurrentDay] = useState(days[new Date().getDay()]);
   const [meal, setMeal] = useState({});

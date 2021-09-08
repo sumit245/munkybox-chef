@@ -4,8 +4,8 @@ import { width } from "../Dimens";
 export const styles = StyleSheet.create({
   card: {
     backgroundColor: "#f9ffff",
-    borderRadius: 4,
-    padding: 2,
+    borderRadius: 8,
+    padding: 8,
     margin: 4,
   },
   title: {
@@ -14,9 +14,23 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     flexDirection: "row",
-    padding: 2,
+    padding: 4,
+    justifyContent:'space-between'
   },
   titleText: {
+    fontSize: 14,
+    paddingHorizontal: 5,
+    color: "#6a6a6a",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+  },
+  statusText: {
+    fontSize: 14,
+    paddingHorizontal: 5,
+    textTransform: "uppercase",
+  },
+  titleTextRight: {
+    textAlign:"right",
     fontSize: 14,
     paddingHorizontal: 5,
     color: "#6a6a6a",
@@ -29,29 +43,14 @@ export const styles = StyleSheet.create({
   cardRow: {
     flexDirection: "row",
     justifyContent: "space-between",
+    padding: 2,
   },
   cardText: {
     fontSize: 12,
     fontFamily: "serif",
-    color: "#777",
-    padding: 2,
+    color: "#444",
+    padding: 1,
     textTransform: "uppercase",
-  },
-  cardAction: {
-    borderTopWidth: 0.4,
-    borderTopColor: "#777",
-    justifyContent: "space-around",
-    flexDirection: "row",
-    alignItems: "center",
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
-  },
-  actionButton: {
-    color: PrimaryColor,
-    textAlign: "center",
-    textDecorationLine: "underline",
-    fontWeight: "bold",
-    padding: 6,
   },
   container: {
     flex: 1,

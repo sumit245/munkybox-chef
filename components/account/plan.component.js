@@ -18,7 +18,7 @@ export default function Plans() {
   const [twoEditable, setTwoEditable] = useState(false);
   const [fifteenEditable, setFifteenEditable] = useState(false);
   const [thirtyEditable, setThirtyEditable] = useState(false);
-  const profile = useSelector((state) => state.restaurant.restaurant);
+  const profile = useSelector((state) => state.restaurant);
   const { plan } = profile;
   const { twoPlan, fifteenPlan, thirtyPlan } = plan;
   return (

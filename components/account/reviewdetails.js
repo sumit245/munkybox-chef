@@ -24,7 +24,7 @@ const Item = ({ username, review, star, order_date }) => (
 );
 const { width, height } = Dimensions.get("screen");
 export default function Review() {
-  const profile = useSelector((state) => state.restaurant.restaurant);
+  const profile = useSelector((state) => state.restaurant);
   const { rating, reviews } = profile;
   let ratings=[]
   for (let index = 0; index < reviews.star; index++) {

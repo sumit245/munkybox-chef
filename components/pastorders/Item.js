@@ -1,32 +1,62 @@
 import React from "react";
-import { View, Text, Linking, Platform } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+import { View, Text } from "react-native";
+
 import { styles } from "../../styles/itemstyle";
 import { truncate_string } from "../../helpers/truncate_string";
-import { PrimaryColor, SecondaryColor } from "../../Colors";
 
 const Item = ({ item, index, navigation }) => (
   <View style={styles.card} key={index}>
     <View style={styles.title}>
-      <View style={styles.headerRows}>
-        <Text>Order Id</Text>
-      </View>
       <Text style={styles.titleText}>
         Order Id{" " + truncate_string("ORD", item._id, 5)}
       </Text>
       <Text
-        style={
-          (styles.titleText,
-          [
-            item.status === "delivered"
-              ? { color: "#5ca85c" }
-              : item.status === "pending"
-              ? { color: "#ffc300" }
-              : { color: "#d9534f" },
-          ])
-        }
+        style={[
+          item.status === "delivered"
+            ? {
+                backgroundColor: "#5ca85c",
+                color: "#ffffff",
+                padding: 2,
+                borderRadius: 4,
+                marginLeft: -86,
+                fontWeight: "bold",
+                textAlign: "center",
+                textAlignVertical: "center",
+              }
+            : item.status === "pending"
+            ? {
+                backgroundColor: "#ffc300",
+                color: "#ffffff",
+                marginLeft: -86,
+                fontWeight: "bold",
+                textAlign: "center",
+                textAlignVertical: "center",
+                padding: 2,
+                borderRadius: 4,
+              }
+            : {
+                backgroundColor: "#d9534f",
+                color: "#fff",
+                padding: 2,
+                borderRadius: 4,
+                marginLeft: -86,
+                fontWeight: "bold",
+                textAlign: "center",
+                textAlignVertical: "center",
+              },
+        ]}
       >
         {item.status}
+      </Text>
+      <Text
+        style={styles.titleTextRight}
+        onPress={() =>
+          navigation.navigate("orderDetails", {
+            order: item,
+          })
+        }
+      >
+        View
       </Text>
     </View>
     <View style={styles.cardBody}>
@@ -66,44 +96,6 @@ const Item = ({ item, index, navigation }) => (
           {item.order_time}
         </Text>
       </View>
-    </View>
-    <View style={styles.cardAction}>
-      <View style={{ flexDirection: "row" }}>
-        <Icon name="call-outline" size={24} color={PrimaryColor} />
-        <Text
-          style={styles.actionButton}
-          onPress={() => {
-            let phoneNumber = item.phone;
-            if (Platform.OS === "android") {
-              phoneNumber = `tel:${item.phone}`;
-            } else {
-              phoneNumber = `telprompt:${item.phone}`;
-            }
-            Linking.canOpenURL(phoneNumber)
-              .then((supported) => {
-                if (!supported) {
-                  alert("Phone number is not available");
-                } else {
-                  return Linking.openURL(phoneNumber);
-                }
-              })
-              .catch((err) => console.log(err));
-          }}
-        >
-          Call Customer
-        </Text>
-      </View>
-
-      <Text
-        style={styles.actionButton}
-        onPress={() =>
-          navigation.navigate("orderDetails", {
-            order: item,
-          })
-        }
-      >
-        View Details
-      </Text>
     </View>
   </View>
 );
