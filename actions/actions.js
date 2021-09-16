@@ -26,10 +26,7 @@ export const setRestaurant = () => async (dispatch) => {
 export const getOrder = (restaurant) => async (dispatch) => {
   const response = await axios.get(ORDERS);
   let orders = response.data;
-  if (Array.isArray(orders)) {
-    let myOrders = orders.filter(function (e) {
-      return e.restaurant_name === restaurant;
-    });
-    dispatch({ type: GET_ORDER, payload: myOrders });
+  if (orders !== null) {
+    dispatch({ type: GET_ORDER, payload: orders });
   }
 };

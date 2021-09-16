@@ -3,7 +3,7 @@ import { StyleSheet, View, StatusBar, Text, SafeAreaView } from "react-native";
 import CalTab from "../CalTab";
 import ToggleLunchDinner from "../ToggleLunchDinner";
 import Header from "../Header";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Menu from "./Menu";
 const days = [
   "Sunday",
@@ -16,10 +16,7 @@ const days = [
 ];
 export default function TopPage({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
-  console.log(restaurant);
-  const [currentDay, setCurrentDay] = useState(days[new Date().getDay()]);
   const [meal, setMeal] = useState({});
-  const dispatch = useDispatch();
   const meals = restaurant.meals;
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
   const mealSelector = (day) => {

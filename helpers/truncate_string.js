@@ -4,3 +4,7 @@ export const truncate_string = (type, str1, length) => {
     return type.concat(newStr);
   }
 };
+
+export const avatarify=(str)=>{
+  return str.match(/\b(\w)/g).join('')
+}

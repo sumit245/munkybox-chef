@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, Text, Alert, View } from "react-native";
+import { TouchableOpacity, Alert, View } from "react-native";
 import { SecondaryColor } from "../Colors";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Switch } from "react-native-paper";

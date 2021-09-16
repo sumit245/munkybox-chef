@@ -38,7 +38,7 @@ export default class Header extends Component {
     return (
       <View style={styles.header}>
         <Text style={styles.headerChefName}>
-          {this.props.chefName} , {this.props.chefAddress}
+          {this.props.chefName} | {this.props.chefAddress}
         </Text>
         <Text style={styles.headerChefAddress}>{this.ShowCurrentDate()}</Text>
         {this.props.children}
@@ -48,9 +48,9 @@ export default class Header extends Component {
 }
 const styles = StyleSheet.create({
   header: {
-    height: screenHeight / 10,
+    height: 56,
     paddingBottom: 6,
-    backgroundColor: PrimaryColor,
+    backgroundColor: "#009faf",
     justifyContent: "flex-start",
   },
   headerChefName: {

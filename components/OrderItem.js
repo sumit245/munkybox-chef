@@ -1,151 +1,72 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  Linking,
-} from "react-native";
-import { Divider, Switch } from "react-native-paper";
+import { View, Text, StyleSheet } from "react-native";
+import Collapsible from "react-native-collapsible";
+import Accordion from "react-native-collapsible/Accordion";
+import { IconButton, Switch } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
-import { PrimaryDark, SecondaryDarkColor } from "../Colors";
-import { truncate_string } from "../helpers/truncate_string";
+import { PrimaryColor, SecondaryDarkColor } from "../Colors";
+import { avatarify, truncate_string } from "../helpers/truncate_string";
 
-export default function OrderItem({ item, index, meal }) {
-  const { address } = item;
-  const { add_on } = meal;
+const CollapsedContent = ({ item }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
   return (
-    <View style={styles.orderCard} key={index}>
-      <View style={styles.topRow}>
-        <View style={styles.badge}>
-          <Text style={styles.title}>{"DELIVER BY: " + item.time}</Text>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Text
-            style={{ fontWeight: "bold", color: isSwitchOn ? "green" : "red" }}
-          >
-            Delivered
-          </Text>
-          <Switch
-            value={isSwitchOn}
-            onValueChange={onToggleSwitch}
-            disabled={isSwitchOn}
-            color={isSwitchOn ? "green" : "red"}
-          />
-        </View>
-      </View>
-      <View style={styles.cardBody}>
-        <View>
-          <Text
-            style={{
-              fontSize: 14,
-              fontWeight: "bold",
-              color: "#000",
-            }}
-          >
-            #{truncate_string("ORD", item._id, 5)}
-          </Text>
-          <Text style={{ color: "#252525", fontSize: 14 }}>
-            {item.user_name}
-          </Text>
-
-          <View style={{ flexDirection: "row" }}>
-            <Icon
-              name="ios-stop-circle-outline"
-              size={18}
-              color={meal.type === "Veg" ? "green" : "red"}
-            />
-            <Text
-              style={{
-                color: "#252525",
-                fontSize: 14,
-                textTransform: "uppercase",
-              }}
-            >
-              {meal.meal_name}
-            </Text>
-          </View>
-
-          {add_on.map((data, key) => (
-            <View key={key} style={{ flexDirection: "row" }}>
-              <Icon
-                name="ios-stop-circle-outline"
-                size={18}
-                color={meal.type === "Veg" ? "green" : "red"}
-              />
-              <Text style={{ textTransform: "uppercase" }}>{data.add_on}</Text>
-            </View>
-          ))}
-        </View>
-        <Image
-          source={{
-            uri: "https://icons.iconarchive.com/icons/icons-land/vista-people/48/Office-Customer-Male-Light-icon.png",
-          }}
+    <View style={styles.orderCard}>
+      <View>
+        <View
           style={{
-            width: 48,
-            height: 48,
+            height: 60,
+            width: 60,
+            borderRadius: 60,
+            backgroundColor: "purple",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-        />
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 20, color: "#FFF" }}>
+            {avatarify(item.user_name)}
+          </Text>
+        </View>
       </View>
 
-      <Divider style={{ height: 0.8 }} />
-      <View style={{ padding: 6 }}>
-        <Text style={{ fontWeight: "bold" }}>
-          {address &&
-            address.flat_num + ", " + address.city + ", " + address.postal_code}
-          <Icon name="location-outline" size={20} color="#0275d8" />
+      <View style={{ paddingHorizontal: 6, padding: 4 }}>
+        <Text style={[styles.title, { fontWeight: "bold" }]}>
+          {item.user_name}
         </Text>
-        <Text style={{ textDecorationLine: "underline", fontWeight: "bold" }}>
-          {"Notes: " + item.notes}
+        <Text style={styles.title}>{truncate_string("ORD", item._id, 5)}</Text>
+        <Text style={styles.link}>
+          <Icon name="location-outline" size={20} color={PrimaryColor} />
+          View in Map
         </Text>
       </View>
-      <Divider style={{ height: 0.8 }} />
-
-      <TouchableOpacity
-        style={{
-          paddingVertical: 10,
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "row",
-        }}
-        onPress={() => {
-          let phoneNumber = item.phone;
-          if (Platform.OS === "android") {
-            phoneNumber = `tel:${item.phone}`;
-          } else {
-            phoneNumber = `telprompt:${item.phone}`;
-          }
-          Linking.canOpenURL(phoneNumber)
-            .then((supported) => {
-              if (!supported) {
-                alert("Phone number is not available");
-              } else {
-                return Linking.openURL(phoneNumber);
-              }
-            })
-            .catch((err) => console.log(err));
-        }}
-      >
-        <Icon
-          name="call-outline"
-          size={18}
-          style={{ color: "#0275d8", paddingHorizontal: 2 }}
+      <View style={{ position: "absolute", right: 0 }}>
+        <Switch
+          value={isSwitchOn}
+          onValueChange={onToggleSwitch}
+          // disabled={isSwitchOn}
+          color={isSwitchOn ? "green" : "red"}
         />
-        <Text style={{ color: "#0275d8", paddingHorizontal: 2 }}>
-          Call Customer
-        </Text>
-      </TouchableOpacity>
+        <View style={{ alignSelf: "flex-end" }}>
+          <IconButton icon="dots-vertical" size={24} color="#777" />
+        </View>
+      </View>
     </View>
+  );
+};
+
+export default function OrderItem({ item, index, meal }) {
+  return (
+    // <Collapsible isCollapsed={false}>
+      <CollapsedContent item={item} />
+    // {/* </Collapsible> */}
   );
 }
 const styles = StyleSheet.create({
   orderCard: {
     backgroundColor: "#f9ffff",
-    padding: 4,
-    margin: 4,
+    padding: 8,
+    margin: 1,
+    flexDirection: "row",
     borderRadius: 6,
   },
   topRow: {
@@ -166,8 +87,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
+    color: "#666",
+    paddingHorizontal: 0.5,
+    paddingVertical: 0.2,
+  },
+  link: {
+    color: PrimaryColor,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#fff",
-    padding: 2,
   },
 });

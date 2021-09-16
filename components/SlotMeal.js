@@ -30,14 +30,6 @@ export default class SlotMeal extends Component {
   };
 
   _renderHeader = (section) => {
-    // var idx=0
-    // let arr=section.meal;
-    // arr.forEach((element,idx) => {
-    //   // console.log(element.data[idx])
-    //   // console.log(element.data[idx].quantity)
-    //   console.log(idx)
-    // });
-
     return (
       <View
         style={[
@@ -98,7 +90,7 @@ export default class SlotMeal extends Component {
         <SectionList
           sections={section.meal}
           keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => <Item subtitle={item} />}
+          renderItem={this._renderContent}
           renderSectionHeader={({ section: { subtitle } }) => (
             <Text style={styles.sectionHeader}>{subtitle}</Text>
           )}
@@ -111,6 +103,7 @@ export default class SlotMeal extends Component {
     this.setState({ activeSections });
   };
   render() {
+
     return (
       <View style={styles.slot}>
         <Accordion

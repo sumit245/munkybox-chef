@@ -19,7 +19,6 @@ export default function AuthRoutes({ navigation }) {
       .then((res) => {
         let data = JSON.parse(res);
         const { entry, pin } = data;
-        console.log(pin);
         setEntry(entry);
         setReadyState(true);
       })

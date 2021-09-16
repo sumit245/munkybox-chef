@@ -89,6 +89,7 @@ const PinPage = ({ route, navigation, entry }) => {
       ? setShowCompletedButton(true)
       : setShowCompletedButton(false);
   }, [enteredPin]);
+  
   return (
     <ImageBackground
       source={require("../../assets/chef-background.jpg")}

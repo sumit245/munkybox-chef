@@ -6,14 +6,12 @@ import { truncate_string } from "../../helpers/truncate_string";
 import { styles } from "../../styles/itemstyle";
 export default function OrderDetails({ route, navigation }) {
   const { order } = route.params;
-  console.log(order);
   const { address_type, city, flat_num, locality, postal_code } = order.address;
   return (
     <View style={styles.container}>
       <Header chefName="World Best Foods" chefAddress="Delhi">
         <Export />
       </Header>
-      {/* <View style={styles.container}> */}
       <View style={styles.formHeader}>
         <View style={styles.row}>
           <View style={styles.headerRows}>
@@ -113,10 +111,9 @@ export default function OrderDetails({ route, navigation }) {
         <Text
           style={{ fontStyle: "italic", fontWeight: "bold", color: "#777" }}
         >
-         Notes: {order.notes}
+          Notes: {order.notes}
         </Text>
       </View>
-      {/* </View> */}
     </View>
   );
 }

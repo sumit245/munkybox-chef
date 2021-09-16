@@ -8,6 +8,7 @@ import {
   Dimensions,
   ImageBackground,
   SafeAreaView,
+  ScrollView
 } from "react-native";
 import { Checkbox, TextInput } from "react-native-paper";
 import { PARTNER_REQUEST } from "../../EndPoints";
@@ -21,6 +22,7 @@ export default function Signup({ navigation }) {
   const [postal_code, setPostalCode] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [restaurant_name, setRestaurantName] = React.useState("");
 
   const submitRequest = () => {
     let restaurant = {
@@ -29,21 +31,19 @@ export default function Signup({ navigation }) {
       email: email,
       postal_code: postal_code,
       phone: phone,
+      restaurant_name:restaurant_name
     };
-    console.log(restaurant);
     axios
       .post(PARTNER_REQUEST, restaurant)
       .then((res) => {
-        console.log(res.data);
         alert(
-          "A Request has been sent to munkybox. Our customer care executive will contact you soon"
+          "A request has been sent to our admin. We will connect you soon for further action"
         ),
           navigation.navigate("Login");
       })
       .catch((err) => {
         console.error(err);
       });
-    console.log(restaurant);
   };
   return (
     <ImageBackground
@@ -59,7 +59,7 @@ export default function Signup({ navigation }) {
             Box
           </Text>
         </View>
-        <View
+        <ScrollView
           style={{
             backgroundColor: "rgba(255,255,255,0.9)",
             borderRadius: 20,
@@ -67,6 +67,7 @@ export default function Signup({ navigation }) {
             paddingHorizontal: 4,
             marginTop: -16,
           }}
+          contentInsetAdjustmentBehavior="automatic"
         >
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -117,6 +118,8 @@ export default function Signup({ navigation }) {
               type="number"
               keyboardType="phone-pad"
               mode="outlined"
+              returnKeyType="done"
+              returnKeyLabel="Done"
               maxLength={14}
               onChangeText={(data) => setPhone(data)}
               theme={{
@@ -134,6 +137,15 @@ export default function Signup({ navigation }) {
             mode="outlined"
             theme={{ colors: { text: "black", primary: "rgb(33, 151, 186)" } }}
             onChangeText={(data) => setEmail(data)}
+          />
+          <TextInput
+            style={styles.TextInput}
+            label="Restaurant Name"
+            placeholder="Kristen Delicates"
+            type="text"
+            mode="outlined"
+            theme={{ colors: { text: "black", primary: "rgb(33, 151, 186)" } }}
+            onChangeText={(data) => setRestaurantName(data)}
           />
 
           <View
@@ -198,7 +210,8 @@ export default function Signup({ navigation }) {
           >
             Already registered? Login
           </Text>
-        </View>
+        </ScrollView>
+      
       </SafeAreaView>
     </ImageBackground>
   );
