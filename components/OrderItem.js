@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Collapsible from "react-native-collapsible";
-import Accordion from "react-native-collapsible/Accordion";
 import { IconButton, Switch } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 import { PrimaryColor, SecondaryDarkColor } from "../Colors";

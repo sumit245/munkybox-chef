@@ -13,32 +13,32 @@ const RightContent = (props) => (
 );
 
 const Item = ({ username, review, star, order_date }) => (
-  <Card style={{margin:1,padding:2}}>
+  <Card style={{ margin: 1, padding: 2 }}>
     <Card.Title title={username} left={LeftContent} right={RightContent} />
     <Card.Content>
       <Icon name="star-sharp" size={16} color="#fc4" />
       <Text>{review}</Text>
-      <Text style={{fontSize:16,fontWeight:"bold",color:"#777"}}>{"ORDERED AT: "}{order_date}</Text>
+      <Text style={{ fontSize: 16, fontWeight: "bold", color: "#777" }}>
+        {"ORDERED AT: "}
+        {order_date}
+      </Text>
     </Card.Content>
   </Card>
 );
 const { width, height } = Dimensions.get("screen");
-export default function Review() {
+export default function Review({setModalVisible}) {
   const profile = useSelector((state) => state.restaurant);
   const { rating, reviews } = profile;
-  let ratings=[]
+  let ratings = [];
   for (let index = 0; index < reviews.star; index++) {
-      ratings.push(
-        <Icon name="star-sharp" size={16} color="#fc4" />
-      )
-      
+    ratings.push(<Icon name="star-sharp" size={16} color="#fc4" />);
   }
   const renderItem = ({ item }) => (
     <Item
       username={item.user_name}
       review={item.reviews}
       star={ratings}
-      order_date={item.order_date.toString().slice(0,10)}
+      order_date={item.order_date.toString().slice(0, 10)}
     />
   );
 
@@ -56,7 +56,12 @@ export default function Review() {
           }}
         >
           <Text style={{ fontSize: 24, fontWeight: "bold" }}>Reviews</Text>
-          <Icon name="close" size={30} color="#444" />
+          <Icon
+            name="close"
+            size={30}
+            color="#444"
+            onPress={() => setModalVisible(false)}
+          />
         </View>
       )}
       renderItem={renderItem}

@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   StatusBar,
   SafeAreaView,
-  Dimensions,
   ImageBackground,
 } from "react-native";
 import { useDispatch } from "react-redux";
@@ -103,7 +102,7 @@ export default function Login({ navigation }) {
 
         <Text
           style={styles.forgot_button}
-          onPress={() => navigation.navigate("Pin")}
+          onPress={() => navigation.navigate("Pin", { entry: false })}
         >
           Login With PIN
         </Text>

@@ -33,12 +33,17 @@ const PinPage = ({ route, navigation, entry }) => {
       .catch((err) => alert(err));
   };
 
-  const getApiData = () => {
+  const getApiData = (enteredPin) => {
     AsyncStorage.getItem("credential")
       .then((res) => {
         let data = JSON.parse(res);
         const { pin } = data;
-        setPin(pin);
+        if (pin === enteredPin) {
+          dispatch(setRestaurant());
+          navigation.navigate("Main");
+        } else {
+          alert("Wrong PIN");
+        }
       })
       .catch((err) => {
         alert(err);
@@ -46,8 +51,8 @@ const PinPage = ({ route, navigation, entry }) => {
   };
 
   const unlock = () => {
-    setConfirmation(true);
     if (entry) {
+      setConfirmation(true);
       if (confirmation) {
         setConfirmPIN(enteredPin);
         if (pin === confirmPIN) {
@@ -70,13 +75,7 @@ const PinPage = ({ route, navigation, entry }) => {
         pinView.current.clearAll();
       }
     } else {
-      getApiData();
-      if (pin === enteredPin) {
-        dispatch(setRestaurant());
-        navigation.navigate("Main");
-      } else {
-        alert("Wrong PIN");
-      }
+      getApiData(enteredPin);
     }
   };
 
@@ -89,7 +88,7 @@ const PinPage = ({ route, navigation, entry }) => {
       ? setShowCompletedButton(true)
       : setShowCompletedButton(false);
   }, [enteredPin]);
-  
+
   return (
     <ImageBackground
       source={require("../../assets/chef-background.jpg")}
@@ -165,7 +164,7 @@ const PinPage = ({ route, navigation, entry }) => {
           }
         />
         <Text style={styles.forgot_button} onPress={() => navigation.pop()}>
-          Forgot PIN?
+          Login with OTP
         </Text>
       </SafeAreaView>
     </ImageBackground>

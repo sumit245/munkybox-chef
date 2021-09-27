@@ -1,50 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
   TextInput,
   KeyboardAvoidingView,
   Platform,
-  Dimensions,
 } from "react-native";
 import Collapsible from "react-native-collapsible";
 import { Button } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
-const { width, height } = Dimensions.get("window");
 import { useSelector, useDispatch } from "react-redux";
+import { styles } from "./account.styles";
 
 export default function BankAccount() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [editable, setEditable] = useState(false);
   const profile = useSelector((state) => state.restaurant);
   const { bank_info } = profile;
-  const { account_name, account_number, bank_name, branch_number } = bank_info;
+  const [account_name, setAccountName] = useState("");
+  const [account_number, setAccountNumber] = useState("");
+  const [confirm_account_number, setConfirmAccount] = useState("");
+  const [bank_name, setBankName] = useState("");
+  const [branch_number, setBranchNumber] = useState("");
+  const [institution_number, setInstitutionNumber] = useState("");
+
+  useEffect(() => {
+    console.log(profile);
+  }, []);
+  const onChangeText = (e) => {
+    console.log(e);
+  };
   return (
     <>
       <View style={styles.row}>
-        <View style={{ flexDirection: "row", paddingVertical: 4 }}>
-          <Icon
-            name="card-sharp"
-            color="#444"
-            size={24}
-            style={{ margin: 5 }}
-          />
-          <Text style={{ fontSize: 18, color: "#444", margin: 5 }}>
-            Bank Information
-          </Text>
-        </View>
+        <Text style={{ fontSize: 18, color: "#444", margin: 8 }}>
+          <Icon name="card-sharp" color="#444" size={22} /> Bank Information
+        </Text>
         <TouchableOpacity
           onPress={() => setIsCollapsed(!isCollapsed)}
-          style={{
-            justifyContent: "center",
-            marginVertical: 2,
-            borderLeftWidth: 1,
-            borderLeftColor: "#777",
-            height: 20,
-            alignSelf: "center",
-          }}
+          style={styles.collapsibleButton}
         >
           <Icon
             name={isCollapsed ? "chevron-down-sharp" : "chevron-up-sharp"}
@@ -58,20 +53,16 @@ export default function BankAccount() {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.container}
         >
-          <View
+          <Button
+            onPress={() => setEditable(!editable)}
+            mode={editable ? "outlined" : "contained"}
             style={{
-              justifyContent: "flex-end",
-              alignItems: "flex-end",
-              padding: 4,
+              alignSelf: "flex-end",
             }}
           >
-            <Button
-              onPress={() => setEditable(!editable)}
-              mode={editable ? "outlined" : "contained"}
-            >
-              {editable ? "Save" : "Edit"}
-            </Button>
-          </View>
+            {editable ? "Save" : "Edit"}
+          </Button>
+
           <View>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Icon name="person-outline" size={18} color="#777" />
@@ -80,6 +71,7 @@ export default function BankAccount() {
             <TextInput
               defaultValue={account_name}
               style={styles.inputContainer}
+              onChangeText={setAccountName}
             />
           </View>
 
@@ -92,6 +84,19 @@ export default function BankAccount() {
               defaultValue={account_number}
               style={styles.inputContainer}
               keyboardType="numeric"
+              onChangeText={setAccountNumber}
+            />
+          </View>
+          <View>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Icon name="business-outline" size={18} color="#777" />
+              <Text style={styles.label}>Confirm Account Number</Text>
+            </View>
+            <TextInput
+              defaultValue={confirm_account_number}
+              style={styles.inputContainer}
+              keyboardType="numeric"
+              onChangeText={setConfirmAccount}
             />
           </View>
 
@@ -100,7 +105,12 @@ export default function BankAccount() {
               <Icon name="business-outline" size={18} color="#777" />
               <Text style={styles.label}>Bank Name</Text>
             </View>
-            <TextInput defaultValue={bank_name} style={styles.inputContainer} />
+            <TextInput
+              defaultValue={bank_name}
+              placeholder="Bank Name"
+              style={styles.inputContainer}
+              onChangeText={setBankName}
+            />
           </View>
 
           <View>
@@ -113,6 +123,7 @@ export default function BankAccount() {
               placeholder="Branch #"
               placeholderTextColor="#777"
               style={styles.inputContainer}
+              onChangeText={setBranchNumber}
             />
           </View>
           <View>
@@ -122,8 +133,10 @@ export default function BankAccount() {
             </View>
             <TextInput
               placeholder="Institution #"
+              defaultValue={institution_number}
               placeholderTextColor="#777"
               style={styles.inputContainer}
+              onChangeText={setInstitutionNumber}
             />
           </View>
         </KeyboardAvoidingView>
@@ -131,35 +144,3 @@ export default function BankAccount() {
     </>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF",
-    padding: 2,
-    marginHorizontal: "1%",
-  },
-  row: {
-    width: "98%",
-    marginHorizontal: "1%",
-    borderBottomWidth: 0.5,
-    flexDirection: "row",
-    borderBottomColor: "#ccc",
-    backgroundColor: "#FFF",
-    padding: 2,
-    justifyContent: "space-between",
-  },
-  inputContainer: {
-    width: 350,
-    height: 40,
-    padding: 4,
-    fontSize: 16,
-    borderColor: "#777",
-    borderWidth: 0.4,
-    textAlignVertical: "top",
-    borderRadius: 2,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: "bold",
-    paddingVertical: 8,
-  },
-});

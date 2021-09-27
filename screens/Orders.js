@@ -74,14 +74,14 @@ export default function Orders() {
             style={{
               flexDirection: "row",
               borderBottomColor: SecondaryDarkColor,
-              borderBottomWidth: 4,
+              borderBottomWidth: 2,
               borderBottomLeftRadius: 1,
               borderBottomRightRadius: 1,
               alignItems: "center",
             }}
           >
             <Text style={{ fontSize: 14, color: "#FFF", fontWeight: "bold",marginEnd:1 }}>
-              11:00AM-12:00PM
+              11AM-12PM
             </Text>
             <Badge
               style={{
@@ -105,7 +105,7 @@ export default function Orders() {
             }}
           >
             <Text style={{ fontSize: 14, color: "#FFF" }}>
-            12:00PM-1:00PM
+            12PM-1PM
             </Text>
           </View>
           <View
@@ -115,7 +115,7 @@ export default function Orders() {
             }}
           >
             <Text style={{ fontSize: 14, color: "#FFF" }}>
-            1:00PM-2:00PM 
+            1PM-2PM 
             </Text>
           </View>
         </View>

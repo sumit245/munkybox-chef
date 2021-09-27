@@ -25,7 +25,7 @@ export default function Reviews({ navigation }) {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Review  />
+            <Review setModalVisible={setModalVisible}  />
             {/* <TouchableOpacity
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
