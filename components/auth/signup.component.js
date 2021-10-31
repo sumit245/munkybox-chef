@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 const { width, height } = Dimensions.get("window");
 import {
   View,
@@ -8,15 +8,18 @@ import {
   Dimensions,
   ImageBackground,
   SafeAreaView,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import { Checkbox, TextInput } from "react-native-paper";
 import { PARTNER_REQUEST } from "../../EndPoints";
 import axios from "axios";
 import { screenWidth } from "../../Dimens";
+import CustomDialog from "../../helpers/CustomDialog";
 
 export default function Signup({ navigation }) {
   const [checked, setChecked] = React.useState(false);
+  const [logged, setLogged] = React.useState(false);
+  const [msg, setMsg] = React.useState("");
   const [first_name, setFirstName] = React.useState("");
   const [last_name, setLastName] = React.useState("");
   const [postal_code, setPostalCode] = React.useState("");
@@ -24,26 +27,21 @@ export default function Signup({ navigation }) {
   const [email, setEmail] = React.useState("");
   const [restaurant_name, setRestaurantName] = React.useState("");
 
-  const submitRequest = () => {
+  const submitRequest = async () => {
     let restaurant = {
       first_name: first_name,
       last_name: last_name,
       email: email,
       postal_code: postal_code,
       phone: phone,
-      restaurant_name:restaurant_name
+      restaurant_name: restaurant_name,
     };
-    axios
-      .post(PARTNER_REQUEST, restaurant)
-      .then((res) => {
-        alert(
-          "A request has been sent to our admin. We will connect you soon for further action"
-        ),
-          navigation.navigate("Login");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const response = await axios.post(PARTNER_REQUEST, restaurant);
+    const data = await response.data;
+    if (response !== null) {
+      setLogged(true);
+      setMsg(data.msg);
+    }
   };
   return (
     <ImageBackground
@@ -65,8 +63,9 @@ export default function Signup({ navigation }) {
             borderRadius: 20,
             paddingVertical: 20,
             paddingHorizontal: 4,
-            marginTop: -16,
+            // justifyContent:"space-between"
           }}
+          contentContainerStyle={{ justifyContent: "space-between" }}
           contentInsetAdjustmentBehavior="automatic"
         >
           <View
@@ -152,6 +151,7 @@ export default function Signup({ navigation }) {
             style={{
               flexDirection: "row",
               marginTop: 4,
+              alignItems: "center",
             }}
           >
             <Checkbox
@@ -162,12 +162,32 @@ export default function Signup({ navigation }) {
             />
             <Text
               style={{
-                color: "rgb(33, 151, 186)",
                 textAlign: "left",
-                fontSize: width / 22,
+                fontSize: 14,
               }}
             >
-              Yes,I agree to the Terms of service and{"\n"} privacy policy{" "}
+              I agree to the{" "}
+              <Text
+                style={{
+                  color: "rgb(33, 151, 186)",
+                  textAlign: "left",
+                  fontSize: 14,
+                  textDecorationLine: "underline",
+                }}
+              >
+                Terms of service
+              </Text>{" "}
+              and{" "}
+              <Text
+                style={{
+                  color: "rgb(33, 151, 186)",
+                  textAlign: "left",
+                  fontSize: 14,
+                  textDecorationLine: "underline",
+                }}
+              >
+                privacy policy.
+              </Text>
             </Text>
           </View>
 
@@ -176,7 +196,7 @@ export default function Signup({ navigation }) {
               backgroundColor: "rgb(33, 151, 186)",
               borderRadius: 12,
               width: "50%",
-              marginVertical: 28,
+              // marginVertical: 20,
               paddingHorizontal: 10,
               paddingVertical: 8,
               alignSelf: "center",
@@ -211,8 +231,10 @@ export default function Signup({ navigation }) {
             Already registered? Login
           </Text>
         </ScrollView>
-      
       </SafeAreaView>
+      {logged && (
+        <CustomDialog navigation={navigation} title={"Thank You"} text={msg} />
+      )}
     </ImageBackground>
   );
 }

@@ -8,6 +8,7 @@ import { avatarify, truncate_string } from "../helpers/truncate_string";
 const CollapsedContent = ({ item }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+  
   return (
     <View style={styles.orderCard}>
       <View>

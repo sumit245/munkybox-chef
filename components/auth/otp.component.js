@@ -49,7 +49,7 @@ export default function OtpComponent({ route, navigation }) {
             returnKeyType="done"
             inputCellLength={1}
           />
-
+          
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Text style={styles.instructions}>OTP valid for</Text>
             <CountDown
@@ -91,3 +91,4 @@ export default function OtpComponent({ route, navigation }) {
     </ImageBackground>
   );
 }
+    

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,46 +7,57 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
-  Dimensions,
 } from "react-native";
 import Collapsible from "react-native-collapsible";
 import { Button } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
-const { width, height } = Dimensions.get("window");
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { useSelector, useDispatch } from "react-redux";
+import { editBankInfo } from "../../actions/actions";
+import { styles } from "./account.styles";
 
-export default function PersonalDetails({
-  id,
-  owner_name,
-  phone,
-  email,
-  about,
-}) {
+export default function PersonalDetails() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [editable, setEditable] = useState(false);
+  const [info, setInfo] = useState({
+    ownerName: "",
+    phoneNumber: "",
+    emailId: "",
+    aboutInfo: "",
+  });
+  const restaurant = useSelector((state) => state.restaurant);
+  const { owner_name, _id, phone, email, about } = restaurant;
+  useEffect(() => {
+    setInfo({
+      ownerName: owner_name,
+      phoneNumber: phone,
+      emailId: email,
+      aboutInfo: about,
+    });
+  }, [owner_name, phone, email, about]);
+  const dispatch = useDispatch();
+  const onSubmit = () => {
+    setEditable(!editable);
+    const restaurant = {
+      owner_name: info.ownerName,
+      phone: info.phoneNumber,
+      email: info.emailId,
+      about: info.aboutInfo,
+    };
+    if (editable) {
+      dispatch(editBankInfo(_id, restaurant));
+    }
+  };
   return (
     <>
       <View style={styles.row}>
-        <View style={{ flexDirection: "row", paddingVertical: 6 }}>
-          <Icon
-            name="person-sharp"
-            color="#444"
-            size={24}
-            style={{ margin: 5 }}
-          />
-          <Text style={{ fontSize: 18, color: "#444", margin: 5 }}>
-            Personal Details
-          </Text>
-        </View>
+        <Text style={{ fontSize: 18, color: "#444", margin: 8 }}>
+          <Icon name="person-sharp" color="#444" size={20} /> Personal Details
+        </Text>
+
         <TouchableOpacity
           onPress={() => setIsCollapsed(!isCollapsed)}
-          style={{
-            justifyContent: "center",
-            marginVertical: 2,
-            borderLeftWidth: 1,
-            borderLeftColor: "#777",
-            height: 20,
-            alignSelf: "center",
-          }}
+          style={styles.collapsibleButton}
         >
           <Icon
             name={isCollapsed ? "chevron-down-sharp" : "chevron-up-sharp"}
@@ -60,72 +71,66 @@ export default function PersonalDetails({
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.container}
         >
-          <View style={{ justifyContent: "flex-end", alignItems: "flex-end",padding:4 }}>
-            <Button
-              onPress={() => setEditable(!editable)}
-              mode={editable ? "outlined" : "contained"}
-            >
-              {editable ? "Save" : "Edit"}
-            </Button>
-          </View>
-          <View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <TouchableOpacity
+            style={{ alignSelf: "flex-end" }}
+            onPress={() => onSubmit()}
+          >
+            <FontAwesome name={editable ? "save" : "pencil"} size={20} />
+          </TouchableOpacity>
+          <>
+            <View style={styles.labelContainer}>
               <Icon name="person-outline" size={18} color="#777" />
-              <Text style={styles.label}>Name</Text>
+              <Text style={styles.label}> Name</Text>
             </View>
             <TextInput
-              value={owner_name}
+              value={info.ownerName}
               style={styles.inputContainer}
-              // editable={twoEditable}
-              // onChangeText={this.onChangeText("base_2price")}
-
-              // onEndEditing={this.onEndEditing}
+              onChangeText={(text) => setInfo({ ...info, ownerName: text })}
+              editable={editable}
             />
-          </View>
+          </>
 
-          <View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <>
+            <View style={styles.labelContainer}>
               <Icon name="call-outline" size={18} color="#777" />
-              <Text style={styles.label}>Contact Number</Text>
+              <Text style={styles.label}> Contact Number</Text>
             </View>
             <TextInput
-              value={phone}
+              value={info.phoneNumber}
               style={styles.inputContainer}
-              // editable={twoEditable}
-              // onChangeText={this.onChangeText("base_2price")}
-              keyboardType="numeric"
-              // onEndEditing={this.onEndEditing}
+              keyboardType="phone-pad"
+              onChangeText={(text) => setInfo({ ...info, phoneNumber: text })}
+              editable={false}
             />
-          </View>
+          </>
 
           <View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View style={styles.labelContainer}>
               <Icon name="mail-outline" size={18} color="#777" />
-              <Text style={styles.label}>Email ID</Text>
+              <Text style={styles.label}> Email ID</Text>
             </View>
             <TextInput
-              value={email}
+              value={info.emailId}
               style={styles.inputContainer}
-              // editable={fifteenEditable}
-              // onChangeText={this.onChangeText("base_15price")}
+              onChangeText={(text) => setInfo({ ...info, emailId: text })}
+              editable={false}
             />
           </View>
 
           <View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View style={styles.labelContainer}>
               <Icon name="document-text-outline" size={18} color="#777" />
-              <Text style={styles.label}>About</Text>
+              <Text style={styles.label}> About</Text>
             </View>
             <TextInput
-              defaultValue={about}
+              value={info.aboutInfo}
               placeholder="Write a description in maximum 250 characters"
               placeholderTextColor="#777"
               multiline
-              style={styles.inputContainer}
-              numberOfLines={4}
-              // onChangeText={this.onChangeText("base_30price")}
-              // keyboardType="numeric"
-              // editable={thirtyEditable}
+              style={[styles.inputContainer, { textAlignVertical: "bottom" }]}
+              numberOfLines={3}
+              onChangeText={(text) => setInfo({ ...info, aboutInfo: text })}
+              editable={editable}
             />
           </View>
         </KeyboardAvoidingView>
@@ -133,34 +138,3 @@ export default function PersonalDetails({
     </>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF",
-    padding: 2,
-    marginHorizontal: "1%",
-  },
-  row: {
-    width: "98%",
-    marginHorizontal: "1%",
-    borderBottomWidth: 0.5,
-    flexDirection: "row",
-    borderBottomColor: "#ccc",
-    backgroundColor: "#FFF",
-    padding: 2,
-    justifyContent: "space-between",
-  },
-  inputContainer: {
-    width: 350,
-    paddingHorizontal: 4,
-    fontSize: 16,
-    borderColor: "#777",
-    borderWidth: 0.4,
-    textAlignVertical: "top",
-    borderRadius: 2,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: "bold",
-    padding: 4,
-  },
-});

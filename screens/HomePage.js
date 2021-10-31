@@ -1,52 +1,42 @@
-import React, { Component } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import TopPage from '../components/home/TopPage';
-import Orders from './Orders';
-import Icon from 'react-native-vector-icons/Ionicons';
-import PastOrders from './PastOrders';
-import AccountSettings from './AccountSettings';
-import { PrimaryColor, SecondaryColor } from '../Colors';
-import { ActivityIndicator } from 'react-native';
+import React, { Component } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import TopPage from "../components/home/TopPage";
+import Orders from "./Orders";
+import Icon from "react-native-vector-icons/Ionicons";
+import PastOrders from "./PastOrders";
+import AccountSettings from "./AccountSettings";
+import { PrimaryColor, SecondaryColor } from "../Colors";
+import { ActivityIndicator } from "react-native";
 
 const Tab = createMaterialBottomTabNavigator();
 
-function MyTabs({navigation}) {
+function MyTabs({ navigation }) {
   return (
     <Tab.Navigator
       initialRouteName="Home"
       activeColor={PrimaryColor}
       inactiveColor={SecondaryColor}
       barStyle={{
-        backgroundColor: 'white',
-        justifyContent: 'center',
-      }}>
+        backgroundColor: "white",
+        justifyContent: "center",
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={TopPage}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon
-              name="home-outline"
-              color={color}
-              selectionColor={'red'}
-              size={24}
-            />
+            <Icon name="home-outline" color={color} size={24} />
           ),
         }}
-
       />
       <Tab.Screen
         name="Meals"
         component={Orders}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon
-              name="fast-food-outline"
-              color={color}
-              selectionColor={'red'}
-              size={24}
-            />
+            <Icon name="fast-food-outline" color={color} size={24} />
           ),
         }}
       />
@@ -55,10 +45,19 @@ function MyTabs({navigation}) {
         component={PastOrders}
         options={{
           tabBarIcon: ({ color }) => (
+            <Icon name="calendar-outline" color={color} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="More"
+        component={AccountSettings}
+        options={{
+          tabBarIcon: ({ color }) => (
             <Icon
-              name="today-outline"
+              name="cog-outline"
               color={color}
-              selectionColor={'red'}
+              selectionColor={"red"}
               size={24}
             />
           ),
@@ -66,14 +65,14 @@ function MyTabs({navigation}) {
       />
 
       <Tab.Screen
-        name="More"
+        name="Growth"
         component={AccountSettings}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
-              name="grid-outline"
+              name="cog-outline"
               color={color}
-              selectionColor={'red'}
+              selectionColor={"red"}
               size={24}
             />
           ),
@@ -88,12 +87,13 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       ...this.props,
-      ...this.props.profile
-    }
+      ...this.props.profile,
+    };
   }
 
   render() {
-    const { restaurant_name,
+    const {
+      restaurant_name,
       _id,
       owner_name,
       phone,
@@ -110,40 +110,38 @@ export default class HomePage extends Component {
       meals,
       plan,
       bank_info,
-      login } = this.state
+      login,
+    } = this.state;
     if (login) {
-      return (
-        <NavigationContainer>
-          <MyTabs
-            restaurant_name={restaurant_name}
-            city={city}
-            id={_id}
-            details={{
-              restaurant_name: restaurant_name,
-              owner_name: owner_name,
-              phone: phone,
-              email: email,
-              status: status,
-              locality: locality,
-              cuisine_type: cuisine_type,
-              city: city,
-              state: state,
-              country: country,
-              postal_code: postal_code,
-              about: about
-            }}
-            documents={documents}
-            meals={meals}
-            bank_info={bank_info}
-            plan={plan} />
-        </NavigationContainer>
+      return (null
+        // <NavigationContainer>
+        //   <MyTabs
+        //     restaurant_name={restaurant_name}
+        //     city={city}
+        //     id={_id}
+        //     details={{
+        //       restaurant_name: restaurant_name,
+        //       owner_name: owner_name,
+        //       phone: phone,
+        //       email: email,
+        //       status: status,
+        //       locality: locality,
+        //       cuisine_type: cuisine_type,
+        //       city: city,
+        //       state: state,
+        //       country: country,
+        //       postal_code: postal_code,
+        //       about: about,
+        //     }}
+        //     documents={documents}
+        //     meals={meals}
+        //     bank_info={bank_info}
+        //     plan={plan}
+        //   />
+        // </NavigationContainer>
       );
+    } else {
+      return <ActivityIndicator />;
     }
-    else {
-      return (
-        <ActivityIndicator />
-      )
-    }
-
   }
 }

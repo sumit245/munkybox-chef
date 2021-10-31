@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
     color: "#FFF",
     marginTop: 20,
     fontWeight: "bold",
+    bottom:-120,
     fontSize: 16,
     textDecorationLine: "underline",
   },

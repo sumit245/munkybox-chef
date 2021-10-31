@@ -1,17 +1,10 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 export default function Logout({ navigation }) {
   const logout = () => {
-    AsyncStorage.multiRemove(["credential", "restaurant"], (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        navigation.replace("Login");
-      }
-    });
+    navigation.replace("Login");
   };
   return (
     <TouchableOpacity style={styles.row} onPress={() => logout()}>

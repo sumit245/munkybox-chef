@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { TouchableOpacity, Alert, View } from "react-native";
-import { SecondaryColor } from "../Colors";
+import { SecondaryColor } from "../../Colors";
 import Icon from "react-native-vector-icons/Ionicons";
-import { Switch } from "react-native-paper";
+import ToggleLunchDinner from "./ToggleLunchDinner";
 
 export default class Export extends Component {
   constructor(props) {
@@ -22,6 +22,7 @@ export default class Export extends Component {
           flexDirection: "row",
         }}
       >
+        <ToggleLunchDinner />
         <TouchableOpacity onPress={this.export}>
           <Icon
             name="download-outline"
@@ -36,7 +37,6 @@ export default class Export extends Component {
           color={SecondaryColor}
           style={{ position: "absolute", right: -25, top: 20 }}
         />
-        <Switch style={{ position: "absolute", right: 0, top: 20 }} />
       </View>
     );
   }

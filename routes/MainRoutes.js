@@ -1,17 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Icon from "react-native-vector-icons/Ionicons";
 import TopPage from "../components/home/TopPage";
 import PastOrders from "../screens/PastOrders";
 import Orders from "../screens/Orders";
-import { ActivityIndicator } from "react-native";
-import { PrimaryColor, SecondaryColor } from "../Colors";
+import { PrimaryColor, SecondaryLightColor } from "../Colors";
 import AccountSettings from "../screens/AccountSettings";
-import { NavigationContainer } from "@react-navigation/native";
+import Growth from "../components/campaign/Growth";
+import Dashboard from "../components/business/Dashboard";
 
 const Tab = createMaterialBottomTabNavigator();
 export default function MainRoutes({
-  navigation,
   restaurant_name,
   city,
   id,
@@ -25,7 +24,7 @@ export default function MainRoutes({
     <Tab.Navigator
       initialRouteName="Home"
       activeColor={PrimaryColor}
-      inactiveColor={SecondaryColor}
+      inactiveColor={SecondaryLightColor}
       barStyle={{
         backgroundColor: "white",
         justifyContent: "center",
@@ -37,56 +36,45 @@ export default function MainRoutes({
         initialParams={{ restaurant_name, city }}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon
-              name="home-outline"
-              color={color}
-              selectionColor={"red"}
-              size={24}
-            />
+            <Icon name="home-outline" color={color} size={24} />
           ),
         }}
       />
       <Tab.Screen
-        name="Meals"
+        name="Business"
+        component={Dashboard}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon name="stats-chart-outline" color={color} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Orders"
         component={Orders}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon
-              name="fast-food-outline"
-              color={color}
-              selectionColor={"red"}
-              size={24}
-            />
+            <Icon name="fast-food-outline" color={color} size={24} />
           ),
         }}
       />
       <Tab.Screen
-        name="Past Orders"
-        component={PastOrders}
+        name="Growth"
+        component={Growth}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon
-              name="today-outline"
-              color={color}
-              selectionColor={"red"}
-              size={24}
-            />
+            <Icon name="easel-outline" color={color} size={24} />
           ),
         }}
       />
 
       <Tab.Screen
-        name="More"
+        name="Setting"
         component={AccountSettings}
         initialParams={{ id: id, details, documents, meals, plan, bank_info }}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon
-              name="grid-outline"
-              color={color}
-              selectionColor={"red"}
-              size={24}
-            />
+            <Icon name="cog-outline" color={color} size={24} />
           ),
         }}
       />

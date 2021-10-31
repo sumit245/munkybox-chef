@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   ImageBackground,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginMethod } from "../../actions/actions";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import firebase from "../../firebase";
@@ -15,13 +15,14 @@ import PhoneInput from "react-native-phone-number-input";
 import { styles } from "./auth.style";
 import Logo from "../Logo";
 
-const attemptInvisibleVerification = true;
 const firebaseConfig = firebase.apps.length
   ? firebase.app().options
   : undefined;
 export default function Login({ navigation }) {
   const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
   const [verificationId, setVerificationId] = useState(null);
+  const entry = useSelector((state) => state.entry);
   const dispatch = useDispatch();
   const reCaptchaVerifier = useRef(null);
 
@@ -50,9 +51,11 @@ export default function Login({ navigation }) {
     await firebase.auth().signInWithCredential(credential);
     Promise.resolve(dispatch(loginMethod(phone)))
       .then((res) => {
-        navigation.navigate("Pin", {
-          entry: true,
-        });
+        if (entry) {
+          navigation.navigate("Pin", { entry: entry });
+        } else {
+          navigation.navigate("Main");
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -67,7 +70,7 @@ export default function Login({ navigation }) {
         <FirebaseRecaptchaVerifierModal
           ref={reCaptchaVerifier}
           firebaseConfig={firebaseConfig}
-          attemptInvisibleVerification={attemptInvisibleVerification}
+          attemptInvisibleVerification={true}
         />
         <View style={styles.image}>
           <Logo />
@@ -107,12 +110,7 @@ export default function Login({ navigation }) {
           Login With PIN
         </Text>
         <Text
-          style={[
-            styles.forgot_button,
-            {
-              bottom: -120,
-            },
-          ]}
+          style={styles.forgot_button}
           onPress={() => navigation.navigate("Signup")}
         >
           Become our Partner{" "}

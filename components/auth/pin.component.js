@@ -4,61 +4,51 @@ import { ImageBackground, View, SafeAreaView, Text } from "react-native";
 import ReactNativePinView from "react-native-pin-view";
 import { useSelector, useDispatch } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { setRestaurant, SET_RESTAURANT } from "../../actions/actions";
+import { setRestaurant } from "../../actions/actions";
 import { styles } from "./auth.style";
 import BackButton from "../BackButton";
 const PinPage = ({ route, navigation, entry }) => {
-  try {
-    const { entry } = route.params;
-  } catch {
-    entry = entry;
-  }
   const pinView = useRef(null);
   const [showRemoveButton, setShowRemoveButton] = useState(false);
   const [enteredPin, setEnteredPin] = useState("");
   const [showCompletedButton, setShowCompletedButton] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
   const [pin, setPin] = useState("");
-  const [confirmPIN, setConfirmPIN] = useState("");
   const restaurant = useSelector((state) => state.restaurant);
 
   const dispatch = useDispatch();
 
-  const setLocalData = () => {
+  const setLocalData = async () => {
     let rest = JSON.stringify(restaurant);
-    AsyncStorage.setItem("restaurant", rest)
-      .then((res) => {
-        alert("Pin saved");
-      })
-      .catch((err) => alert(err));
+    await AsyncStorage.setItem("restaurant", rest);
   };
 
-  const getApiData = (enteredPin) => {
-    AsyncStorage.getItem("credential")
-      .then((res) => {
-        let data = JSON.parse(res);
-        const { pin } = data;
-        if (pin === enteredPin) {
-          dispatch(setRestaurant());
-          navigation.navigate("Main");
-        } else {
-          alert("Wrong PIN");
-        }
-      })
-      .catch((err) => {
-        alert(err);
-      });
+  const getApiData = async (enteredPin) => {
+    const response = await AsyncStorage.getItem("credential");
+    const data = await JSON.parse(response);
+    try {
+      const { pin } = data;
+      if (pin === enteredPin) {
+        dispatch(setRestaurant());
+        navigation.navigate("Main");
+      } else {
+        alert("Wrong PIN");
+      }
+    } catch (error) {
+      alert(
+        "You have not set a pin. Login with OTP for first time to set a pin"
+      );
+    }
   };
 
   const unlock = () => {
-    if (entry) {
+    if (route.params.entry) {
       setConfirmation(true);
       if (confirmation) {
-        setConfirmPIN(enteredPin);
-        if (pin === confirmPIN) {
+        if (pin === enteredPin) {
           const credential = {
             entry: false,
-            pin: confirmPIN,
+            pin: pin,
           };
           AsyncStorage.setItem("credential", JSON.stringify(credential)).then(
             () => {
@@ -107,7 +97,7 @@ const PinPage = ({ route, navigation, entry }) => {
               <Text style={styles.pinMsg}>Confirm PIN Code</Text>
             </>
           ) : (
-            entry && (
+            route.params.entry && (
               <>
                 <Text style={styles.pinMsg}>
                   Create a PIN code for your account.
@@ -155,12 +145,12 @@ const PinPage = ({ route, navigation, entry }) => {
           customLeftButton={
             showRemoveButton ? (
               <Icon name={"ios-backspace"} size={36} color="#FBECEC" />
-            ) : undefined
+            ) : null
           }
           customRightButton={
             showCompletedButton ? (
               <Icon name={"ios-lock-open"} size={36} color="#FBECEC" />
-            ) : undefined
+            ) : null
           }
         />
         <Text style={styles.forgot_button} onPress={() => navigation.pop()}>

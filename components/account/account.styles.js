@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native";
+import { DARKGRAY } from "../../Colors";
 import { width, height } from "../../Dimens";
 export const styles = StyleSheet.create({
   row: {
     width: "98%",
     marginHorizontal: "1%",
     borderBottomWidth: 0.5,
+    borderBottomStartRadius: 40,
     flexDirection: "row",
     borderBottomColor: "#ccc",
     backgroundColor: "#FFF",
@@ -43,7 +45,7 @@ export const styles = StyleSheet.create({
     marginVertical: 5,
     paddingLeft: 10,
   },
-  collapsibleButton:{
+  collapsibleButton: {
     justifyContent: "center",
     marginVertical: 2,
     borderLeftWidth: 1,
@@ -57,18 +59,61 @@ export const styles = StyleSheet.create({
     marginHorizontal: "1%",
   },
   inputContainer: {
-    width: 350,
-    height: 40,
-    padding: 4,
+    borderBottomWidth: 1,
+    marginHorizontal: "4%",
+    borderBottomColor: DARKGRAY,
     fontSize: 16,
-    borderColor: "#777",
-    borderWidth: 0.4,
-    textAlignVertical: "top",
-    borderRadius: 2,
   },
   label: {
     fontSize: 16,
     fontWeight: "bold",
-    paddingVertical: 8,
+  },
+  labelContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginHorizontal: "4%",
+    marginTop: 4,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 2,
+    backgroundColor: "white",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    padding: 3,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
   },
 });

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, StatusBar, Text, SafeAreaView } from "react-native";
 import CalTab from "../CalTab";
-import ToggleLunchDinner from "../ToggleLunchDinner";
-import Header from "../Header";
+import ToggleLunchDinner from "../header/ToggleLunchDinner";
+import Header from "../header/Header";
 import { useSelector } from "react-redux";
 import Menu from "./Menu";
+import Notification from "../header/Notification";
 const days = [
   "Sunday",
   "Monday",
@@ -17,8 +18,10 @@ const days = [
 export default function TopPage({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [meal, setMeal] = useState({});
-  const meals = restaurant.meals;
+  const [slot, setSlot] = useState("Lunch");
+  const { restaurant_name, city, meals } = restaurant;
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
+
   const mealSelector = (day) => {
     if (!isEmpty(meals)) {
       let currentMeal = meals.filter(function (e) {
@@ -31,33 +34,26 @@ export default function TopPage({ navigation }) {
     mealSelector(days[new Date().getDay()]);
   }, []);
 
-  let myProfile = {};
-  (myProfile.restaurant_name = restaurant.restaurant_name),
-    (myProfile.city = restaurant.city);
   const onDayChanged = (day) => {
-    if (day === "Yesterday") {
-      mealSelector(days[new Date().getDay() - 1]);
+    if (day === "Today") {
+      mealSelector(days[new Date().getDay()]);
     } else if (day === "Tomorrow") {
       mealSelector(days[new Date().getDay() + 1]);
     } else {
-      mealSelector(days[new Date().getDay()]);
+      mealSelector(days[new Date().getDay() + 2]);
     }
   };
   return (
     <SafeAreaView style={styles.mainPage}>
       <StatusBar />
-      <Header chefName={myProfile.restaurant_name} chefAddress={myProfile.city}>
-        <View
-          style={[
-            styles.switch,
-            { flexDirection: "row", paddingHorizontal: 10 },
-          ]}
-        >
-          <ToggleLunchDinner />
+      <Header title={restaurant_name + ", " + city}>
+        <View style={styles.switch}>
+          <ToggleLunchDinner handleToggle={(e) => setSlot(e)} />
+          <Notification navigation={navigation} />
         </View>
       </Header>
       <CalTab onDayChanged={(day) => onDayChanged(day)} />
-      <Menu meal={meal} />
+      <Menu meal={meal} slot={slot} />
     </SafeAreaView>
   );
 }
@@ -69,7 +65,10 @@ const styles = StyleSheet.create({
   switch: {
     position: "absolute",
     right: 4,
-    top: 10,
+    bottom: 2,
     color: "#dfdfdf",
+    flexDirection: "row",
+    padding: 4,
+    alignItems: "center",
   },
 });

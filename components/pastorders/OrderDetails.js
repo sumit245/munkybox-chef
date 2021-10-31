@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Header from "../Header";
-import Export from "../Export";
+import Header from "../header/Header";
+import Export from "../header/Export";
 import { truncate_string } from "../../helpers/truncate_string";
 import { styles } from "../../styles/itemstyle";
+import { useSelector } from "react-redux";
 export default function OrderDetails({ route, navigation }) {
   const { order } = route.params;
   const { address_type, city, flat_num, locality, postal_code } = order.address;
+  const restaurant = useSelector((state) => state.restaurant);
+  useEffect(() => {
+    console.log(restaurant);
+  }, []);
   return (
     <View style={styles.container}>
       <Header chefName="World Best Foods" chefAddress="Delhi">

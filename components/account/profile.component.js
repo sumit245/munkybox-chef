@@ -4,13 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import PersonalDetails from "./personal.component";
 import { styles } from "./account.styles";
 import { width } from "../../Dimens";
+import { changeStatus } from "../../actions/actions";
+import { Divider } from "react-native-paper";
 
 export default function Profile() {
   const profile = useSelector((state) => state.restaurant);
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [enabled, setIsEnabled] = useState(false);
   const {
     _id,
     owner_name,
+    restaurant_id,
     restaurant_name,
     phone,
     email,
@@ -21,32 +24,42 @@ export default function Profile() {
     postal_code,
     cuisine_type,
     documents,
+    status,
   } = profile;
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    status === "Active" ? setIsEnabled(true) : setIsEnabled(false);
+  }, [status]);
+
+  const setEnabled = (e) => {
+    setIsEnabled(e);
+    dispatch(changeStatus(_id, { status: e ? "Active" : "Inactive" }));
+  };
+  const banner_image = documents && documents[1].banner_image;
   return (
     <>
       <ImageBackground
-        source={{ uri: documents[1].banner_image }}
+        source={{ uri:banner_image }}
         style={styles.headerImage}
         resizeMode="cover"
       >
         <View style={styles.detailsContainer}>
           <Text style={styles.restaurant}>
             {restaurant_name}
-            {" ("}
-            {cuisine_type || " "}
-            {")"}
+            {" | "}
+            {cuisine_type || "N/A"}
           </Text>
-          <Text style={{color:"#fff"}}>
+          <Text style={{ color: "#fff" }}>
             {"UID: "}
-            {_id}
+            {restaurant_id}
           </Text>
-          <Text style={{color:"#fff"}}>
+          <Text style={{ color: "#fff" }}>
             {locality}
             {", "}
             {city}
           </Text>
-          <Text style={{color:"#fff"}}>
+          <Text style={{ color: "#fff" }}>
             {country}
             {" - "}
             {postal_code}
@@ -59,14 +72,21 @@ export default function Profile() {
         height={0.3 * width}
         width={0.3 * width}
       />
-      <View style={styles.row}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginHorizontal: 4,
+        }}
+      >
         <Text style={styles.navLink}>Accepting Orders</Text>
         <Switch
-          thumbColor={isEnabled ? "#34ff64" : "#ff4d4b"}
-          onValueChange={() => setIsEnabled(!isEnabled)}
-          value={isEnabled}
+          thumbColor={status === "Active" ? "#34ff64" : "#ff4d4b"}
+          onValueChange={(e) => setEnabled(e)}
+          value={enabled}
         />
       </View>
+      <Divider />
       <PersonalDetails
         id={_id}
         owner_name={owner_name}

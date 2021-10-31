@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, FlatList, SafeAreaView, Text } from "react-native";
-// import { Searchbar } from "react-native-paper";
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import OrderItem from "../components/OrderItem";
 import { useSelector, useDispatch } from "react-redux";
-import ToggleLunchDinner from "../components/ToggleLunchDinner";
+import ToggleLunchDinner from "../components/header/ToggleLunchDinner";
 import { getOrder } from "../actions/actions";
 import { truncate_string } from "../helpers/truncate_string";
-import { PrimaryColor, SecondaryColor, SecondaryDarkColor } from "../Colors";
-import { Badge } from "react-native-paper";
-// import Accordion from "react-native-collapsible/Accordion";
-// import { SECTIONS } from "../models/SECTIONS";
-// import SlotMeal from "../components/SlotMeal";
-// import CollapsibleList from "../components/orders/CollapsibleList";
+import {
+  PrimaryDark,
+  SecondaryDarkColor,
+  SecondaryLightColor,
+  WHITE,
+} from "../Colors";
+import { Badge, Divider } from "react-native-paper";
+import HeaderTabSwitch from "../components/header/HeaderTabSwitch";
 
 export default function Orders() {
   const restaurant = useSelector((state) => state.restaurant);
@@ -31,7 +32,7 @@ export default function Orders() {
   const dispatch = useDispatch();
   const { meals } = restaurant;
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
-  let { restaurant_name, _id } = restaurant;
+  let { restaurant_name, restaurant_id, _id } = restaurant;
 
   const renderItem = ({ item }) => (
     <OrderItem item={item} index={item._id} meal={meal} />
@@ -45,105 +46,45 @@ export default function Orders() {
     }
     dispatch(getOrder(restaurant_name));
   }, []);
-
+  const timeslots = ["11-12PM", "12-1PM", "1-2PM"];
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Header
-        chefName={restaurant_name}
-        chefAddress={truncate_string("REST", _id, 5)}
-      >
-        <View
-          style={[
-            styles.switch,
-            { flexDirection: "row", paddingHorizontal: 10 },
-          ]}
-        >
+      <Header title={restaurant_name + ", " + restaurant_id}>
+        <View style={styles.switch}>
           <ToggleLunchDinner />
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            height: 40,
-            backgroundColor: "#009faf",
-            padding: 2,
-            paddingHorizontal: 2,
-            justifyContent: "space-between",
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              borderBottomColor: SecondaryDarkColor,
-              borderBottomWidth: 2,
-              borderBottomLeftRadius: 1,
-              borderBottomRightRadius: 1,
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: 14, color: "#FFF", fontWeight: "bold",marginEnd:1 }}>
-              11AM-12PM
-            </Text>
-            <Badge
-              style={{
-                fontWeight: "bold",
-                backgroundColor: "red",
-                fontSize: 12,
-                color: "#fff",
-                position:"relative",
-                bottom:8
-                
-              }}
-              size={14}
-            >
-              2
-            </Badge>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: 14, color: "#FFF" }}>
-            12PM-1PM
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: 14, color: "#FFF" }}>
-            1PM-2PM 
-            </Text>
-          </View>
-        </View>
       </Header>
-      {/* <Searchbar style={styles.searchbar} />
-      <CollapsibleList/>
-          */}
-      <View style={{marginTop:28}} >
-        <FlatList
-          data={orders}
-          // contentContainerStyle={{ flex: 1 }}
-          showsVerticalScrollIndicator={false}
-          renderItem={renderItem}
-          keyExtractor={(item) => item._id}
-        />
-      </View>
+      <HeaderTabSwitch items={timeslots}>
+        <Badge
+          style={{
+            margin: 4,
+            fontSize: 12,
+            backgroundColor: "red",
+            color: WHITE,
+          }}
+          size={18}
+        >
+          {orders.length}
+        </Badge>
+      </HeaderTabSwitch>
+      <FlatList
+        data={orders}
+        showsVerticalScrollIndicator={false}
+        renderItem={renderItem}
+        keyExtractor={(item) => item._id}
+      />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  searchbar: {
-    display: "flex",
-  },
   switch: {
     position: "absolute",
     right: 4,
-    top: 8,
+    bottom: 2,
     color: "#dfdfdf",
+    flexDirection: "row",
+    padding: 4,
+    alignItems: "center",
   },
 });

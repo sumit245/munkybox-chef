@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { PrimaryColor, PrimaryDark, WHITE } from "../Colors";
+import Icon from "react-native-vector-icons/Ionicons";
+import {
+  DARKGRAY,
+  PrimaryDark,
+  SecondaryColor,
+  SecondaryLightColor,
+  WHITE,
+} from "../Colors";
 
+const days = ["Today", "Tomorrow", "Dayafter"];
 export default class CalTab extends Component {
   constructor(props) {
     super(props);
@@ -15,39 +23,44 @@ export default class CalTab extends Component {
   render() {
     const { activeDay } = this.state;
     return (
-      <View style={styles.calenderTab}>
-        <TouchableOpacity
-          style={[
-            styles.dateTab,
-            activeDay === "Yesterday"
-              ? { backgroundColor: PrimaryColor }
-              : null,
-          ]}
-          onPress={() => this.onDayChanged("Yesterday")}
-        >
-          <Text style={styles.dateHeader}>Yesterday</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.dateTab,
-            activeDay === "Today" ? { backgroundColor: PrimaryColor } : null,
-          ]}
-          onPress={() => this.onDayChanged("Today")}
-        >
-          <Text style={styles.dateHeader}>Today</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.dateTab,
-            activeDay === "Tomorrow" ? { backgroundColor: PrimaryColor } : null,
-            { borderRightWidth: 0 },
-          ]}
-          onPress={() => this.onDayChanged("Tomorrow")}
-        >
-          <Text style={styles.dateHeader}>Tomorrow</Text>
-        </TouchableOpacity>
+      <View style={{ backgroundColor: PrimaryDark }}>
+        <View style={styles.calenderTab}>
+          {days.map((day, index) => (
+            <TouchableOpacity
+              style={[
+                styles.dateTab,
+                index !== days.length - 1 ? { borderRightWidth: 0.5 } : null,
+              ]}
+              onPress={() => this.onDayChanged(day)}
+              key={index}
+            >
+              <Text
+                style={[
+                  styles.dateHeader,
+                  activeDay === day
+                    ? { fontWeight: "bold", color: WHITE }
+                    : null,
+                ]}
+              >
+                {day}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+        <Icon
+          name="caret-up-sharp"
+          size={20}
+          color={SecondaryLightColor}
+          style={{
+            marginTop: -14,
+            marginLeft:
+              activeDay === "Today"
+                ? "15%"
+                : activeDay === "Tomorrow"
+                ? "45%"
+                : "80%",
+          }}
+        />
       </View>
     );
   }
@@ -56,22 +69,18 @@ const styles = StyleSheet.create({
   calenderTab: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 8,
-    paddingHorizontal: 4,
+    padding: 6,
     backgroundColor: PrimaryDark,
     flexDirection: "row",
   },
   dateTab: {
     flex: 1,
     alignItems: "center",
-    borderRightColor: WHITE,
-    borderRightWidth: 0.5,
+    borderRightColor: DARKGRAY,
+    // borderRightWidth: 0.5,
   },
   dateHeader: {
     fontSize: 18,
-    color: WHITE,
-    textAlignVertical: "center",
-    textAlign: "right",
-    paddingHorizontal: 10,
+    color: DARKGRAY,
   },
 });
