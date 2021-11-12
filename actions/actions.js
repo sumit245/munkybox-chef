@@ -1,7 +1,6 @@
 import { ORDERS, RESTAURANT_LOGIN, RESTAURANT_URL } from "../EndPoints";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/core";
 
 export const LOGIN_METHOD = "LOGIN_METHOD";
 export const ENTRY_METHOD = "ENTRY_METHOD";
@@ -17,11 +16,9 @@ export const loginMethod = (phone) => async (dispatch) => {
       const credential = await AsyncStorage.getItem("credential");
       dispatch({ type: LOGIN_METHOD, payload: restaurant });
       const { entry } = await JSON.parse(credential);
-      console.log(entry);
       dispatch({ type: ENTRY_METHOD, payload: entry });
     } catch (error) {
       const entry = { entry: false };
-      console.log(entry);
       dispatch({ type: ENTRY_METHOD, payload: entry });
     }
   } else {
@@ -52,7 +49,6 @@ export const editBankInfo = (id, bankInfo) => async (dispatch) => {
   const data = await response.data;
   await AsyncStorage.setItem("restaurant", JSON.stringify(data));
   dispatch({ type: SET_RESTAURANT, payload: data });
-  
 };
 export const changeStatus = (id, status) => async (dispatch) => {
   const response = await axios.put(RESTAURANT_URL + id, status);

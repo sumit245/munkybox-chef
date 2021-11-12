@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Text,
   View,
@@ -14,6 +14,7 @@ import firebase from "../../firebase";
 import PhoneInput from "react-native-phone-number-input";
 import { styles } from "./auth.style";
 import Logo from "../Logo";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const firebaseConfig = firebase.apps.length
   ? firebase.app().options
@@ -21,10 +22,17 @@ const firebaseConfig = firebase.apps.length
 export default function Login({ navigation }) {
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
+  const [entry, setEntry] = useState(false);
   const [verificationId, setVerificationId] = useState(null);
-  const entry = useSelector((state) => state.entry);
+  // const entry = useSelector((state) => state.entry);
   const dispatch = useDispatch();
   const reCaptchaVerifier = useRef(null);
+
+  useEffect(() => {
+    const res = AsyncStorage.getItem("credential").then((res) =>
+      setEntry(res.entry)
+    );
+  });
 
   const sendVerification = async () => {
     const phoneProvider = new firebase.auth.PhoneAuthProvider();

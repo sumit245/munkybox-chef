@@ -7,6 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setRestaurant } from "../../actions/actions";
 import { styles } from "./auth.style";
 import BackButton from "../BackButton";
+import axios from "axios";
 const PinPage = ({ route, navigation, entry }) => {
   const pinView = useRef(null);
   const [showRemoveButton, setShowRemoveButton] = useState(false);
@@ -19,13 +20,22 @@ const PinPage = ({ route, navigation, entry }) => {
   const dispatch = useDispatch();
 
   const setLocalData = async () => {
+    console.log("No i wasnot there");
     let rest = JSON.stringify(restaurant);
     await AsyncStorage.setItem("restaurant", rest);
   };
 
   const getApiData = async (enteredPin) => {
+    console.log("I am here");
     const response = await AsyncStorage.getItem("credential");
     const data = await JSON.parse(response);
+    const rest = await AsyncStorage.getItem("restaurant");
+    const { _id } = JSON.parse(rest);
+
+    const res = await axios.get("http://192.168.1.4:5000/api/newrest/" + _id);
+    const restra = res.data;
+    let newrest = JSON.stringify(restra);
+    await AsyncStorage.setItem("restaurant", newrest);
     try {
       const { pin } = data;
       if (pin === enteredPin) {
