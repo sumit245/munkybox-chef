@@ -9,24 +9,7 @@ import {
 } from "react-native";
 import CountDown from "react-native-countdown-component";
 import { DARKGRAY, SecondaryColor, WHITE } from "../../Colors";
-import { width } from "../../Dimens";
 import Header from "../header/Header";
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    order_id: "ORD001",
-    base_price: "150",
-    user_name: "Sumit Ranjan",
-    plan: "30 Days",
-    start_date: "14th October",
-    end_date: "13th November",
-    slot: "Lunch",
-    order_time: "October 12th, 05:40PM",
-    address: "A967/D, Mayur Vihar,Delhi",
-    city: "Delhi",
-    postal_code: "110011",
-  },
-];
 const Item = ({ item }) => {
   const { address } = item;
   const { address_type, flat_num, city, locality, postal_code } = address;

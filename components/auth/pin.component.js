@@ -20,34 +20,31 @@ const PinPage = ({ route, navigation, entry }) => {
   const dispatch = useDispatch();
 
   const setLocalData = async () => {
-    console.log("No i wasnot there");
     let rest = JSON.stringify(restaurant);
     await AsyncStorage.setItem("restaurant", rest);
   };
 
   const getApiData = async (enteredPin) => {
-    console.log("I am here");
-    const response = await AsyncStorage.getItem("credential");
-    const data = await JSON.parse(response);
-    const rest = await AsyncStorage.getItem("restaurant");
-    const { _id } = JSON.parse(rest);
-
-    const res = await axios.get("http://192.168.1.4:5000/api/newrest/" + _id);
-    const restra = res.data;
-    let newrest = JSON.stringify(restra);
-    await AsyncStorage.setItem("restaurant", newrest);
     try {
-      const { pin } = data;
+      const response = await AsyncStorage.getItem("credential");
+      const { pin } = JSON.parse(response);
+      console.log(pin, enteredPin);
       if (pin === enteredPin) {
+        const rest = await AsyncStorage.getItem("restaurant");
+        const { _id } = JSON.parse(rest);
+        const res = await axios.get(
+          "https://munkybox-admin.herokuapp.com/api/newrest/" + _id
+        );
+        const restra = res.data;
+        let newrest = JSON.stringify(restra);
+        await AsyncStorage.setItem("restaurant", newrest);
         dispatch(setRestaurant());
         navigation.navigate("Main");
       } else {
-        alert("Wrong PIN");
+        alert("Wrong Pin");
       }
     } catch (error) {
-      alert(
-        "You have not set a pin. Login with OTP for first time to set a pin"
-      );
+      alert("Login for first time using otp");
     }
   };
 

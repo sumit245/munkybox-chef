@@ -22,17 +22,22 @@ const firebaseConfig = firebase.apps.length
 export default function Login({ navigation }) {
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
-  const [entry, setEntry] = useState(false);
+  const [entry, setEntry] = useState(true);
   const [verificationId, setVerificationId] = useState(null);
-  // const entry = useSelector((state) => state.entry);
   const dispatch = useDispatch();
   const reCaptchaVerifier = useRef(null);
-
+  const setentryMethod = async () => {
+    const resp = await AsyncStorage.getItem("credential");
+    try {
+      const { entry } = resp;
+      setEntry(entry);
+    } catch {
+      console.log("error");
+    }
+  };
   useEffect(() => {
-    const res = AsyncStorage.getItem("credential").then((res) =>
-      setEntry(res.entry)
-    );
-  });
+    setentryMethod();
+  },[]);
 
   const sendVerification = async () => {
     const phoneProvider = new firebase.auth.PhoneAuthProvider();
@@ -58,7 +63,7 @@ export default function Login({ navigation }) {
     );
     await firebase.auth().signInWithCredential(credential);
     Promise.resolve(dispatch(loginMethod(phone)))
-      .then((res) => {
+      .then(() => {
         if (entry) {
           navigation.navigate("Pin", { entry: entry });
         } else {
