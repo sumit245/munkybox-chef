@@ -4,7 +4,7 @@ import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { Divider } from "react-native-paper";
+import { Checkbox, Divider } from "react-native-paper";
 import { SecondaryColor, SecondaryLightColor } from "../../Colors";
 export default function PreviewCoupon({ navigation, route }) {
   const {
