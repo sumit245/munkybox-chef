@@ -8,24 +8,36 @@ export const GET_ORDER = "GET_ORDER";
 export const SET_RESTAURANT = "SET_RESTAURANT";
 export const SET_STATUS = "SET_STATUS";
 
-export const loginMethod = (phone) => async (dispatch) => {
+export const loginMethod = (phone,navigation) => async (dispatch) => {
   const response = await axios.post(RESTAURANT_LOGIN, { phone });
   const restaurant = await response.data.data;
-  if (restaurant !== null) {
+  let enter=false
+
+  if (restaurant !== null&&restaurant!==undefined) {
     try {
       const credential = await AsyncStorage.getItem("credential");
       dispatch({ type: LOGIN_METHOD, payload: restaurant });
       const { entry } = await JSON.parse(credential);
+      enter=entry
       dispatch({ type: ENTRY_METHOD, payload: entry });
+      
+      navigation.navigate("Main");
+      
     } catch (error) {
       const entry = { entry: false };
+      console.log(entry);
+      enter=entry
       dispatch({ type: ENTRY_METHOD, payload: entry });
+      navigation.navigate("Pin",{entry:entry})
     }
+   
   } else {
+    enter=false
     alert(
       "You are not a registered chef!!! Please send a request to become partner"
     );
   }
+
 };
 
 export const setRestaurant = () => async (dispatch) => {

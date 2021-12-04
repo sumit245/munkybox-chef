@@ -14,7 +14,7 @@ export default function ContactUs({ navigation }) {
           <Text style={{ fontSize: 18, color: "#444", margin: 8 }}>
             <Icon name="mail-sharp" color="#444" size={20} /> Contact Us
           </Text>
-          <Text style={[styles.label, { fontSize: 12, color: "#777",marginLeft:34,marginTop:-16 }]}>
+          <Text style={[styles.label, { fontSize: 12, color: "#777",marginLeft:34,marginTop:-10 }]}>
             Help & Support
           </Text>
         </View>

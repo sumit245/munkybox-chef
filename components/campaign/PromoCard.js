@@ -36,18 +36,21 @@ export default function PromoCard({
           ) : (
             <Icon name={icon} size={30} color={SecondaryColor} />
           )}
-          <View style={{ marginLeft: 8, flexShrink: 1 }}>
+          <View style={{ marginLeft: 8,marginBottom:12,flexShrink:1}}>
             <Text style={{ fontWeight: "bold", fontSize: 16, padding: 2 }}>
               {head}
             </Text>
-            <Text style={{ fontWeight: "bold", color: DARKGRAY, fontSize: 12 }}>
-              {subhead}
+            <View style={{flexDirection:"row",justifyContent:"space-between"}}>
+            <Text style={{ fontWeight: "bold", color: DARKGRAY, fontSize: 12,marginLeft:4 }}>
+              {subhead} days
             </Text>
             {content && (
-              <Text style={{ fontWeight: "bold", color: DARKGRAY }}>
-                $ {content} only per click
+              <Text style={{ fontWeight: "bold", color: DARKGRAY,fontSize:12,textAlign:"right",marginLeft:"50%" }}>
+                ${content} /click
               </Text>
             )}
+            </View>
+            
           </View>
         </View>
         <Divider />

@@ -7,10 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default function App() {
-  // useEffect(() => {
-  //   AsyncStorage.clear()
-    
-  // }, [])
+  // useEff6476412
   return (
     <NavigationContainer>
       <Provider store={store}>

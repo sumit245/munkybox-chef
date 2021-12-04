@@ -3,9 +3,12 @@ import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
 import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
 import { useSelector } from "react-redux";
+import Loader from "../../helpers/Loader"
 import axios from "axios";
 import { Checkbox, Divider } from "react-native-paper";
 import { SecondaryColor, SecondaryLightColor } from "../../Colors";
+import { useState } from "react";
+import CustomDialog from "../../helpers/CustomDialog";
 export default function PreviewCoupon({ navigation, route }) {
   const {
     type,
@@ -19,8 +22,12 @@ export default function PreviewCoupon({ navigation, route }) {
     end_date,
   } = route.params;
   const restaurant = useSelector((state) => state.restaurant);
+  const [checked,setChecked]=useState(false)
+  const [loading,setLoading]=useState(true)
+  const [pop,showDelete]=useState(false)
 
   const submit = async () => {
+    setLoading(false)
     const { _id, restaurant_id, base_2price, base_15price, base_30price } =
       await restaurant;
     const price =
@@ -52,15 +59,16 @@ export default function PreviewCoupon({ navigation, route }) {
       { promo }
     );
     const rest = await pushTorestaurant.data;
+    setLoading(true)
     navigation.navigate("submit_coupon", {
       promo,
     });
   };
-
+if(loading){
   return (
     <SafeAreaView style={styles.container}>
       <HeaderTwo title="Preview" navigation={navigation}>
-        <TouchableOpacity style={{ paddingHorizontal: 4 }}>
+        <TouchableOpacity style={{ paddingHorizontal: 4 }} onPress={()=>showDelete(true)} >
           <Text style={{ color: SecondaryColor, fontWeight: "bold" }}>
             Discard
           </Text>
@@ -70,8 +78,8 @@ export default function PreviewCoupon({ navigation, route }) {
         <View style={styles.card}>
           <View style={styles.cardBody}>
             <Text style={[styles.bigText, { fontSize: 18 }]}>
-              {discount}
-              {type === "net" ? "$ " : "% "}OFF
+              
+{type === "net" ? "$" +discount: discount+"% "} OFF
             </Text>
           </View>
 
@@ -134,6 +142,12 @@ export default function PreviewCoupon({ navigation, route }) {
           </View>
 
           <View style={styles.cardBody}>
+            <View style={{flexDirection:"row"}}>
+            <Checkbox.Android status={checked ? "checked" : "unchecked"}
+                onPress={() => {
+                  setChecked(!checked);
+                }}
+                color="#226ccf" />
             <Text>
               By clicking "CONFIRM".I undertake that I have read and understood
               the{" "}
@@ -143,6 +157,8 @@ export default function PreviewCoupon({ navigation, route }) {
                 terms and conditions
               </Text>{" "}
             </Text>
+            </View>
+            
           </View>
         </View>
       </View>
@@ -150,16 +166,24 @@ export default function PreviewCoupon({ navigation, route }) {
       <View style={styles.bottomButtonGroup}>
         <TouchableOpacity
           style={[styles.actionButton, { backgroundColor: "#FFF" }]}
+          onPress={()=>navigation.goBack()}
         >
           <Text style={[styles.btnText, { color: "#226ccf" }]}>EDIT</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.actionButton, { backgroundColor: "#226ccf" }]}
           onPress={() => submit()}
+          disabled={!checked}
         >
           <Text style={[styles.btnText, { color: "#FFF" }]}>Confirm</Text>
         </TouchableOpacity>
       </View>
+   {pop &&(
+     <CustomDialog navigation={navigation} page="Growth" title="Are you sure?" text="Discarding a coupon will remove all saved details" />
+   )}
     </SafeAreaView>
   );
+              }else{
+                return <Loader/>
+              }
 }

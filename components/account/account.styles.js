@@ -6,12 +6,13 @@ export const styles = StyleSheet.create({
     width: "98%",
     marginHorizontal: "1%",
     borderBottomWidth: 0.5,
-    borderBottomStartRadius: 40,
+    
     flexDirection: "row",
     borderBottomColor: "#ccc",
     backgroundColor: "#FFF",
     padding: 2,
     justifyContent: "space-between",
+    
   },
   restaurant: {
     fontSize: 18,
@@ -60,10 +61,12 @@ export const styles = StyleSheet.create({
   },
   inputContainer: {
     borderBottomWidth: 1,
-    marginHorizontal: "4%",
+    flex:1,
     borderBottomColor: DARKGRAY,
     fontSize: 16,
+    
   },
+  planContainer:{flexDirection:"row",marginHorizontal:"4%",alignItems:"center",marginVertical:4},
   label: {
     fontSize: 16,
     fontWeight: "bold",
@@ -72,7 +75,8 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginHorizontal: "4%",
-    marginTop: 4,
+    marginTop: 8,
+    marginVertical:4
   },
   centeredView: {
     flex: 1,

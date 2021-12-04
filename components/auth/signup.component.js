@@ -15,11 +15,13 @@ import { PARTNER_REQUEST } from "../../EndPoints";
 import axios from "axios";
 import { screenWidth } from "../../Dimens";
 import CustomDialog from "../../helpers/CustomDialog";
+import Loader from "../../helpers/Loader";
 
 export default function Signup({ navigation }) {
   const [checked, setChecked] = React.useState(false);
   const [logged, setLogged] = React.useState(false);
   const [msg, setMsg] = React.useState("");
+  const [loaded,setLoaded]=useState(false)
   const [first_name, setFirstName] = React.useState("");
   const [last_name, setLastName] = React.useState("");
   const [postal_code, setPostalCode] = React.useState("");
@@ -28,6 +30,7 @@ export default function Signup({ navigation }) {
   const [restaurant_name, setRestaurantName] = React.useState("");
 
   const submitRequest = async () => {
+    setLoaded(true)
     let restaurant = {
       first_name: first_name,
       last_name: last_name,
@@ -40,9 +43,12 @@ export default function Signup({ navigation }) {
     const data = await response.data;
     if (response !== null) {
       setLogged(true);
+      setLoaded(false)
       setMsg(data.msg);
+      
     }
   };
+  if(!loaded){
   return (
     <ImageBackground
       source={require("../../assets/chef-background.jpg")}
@@ -63,11 +69,12 @@ export default function Signup({ navigation }) {
             borderRadius: 20,
             paddingVertical: 20,
             paddingHorizontal: 4,
-            // justifyContent:"space-between"
+            
           }}
-          contentContainerStyle={{ justifyContent: "space-between" }}
+          contentContainerStyle={{ justifyContent: "space-between",flex:1 }}
           contentInsetAdjustmentBehavior="automatic"
         >
+          <View>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
@@ -146,7 +153,6 @@ export default function Signup({ navigation }) {
             theme={{ colors: { text: "black", primary: "rgb(33, 151, 186)" } }}
             onChangeText={(data) => setRestaurantName(data)}
           />
-
           <View
             style={{
               flexDirection: "row",
@@ -154,7 +160,8 @@ export default function Signup({ navigation }) {
               alignItems: "center",
             }}
           >
-            <Checkbox
+            
+            <Checkbox.Android
               color="rgb(80, 151, 226)"
               status={checked ? "checked" : "unchecked"}
               uncheckedColor="rgb(33, 151, 186)"
@@ -196,7 +203,7 @@ export default function Signup({ navigation }) {
               backgroundColor: "rgb(33, 151, 186)",
               borderRadius: 12,
               width: "50%",
-              // marginVertical: 20,
+               marginVertical: 20,
               paddingHorizontal: 10,
               paddingVertical: 8,
               alignSelf: "center",
@@ -218,6 +225,9 @@ export default function Signup({ navigation }) {
             </Text>
           </TouchableOpacity>
 
+</View>
+<View>
+          
           <Text
             style={{
               color: "rgb(33, 151, 186)",
@@ -230,13 +240,17 @@ export default function Signup({ navigation }) {
           >
             Already registered? Login
           </Text>
+          </View>
         </ScrollView>
       </SafeAreaView>
       {logged && (
-        <CustomDialog navigation={navigation} title={"Thank You"} text={msg} />
+        <CustomDialog navigation={navigation} page="Login" title={"Thank You"} text={msg} />
       )}
     </ImageBackground>
   );
+      }else{
+        return <Loader />
+      }
 }
 
 const styles = StyleSheet.create({

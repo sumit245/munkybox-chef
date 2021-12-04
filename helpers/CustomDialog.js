@@ -8,12 +8,12 @@ import {
   Provider,
 } from "react-native-paper";
 
-const CustomDialog = ({ title, text, navigation }) => {
+const CustomDialog = ({ title, text, navigation,page }) => {
   const [show, setShow] = React.useState(true);
   const hideDialog = () => setShow(!show);
   const done = () => {
     setShow(!show);
-    // navigation.navigate("Login");
+    navigation.navigate(page);
   };
   return (
     <Provider>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import {
   View,
   Text,
@@ -21,15 +21,16 @@ import { onDateChange } from "../../helpers/commons";
 import moment from "moment";
 
 export default function CreateBanner({ route, navigation }) {
-  const { title, duration, rpc, advert_id } = route.params;
+  const { title, duration, rpc, advert_id,restaurant } = route.params;
   const minDate = Date.now();
   const [selectedEndDate, setSelecteEndDate] = useState(null);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [code, setCode] = useState("");
   const [discount, setDiscount] = useState("");
+  
   const dateHandler = (date, type) => {
     if (date !== null) {
-      const { start, end } = onDateChange(date, duration.split(" ")[0]);
+      const { start, end } = onDateChange(date, duration.split(" ")[0]-1);
       let startDate = moment(start, "DD-MM-YYYY").toDate();
       setSelectedStartDate(date);
       let myDate = moment(end, "DD-MMM-YYYY").toDate();
@@ -48,6 +49,7 @@ export default function CreateBanner({ route, navigation }) {
       end_date,
       code,
       discount,
+      restaurant
     });
   };
   return (
@@ -64,7 +66,7 @@ export default function CreateBanner({ route, navigation }) {
               { color: "#fff", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={14} color="#FFF" /> Appears for most
+            <Icon name="checkmark" size={16} color="#FFF" /> Appears for most
             relevant customers
           </Text>
           <Text
@@ -73,7 +75,7 @@ export default function CreateBanner({ route, navigation }) {
               { color: "#fff", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={14} color="#FFF" /> Pay only when
+            <Icon name="checkmark" size={16} color="#FFF" /> Pay only when
             customers click on the ad
           </Text>
           <Text
@@ -82,7 +84,7 @@ export default function CreateBanner({ route, navigation }) {
               { color: "#fff", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={14} color="#FFF" /> Get upto 2.5X ROI
+            <Icon name="checkmark" size={16} color="#FFF" /> Get upto 2.5X ROI
           </Text>
           <Text
             style={[
@@ -90,7 +92,7 @@ export default function CreateBanner({ route, navigation }) {
               { color: "#fff", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={14} color="#FFF" /> Witness 50% growth
+            <Icon name="checkmark" size={16} color="#FFF" /> Witness 50% growth
             in new customers
           </Text>
         </View>
@@ -99,8 +101,7 @@ export default function CreateBanner({ route, navigation }) {
             Choose duration
           </Text>
           <Text style={styles.smallText}>
-            <Icon name="pricetag" size={14} color={DARKGRAY} /> you are a
-            valueable customer
+            You are a valueable customer
           </Text>
           <View
             style={[
@@ -108,32 +109,14 @@ export default function CreateBanner({ route, navigation }) {
               { flexDirection: "row", justifyContent: "space-between" },
             ]}
           >
-            <Text style={styles.bigText}>{duration}</Text>
+            <Text style={styles.bigText}>{duration} days</Text>
             <Text style={styles.bigText}>
               <Icon name="pricetag" size={14} color={SecondaryDarkColor} />$
               {rpc}
               /click
             </Text>
           </View>
-          <TouchableOpacity
-            style={{
-              backgroundColor: SecondaryLightColor,
-              padding: 8,
-              marginTop: 4,
-            }}
-          >
-            <Text
-              style={{
-                color: WHITE,
-                fontSize: 16,
-                fontWeight: "bold",
-                textAlign: "center",
-                textTransform: "uppercase",
-              }}
-            >
-              Choose {duration} campaign
-            </Text>
-          </TouchableOpacity>
+
         </View>
         <View style={styles.card}>
           <Text style={[styles.bigText, { fontSize: 16 }]}>

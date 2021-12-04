@@ -62,13 +62,9 @@ export default function Login({ navigation }) {
       code
     );
     await firebase.auth().signInWithCredential(credential);
-    Promise.resolve(dispatch(loginMethod(phone)))
+    Promise.resolve(dispatch(loginMethod(phone,navigation)))
       .then(() => {
-        if (entry) {
-          navigation.navigate("Pin", { entry: entry });
-        } else {
-          navigation.navigate("Main");
-        }
+        console.log("Ok");
       })
       .catch((err) => console.log(err));
   };

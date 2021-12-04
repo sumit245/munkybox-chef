@@ -27,6 +27,21 @@ export default function CreateCoupon({ route, navigation }) {
   const [dinner, setDinner] = useState(false);
   const [duration, setDuration] = useState(7);
   const minDate = Date.now();
+  const resetAll=()=>{
+    setPlan(2)
+    setCode("")
+    setDiscount("")
+    setStartDate("")
+    setEndDate("")
+    setLunch(false)
+    setDinner(false)
+    setDuration(0)
+  }
+  const radioChanged=(newValue)=>{
+    setDuration(newValue)
+    setStartDate("")
+    setEndDate("")
+  }
   const onPreview = () => {
     navigation.navigate("preview_coupon", {
       type: type,
@@ -64,7 +79,7 @@ export default function CreateCoupon({ route, navigation }) {
               value={plan}
             >
               <View style={styles.btnGroup}>
-                <RadioButton value={2} color="#226ccf" />
+                <RadioButton.Android value={2} color="#226ccf" />
                 <Text style={styles.bigText}>2 Meals</Text>
               </View>
               <View
@@ -76,7 +91,7 @@ export default function CreateCoupon({ route, navigation }) {
                 }}
               />
               <View style={styles.btnGroup}>
-                <RadioButton value={15} color="#226ccf" />
+                <RadioButton.Android value={15} color="#226ccf" />
                 <Text style={styles.bigText}>15 Meals</Text>
               </View>
               <View
@@ -88,7 +103,7 @@ export default function CreateCoupon({ route, navigation }) {
                 }}
               />
               <View style={styles.btnGroup}>
-                <RadioButton value={30} color="#226ccf" />
+                <RadioButton.Android value={30} color="#226ccf" />
                 <Text style={styles.bigText}>30 Meals</Text>
               </View>
             </RadioButton.Group>
@@ -119,11 +134,11 @@ export default function CreateCoupon({ route, navigation }) {
           </Text>
           <View style={styles.cardBody}>
             <RadioButton.Group
-              onValueChange={(newValue) => setDuration(newValue)}
+              onValueChange={(newValue) => radioChanged(newValue)}
               value={duration}
             >
               <View style={styles.btnGroup}>
-                <RadioButton value={7} color="#226ccf" />
+                <RadioButton.Android value={7} color="#226ccf" />
                 <View>
                   <Text style={styles.bigText}>7 Days</Text>
                   <Text style={styles.smallText}>
@@ -141,7 +156,7 @@ export default function CreateCoupon({ route, navigation }) {
                 }}
               />
               <View style={styles.btnGroup}>
-                <RadioButton value={15} color="#226ccf" />
+                <RadioButton.Android value={15} color="#226ccf" />
                 <View>
                   <Text style={styles.bigText}>15 Days</Text>
                   <Text style={styles.smallText}>
@@ -159,7 +174,7 @@ export default function CreateCoupon({ route, navigation }) {
                 }}
               />
               <View style={styles.btnGroup}>
-                <RadioButton value={30} color="#226ccf" />
+                <RadioButton.Android value={30} color="#226ccf" />
                 <View>
                   <Text style={styles.bigText}>Custom duration</Text>
                   <Text style={styles.smallText}>
@@ -171,17 +186,30 @@ export default function CreateCoupon({ route, navigation }) {
             {/* Radio for duration */}
             <View style={styles.optionCard}>
               <Text style={styles.optionsLabels}>Select plan duration</Text>
-              <TouchableOpacity
+              <View
                 style={styles.optionrow}
-                onPress={() => setModalVisible(true)}
+                
               >
                 <Text>
                   {start_date || "--"}
                   {" to "}
                   {end_date || "--"}
                 </Text>
+                <View style={{flexDirection:"row",alignItems:"center"}}>
+                <TouchableOpacity onPress={()=>{
+                  setStartDate("")
+                  setEndDate("")
+                }}
+                style={{marginRight:8}}
+                >
+                <Text style={{fontSize:12,fontWeight:"bold",color:"#f00"}}>Clear</Text>
+                  </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setModalVisible(true)}>
                 <Icon name="ios-calendar-outline" color="#226ccf" size={22} />
-              </TouchableOpacity>
+                  </TouchableOpacity>
+                </View>
+
+              </View>
             </View>
             {/* Date Picker TODO:move to separate */}
           </View>
@@ -194,14 +222,14 @@ export default function CreateCoupon({ route, navigation }) {
           </Text>
           <View style={styles.cardBody}>
             <View style={styles.btnGroup}>
-              <Checkbox
+              <Checkbox.Android
                 status={lunch ? "checked" : "unchecked"}
                 onPress={() => {
                   setLunch(!lunch);
                 }}
                 color="#226ccf"
               />
-              <Text>Lunch (11AM -2PM)</Text>
+              <Text>Lunch (10AM -2PM)</Text>
             </View>
             <View
               style={{
@@ -212,7 +240,7 @@ export default function CreateCoupon({ route, navigation }) {
               }}
             />
             <View style={styles.btnGroup}>
-              <Checkbox
+              <Checkbox.Android
                 status={dinner ? "checked" : "unchecked"}
                 onPress={() => {
                   setDinner(!dinner);
@@ -239,6 +267,7 @@ export default function CreateCoupon({ route, navigation }) {
       <View style={styles.bottomButtonGroup}>
         <TouchableOpacity
           style={[styles.actionButton, { backgroundColor: WHITE }]}
+          onPress={()=>resetAll()}
         >
           <Text style={[styles.btnText, { color: PrimaryLight }]}>RESET</Text>
         </TouchableOpacity>

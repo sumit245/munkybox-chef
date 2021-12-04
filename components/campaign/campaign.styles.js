@@ -29,13 +29,14 @@ export const styles = StyleSheet.create({
   },
   bigText: {
     fontWeight: "bold",
-    fontSize: 14,
+    fontSize: 16,
     marginVertical: 2,
   },
   smallText: {
     fontWeight: "bold",
     color: DARKGRAY,
-    fontSize: 12,
+    lineHeight:20,
+    fontSize: 14,
     marginVertical: 2,
   },
   btnGroup: {
@@ -110,21 +111,33 @@ export const styles = StyleSheet.create({
   },
   text: {
     color: "#ddd",
+    lineHeight:20,
     fontSize: 14,
-    marginHorizontal: 4,
+    marginHorizontal: 18,
     textAlign: "justify",
   },
   heading: {
     color: "#FFF",
     fontWeight: "bold",
     fontSize: 16,
-    marginHorizontal: 4,
+    marginHorizontal:  18,
+    marginTop:40,
+    marginBottom:"4%"
   },
   textContainer: {
     flexDirection: "row",
-    marginVertical: 8,
-    marginHorizontal: 8,
+    marginHorizontal: 12,
+    marginLeft:20,
     alignItems: "baseline",
+    borderLeftColor:"#fff",
+    borderLeftWidth:1
+  },
+  checkContainer:{
+    flexDirection: "row",
+    marginHorizontal: 12,
+    alignItems: "center",
+    
+
   },
   trackOutlet: {
     backgroundColor: "#2266cf",

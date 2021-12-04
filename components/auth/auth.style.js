@@ -102,7 +102,7 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     backgroundColor: "rgba(100,100,100,0.5)",
     paddingHorizontal: 20,
-    width: "82%",
+    width: 296,
     padding: 10,
   },
   pinInputAreaStyle: {

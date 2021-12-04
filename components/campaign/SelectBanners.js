@@ -19,12 +19,13 @@ export default function SelectBanners({ navigation }) {
   useEffect(() => {
     fetchPlans();
   }, []);
-  const okHandler = (item) => {
+  const okHandler = (item,restaurant) => {
     navigation.navigate("create_banner", {
       title: item.pack_name,
       duration: item.duration,
       advert_id: item.advert_id,
       rpc: item.rpc,
+      restaurant:restaurant
     });
   };
   const ListHeader = () => (
@@ -41,13 +42,13 @@ export default function SelectBanners({ navigation }) {
           color: "#fff",
           fontWeight: "bold",
           textTransform: "uppercase",
-          marginBottom: 4,
+          marginBottom: 12,
         }}
       >
         <Shop name="shop" size={18} color="#fff" /> {restaurant.restaurant_name}
       </Text>
       <Text style={{ color: "#fff" }}>
-        ID: {restaurant.restaurant_id}{" "}
+        {restaurant.restaurant_id}{" | "}
         {restaurant.locality +
           ", " +
           restaurant.city +
@@ -84,6 +85,7 @@ export default function SelectBanners({ navigation }) {
         data={data}
         keyExtractor={(item) => item._id}
         ListHeaderComponent={ListHeader}
+        extraData={restaurant}
         renderItem={({ item }) => (
           <PromoCard
             index={item.advert_id}
@@ -91,7 +93,7 @@ export default function SelectBanners({ navigation }) {
             content={item.rpc}
             subhead={item.duration}
             ok="SET UP NOW"
-            okHandler={() => okHandler(item)}
+            okHandler={() => okHandler(item,restaurant)}
           />
         )}
       />

@@ -12,15 +12,37 @@ import Icon from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useSelector, useDispatch } from "react-redux";
 import { styles } from "./account.styles";
+import { editBankInfo } from "../../actions/actions";
 
 export default function Plans() {
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const[twoPlan,setTwoPlan]=useState(0)
+  const [fifteenPlan,setFifteenPlan]=useState(0)
+  const [thirtyPlan,setThirtyPlan]=useState(0)
   const profile = useSelector((state) => state.restaurant);
-  const { base_2price, base_15price, base_30price } = profile;
+  const {_id}=profile;
+  const dispatch=useDispatch()
+
+  
   const [editable, setEditable] = useState(false);
   const editHandler = () => {
     setEditable(!editable);
+    if(editable){
+      let restaurant={
+        base_2price:twoPlan,
+        base_15price:fifteenPlan,
+        base_30price:thirtyPlan
+      }
+      dispatch(editBankInfo(_id,restaurant))
+      
+    }
   };
+  useEffect(() => {
+    setTwoPlan(profile.base_2price)
+    setFifteenPlan(profile.base_15price)
+    setThirtyPlan(profile.base_30price)
+    
+  }, [])
   const onChangeText = (e) => {
     console.log(e);
   };
@@ -54,43 +76,56 @@ export default function Plans() {
           >
             <FontAwesome name={editable ? "save" : "pencil"} size={20} />
           </TouchableOpacity>
-          <>
+          <View style={{marginVertical:4}}>
             <View style={styles.labelContainer}>
               <Text style={styles.label}>2 Days</Text>
             </View>
+            <View style={styles.planContainer}>
+            <Icon name="ios-logo-usd" size={16} color="#000" />
             <TextInput
-              value={"$" + base_2price}
+              value={twoPlan}
               editable={editable}
-              name="base_2price"
+             
               style={styles.inputContainer}
-              onChangeText={(e) => onChangeText(e)}
+              onChangeText={(e) => setTwoPlan(e)}
               keyboardType="numeric"
             />
-          </>
-          <>
+
+            </View>
+            
+          </View>
+          <View style={{marginVertical:4}}>
             <View style={styles.labelContainer}>
               <Text style={styles.label}>15 Days</Text>
             </View>
-            <TextInput
-              value={"$" + base_15price}
+            <View style={styles.planContainer}>
+              <Icon name="ios-logo-usd" size={14} color="#000"/>
+              <TextInput
+              value={fifteenPlan}
               editable={editable}
               style={styles.inputContainer}
-              // onChangeText={this.onChangeText("base_15price")}
+              onChangeText={(text)=>setFifteenPlan(text)}
               keyboardType="numeric"
             />
-          </>
-          <>
+            </View>
+            
+          </View>
+          <View style={{marginVertical:4}}>
             <View style={styles.labelContainer}>
               <Text style={styles.label}>30 Days</Text>
             </View>
-            <TextInput
-              value={"$" + base_30price}
+            <View style={styles.planContainer}>
+              <Icon name="ios-logo-usd" size={14} color="#000"/>
+              <TextInput
+              value={thirtyPlan}
               style={styles.inputContainer}
-              // onChangeText={this.onChangeText("base_30price")}
+              onChangeText={(text)=>setThirtyPlan(text)}
               keyboardType="numeric"
               editable={editable}
             />
-          </>
+            </View>
+            
+          </View>
         </KeyboardAvoidingView>
       </Collapsible>
     </>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, ScrollView } from "react-native";
+import { SafeAreaView, ScrollView ,View} from "react-native";
 import Profile from "../components/account/profile.component";
 import BankAccount from "../components/account/bankaccount.component";
 import ContactUs from "../components/account/contact.component";
@@ -12,16 +12,23 @@ import Skipped from "../components/account/skipped.component";
 
 export default function AccountSettings({ navigation }) {
   return (
-    <ScrollView contentContainerStyle={{ backgroundColor: "#fff" }}>
+    <SafeAreaView style={{flex:1}} >
       <Profile />
+<ScrollView contentContainerStyle={{ backgroundColor: "#fff",flex:1,justifyContent:"space-between" }}>
+      <View>
       <BankAccount />
       <Plans />
       <Addmeals navigation={navigation} />
       <Skipped navigation={navigation} />
       {/* <Reviews navigation={navigation} /> */}
       <ContactUs navigation={navigation} />
+
+      </View>
+      
       {/* <CouponComponent navigation={navigation} /> */}
       <Logout navigation={navigation} />
     </ScrollView>
+    </SafeAreaView>
+    
   );
 }

@@ -77,7 +77,7 @@ export default function PersonalDetails() {
           >
             <FontAwesome name={editable ? "save" : "pencil"} size={20} />
           </TouchableOpacity>
-          <>
+          <View style={{marginVertical:4}}>
             <View style={styles.labelContainer}>
               <Icon name="person-outline" size={18} color="#777" />
               <Text style={styles.label}> Name</Text>
@@ -88,9 +88,9 @@ export default function PersonalDetails() {
               onChangeText={(text) => setInfo({ ...info, ownerName: text })}
               editable={editable}
             />
-          </>
+          </View>
 
-          <>
+          <View style={{marginVertical:4}}>
             <View style={styles.labelContainer}>
               <Icon name="call-outline" size={18} color="#777" />
               <Text style={styles.label}> Contact Number</Text>
@@ -102,9 +102,9 @@ export default function PersonalDetails() {
               onChangeText={(text) => setInfo({ ...info, phoneNumber: text })}
               editable={false}
             />
-          </>
+          </View>
 
-          <View>
+          <View style={{marginVertical:4}}>
             <View style={styles.labelContainer}>
               <Icon name="mail-outline" size={18} color="#777" />
               <Text style={styles.label}> Email ID</Text>
@@ -117,7 +117,7 @@ export default function PersonalDetails() {
             />
           </View>
 
-          <View>
+          <View style={{marginVertical:4}}>
             <View style={styles.labelContainer}>
               <Icon name="document-text-outline" size={18} color="#777" />
               <Text style={styles.label}> About</Text>

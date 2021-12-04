@@ -4,18 +4,18 @@ import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
 import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
 import Icon from "react-native-vector-icons/Ionicons";
-import { SecondaryDarkColor, SecondaryLightColor } from "../../Colors";
+import { PrimaryDark, SecondaryDarkColor, SecondaryLightColor } from "../../Colors";
 import { Checkbox } from "react-native-paper";
 export default function PreviewBanner({ route, navigation }) {
   const {
     title,
     duration,
     rpc,
-    advert_id,
     start_date,
     end_date,
     code,
     discount,
+    restaurant
   } = route.params;
   const [checked, setChecked] = React.useState(false);
   let start = moment(start_date).format("DD MMM, YYYY");
@@ -24,10 +24,11 @@ export default function PreviewBanner({ route, navigation }) {
     <SafeAreaView style={styles.container}>
       <HeaderTwo title="Review your campaign" navigation={navigation} />
       <View style={{ flex: 1, justifyContent: "space-between" }}>
-        <View style={styles.textContainer}>
-          <Icon name="checkmark-circle-outline" size={20} color="#FFF" />
+        <View>
+        <View style={[styles.textContainer,{marginTop:20}]}>
+          <Icon name="checkmark-circle" size={22} color="#FFF" style={{marginLeft:-10,marginTop:-4}} />
           <View>
-            <Text style={[styles.heading, { textTransform: "uppercase" }]}>
+            <Text style={[styles.heading, { textTransform: "uppercase",marginTop:-22 }]}>
               Growth Style
             </Text>
             <Text style={styles.text}>Ads</Text>
@@ -35,20 +36,21 @@ export default function PreviewBanner({ route, navigation }) {
         </View>
 
         <View style={styles.textContainer}>
-          <Icon name="checkmark-circle-outline" size={20} color="#FFF" />
+        <Icon name="checkmark-circle" size={22} color="#FFF" style={{marginLeft:-10}} />
           <View>
             <Text style={[styles.heading, { textTransform: "uppercase" }]}>
               Restaurant
             </Text>
             <Text style={styles.text}>
-              World Best Foods{"\n"}
-              Mussallah pur hatt, Patna -80006
+              {restaurant.restaurant_name}{"\n"}
+              {restaurant.city+", "+restaurant.state+" - "+restaurant.postal_code}
+              
             </Text>
           </View>
         </View>
 
         <View style={styles.textContainer}>
-          <Icon name="checkmark-circle-outline" size={20} color="#FFF" />
+        <Icon name="checkmark-circle" size={22} color="#FFF" style={{marginLeft:-10}} /> 
           <View>
             <Text style={[styles.heading, { textTransform: "uppercase" }]}>
               CPC AD CAMPAIGN SELECTED
@@ -60,17 +62,17 @@ export default function PreviewBanner({ route, navigation }) {
         </View>
 
         <View style={styles.textContainer}>
-          <Icon name="checkmark-circle-outline" size={20} color="#FFF" />
+        <Icon name="checkmark-circle" size={22} color="#FFF" style={{marginLeft:-10}} />
           <View>
             <Text style={[styles.heading, { textTransform: "uppercase" }]}>
               Duration
             </Text>
-            <Text style={styles.text}>{duration}</Text>
+            <Text style={styles.text}>{duration} days </Text>
           </View>
         </View>
 
         <View style={styles.textContainer}>
-          <Icon name="checkmark-circle-outline" size={20} color="#FFF" />
+        <Icon name="checkmark-circle" size={22} color="#FFF" style={{marginLeft:-10}} />
           <View>
             <Text style={[styles.heading, { textTransform: "uppercase" }]}>
               Starts On
@@ -84,7 +86,7 @@ export default function PreviewBanner({ route, navigation }) {
         </View>
 
         <View style={styles.textContainer}>
-          <Icon name="checkmark-circle-outline" size={20} color="#FFF" />
+        <Icon name="checkmark-circle" size={22} color="#FFF" style={{marginLeft:-10}} />
           <View>
             <Text style={[styles.heading, { textTransform: "uppercase" }]}>
               Promo Code
@@ -93,8 +95,8 @@ export default function PreviewBanner({ route, navigation }) {
           </View>
         </View>
 
-        <View style={styles.textContainer}>
-          <Icon name="checkmark-circle-outline" size={20} color="#FFF" />
+        <View style={[styles.textContainer,{marginBottom:-4}]}>
+        <Icon name="checkmark-circle" size={22} color="#FFF" style={{marginLeft:-10,marginTop:4}} />
           <View>
             <Text style={[styles.heading, { textTransform: "uppercase" }]}>
               Discount
@@ -103,8 +105,11 @@ export default function PreviewBanner({ route, navigation }) {
           </View>
         </View>
 
-        <View style={[styles.textContainer, { alignItems: "center" }]}>
-          <Checkbox
+
+        </View>
+        
+        <View style={styles.checkContainer}>
+          <Checkbox.Android
             color="#FFF"
             uncheckedColor="#22c6cf"
             status={checked ? "checked" : "unchecked"}
