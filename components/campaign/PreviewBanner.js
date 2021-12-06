@@ -146,7 +146,7 @@ export default function PreviewBanner({ route, navigation }) {
               borderColor: SecondaryDarkColor,
             },
           ]}
-          // onPress={}
+          //onPress={}
           disabled={!checked}
         >
           <Text style={[styles.btnText, { color: "#FFF" }]}>

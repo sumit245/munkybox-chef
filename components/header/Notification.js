@@ -20,7 +20,7 @@ export default function Notification({ navigation }) {
     return () => {
       componentMounted = false;
     };
-  }, [dispatch]);
+  }, [orders]);
   return (
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center" }}

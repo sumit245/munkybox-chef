@@ -6,6 +6,7 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 import { Checkbox, RadioButton, Modal, Button } from "react-native-paper";
 import CalendarPicker from "react-native-calendar-picker";
@@ -67,6 +68,7 @@ export default function CreateCoupon({ route, navigation }) {
         title={type === "net" ? "Net Discount" : "% Discount"}
         navigation={navigation}
       />
+<KeyboardAvoidingView style={{flex:1,justifyContent:"center"}} behavior="padding" enabled >
       <ScrollView>
         <View style={styles.card}>
           <Text style={styles.bigText}>Apply discount on</Text>
@@ -122,6 +124,8 @@ export default function CreateCoupon({ route, navigation }) {
               style={styles.input}
               placeholder={"Discount" + (type === "net" ? " $" : " %")}
               keyboardType="numeric"
+              returnKeyLabel="Done"
+              returnKeyType="done"
               value={discount}
               onChangeText={(text) => setDiscount(text)}
             />
@@ -264,6 +268,9 @@ export default function CreateCoupon({ route, navigation }) {
           </View>
         </View>
       </ScrollView>
+
+      </KeyboardAvoidingView>
+      
       <View style={styles.bottomButtonGroup}>
         <TouchableOpacity
           style={[styles.actionButton, { backgroundColor: WHITE }]}

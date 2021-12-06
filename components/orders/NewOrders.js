@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import {
   FlatList,
   View,
@@ -9,10 +10,19 @@ import {
 } from "react-native";
 import CountDown from "react-native-countdown-component";
 import { DARKGRAY, SecondaryColor, WHITE } from "../../Colors";
+import { ORDERS } from "../../EndPoints";
+import Loader from "../../helpers/Loader"
 import Header from "../header/Header";
 const Item = ({ item }) => {
   const { address } = item;
+  const [loader,setLoader]=useState(false)
   const { address_type, flat_num, city, locality, postal_code } = address;
+  const accept=async(id)=>{
+    setLoader(true)
+    const res=await axios.put(ORDERS+id,{status:"accepted"})
+    setLoader(false)
+  }
+  if(!loader){
   return (
     <View style={styles.ordercard}>
       <View
@@ -30,20 +40,23 @@ const Item = ({ item }) => {
           digitStyle={{
             backgroundColor: "#FFF",
             margin: 0,
+            padding:-4
           }}
           digitTxtStyle={{
             color: "#1CC625",
             fontSize: 14,
             fontWeight: "bold",
+            
           }}
           timeLabelStyle={{
             fontWeight: "bold",
             color: "#1CC625",
             fontSize: 10,
             marginTop: -10,
+            
           }}
           timeToShow={["M", "S"]}
-          separatorStyle={{ color: "#1CC625", marginTop: -8 }}
+          separatorStyle={{ color: "#1CC625", marginTop: -8,marginHorizontal:-4 }}
           timeLabels={{ m: "Min", s: "Sec" }}
           showSeparator
         />
@@ -60,28 +73,33 @@ const Item = ({ item }) => {
           {item.user_name}
         </Text>
         <Text style={{ color: DARKGRAY, fontWeight: "bold" }}>
-          {"$" + item.price}
+          {"$" + (item.base_price-(item.discount||0))}
         </Text>
       </View>
-      <Text style={{ textAlign: "center", color: "#000" }}>
-        You have a new{" "}
+      <Text style={{ textAlign: "left", color: "#000",fontSize:16,fontWeight:"bold",marginVertical:4 }}>
+        Subscription:{" "}
+        <Text style={{fontSize:14,fontWeight:"normal"}}>
         {item.plan === "twoPlan"
           ? "2"
           : item.plan === "fifteenPlan"
           ? "15"
           : "30"}{" "}
-        meals subscription starting from {item.start_date} upto {item.end_date}
+        Meals
+        </Text>
+        
       </Text>
-      <Text style={{ padding: 2 }}>
+      <View style={{flex:1,justifyContent:"space-between",flexDirection:"row",marginVertical:4}}>
+        <Text style={{fontWeight:"bold",fontSize:16}}>Start Date: <Text style={{ textTransform: "capitalize",fontSize:14,fontWeight:"normal" }} >{item.start_date}</Text>  </Text>
+        <Text style={{fontWeight:"bold",fontSize:16}}> Ends on: <Text style={{ textTransform: "capitalize",fontSize:14,fontWeight:"normal" }} >{item.end_date}</Text>  </Text>
+      </View>
+      <Text style={{ padding: 2,fontWeight:"bold",fontSize:16,marginVertical:4 }}>
         Delivery To:{" "}
-        <Text style={{ textTransform: "capitalize" }}>
-          {address_type + ", " + flat_num}
+        <Text style={{ textTransform: "capitalize",fontSize:14,fontWeight:"normal" }}>
+          {address_type + ", " + flat_num+","+locality + ", " + city + ", " + postal_code}
         </Text>{" "}
       </Text>
-      <Text style={{ padding: 2, marginLeft: 76 }}>
-        {locality + ", " + city + ", " + postal_code}
-      </Text>
-      <Text style={{ padding: 2 }}>{item.order_time} </Text>
+      
+      <Text style={{ padding: 2,marginVertical:4 }}><Text style={{fontWeight:"bold",fontSize:16}}>Ordered at: </Text>{Date(item.order_time)} </Text>
       <View
         style={{
           flexDirection: "row",
@@ -120,6 +138,7 @@ const Item = ({ item }) => {
             borderRadius: 2,
             backgroundColor: SecondaryColor,
           }}
+          onPress={()=>accept(item._id)}
         >
           <Text
             style={{
@@ -135,14 +154,23 @@ const Item = ({ item }) => {
       </View>
     </View>
   );
+          }else{
+            return <Loader />
+          }
 };
 export default function NewOrders({ route, navigation }) {
   const { order } = route.params;
-  console.log(order);
+  
+
   const renderItem = ({ item }) => <Item item={item} />;
   return (
     <SafeAreaView style={styles.container}>
       <Header title={"NEW ORDER"} />
+
+      <TouchableOpacity
+      style={{alignSelf:"flex-end",marginHorizontal:4}} onPress={()=>navigation.navigate("Home")} >
+      <Text style={{color:"#2277fc",fontWeight:"bold"}}>Done</Text>
+        </TouchableOpacity>
       <FlatList
         data={order}
         renderItem={renderItem}
