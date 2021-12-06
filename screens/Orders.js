@@ -4,7 +4,7 @@ import Header from "../components/header/Header";
 import OrderItem from "../components/OrderItem";
 import { useSelector, useDispatch } from "react-redux";
 import ToggleLunchDinner from "../components/header/ToggleLunchDinner";
-import { getOrder } from "../actions/actions";
+import { getOrder,getActiveOrder } from "../actions/actions";
 import { truncate_string } from "../helpers/truncate_string";
 import {
   PrimaryDark,
@@ -37,6 +37,7 @@ export default function Orders() {
   const renderItem = ({ item }) => (
     <OrderItem item={item} index={item._id} meal={meal} />
   );
+
   useEffect(() => {
     if (!isEmpty(meals)) {
       let currentMeal = meals.filter(function (e) {
@@ -44,14 +45,15 @@ export default function Orders() {
       });
       setMeal(currentMeal[0]);
     }
-    dispatch(getOrder(restaurant_name));
-  }, []);
+    dispatch(getActiveOrder(restaurant_name));
+  }, [orders]);
   const timeslots = ["11-12PM", "12-1PM", "1-2PM"];
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Header title={restaurant_name + ", " + restaurant_id}>
         <View style={styles.switch}>
-          <ToggleLunchDinner />
+          <ToggleLunchDinner handleToggle={handleToggle}
+/>
         </View>
       </Header>
       <HeaderTabSwitch items={timeslots}>

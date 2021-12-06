@@ -21,6 +21,7 @@ export default function PastOrders({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders"
     );
     const orders = await response.data;
+    console.log(orders);
     setOrders(orders);
   };
   useEffect(() => {

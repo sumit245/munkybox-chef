@@ -22,6 +22,12 @@ const Item = ({ item }) => {
     const res=await axios.put(ORDERS+id,{status:"accepted"})
     setLoader(false)
   }
+  const reject=async(id)=>{
+    setLoader(true)
+    const res=await axios.put(ORDERS+id,{status:"rejected"})
+    setLoader(false)
+  }
+
   if(!loader){
   return (
     <View style={styles.ordercard}>
@@ -36,7 +42,7 @@ const Item = ({ item }) => {
         <CountDown
           until={60 * 5}
           size={12}
-          onFinish={() => alert("Finished")}
+          onFinish={() =>{reject(item._id)}}
           digitStyle={{
             backgroundColor: "#FFF",
             margin: 0,
@@ -116,6 +122,7 @@ const Item = ({ item }) => {
             borderColor: "#777",
             borderRadius: 2,
           }}
+          onPress={()=>reject(item._id)}
         >
           <Text
             style={{
