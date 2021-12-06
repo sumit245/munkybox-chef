@@ -99,7 +99,8 @@ export default function Login({ navigation }) {
             textAlignVertical: "top",
             borderRadius: 5,
           }}
-          codeTextStyle={{ textAlignVertical: "top" }}
+          codeTextStyle={{ marginTop:-6 }}
+          textInputStyle={{fontSize:18,marginTop:-6}}
           onChangeFormattedText={(text) => {
             setPhone(text);
           }}
