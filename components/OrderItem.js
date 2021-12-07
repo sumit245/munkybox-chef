@@ -8,13 +8,19 @@ import {
 } from "react-native";
 import { DefaultTheme, IconButton, Switch } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
-import { PrimaryColor, PrimaryLight, SecondaryColor, SecondaryDarkColor } from "../Colors";
+import {
+  PrimaryColor,
+  PrimaryLight,
+  SecondaryColor,
+  SecondaryDarkColor,
+} from "../Colors";
 import { avatarify } from "../helpers/truncate_string";
 
 const CollapsedContent = ({ item }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [pulled, setPulled] = useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+  const { address_type, locality, city, flat_num, postal_code } = item.address;
 
   const openInMap = async (address) => {
     let addres = address.flat_num + "," + address.locality;
@@ -32,10 +38,10 @@ const CollapsedContent = ({ item }) => {
       console.log(error);
     }
   };
-  const theme={
+  const theme = {
     ...DefaultTheme,
-    fonts:"thin"
-  }
+    fonts: "thin",
+  };
 
   const makeCall = async (number) => {
     let phoneNumber = "";
@@ -64,7 +70,7 @@ const CollapsedContent = ({ item }) => {
           justifyContent: "space-between",
         }}
       >
-        <View style={{ flexDirection: "row",alignItems:"center" }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View
             style={{
               height: 60,
@@ -73,7 +79,7 @@ const CollapsedContent = ({ item }) => {
               backgroundColor: "purple",
               justifyContent: "center",
               alignItems: "center",
-              marginRight:8
+              marginRight: 8,
             }}
           >
             <Text style={{ fontWeight: "bold", fontSize: 20, color: "#FFF" }}>
@@ -81,7 +87,12 @@ const CollapsedContent = ({ item }) => {
             </Text>
           </View>
           <View>
-            <Text style={[styles.title, { color: "#000", fontSize: 18,marginVertical:4 }]}>
+            <Text
+              style={[
+                styles.title,
+                { color: "#000", fontSize: 18, marginVertical: 4 },
+              ]}
+            >
               {item.order_id}
             </Text>
             <Text style={[styles.title, { fontWeight: "bold" }]}>
@@ -98,39 +109,76 @@ const CollapsedContent = ({ item }) => {
         />
       </View>
 
-        <View
-          style={{
-            alignItems: "center",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginTop:8,
-            paddingTop:8,
-            borderTopColor:"#ccc",
-            borderTopWidth:0.2  ,
-          }}
+      <View
+        style={{
+          alignItems: "center",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginTop: 8,
+          paddingTop: 8,
+          borderTopColor: "#ccc",
+          borderTopWidth: 0.2,
+        }}
+      >
+        <TouchableOpacity
+          style={[styles.link, { marginLeft: "20%" }]}
+          onPress={() => openInMap(item.address)}
         >
-          <TouchableOpacity
-            style={[styles.link,{marginLeft:"20%"}]}
-            onPress={() => openInMap(item.address)}
-          >
-            <Icon name="location-outline" size={24} color={PrimaryLight} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.link}
-            onPress={() => makeCall(item.phone)}
-          >
-            <Icon name="call-sharp" size={24} color="green" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setPulled(!pulled)}>
-            <Icon name={pulled?"chevron-up-sharp":"chevron-down-sharp"} size={24} color="#000" />
-          </TouchableOpacity>
+          <Icon name="location-outline" size={24} color={PrimaryLight} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.link}
+          onPress={() => makeCall(item.phone)}
+        >
+          <Icon name="call-sharp" size={24} color="green" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setPulled(!pulled)}>
+          <Icon
+            name={pulled ? "chevron-up-sharp" : "chevron-down-sharp"}
+            size={24}
+            color="#000"
+          />
+        </TouchableOpacity>
+      </View>
 
-        </View>
-      
       {pulled && (
-        <View style={{marginVertical:1}}>
-          <Text>Notes</Text>
-          <Text>{item.notes}</Text>
+        <View style={{ marginVertical: 1 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginVertical: 2,
+            }}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 16 }}>Notes: </Text>
+            <Text style={{ fontSize: 14 }}>{item.notes || "N/A"}</Text>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginVertical: 2,
+            }}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+              Deliver to:{" "}
+            </Text>
+            <Text style={{ fontSize: 14 }}>
+              {flat_num + "," + locality + " " + city + "-" + postal_code ||
+                "N/A"}
+            </Text>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginVertical: 2,
+            }}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 16 }}>Add ons: </Text>
+            <Text style={{ fontSize: 14 }}>{"N/A"}</Text>
+          </View>
         </View>
       )}
     </View>
@@ -149,7 +197,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f9ffff",
     padding: 12,
     margin: 1,
-    marginVertical:4,
+    marginVertical: 4,
     borderRadius: 6,
   },
   topRow: {
