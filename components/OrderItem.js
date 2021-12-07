@@ -11,8 +11,6 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { PrimaryColor, SecondaryDarkColor } from "../Colors";
 import { avatarify } from "../helpers/truncate_string";
 
-import openMap from "react-native-open-maps";
-
 const CollapsedContent = ({ item }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
