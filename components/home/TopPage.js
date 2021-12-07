@@ -6,6 +6,7 @@ import Header from "../header/Header";
 import { useSelector } from "react-redux";
 import Menu from "./Menu";
 import Notification from "../header/Notification";
+import axios from "axios";
 const days = [
   "Sunday",
   "Monday",
@@ -18,8 +19,9 @@ const days = [
 export default function TopPage({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [meal, setMeal] = useState({});
+  const [mealcount, setMealCount] = useState(0);
   const [slot, setSlot] = useState("Lunch");
-  const { restaurant_name, city, meals } = restaurant;
+  const { restaurant_name, city, restaurant_id, meals } = restaurant;
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
 
   const mealSelector = (day) => {
@@ -33,6 +35,17 @@ export default function TopPage({ navigation }) {
   useEffect(() => {
     mealSelector(days[new Date().getDay()]);
   }, []);
+  const fetchTotalOrders = async () => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/custom/active"
+    );
+    const { data } = response;
+    const { count } = data;
+    setMealCount(count);
+  };
+  useEffect(() => {
+    fetchTotalOrders();
+  }, [mealcount]);
 
   const onDayChanged = (day) => {
     if (day === "Today") {
@@ -46,14 +59,14 @@ export default function TopPage({ navigation }) {
   return (
     <SafeAreaView style={styles.mainPage}>
       <StatusBar />
-      <Header title={restaurant_name + ", " + city}>
+      <Header title={restaurant_name + ", " + restaurant_id}>
         <View style={styles.switch}>
           <ToggleLunchDinner handleToggle={(e) => setSlot(e)} />
           <Notification navigation={navigation} />
         </View>
       </Header>
       <CalTab onDayChanged={(day) => onDayChanged(day)} />
-      <Menu meal={meal} slot={slot} />
+      <Menu meal={meal} slot={slot} count={mealcount} />
     </SafeAreaView>
   );
 }
