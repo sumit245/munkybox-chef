@@ -13,6 +13,7 @@ import { avatarify } from "../helpers/truncate_string";
 
 const CollapsedContent = ({ item }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [pulled, setPulled] = useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
   const openInMap = async (address) => {
@@ -52,35 +53,56 @@ const CollapsedContent = ({ item }) => {
 
   return (
     <View style={styles.orderCard}>
-      <View>
-        <View
-          style={{
-            height: 60,
-            width: 60,
-            borderRadius: 60,
-            backgroundColor: "purple",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text style={{ fontWeight: "bold", fontSize: 20, color: "#FFF" }}>
-            {avatarify(item.user_name)}
-          </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          flex: 1,
+          justifyContent: "space-between",
+        }}
+      >
+        <View style={{ flexDirection: "row",alignItems:"center" }}>
+          <View
+            style={{
+              height: 60,
+              width: 60,
+              borderRadius: 60,
+              backgroundColor: "purple",
+              justifyContent: "center",
+              alignItems: "center",
+              marginRight:8
+            }}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 20, color: "#FFF" }}>
+              {avatarify(item.user_name)}
+            </Text>
+          </View>
+          <View>
+            <Text style={[styles.title, { color: "#000", fontSize: 18 }]}>
+              {item.order_id}
+            </Text>
+            <Text style={[styles.title, { fontWeight: "bold" }]}>
+              {item.user_name}
+            </Text>
+          </View>
         </View>
+
+        <Switch
+          value={isSwitchOn}
+          onValueChange={onToggleSwitch}
+          // disabled={isSwitchOn}
+          color={isSwitchOn ? "green" : "red"}
+        />
       </View>
 
-      <View style={{ paddingHorizontal: 6, padding: 4, flex: 1 }}>
-        <Text style={[styles.title, { color: "#000", fontSize: 18 }]}>
-          {item.order_id}
-        </Text>
-        <Text style={[styles.title, { fontWeight: "bold" }]}>
-          {item.user_name}
-        </Text>
         <View
           style={{
             alignItems: "center",
             flexDirection: "row",
             justifyContent: "space-between",
+            marginTop:8,
+            paddingTop:8,
+            borderTopColor:"#777",
+            borderTopWidth:0.2  ,
           }}
         >
           <TouchableOpacity
@@ -95,19 +117,18 @@ const CollapsedContent = ({ item }) => {
           >
             <Icon name="call-sharp" size={24} color={SecondaryColor} />
           </TouchableOpacity>
-          <TouchableOpacity>
-            <IconButton icon="dots-vertical" size={24} color="#777" />
+          <TouchableOpacity onPress={() => setPulled(!pulled)}>
+            <Icon name={pulled?"chevron-up-sharp":"chevron-down-sharp"} size={24} color="#000" />
           </TouchableOpacity>
+
         </View>
-      </View>
-      <View style={{ position: "absolute", right: 0 }}>
-        <Switch
-          value={isSwitchOn}
-          onValueChange={onToggleSwitch}
-          // disabled={isSwitchOn}
-          color={isSwitchOn ? "green" : "red"}
-        />
-      </View>
+      
+      {pulled && (
+        <View style={{marginVertical:1}}>
+          <Text>Notes</Text>
+          <Text>{item.notes}</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -124,7 +145,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#f9ffff",
     padding: 12,
     margin: 1,
-    flexDirection: "row",
     borderRadius: 6,
   },
   topRow: {
