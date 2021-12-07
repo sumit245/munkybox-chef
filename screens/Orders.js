@@ -128,7 +128,6 @@ export default function Orders() {
               fontSize: 12,
               backgroundColor: "red",
               color: WHITE,
-              textAlign: "center",
             }}
             size={14}
           >
