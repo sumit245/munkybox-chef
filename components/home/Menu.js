@@ -2,46 +2,46 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Card, Divider } from "react-native-paper";
 import { DARKGRAY, SecondaryLightColor, WHITE } from "../../Colors";
-import veg from "../../assets/veg.png"
-import nonveg from "../../assets/non_veg.png"
+import veg from "../../assets/veg.png";
+import nonveg from "../../assets/non_veg.png";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useSelector } from "react-redux";
 import Collapsible from "react-native-collapsible";
 import axios from "axios";
 
 export default function Menu({ meal, slot }) {
-  const restaurant = useSelector(state => state.restaurant)
-  const [meal_time,setMealTime]=useState("")
-  const [lunch,setlunch]=useState("")
-  const [dinner,setDinner]=useState("")
+  const restaurant = useSelector((state) => state.restaurant);
+  const [meal_time, setMealTime] = useState("");
+  const [lunch, setlunch] = useState("");
+  const [dinner, setDinner] = useState("");
   useEffect(() => {
-    setMealTime(restaurant.category)
+    setMealTime(restaurant.category);
   });
-  const fetchSlotTime=async()=>{
-    const slots=await axios.get("https://munkybox-admin.herokuapp.com/api/slots")
-    const {lunchSlots,dinnerSlots}=await slots.data[0]
-  let first=lunchSlots[0]
-  let startlunch=first.slot_time
-  startlunch=startlunch.split("-")[0]
-  let last=lunchSlots[lunchSlots.length-1]
-  let endlunch=last.slot_time
-  endlunch=endlunch.split("-")[1]
-  let completelunchSlot=startlunch+"-"+endlunch
-  setlunch(completelunchSlot)
-  let firstdinner=dinnerSlots[0]
-  let startdinner=firstdinner.slot_time
-  startdinner=startdinner.split("-")[0]
-  let laslastdinnert=dinnerSlots[dinnerSlots.length-1]
-  let enddinner=laslastdinnert.slot_time
-  enddinner=enddinner.split("-")[1]
-  let completedinnerSlot=startdinner+"-"+enddinner
-  setDinner(completedinnerSlot)
-
-  }  
+  const fetchSlotTime = async () => {
+    const slots = await axios.get(
+      "https://munkybox-admin.herokuapp.com/api/slots"
+    );
+    const { lunchSlots, dinnerSlots } = await slots.data[0];
+    let first = lunchSlots[0];
+    let startlunch = first.slot_time;
+    startlunch = startlunch.split("-")[0];
+    let last = lunchSlots[lunchSlots.length - 1];
+    let endlunch = last.slot_time;
+    endlunch = endlunch.split("-")[1];
+    let completelunchSlot = startlunch + "-" + endlunch;
+    setlunch(completelunchSlot);
+    let firstdinner = dinnerSlots[0];
+    let startdinner = firstdinner.slot_time;
+    startdinner = startdinner.split("-")[0];
+    let laslastdinnert = dinnerSlots[dinnerSlots.length - 1];
+    let enddinner = laslastdinnert.slot_time;
+    enddinner = enddinner.split("-")[1];
+    let completedinnerSlot = startdinner + "-" + enddinner;
+    setDinner(completedinnerSlot);
+  };
   useEffect(() => {
-    fetchSlotTime()
-    
-  }, [])
+    fetchSlotTime();
+  }, []);
   const [activeSections, setActiveSections] = useState([]);
   const [isCollapse, setCollapse] = useState(true);
   const SECTIONS = [
@@ -65,6 +65,9 @@ export default function Menu({ meal, slot }) {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 marginHorizontal: 6,
+                marginVertical: 4,
+                borderTopColor: "#777",
+                borderTopWidth: 0.2,
               }}
               key={key}
             >
@@ -91,7 +94,16 @@ export default function Menu({ meal, slot }) {
   const RenderContent = ({ meal_name, type }) => {
     if (slot === meal_time) {
       return (
-        <View style={{ backgroundColor: WHITE, padding: 6,marginBottom:8,height:80,borderBottomWidth:0.5,borderBottomColor:"#777" }}>
+        <View
+          style={{
+            backgroundColor: WHITE,
+            padding: 6,
+            marginBottom: 8,
+            height: 80,
+            borderBottomWidth: 0.5,
+            borderBottomColor: "#777",
+          }}
+        >
           <View
             style={{
               flexDirection: "row",
@@ -108,7 +120,7 @@ export default function Menu({ meal, slot }) {
               }}
             >
               <Image
-                source={type==="Veg"?veg:nonveg}
+                source={type === "Veg" ? veg : nonveg}
                 style={{ height: 16, width: 16, marginRight: 2 }}
               />
               <Text style={styles.mealTitle}>{meal_name}</Text>
@@ -120,7 +132,16 @@ export default function Menu({ meal, slot }) {
       );
     } else {
       return (
-        <View style={{ backgroundColor: WHITE, padding: 6,marginBottom:8,height:80,borderBottomWidth:0.5,borderBottomColor:"#777" }}>
+        <View
+          style={{
+            backgroundColor: WHITE,
+            padding: 6,
+            marginBottom: 8,
+            height: 80,
+            borderBottomWidth: 0.5,
+            borderBottomColor: "#777",
+          }}
+        >
           <Text style={{ textAlign: "center" }}>
             Sorry! you don't provide meal in this slot!!!{"\n"}
             You can now also add meals on this day to get more income!!!
@@ -143,9 +164,7 @@ export default function Menu({ meal, slot }) {
                 { fontSize: 14, textTransform: "none" },
               ]}
             >
-              {slot === "Lunch"
-                ? lunch
-                : dinner}
+              {slot === "Lunch" ? lunch : dinner}
             </Text>
           </View>
           <TouchableOpacity
@@ -164,11 +183,8 @@ export default function Menu({ meal, slot }) {
           </TouchableOpacity>
         </View>
         <Collapsible collapsed={isCollapse}>
-<RenderHeader title={"Meals"} />
+          <RenderHeader title={"Meals"} />
           <RenderContent meal_name={meal_name} type={type} />
-
-
-
 
           <RenderHeader title={"Add ons"} />
           <RenderAddon add_on={add_on} />
