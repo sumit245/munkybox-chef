@@ -32,7 +32,7 @@ const CollapsedContent = ({ item }) => {
         <Text style={[styles.title, { fontWeight: "bold" }]}>
           {item.user_name}
         </Text>
-        <Text style={styles.title}>{truncate_string("ORD", item._id, 5)}</Text>
+        <Text style={styles.title}>{item.order_id}</Text>
         <Text style={styles.link}>
           <Icon name="location-outline" size={20} color={PrimaryColor} />
           View in Map
@@ -57,7 +57,7 @@ export default function OrderItem({ item, index, meal }) {
   return (
     // <Collapsible isCollapsed={false}>
       <CollapsedContent item={item} />
-    // {/* </Collapsible> */}
+    /* // </Collapsible> */
   );
 }
 const styles = StyleSheet.create({
