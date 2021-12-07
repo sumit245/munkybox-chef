@@ -51,15 +51,19 @@ export default function HeaderTabSwitch({
               onPress={() => onItemSelected(item, index)}
               key={index}
             >
-              <Text
-                style={[
-                  styles.label,
-                  active === item ? { fontWeight: "bold", color: WHITE } : null,
-                ]}
-              >
-                {item}
-              </Text>
-              {children}
+              <View>
+                <Text
+                  style={[
+                    styles.label,
+                    currentIndex === index
+                      ? { fontWeight: "bold", color: WHITE }
+                      : { color: WHITE },
+                  ]}
+                >
+                  {item}
+                </Text>
+              </View>
+              <View>{children}</View>
             </TouchableOpacity>
           ))}
         </ScrollView>
@@ -94,5 +98,6 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     color: DARKGRAY,
+    marginVertical: 4,
   },
 });
