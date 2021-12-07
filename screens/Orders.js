@@ -52,7 +52,8 @@ export default function Orders() {
     <SafeAreaView style={{ flex: 1 }}>
       <Header title={restaurant_name + ", " + restaurant_id}>
         <View style={styles.switch}>
-          <ToggleLunchDinner handleToggle={handleToggle}
+          <ToggleLunchDinner 
+          
 />
         </View>
       </Header>
