@@ -62,11 +62,8 @@ export default function Login({ navigation }) {
       code
     );
     await firebase.auth().signInWithCredential(credential);
-    Promise.resolve(dispatch(loginMethod(phone,navigation)))
-      .then(() => {
-        console.log("Ok");
-      })
-      .catch((err) => console.log(err));
+    await Promise.resolve(dispatch(loginMethod(phone,navigation)))
+      
   };
 
   return (

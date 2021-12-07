@@ -57,14 +57,6 @@ export const getOrder = (restaurant) => async (dispatch) => {
   }
 };
 
-export const getActiveOrder = (restaurant) => async (dispatch) => {
-  const response = await axios.get(ORDERS);
-  let orders = response.data;
-  let neworders=orders.filter((item)=>item.status==="in progress")
-  if (orders !== null) {
-    dispatch({ type: GET_ORDER, payload: neworders });
-  }
-};
 
 export const editBankInfo = (id, bankInfo) => async (dispatch) => {
   const response = await axios.put(RESTAURANT_URL + id, bankInfo);
