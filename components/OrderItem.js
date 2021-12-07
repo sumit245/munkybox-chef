@@ -104,7 +104,7 @@ const CollapsedContent = ({ item }) => {
         <Switch
           value={isSwitchOn}
           onValueChange={onToggleSwitch}
-          // disabled={isSwitchOn}
+          disabled={isSwitchOn}
           color={isSwitchOn ? "green" : "red"}
         />
       </View>
