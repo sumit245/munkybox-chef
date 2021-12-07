@@ -4,19 +4,39 @@ import Header from "../components/header/Header";
 import OrderItem from "../components/OrderItem";
 import { useSelector, useDispatch } from "react-redux";
 import ToggleLunchDinner from "../components/header/ToggleLunchDinner";
-import { getOrder, getActiveOrder } from "../actions/actions";
-import { truncate_string } from "../helpers/truncate_string";
-import {
-  PrimaryDark,
-  SecondaryDarkColor,
-  SecondaryLightColor,
-  WHITE,
-} from "../Colors";
-import { Badge, Divider } from "react-native-paper";
+import { WHITE, DARKGRAY } from "../Colors";
+import { Badge } from "react-native-paper";
 import HeaderTabSwitch from "../components/header/HeaderTabSwitch";
 import axios from "axios";
 import Loader from "../helpers/Loader";
 import { ORDERS } from "../EndPoints";
+import Icon from "react-native-vector-icons/Ionicons";
+
+const ListEmptyComponent = () => (
+  <View style={{ alignItems: "center", justifyContent: "center" }}>
+    <Icon name="sad-outline" size={64} color={DARKGRAY} />
+    <Text
+      style={{
+        textAlign: "center",
+        fontSize: 18,
+        fontWeight: "bold",
+        color: DARKGRAY,
+      }}
+    >
+      Sorry you don't provide any meal on this slot
+    </Text>
+    <Text
+      style={{
+        textAlign: "center",
+        fontSize: 18,
+        fontWeight: "bold",
+        color: DARKGRAY,
+      }}
+    >
+      You can now also add meals on this slot to get more income!!!
+    </Text>
+  </View>
+);
 
 export default function Orders() {
   const restaurant = useSelector((state) => state.restaurant);
@@ -27,6 +47,8 @@ export default function Orders() {
   const [dinner, setDinner] = useState([]);
   const [lunch, setLunch] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [currentTab, setCurrentTab] = useState("11-12 AM");
+  const [selected, setSelected] = useState(0);
 
   const days = [
     "Sunday",
@@ -61,15 +83,20 @@ export default function Orders() {
   const fetchOrders = async (restaurant_name) => {
     const response = await axios.get(ORDERS);
     let orders = response.data;
-    let neworders = orders.filter((item) => item.status === "started");
+    let neworders = orders.filter(
+      (item) => item.status === "started" && item.time === currentTab
+    );
     if (orders !== null) {
       setOrders(neworders);
     }
   };
   useEffect(() => {
     fetchSlots();
-  }, []);
-
+  }, [currentTab]);
+  const tabHandler = (tab, index) => {
+    setCurrentTab(tab);
+    setSelected(index);
+  };
   useEffect(() => {
     if (!isEmpty(meals)) {
       let currentMeal = meals.filter(function (e) {
@@ -78,7 +105,7 @@ export default function Orders() {
       setMeal(currentMeal[0]);
     }
     fetchOrders(restaurant_name);
-  }, []);
+  }, [currentTab]);
   const handleToggle = (slot) => {
     setSlot(slot);
   };
@@ -90,21 +117,27 @@ export default function Orders() {
             <ToggleLunchDinner handleToggle={handleToggle} />
           </View>
         </Header>
-        <HeaderTabSwitch items={slot === "Lunch" ? lunch : dinner}>
+        <HeaderTabSwitch
+          items={slot === "Lunch" ? lunch : dinner}
+          handler={tabHandler}
+          selected={selected}
+        >
           <Badge
             style={{
               margin: 4,
               fontSize: 12,
               backgroundColor: "red",
               color: WHITE,
+              textAlign: "center",
             }}
-            size={18}
+            size={14}
           >
             {orders.length}
           </Badge>
         </HeaderTabSwitch>
         <FlatList
           data={orders}
+          ListEmptyComponent={ListEmptyComponent}
           showsVerticalScrollIndicator={false}
           renderItem={renderItem}
           keyExtractor={(item) => item._id}

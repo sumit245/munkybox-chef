@@ -18,6 +18,7 @@ import { width } from "../../Dimens";
 export default function HeaderTabSwitch({
   items,
   children,
+  selected,
   position,
   handler,
 }) {
@@ -28,6 +29,10 @@ export default function HeaderTabSwitch({
     setActive(item);
     handler(item, index);
   };
+
+  useEffect(() => {
+    setCurrentIndex(selected);
+  }, [selected]);
 
   return (
     <View style={{ backgroundColor: PrimaryDark }}>
@@ -67,12 +72,6 @@ export default function HeaderTabSwitch({
           color={SecondaryLightColor}
           style={{
             marginTop: -14,
-            // marginLeft:
-            //   active === item[index]
-            //     ? "15%"
-            //     : activeDay === "Tomorrow"
-            //     ? "45%"
-            //     : "80%",
           }}
         />
       )}
