@@ -171,8 +171,8 @@ const CollapsedContent = ({ item }) => {
 
           <View
             style={{
-              flexDirection: "row",
-              alignItems: "center",
+              flexDirection: item.add_on.length > 0 ? "column" : "row",
+
               marginVertical: 2,
             }}
           >
@@ -204,7 +204,7 @@ const CollapsedContent = ({ item }) => {
                   </View>
                 </View>
                 {item.add_on.map((data, key) => (
-                  <View style={styles.row}>
+                  <View style={styles.row} key={key}>
                     <View style={styles.th}>
                       <Text
                         style={{
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     borderWidth: 0.2,
     borderStyle: "solid",
-    width: 120,
+    width: "50%",
     textAlign: "center",
   },
 });
