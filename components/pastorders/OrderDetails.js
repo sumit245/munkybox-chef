@@ -9,9 +9,6 @@ export default function OrderDetails({ route, navigation }) {
   const { order } = route.params;
   const { address_type, city, flat_num, locality, postal_code } = order.address;
   const restaurant = useSelector((state) => state.restaurant);
-  useEffect(() => {
-    console.log(restaurant);
-  }, []);
   return (
     <View style={styles.container}>
       <Header chefName="World Best Foods" chefAddress="Delhi">

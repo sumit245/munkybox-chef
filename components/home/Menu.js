@@ -9,13 +9,14 @@ import { useSelector } from "react-redux";
 import Collapsible from "react-native-collapsible";
 import axios from "axios";
 
-export default function Menu({ meal, slot, meacount }) {
+export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [meal_time, setMealTime] = useState("");
   const [lunch, setlunch] = useState("");
   const [dinner, setDinner] = useState("");
   useEffect(() => {
     setMealTime(restaurant.category);
+    console.log(add_on_count);
   });
   const fetchSlotTime = async () => {
     const slots = await axios.get(
@@ -42,20 +43,9 @@ export default function Menu({ meal, slot, meacount }) {
   useEffect(() => {
     fetchSlotTime();
   }, []);
-  const [activeSections, setActiveSections] = useState([]);
   const [isCollapse, setCollapse] = useState(true);
-  const SECTIONS = [
-    {
-      title: "Meals",
-      content: meal,
-    },
-    {
-      title: "Ad ons",
-      content: "Shake",
-    },
-  ];
 
-  const RenderAddon = ({ add_on }) => {
+  const RenderAddon = ({ add_on, add_on_name, add_on_count }) => {
     return (
       <View style={{ backgroundColor: WHITE, padding: 6 }}>
         {add_on &&
@@ -73,7 +63,7 @@ export default function Menu({ meal, slot, meacount }) {
             >
               <Text style={styles.mealTitle}>{add_on.add_on}</Text>
               <Text style={styles.mealTitle}>
-                X {slot === meal_time ? meacount : 0}
+                X {add_on.add_on === add_on_name ? add_on_count : 0}
               </Text>
             </View>
           ))}
@@ -174,8 +164,10 @@ export default function Menu({ meal, slot, meacount }) {
             onPress={() => setCollapse(!isCollapse)}
           >
             <View>
-              <Text style={styles.headerCount}>0 Meals</Text>
-              <Text style={styles.headerCount}>0 Add ons</Text>
+              <Text style={styles.headerCount}>
+                {slot === meal_time ? count : 0} Meals
+              </Text>
+              <Text style={styles.headerCount}>{add_on_count} Add ons</Text>
             </View>
             <Icon
               name={isCollapse ? "chevron-up-sharp" : "chevron-down-sharp"}
@@ -189,7 +181,11 @@ export default function Menu({ meal, slot, meacount }) {
           <RenderContent meal_name={meal_name} type={type} />
 
           <RenderHeader title={"Add ons"} />
-          <RenderAddon add_on={add_on} />
+          <RenderAddon
+            add_on={add_on}
+            add_on_count={add_on_count}
+            add_on_name={add_on_name}
+          />
         </Collapsible>
       </View>
     );

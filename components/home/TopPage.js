@@ -19,7 +19,10 @@ const days = [
 export default function TopPage({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [meal, setMeal] = useState({});
+  const [orders, setOrders] = useState([]);
   const [mealcount, setMealCount] = useState(0);
+  const [addOn, setAddOn] = useState("");
+  const [qty, setQty] = useState(0);
   const [slot, setSlot] = useState("Lunch");
   const { restaurant_name, city, restaurant_id, meals } = restaurant;
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
@@ -40,9 +43,19 @@ export default function TopPage({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders/custom/active"
     );
     const { data } = response;
-    const { count } = data;
+    const { activeorders, count } = data;
+    setOrders(activeorders);
     setMealCount(count);
   };
+  const getAddOnCounts = () => {
+    const addOns = orders.map((el) => el.add_on);
+    const { item, qty } = addOns[0][0];
+    setAddOn(item);
+    setQty(qty);
+  };
+  useEffect(() => {
+    getAddOnCounts();
+  }, [orders]);
   useEffect(() => {
     fetchTotalOrders();
   }, [mealcount]);
@@ -66,7 +79,13 @@ export default function TopPage({ navigation }) {
         </View>
       </Header>
       <CalTab onDayChanged={(day) => onDayChanged(day)} />
-      <Menu meal={meal} slot={slot} count={mealcount} />
+      <Menu
+        meal={meal}
+        slot={slot}
+        count={mealcount}
+        add_on_name={addOn}
+        add_on_count={qty}
+      />
     </SafeAreaView>
   );
 }
