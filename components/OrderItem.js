@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { IconButton, Switch } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
-import { PrimaryColor, SecondaryDarkColor } from "../Colors";
+import { PrimaryColor, SecondaryColor, SecondaryDarkColor } from "../Colors";
 import { avatarify } from "../helpers/truncate_string";
 
 const CollapsedContent = ({ item }) => {
@@ -23,11 +23,20 @@ const CollapsedContent = ({ item }) => {
     );
     const provider = Platform.OS === "ios" ? "apple" : "google";
     const link = `http://maps.${provider}.com/?daddr=${destination}`;
-
     try {
       const supported = await Linking.canOpenURL(link);
 
       if (supported) Linking.openURL(link);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const makeCall = async (number) => {
+    try {
+      const supported = await Linking.canOpenURL(`tel:${number}`);
+
+      if (supported) Linking.openURL(`tel:${number}`);
     } catch (error) {
       console.log(error);
     }
@@ -52,17 +61,34 @@ const CollapsedContent = ({ item }) => {
         </View>
       </View>
 
-      <View style={{ paddingHorizontal: 6, padding: 4 }}>
+      <View style={{ paddingHorizontal: 6, padding: 4, flex: 1 }}>
+        <Text style={[styles.title,{color:"#000",fontSize:18}]}>{item.order_id}</Text>
         <Text style={[styles.title, { fontWeight: "bold" }]}>
           {item.user_name}
         </Text>
-        <Text style={styles.title}>{item.order_id}</Text>
-        <TouchableOpacity
-          style={styles.link}
-          onPress={() => openInMap(item.address)}
+        <View
+          style={{
+            alignItems: "center",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
         >
-          <Icon name="location-outline" size={20} color={PrimaryColor} />
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => openInMap(item.address)}
+          >
+            <Icon name="location-outline" size={24} color={PrimaryColor} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => makeCall(item.phone)}
+          >
+            <Icon name="call-sharp" size={24} color={SecondaryColor} />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <IconButton icon="dots-vertical" size={24} color="#777" />
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={{ position: "absolute", right: 0 }}>
         <Switch
@@ -71,9 +97,6 @@ const CollapsedContent = ({ item }) => {
           // disabled={isSwitchOn}
           color={isSwitchOn ? "green" : "red"}
         />
-        <View style={{ alignSelf: "flex-end" }}>
-          <IconButton icon="dots-vertical" size={24} color="#777" />
-        </View>
       </View>
     </View>
   );
