@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import Collapsible from "react-native-collapsible";
 import axios from "axios";
 
-export default function Menu({ meal, slot }) {
+export default function Menu({ meal, slot, meacount }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [meal_time, setMealTime] = useState("");
   const [lunch, setlunch] = useState("");
@@ -72,7 +72,9 @@ export default function Menu({ meal, slot }) {
               key={key}
             >
               <Text style={styles.mealTitle}>{add_on.add_on}</Text>
-              <Text style={styles.mealTitle}>X 0</Text>
+              <Text style={styles.mealTitle}>
+                X {slot === meal_time ? meacount : 0}
+              </Text>
             </View>
           ))}
       </View>
