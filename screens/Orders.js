@@ -110,33 +110,32 @@ export default function Orders() {
   const handleToggle = (slot) => {
     setSlot(slot);
   };
-
-  if (loaded) {
-    return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <Header title={restaurant_name + ", " + restaurant_id}>
-          <View style={styles.switch}>
-            <ToggleLunchDinner handleToggle={handleToggle} />
-          </View>
-        </Header>
-        <HeaderTabSwitch
-          items={slot === "Lunch" ? lunch : dinner}
-          handler={tabHandler}
-          selected={selected}
-          setTabHandler={setCurrentPage}
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <Header title={restaurant_name + ", " + restaurant_id}>
+        <View style={styles.switch}>
+          <ToggleLunchDinner handleToggle={handleToggle} />
+        </View>
+      </Header>
+      <HeaderTabSwitch
+        items={slot === "Lunch" ? lunch : dinner}
+        handler={tabHandler}
+        selected={selected}
+        setTabHandler={setCurrentPage}
+      >
+        <Badge
+          style={{
+            margin: 4,
+            fontSize: 12,
+            backgroundColor: "red",
+            color: WHITE,
+          }}
+          size={14}
         >
-          <Badge
-            style={{
-              margin: 4,
-              fontSize: 12,
-              backgroundColor: "red",
-              color: WHITE,
-            }}
-            size={14}
-          >
-            {currentPage ? orders.length : 0}
-          </Badge>
-        </HeaderTabSwitch>
+          {currentPage ? orders.length : 0}
+        </Badge>
+      </HeaderTabSwitch>
+      {loaded ? (
         <FlatList
           data={orders}
           ListEmptyComponent={ListEmptyComponent}
@@ -144,11 +143,11 @@ export default function Orders() {
           renderItem={renderItem}
           keyExtractor={(item) => item._id}
         />
-      </SafeAreaView>
-    );
-  } else {
-    return <Loader />;
-  }
+      ) : (
+        <Loader />
+      )}
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
