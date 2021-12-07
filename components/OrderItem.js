@@ -1,14 +1,38 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import { IconButton, Switch } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 import { PrimaryColor, SecondaryDarkColor } from "../Colors";
-import { avatarify, truncate_string } from "../helpers/truncate_string";
+import { avatarify } from "../helpers/truncate_string";
 
 const CollapsedContent = ({ item }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
-  
+
+  const openInMap = async (address) => {
+    let addres = address.flat_num + "," + address.locality;
+
+    const destination = encodeURIComponent(
+      `${addres} ${address.postal_code}, ${address.city}`
+    );
+    const provider = Platform.OS === "ios" ? "apple" : "google";
+    const link = `http://maps.${provider}.com/?daddr=${destination}`;
+
+    try {
+      const supported = await Linking.canOpenURL(link);
+
+      if (supported) Linking.openURL(link);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View style={styles.orderCard}>
       <View>
@@ -33,10 +57,12 @@ const CollapsedContent = ({ item }) => {
           {item.user_name}
         </Text>
         <Text style={styles.title}>{item.order_id}</Text>
-        <Text style={styles.link}>
+        <TouchableOpacity
+          style={styles.link}
+          onPress={() => openInMap(item.address)}
+        >
           <Icon name="location-outline" size={20} color={PrimaryColor} />
-          View in Map
-        </Text>
+        </TouchableOpacity>
       </View>
       <View style={{ position: "absolute", right: 0 }}>
         <Switch
@@ -56,7 +82,7 @@ const CollapsedContent = ({ item }) => {
 export default function OrderItem({ item, index, meal }) {
   return (
     // <Collapsible isCollapsed={false}>
-      <CollapsedContent item={item} />
+    <CollapsedContent item={item} />
     /* // </Collapsible> */
   );
 }

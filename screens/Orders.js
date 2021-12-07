@@ -49,6 +49,7 @@ export default function Orders() {
   const [loaded, setLoaded] = useState(false);
   const [currentTab, setCurrentTab] = useState("11-12 AM");
   const [selected, setSelected] = useState(0);
+  const [currentPage, setCurrentPage] = useState(false);
 
   const days = [
     "Sunday",
@@ -109,6 +110,7 @@ export default function Orders() {
   const handleToggle = (slot) => {
     setSlot(slot);
   };
+
   if (loaded) {
     return (
       <SafeAreaView style={{ flex: 1 }}>
@@ -121,6 +123,7 @@ export default function Orders() {
           items={slot === "Lunch" ? lunch : dinner}
           handler={tabHandler}
           selected={selected}
+          setTabHandler={setCurrentPage}
         >
           <Badge
             style={{
@@ -131,7 +134,7 @@ export default function Orders() {
             }}
             size={14}
           >
-            {orders.length}
+            {currentPage ? orders.length : 0}
           </Badge>
         </HeaderTabSwitch>
         <FlatList
