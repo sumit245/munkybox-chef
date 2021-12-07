@@ -11,23 +11,28 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { PrimaryColor, SecondaryDarkColor } from "../Colors";
 import { avatarify } from "../helpers/truncate_string";
 
+import openMap from "react-native-open-maps";
+
 const CollapsedContent = ({ item }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
-  const openInMap = (lat, lng) => {
-    const scheme = Platform.select({
-      ios: "maps:0,0?q=",
-      android: "geo:0,0?q=",
-    });
-    const latLng = `${lat},${lng}`;
-    const label = "Custom Label";
-    const url = Platform.select({
-      ios: `${scheme}${label}@${latLng}`,
-      android: `${scheme}${latLng}(${label})`,
-    });
+  const openInMap = async (address) => {
+    let addres = address.flat_num + "," + address.locality;
 
-    Linking.openURL(url);
+    const destination = encodeURIComponent(
+      `${addres} ${address.postal_code}, ${address.city}`
+    );
+    const provider = Platform.OS === "ios" ? "apple" : "google";
+    const link = `http://maps.${provider}.com/?daddr=${destination}`;
+
+    try {
+      const supported = await Linking.canOpenURL(link);
+
+      if (supported) Linking.openURL(link);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -54,7 +59,10 @@ const CollapsedContent = ({ item }) => {
           {item.user_name}
         </Text>
         <Text style={styles.title}>{item.order_id}</Text>
-        <TouchableOpacity style={styles.link} onPress={()=>openInMap(78,78)} >
+        <TouchableOpacity
+          style={styles.link}
+          onPress={() => openInMap(item.address)}
+        >
           <Icon name="location-outline" size={20} color={PrimaryColor} />
         </TouchableOpacity>
       </View>
