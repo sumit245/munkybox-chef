@@ -33,13 +33,21 @@ const CollapsedContent = ({ item }) => {
   };
 
   const makeCall = async (number) => {
-    try {
-      const supported = await Linking.canOpenURL(`tel:${number}`);
-
-      if (supported) Linking.openURL(`tel:${number}`);
-    } catch (error) {
-      console.log(error);
+    let phoneNumber = "";
+    if (Platform.OS !== "android") {
+      phoneNumber = `telprompt:${number}`;
+    } else {
+      phoneNumber = `tel:${number}`;
     }
+    Linking.canOpenURL(phoneNumber)
+      .then((supported) => {
+        if (!supported) {
+          Alert.alert("Phone number is not available");
+        } else {
+          return Linking.openURL(phoneNumber);
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -62,7 +70,9 @@ const CollapsedContent = ({ item }) => {
       </View>
 
       <View style={{ paddingHorizontal: 6, padding: 4, flex: 1 }}>
-        <Text style={[styles.title,{color:"#000",fontSize:18}]}>{item.order_id}</Text>
+        <Text style={[styles.title, { color: "#000", fontSize: 18 }]}>
+          {item.order_id}
+        </Text>
         <Text style={[styles.title, { fontWeight: "bold" }]}>
           {item.user_name}
         </Text>
@@ -112,7 +122,7 @@ export default function OrderItem({ item, index, meal }) {
 const styles = StyleSheet.create({
   orderCard: {
     backgroundColor: "#f9ffff",
-    padding: 8,
+    padding: 12,
     margin: 1,
     flexDirection: "row",
     borderRadius: 6,
@@ -131,7 +141,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 4,
-    paddingRight: 6,
+    paddingRight: 8,
   },
   title: {
     fontSize: 14,
