@@ -177,7 +177,60 @@ const CollapsedContent = ({ item }) => {
             }}
           >
             <Text style={{ fontWeight: "bold", fontSize: 16 }}>Add ons: </Text>
-            <Text style={{ fontSize: 14 }}>{"N/A"}</Text>
+            {Array.isArray(item.add_on) && item.add_on.length > 0 ? (
+              <View style={{ flexDirection: "column" }}>
+                <View style={styles.row}>
+                  <View style={styles.th}>
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        padding: 4,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Item
+                    </Text>
+                  </View>
+                  <View style={styles.th}>
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        padding: 4,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Qty
+                    </Text>
+                  </View>
+                </View>
+                {item.add_on.map((data, key) => (
+                  <View style={styles.row}>
+                    <View style={styles.th}>
+                      <Text
+                        style={{
+                          textAlign: "center",
+                          padding: 4,
+                        }}
+                      >
+                        {data.item}
+                      </Text>
+                    </View>
+                    <View style={styles.th}>
+                      <Text
+                        style={{
+                          textAlign: "center",
+                          padding: 4,
+                        }}
+                      >
+                        {data.qty}
+                      </Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            ) : (
+              <Text style={{ fontSize: 14 }}>{"N/A"}</Text>
+            )}
           </View>
         </View>
       )}
@@ -186,11 +239,7 @@ const CollapsedContent = ({ item }) => {
 };
 
 export default function OrderItem({ item, index, meal }) {
-  return (
-    // <Collapsible isCollapsed={false}>
-    <CollapsedContent item={item} />
-    /* // </Collapsible> */
-  );
+  return <CollapsedContent item={item} />;
 }
 const styles = StyleSheet.create({
   orderCard: {
@@ -226,5 +275,19 @@ const styles = StyleSheet.create({
     color: PrimaryColor,
     fontSize: 16,
     fontWeight: "bold",
+  },
+  row: {
+    flexDirection: "row",
+    borderColor: "#000",
+    borderWidth: 0.2,
+    borderStyle: "solid",
+    alignItems: "center",
+  },
+  th: {
+    borderColor: "#000",
+    borderWidth: 0.2,
+    borderStyle: "solid",
+    width: 120,
+    textAlign: "center",
   },
 });
