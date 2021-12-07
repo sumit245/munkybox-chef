@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import { IconButton, Switch } from "react-native-paper";
+import { DefaultTheme, IconButton, Switch } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 import { PrimaryColor, SecondaryColor, SecondaryDarkColor } from "../Colors";
 import { avatarify } from "../helpers/truncate_string";
@@ -31,12 +31,16 @@ const CollapsedContent = ({ item }) => {
       console.log(error);
     }
   };
+  const theme={
+    ...DefaultTheme,
+    fonts:"thin"
+  }
 
   const makeCall = async (number) => {
     try {
-      const supported = await Linking.canOpenURL(`tel:${number}`);
+      const supported = await Linking.canOpenURL(`telprompt:${number}`);
 
-      if (supported) Linking.openURL(`tel:${number}`);
+      if (supported) Linking.openURL(`telprompt:${number}`);
     } catch (error) {
       console.log(error);
     }
@@ -90,11 +94,14 @@ const CollapsedContent = ({ item }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{ position: "absolute", right: 0 }}>
+      <View style={{ position: "absolute", right: 4,top:4 }}>
         <Switch
           value={isSwitchOn}
           onValueChange={onToggleSwitch}
-          // disabled={isSwitchOn}
+          disabled={isSwitchOn}
+          theme={theme}
+          style={{heigh:6}}
+          
           color={isSwitchOn ? "green" : "red"}
         />
       </View>
@@ -112,7 +119,8 @@ export default function OrderItem({ item, index, meal }) {
 const styles = StyleSheet.create({
   orderCard: {
     backgroundColor: "#f9ffff",
-    padding: 8,
+    padding: 12,
+    height:120,
     margin: 1,
     flexDirection: "row",
     borderRadius: 6,
