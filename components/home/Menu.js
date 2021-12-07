@@ -108,7 +108,7 @@ export default function Menu({ meal, slot }) {
               }}
             >
               <Image
-                source={type==="Veg"?veg:nonveg}
+                source={type==="veg"?veg:nonveg}
                 style={{ height: 16, width: 16, marginRight: 2 }}
               />
               <Text style={styles.mealTitle}>{meal_name}</Text>

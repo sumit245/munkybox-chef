@@ -142,7 +142,7 @@ const CollapsedContent = ({ item }) => {
       </View>
 
       {pulled && (
-        <View style={{ marginVertical: 1 }}>
+        <View style={{ marginVertical: 4, }}>
           <View
             style={{
               flexDirection: "row",
