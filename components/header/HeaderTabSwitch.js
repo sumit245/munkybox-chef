@@ -21,6 +21,7 @@ export default function HeaderTabSwitch({
   selected,
   position,
   handler,
+  setTabHandler,
 }) {
   const [active, setActive] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,6 +29,9 @@ export default function HeaderTabSwitch({
     setCurrentIndex(index);
     setActive(item);
     handler(item, index);
+    if (index === currentIndex) {
+      setTabHandler(true);
+    }
   };
 
   useEffect(() => {

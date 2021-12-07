@@ -1,14 +1,35 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import { IconButton, Switch } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 import { PrimaryColor, SecondaryDarkColor } from "../Colors";
-import { avatarify, truncate_string } from "../helpers/truncate_string";
+import { avatarify } from "../helpers/truncate_string";
 
 const CollapsedContent = ({ item }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
-  
+
+  const openInMap = (lat, lng) => {
+    const scheme = Platform.select({
+      ios: "maps:0,0?q=",
+      android: "geo:0,0?q=",
+    });
+    const latLng = `${lat},${lng}`;
+    const label = "Custom Label";
+    const url = Platform.select({
+      ios: `${scheme}${label}@${latLng}`,
+      android: `${scheme}${latLng}(${label})`,
+    });
+
+    Linking.openURL(url);
+  };
+
   return (
     <View style={styles.orderCard}>
       <View>
@@ -33,10 +54,9 @@ const CollapsedContent = ({ item }) => {
           {item.user_name}
         </Text>
         <Text style={styles.title}>{item.order_id}</Text>
-        <Text style={styles.link}>
+        <TouchableOpacity style={styles.link} onPress={()=>openInMap(78,78)} >
           <Icon name="location-outline" size={20} color={PrimaryColor} />
-          View in Map
-        </Text>
+        </TouchableOpacity>
       </View>
       <View style={{ position: "absolute", right: 0 }}>
         <Switch
@@ -56,7 +76,7 @@ const CollapsedContent = ({ item }) => {
 export default function OrderItem({ item, index, meal }) {
   return (
     // <Collapsible isCollapsed={false}>
-      <CollapsedContent item={item} />
+    <CollapsedContent item={item} />
     /* // </Collapsible> */
   );
 }
