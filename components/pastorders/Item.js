@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 import { styles } from "../../styles/itemstyle";
-import { truncate_string } from "../../helpers/truncate_string";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const Item = ({ item, index, navigation }) => {
   const { start_date, end_date } = item;
@@ -14,20 +14,18 @@ const Item = ({ item, index, navigation }) => {
       if (typeof start_date === "string" && typeof end_date === "string") {
         x = start_date;
         y = end_date;
-        x = x.slice(0, -5); 
+        x = x.slice(0, -5);
         y = y.slice(0, -5);
       }
     }
     return () => {
       componentMounted = false;
     };
-  },[]);
+  }, []);
   return (
     <View style={styles.card} key={index}>
       <View style={styles.title}>
-        <Text style={styles.titleText}>
-          Order Id: {item.order_id}
-        </Text>
+        <Text style={styles.titleText}>Order Id: {item.order_id}</Text>
         <Text
           style={[
             item.status === "started"
@@ -67,7 +65,7 @@ const Item = ({ item, index, navigation }) => {
           {item.status}
         </Text>
 
-        <Text
+        <TouchableOpacity
           style={styles.titleTextRight}
           onPress={() =>
             navigation.navigate("orderDetails", {
@@ -75,44 +73,49 @@ const Item = ({ item, index, navigation }) => {
             })
           }
         >
-          View
-        </Text>
+          <Icon name="md-eye" color="#227cfc" size={22} />
+        </TouchableOpacity>
       </View>
       <View style={styles.cardBody}>
         <View style={styles.cardRow}>
           <Text style={styles.cardText}>
-            {"User Id: " + truncate_string("USER", item.user_id, 5)}
+            User Id: <Text style={styles.field}> {item.user_id}</Text>
           </Text>
-          <Text style={styles.cardText}>{"Contact: " + item.phone}</Text>
-        </View>
-        <View style={styles.cardRow}>
+
           <Text style={styles.cardText}>
-            {"Plan "}
-            {item.plan === "twoPlan"
-              ? "2 Days"
-              : item.plan === "fifteenPlan"
-              ? "15 Days"
-              : "30 Days"}
-          </Text>
-          <Text style={styles.cardText}>
-            {"Total: "}
-            {"$" + item.total}
+            Plan:
+            <Text style={styles.field}>
+              {item.plan === "twoPlan"
+                ? "2 Days"
+                : item.plan === "fifteenPlan"
+                ? "15 Days"
+                : "30 Days"}
+            </Text>
           </Text>
         </View>
+
         <View style={styles.cardRow}>
           <Text style={styles.cardText}>
-            {"Start Date: "}
-            {item.start_date}
+            Start Date:
+            <Text style={styles.field}> {item.start_date}</Text>
           </Text>
           <Text style={styles.cardText}>
-            {"End Date: "}
-            {item.end_date}
+            End Date:
+            <Text style={styles.field}> {item.end_date}</Text>
           </Text>
         </View>
+
         <View style={styles.cardRow}>
           <Text style={styles.cardText}>
-            {"Ordered at: "}
-            {item.order_time}
+            Ordered at:
+            <Text style={styles.field}>{new Date().toDateString()}</Text>
+          </Text>
+          <Text style={styles.cardText}>
+            Total:
+            <Text style={styles.field}>
+               {" $" +
+                (parseFloat(item.base_price) - parseFloat(item.discount || 0))}
+            </Text>
           </Text>
         </View>
       </View>

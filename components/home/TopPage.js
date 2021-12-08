@@ -49,16 +49,16 @@ export default function TopPage({ navigation }) {
   };
   const getAddOnCounts = () => {
     const addOns = orders.map((el) => el.add_on);
-    if(Array.isArray(addOns)){
-   let addons=addOns[0][0]
-   let {item,qty}=addons
-    console.log('====================================');
-//console.log(addons);
-    console.log('====================================');
-setAddOn(item);
-setQty(qty);
+    if (Array.isArray(addOns)) {
+        try {
+          let addons = addOns[0][0];
+          let { item, qty } = addons;
+          setAddOn(item);
+          setQty(qty); 
+        } catch (error) {
+          console.log(error);
+        } 
     }
-    
   };
   useEffect(() => {
     getAddOnCounts();

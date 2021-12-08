@@ -8,7 +8,7 @@ import {
   StatusBar,
 } from "react-native";
 import Export from "../components/header/Export";
-import Header from "../components/header/Header";
+
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import Item from "../components/pastorders/Item";
@@ -32,9 +32,10 @@ export default function PastOrders({ navigation }) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar barStyle="light-content" />
-      <Header title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}>
-        <Export />
-      </Header>
+      <Header
+        title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
+      ></Header>
+
       <FlatList
         data={orders}
         contentContainerStyle={{ paddingBottom: 10 }}

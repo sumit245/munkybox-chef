@@ -9,9 +9,10 @@ export default function OrderDetails({ route, navigation }) {
   const { order } = route.params;
   const { address_type, city, flat_num, locality, postal_code } = order.address;
   const restaurant = useSelector((state) => state.restaurant);
+  const { restaurant_name, restaurant_id } = restaurant;
   return (
     <View style={styles.container}>
-      <Header chefName="World Best Foods" chefAddress="Delhi">
+      <Header chefName={restaurant_name} chefAddress={restaurant_id}>
         <Export />
       </Header>
       <View style={styles.formHeader}>

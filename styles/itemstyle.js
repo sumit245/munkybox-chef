@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     flexDirection: "row",
     padding: 4,
-    justifyContent:'space-between'
+    justifyContent: "space-between",
   },
   titleText: {
     fontSize: 14,
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   titleTextRight: {
-    textAlign:"right",
+    textAlign: "right",
     fontSize: 14,
     paddingHorizontal: 5,
     color: "#6a6a6a",
@@ -44,10 +44,18 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 2,
+    marginVertical: 2,
   },
   cardText: {
     fontSize: 12,
-    fontFamily: "serif",
+    fontWeight: "bold",
+    color: "#444",
+    padding: 1,
+    textTransform: "uppercase",
+  },
+  field: {
+    fontSize: 12,
+    fontWeight:"normal",
     color: "#444",
     padding: 1,
     textTransform: "uppercase",
