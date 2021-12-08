@@ -98,7 +98,7 @@ export default function OrderDetails({ route, navigation }) {
           <Text style={styles.text}>Ordered on</Text>
           <Text style={styles.text}>PRICE</Text>
         </View>
-        {order.add_on.map((data, key) => (
+        {/* {order.add_on.map((data, key) => (
           <View style={styles.tableRow} key={key}>
             <Text style={{ maxWidth: 100, padding: 2 }} numberOfLines={4}>
               {data.items.item}
@@ -108,7 +108,7 @@ export default function OrderDetails({ route, navigation }) {
             </Text>
             <Text style={{ padding: 2 }}>{data.items.price}</Text>
           </View>
-        ))}
+        ))} */}
       </View>
       <View style={styles.footer}>
         <Text

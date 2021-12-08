@@ -4,40 +4,27 @@ import { SecondaryColor } from "../../Colors";
 import Icon from "react-native-vector-icons/Ionicons";
 import ToggleLunchDinner from "./ToggleLunchDinner";
 
-export default class Export extends Component {
-  constructor(props) {
-    super(props);
-  }
-  export = () => {
-    Alert.alert("A copy Sent to Mail");
-    console.log("Exported");
+export default function Export({ navigation }) {
+  const ExportData = () => {
+    return null;
   };
-  render() {
-    return (
-      <View
-        style={{
-          position: "absolute",
-          right: 30,
-          top: 10,
-          flexDirection: "row",
-        }}
-      >
-        <ToggleLunchDinner />
-        <TouchableOpacity onPress={this.export}>
-          <Icon
-            name="download-outline"
-            size={26}
-            style={{ position: "absolute", right: -25, top: -8 }}
-            color={SecondaryColor}
-          />
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        flex: 1,
+        justifyContent: "space-between",
+      }}
+    >
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon name="chevron-back-sharp" color="#22ccfc" size={24} />
+      </TouchableOpacity>
+      <View style={{ flexDirection: "row" }}>
+        <TouchableOpacity onPress={ExportData}>
+          <Icon name="download-outline" size={26} color={SecondaryColor} />
         </TouchableOpacity>
-        <Icon
-          name="options-outline"
-          size={26}
-          color={SecondaryColor}
-          style={{ position: "absolute", right: -25, top: 20 }}
-        />
+        <Icon name="options-outline" size={26} color={SecondaryColor} />
       </View>
-    );
-  }
+    </View>
+  );
 }
