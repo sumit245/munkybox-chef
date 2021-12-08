@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -20,9 +20,13 @@ import { styles } from "../campaign/campaign.styles";
 import Ants from "react-native-vector-icons/FontAwesome5";
 import { TabView, TabBar } from "react-native-tab-view";
 import StatCards from "./StatCards";
+import axios from "axios";
 
-export default function Dashboard() {
+export default function Dashboard({ navigation }) {
   const layout = useWindowDimensions();
+  const [activecount, setActiveCount] = useState(0);
+  const [completecount, setCompleteCount] = useState(0);
+  const [cancelledcount, setCancelledCount] = useState(0);
 
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, city, restaurant_id } = restaurant;
@@ -44,7 +48,13 @@ export default function Dashboard() {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case "first":
-        return <StatCards />;
+        return (
+          <StatCards
+            active={activecount}
+            complete={completecount}
+            cancel={cancelledcount}
+          />
+        );
 
       case "second":
         return <View style={{ backgroundColor: "blue" }} />;
@@ -55,6 +65,34 @@ export default function Dashboard() {
         break;
     }
   };
+
+  const fetchOrders = async () => {
+    const res = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/custom/active"
+    );
+    const { count } = res.data;
+    setActiveCount(count);
+  };
+  const fetchcompletedorders = async () => {
+    const res = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/custom/completed"
+    );
+    const { count } = res.data;
+    setCompleteCount(count);
+  };
+  const fetchcancelledcount = async () => {
+    const res = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/custom/cancelled"
+    );
+    const { count } = res.data;
+    setCancelledCount(count);
+  };
+  useEffect(() => {
+    fetchOrders();
+    fetchcompletedorders();
+    fetchcancelledcount();
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: PrimaryDark }}>
       <Header title={restaurant_name + ", " + city} />
@@ -109,6 +147,7 @@ export default function Dashboard() {
               alignItems: "center",
               justifyContent: "center",
             }}
+            onPress={() => navigation.navigate("myOrders")}
           >
             <Ants name="history" size={34} color={SecondaryLightColor} />
           </TouchableOpacity>

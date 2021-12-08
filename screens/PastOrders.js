@@ -21,19 +21,18 @@ export default function PastOrders({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders"
     );
     const orders = await response.data;
-    console.log(orders);
     setOrders(orders);
   };
   useEffect(() => {
     getApiData();
-  }, [orders]);
+  }, []);
   const renderItem = ({ item }) => (
     <Item item={item} index={item._id} navigation={navigation} />
   );
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar barStyle="light-content" />
-      <Header title={restaurant.restaurant_name + ", " + restaurant.city}>
+      <Header title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}>
         <Export />
       </Header>
       <FlatList

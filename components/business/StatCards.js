@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { width } from "../../Dimens";
 
-export default function StatCards() {
+export default function StatCards({ active, cancel, complete }) {
   return (
     <ScrollView horizontal>
       <View>
@@ -19,7 +19,6 @@ export default function StatCards() {
           <Text style={styles.stat_label}>Paid: $0</Text>
         </View>
         {/* Ads Campaign */}
-
       </View>
       <View>
         <View style={styles.stat_card}>
@@ -40,7 +39,9 @@ export default function StatCards() {
             <Text style={[styles.stat_label, { color: "#f5a617" }]}>
               In Progress
             </Text>
-            <Text style={[styles.stat_value, { color: "#f5a617" }]}>1</Text>
+            <Text style={[styles.stat_value, { color: "#f5a617" }]}>
+              {active}
+            </Text>
           </View>
           <View
             style={{
@@ -52,7 +53,9 @@ export default function StatCards() {
             <Text style={[styles.stat_label, { color: "#22cf6c" }]}>
               Completed
             </Text>
-            <Text style={[styles.stat_value, { color: "#22cf6c" }]}>0</Text>
+            <Text style={[styles.stat_value, { color: "#22cf6c" }]}>
+              {complete}
+            </Text>
           </View>
           <View
             style={{
@@ -62,7 +65,7 @@ export default function StatCards() {
             }}
           >
             <Text style={[styles.stat_label, { color: "red" }]}>Cancelled</Text>
-            <Text style={[styles.stat_value, { color: "red" }]}>0</Text>
+            <Text style={[styles.stat_value, { color: "red" }]}>{cancel}</Text>
           </View>
           <View
             style={{
@@ -76,7 +79,6 @@ export default function StatCards() {
           </View>
         </View>
         {/* Orders */}
-
       </View>
       <View>
         <View style={[styles.stat_card, { width: width - 12 }]}>
@@ -112,7 +114,6 @@ export default function StatCards() {
             <Text style={styles.stat_value}>0</Text>
           </View>
           {/* Repeat Users */}
-          
         </View>
       </View>
     </ScrollView>

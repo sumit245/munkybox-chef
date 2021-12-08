@@ -16,7 +16,6 @@ const Item = ({ item, index, navigation }) => {
         y = end_date;
         x = x.slice(0, -5); 
         y = y.slice(0, -5);
-        console.log(x, y);
       }
     }
     return () => {
@@ -27,11 +26,11 @@ const Item = ({ item, index, navigation }) => {
     <View style={styles.card} key={index}>
       <View style={styles.title}>
         <Text style={styles.titleText}>
-          Order Id{" " + truncate_string("ORD", item._id, 5)}
+          Order Id: {item.order_id}
         </Text>
         <Text
           style={[
-            item.status === "delivered"
+            item.status === "started"
               ? {
                   backgroundColor: "#5ca85c",
                   color: "#ffffff",
