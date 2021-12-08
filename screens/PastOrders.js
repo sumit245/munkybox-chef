@@ -8,6 +8,7 @@ import {
   StatusBar,
 } from "react-native";
 import Export from "../components/header/Export";
+import Header from "../components/header/Header"
 
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
