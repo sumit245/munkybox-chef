@@ -31,7 +31,7 @@ export default function PastOrders({ navigation }) {
   const renderItem = ({ item }) => (
     <Item item={item} index={item._id} navigation={navigation} />
   );
-  const ListHeaderComponent = () => <Export />;
+  const ListHeaderComponent = () => <Export navigation={navigation} />;
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar barStyle="light-content" />
