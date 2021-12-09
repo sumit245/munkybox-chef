@@ -7,16 +7,18 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
   return (
     <ScrollView horizontal>
       <View>
-        <View style={[styles.stat_card, { width: width - 6 }]}>
+        <View style={[styles.stat_card, { width: width - 6,justifyContent:"flex-start" }]}>
           <View
             style={{
               flexDirection: "row",
-              flex: 1,
+             
               justifyContent: "space-between",
             }}
           >
             <View>
-              <Text style={styles.stat_head}>Sales</Text>
+              <Text style={styles.stat_head}>Sales
+              <Text style={styles.stat_label}> (Total Revenue - Total Discount)</Text>
+              </Text>
             </View>
             <View>
               <Badge>{active} orders</Badge>
@@ -25,12 +27,14 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
           <View>
             <Text style={styles.stat_value}>{dashboard.grossRevenue}</Text>
           </View>
-
-          <View
+          <View>
+<View style={{height:20}}/>
+      <View
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
-              height: 30,
+              minHeight: 30,
+              marginTop:16
               
             }}
           >
@@ -38,14 +42,18 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
             <Text style={styles.stat_label} >Revenue</Text>
             <Text style={styles.stat_label}>Discount</Text>
           </View>
+         
           <View
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
-              height: 20,
+              height: 30,
+              padding:2,
               borderRadius:1,
-              margin:1,
+              paddingHorizontal:8,
+              marginVertical:4,
               borderWidth:0.2,
+              alignItems:"center"
             }}
           >
             <Text style={styles.stat_label}>2</Text>
@@ -56,10 +64,13 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
-              height: 20,
-              margin:1,
+              height: 30,
+              marginVertical:4,
+              padding:2,paddingHorizontal:8,
+
               borderRadius:1,
               borderWidth:0.2,
+              alignItems:'center'
             }}
           >
             <Text style={styles.stat_label}>15</Text>
@@ -70,8 +81,11 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
-              height: 20,
-              margin:1,
+              minHeight:30,
+              marginVertical:4,
+              alignItems:"center",
+              paddingHorizontal:8,
+              padding:2,
               borderRadius:1,
               borderWidth:0.2,
             }}
@@ -80,6 +94,10 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
             <Text style={styles.stat_label}>-</Text>
             <Text style={styles.stat_label}>-</Text>
           </View>
+       
+
+</View>
+
         </View>
         {/* Sales */}
         <View style={{ flexDirection: "row" }}>
@@ -199,7 +217,7 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
 const styles = StyleSheet.create({
   stat_card: {
     backgroundColor: "white",
-    width: width / 2.1,
+    width: width / 2.1,    
     flexGrow: 1,
     minHeight: 120,
     borderRadius: 8,
