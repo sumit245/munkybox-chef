@@ -113,6 +113,7 @@ export default function Dashboard({ navigation }) {
     fetchcompletedorders();
     fetchcancelledcount();
     fetchStats(restaurant_name);
+    console.log(restaurant_name);
   }, [restaurant_name]);
 
   return (
