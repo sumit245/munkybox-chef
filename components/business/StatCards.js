@@ -3,21 +3,30 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Badge } from "react-native-paper";
 import { width } from "../../Dimens";
 
-export default function StatCards({ active, cancel, complete,dashboard }) {
+export default function StatCards({ active, cancel, complete, dashboard,commission }) {
+  console.log(commission);
   return (
     <ScrollView horizontal>
       <View>
-        <View style={[styles.stat_card, { width: width - 6,justifyContent:"flex-start" }]}>
+        <View
+          style={[
+            styles.stat_card,
+            { width: width - 6, justifyContent: "flex-start" },
+          ]}
+        >
           <View
             style={{
               flexDirection: "row",
-             
               justifyContent: "space-between",
             }}
           >
             <View>
-              <Text style={styles.stat_head}>Sales
-              <Text style={styles.stat_label}> (Total Revenue - Total Discount)</Text>
+              <Text style={styles.stat_head}>
+                Sales
+                <Text style={styles.stat_label}>
+                  {" "}
+                  (Total Revenue - Total Discount)
+                </Text>
               </Text>
             </View>
             <View>
@@ -25,79 +34,78 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
             </View>
           </View>
           <View>
-            <Text style={styles.stat_value}>{dashboard.grossRevenue}</Text>
+            <Text style={styles.stat_value}>${dashboard.grossRevenue}</Text>
           </View>
           <View>
-<View style={{height:20}}/>
-      <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              minHeight: 30,
-              marginTop:16
-              
-            }}
-          >
-            <Text style={styles.stat_label}>Plan</Text>
-            <Text style={styles.stat_label} >Revenue</Text>
-            <Text style={styles.stat_label}>Discount</Text>
-          </View>
-         
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              height: 30,
-              padding:2,
-              borderRadius:1,
-              paddingHorizontal:8,
-              marginVertical:4,
-              borderWidth:0.2,
-              alignItems:"center"
-            }}
-          >
-            <Text style={styles.stat_label}>2</Text>
-            <Text style={styles.stat_label}>{dashboard.totalRevenue}</Text>
-            <Text style={styles.stat_label}>{dashboard.totalDiscount}</Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              height: 30,
-              marginVertical:4,
-              padding:2,paddingHorizontal:8,
+            <View style={{ height: 20 }} />
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                minHeight: 30,
+                marginTop: 16,
+              }}
+            >
+              <Text style={styles.stat_label}>Plan</Text>
+              <Text style={styles.stat_label}>Revenue</Text>
+              <Text style={styles.stat_label}>Discount</Text>
+            </View>
 
-              borderRadius:1,
-              borderWidth:0.2,
-              alignItems:'center'
-            }}
-          >
-            <Text style={styles.stat_label}>15</Text>
-            <Text style={styles.stat_label}>-</Text>
-            <Text style={styles.stat_label}>-</Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              minHeight:30,
-              marginVertical:4,
-              alignItems:"center",
-              paddingHorizontal:8,
-              padding:2,
-              borderRadius:1,
-              borderWidth:0.2,
-            }}
-          >
-            <Text style={styles.stat_label}>30 </Text>
-            <Text style={styles.stat_label}>-</Text>
-            <Text style={styles.stat_label}>-</Text>
-          </View>
-       
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                height: 30,
+                padding: 2,
+                borderRadius: 1,
+                paddingHorizontal: 8,
+                marginVertical: 4,
+                borderWidth: 0.2,
+                alignItems: "center",
+              }}
+            >
+              <Text style={styles.stat_label}>2</Text>
+              <Text style={styles.stat_label}>${dashboard.sumTwo}</Text>
+              <Text style={styles.stat_label}>${dashboard.discountTwo}</Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                height: 30,
+                marginVertical: 4,
+                padding: 2,
+                paddingHorizontal: 8,
 
-</View>
-
+                borderRadius: 1,
+                borderWidth: 0.2,
+                alignItems: "center",
+              }}
+            >
+              <Text style={styles.stat_label}>15</Text>
+              <Text style={styles.stat_label}>${dashboard.sumFifteen}</Text>
+              <Text style={styles.stat_label}>
+                ${dashboard.discountFifteen}
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                minHeight: 30,
+                marginVertical: 4,
+                alignItems: "center",
+                paddingHorizontal: 8,
+                padding: 2,
+                borderRadius: 1,
+                borderWidth: 0.2,
+              }}
+            >
+              <Text style={styles.stat_label}>30 </Text>
+              <Text style={styles.stat_label}>${dashboard.sumThirty}</Text>
+              <Text style={styles.stat_label}>${dashboard.discountThirty}</Text>
+            </View>
+          </View>
         </View>
         {/* Sales */}
         <View style={{ flexDirection: "row" }}>
@@ -109,7 +117,7 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
           {/* Ads Campaign */}
           <View style={[styles.stat_card, { width: width / 3.1 }]}>
             <Text style={styles.stat_head}>Commission</Text>
-            <Text style={styles.stat_value}>$8</Text>
+            <Text style={styles.stat_value}>${parseFloat(dashboard.grossRevenue)*parseFloat(commission)/100}</Text>
           </View>
           {/* Commission */}
 
@@ -119,7 +127,9 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
             >
               <Text style={styles.stat_head}>Orders</Text>
               <View>
-                <Badge>{parseInt(complete)+parseInt(active)+parseInt(cancel)}</Badge>
+                <Badge>
+                  {parseInt(complete) + parseInt(active) + parseInt(cancel)}
+                </Badge>
               </View>
             </View>
 
@@ -217,7 +227,7 @@ export default function StatCards({ active, cancel, complete,dashboard }) {
 const styles = StyleSheet.create({
   stat_card: {
     backgroundColor: "white",
-    width: width / 2.1,    
+    width: width / 2.1,
     flexGrow: 1,
     minHeight: 120,
     borderRadius: 8,

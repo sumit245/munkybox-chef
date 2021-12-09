@@ -28,6 +28,7 @@ export default function Dashboard({ navigation }) {
   const [completecount, setCompleteCount] = useState(0);
   const [cancelledcount, setCancelledCount] = useState(0);
   const [dashboard, setDashboard] = useState({});
+  const [commission,setCommission]=useState("")
 
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, city, restaurant_id } = restaurant;
@@ -55,6 +56,7 @@ export default function Dashboard({ navigation }) {
             complete={completecount}
             cancel={cancelledcount}
             dashboard={dashboard}
+            commission={commission}
           />
         );
 
@@ -91,12 +93,21 @@ export default function Dashboard({ navigation }) {
   };
   const fetchStats = async (restaurant) => {
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/dashboard/" + restaurant
+      "http://munkybox-admin.herokuapp.com/api/orders/dashboard/Thai Express"
     );
     const dashboard = res.data;
     console.log(dashboard);
     setDashboard(dashboard);
   };
+  const fetchCommission=async()=>{
+    const resp=await axios.get('http://munkybox-admin.herokuapp.com/api/checkout')
+    const {commission}=resp.data.data[0]
+    setCommission(commission)
+
+  }
+  useEffect(() => {
+    fetchCommission()
+  }, [commission])
   useEffect(() => {
     fetchOrders();
     fetchcompletedorders();
