@@ -40,6 +40,8 @@ export default function Dashboard({ navigation }) {
     { key: "second", title: "Monthly" },
     { key: "third", title: "yearly" },
   ]);
+  const [newUser,setnewUser]=useState(0)
+  const [repeatedUser,setrepeatedUser]=useState(0)
 
   const renderTabBar = (props) => (
     <TabBar
@@ -61,6 +63,8 @@ export default function Dashboard({ navigation }) {
             dashboard={dashboard}
             commission={commission}
             rejected={rejected}
+            newUser={newUser}
+            repeatedUser={repeatedUser}
           />
         );
 
@@ -74,11 +78,13 @@ export default function Dashboard({ navigation }) {
     }
   };
 
-  const fetchOrders = async () => {
+  const fetchOrders = async (restaurant) => {
+    console.log(restaurant);
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/custom/active"
+      "http://munkybox-admin.herokuapp.com/api/orders/active/"+restaurant
     );
     const { count } = res.data;
+    console.log("totalorders",count,restaurant);
     setActiveCount(count);
   };
   const fetchcompletedorders = async (restaurant) => {
@@ -86,6 +92,7 @@ export default function Dashboard({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders/completed/" + restaurant
     );
     const { count } = res.data;
+    
     setCompleteCount(count);
   };
   const fetchcancelledcount = async (restaurant) => {
@@ -123,16 +130,24 @@ export default function Dashboard({ navigation }) {
     const { count } = response.data;
     setNotStarted(count);
   };
+  const getuserByType=async(restaurant)=>{
+    const response=await axios.get('http://munkybox-admin.herokuapp.com/api/chefdashboard/getusertypesbyrestaurant/'+restaurant)
+    const {newusers,repeatedUsers}=response.data
+    console.log(response);
+    setnewUser(newusers)
+    setrepeatedUser(repeatedUsers)
+  }
   useEffect(() => {
     fetchCommission();
   }, [commission]);
   useEffect(() => {
-    fetchOrders();
-    fetchcompletedorders();
-    fetchcancelledcount();
-    fetchRejectedcount();
-    fetchNotStartedcount();
+    fetchOrders(restaurant_name);
+    fetchcompletedorders(restaurant_name);
+    fetchcancelledcount(restaurant_name);
+    fetchRejectedcount(restaurant_name);
+    fetchNotStartedcount(restaurant_name);
     fetchStats(restaurant_name);
+    getuserByType(restaurant_name)
     console.log(restaurant_name);
   }, [restaurant_name]);
 

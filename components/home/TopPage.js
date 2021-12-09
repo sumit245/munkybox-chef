@@ -38,9 +38,9 @@ export default function TopPage({ navigation }) {
   useEffect(() => {
     mealSelector(days[new Date().getDay()]);
   }, []);
-  const fetchTotalOrders = async () => {
+  const fetchTotalOrders = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/custom/active"
+      "http://munkybox-admin.herokuapp.com/api/orders/active/"+restaurant
     );
     const { data } = response;
     const { activeorders, count } = data;
@@ -64,7 +64,7 @@ export default function TopPage({ navigation }) {
     getAddOnCounts();
   }, [orders]);
   useEffect(() => {
-    fetchTotalOrders();
+    fetchTotalOrders(restaurant_name);
   }, [mealcount]);
 
   const onDayChanged = (day) => {

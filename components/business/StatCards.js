@@ -3,7 +3,7 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Badge } from "react-native-paper";
 import { width } from "../../Dimens";
 
-export default function StatCards({ active, cancel, complete,notstarted,rejected, dashboard,commission }) {
+export default function StatCards({ active, cancel, complete,notstarted,rejected, dashboard,commission ,newUser,repeatedUser}) {
   console.log(commission);
   return (
     <ScrollView horizontal>
@@ -225,13 +225,13 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
         <View style={{ flexDirection: "row" }}>
           <View style={styles.stat_card}>
             <Text style={styles.stat_head}>New Users</Text>
-            <Text style={styles.stat_value}>1</Text>
+            <Text style={styles.stat_value}>{newUser}</Text>
           </View>
           {/* New users */}
 
           <View style={styles.stat_card}>
             <Text style={styles.stat_head}>Repeat Users</Text>
-            <Text style={styles.stat_value}>0</Text>
+            <Text style={styles.stat_value}>{repeatedUser}</Text>
           </View>
           {/* Repeat Users */}
         </View>
