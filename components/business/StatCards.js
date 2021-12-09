@@ -3,7 +3,7 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Badge } from "react-native-paper";
 import { width } from "../../Dimens";
 
-export default function StatCards({ active, cancel, complete, dashboard,commission }) {
+export default function StatCards({ active, cancel, complete,notstarted,rejected, dashboard,commission }) {
   console.log(commission);
   return (
     <ScrollView horizontal>
@@ -30,7 +30,7 @@ export default function StatCards({ active, cancel, complete, dashboard,commissi
               </Text>
             </View>
             <View>
-              <Badge>{active} orders</Badge>
+              <Badge> {parseInt(complete) + parseInt(active) + parseInt(cancel)+parseInt(notstarted)} orders</Badge>
             </View>
           </View>
           <View>
@@ -116,7 +116,10 @@ export default function StatCards({ active, cancel, complete, dashboard,commissi
           </View>
           {/* Ads Campaign */}
           <View style={[styles.stat_card, { width: width / 3.1 }]}>
+<View style={{flexDirection:"row",alignItems:"center"}}>
             <Text style={styles.stat_head}>Commission</Text>
+            <Text style={[styles.stat_label,{fontSize:8,marginBottom:0}]}>({commission}%)</Text>
+            </View>
             <Text style={styles.stat_value}>${parseFloat(dashboard.grossRevenue)*parseFloat(commission)/100}</Text>
           </View>
           {/* Commission */}
@@ -128,9 +131,22 @@ export default function StatCards({ active, cancel, complete, dashboard,commissi
               <Text style={styles.stat_head}>Orders</Text>
               <View>
                 <Badge>
-                  {parseInt(complete) + parseInt(active) + parseInt(cancel)}
+                  {parseInt(complete) + parseInt(active) + parseInt(cancel)+parseInt(notstarted)+parseInt(rejected)}
                 </Badge>
               </View>
+            </View>
+
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text style={styles.stat_label}>Pending</Text>
+              <Text style={[styles.stat_value, { color: "#ffc300" }]}>
+                {notstarted}
+              </Text>
             </View>
 
             <View
@@ -177,7 +193,7 @@ export default function StatCards({ active, cancel, complete, dashboard,commissi
               }}
             >
               <Text style={styles.stat_label}>Rejected</Text>
-              <Text style={[styles.stat_value, { color: "#777" }]}>0</Text>
+              <Text style={[styles.stat_value, { color: "#777" }]}>{rejected}</Text>
             </View>
           </View>
           {/* Orders */}
