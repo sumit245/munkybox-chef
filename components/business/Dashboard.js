@@ -27,10 +27,10 @@ export default function Dashboard({ navigation }) {
   const [activecount, setActiveCount] = useState(0);
   const [completecount, setCompleteCount] = useState(0);
   const [cancelledcount, setCancelledCount] = useState(0);
-  const [notstarted,setNotStarted]=useState(0)
-  const [rejected,setRejected]=useState(0)
+  const [notstarted, setNotStarted] = useState(0);
+  const [rejected, setRejected] = useState(0);
   const [dashboard, setDashboard] = useState({});
-  const [commission,setCommission]=useState("")
+  const [commission, setCommission] = useState("");
 
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, city, restaurant_id } = restaurant;
@@ -81,53 +81,57 @@ export default function Dashboard({ navigation }) {
     const { count } = res.data;
     setActiveCount(count);
   };
-  const fetchcompletedorders = async () => {
+  const fetchcompletedorders = async (restaurant) => {
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/custom/completed"
+      "http://munkybox-admin.herokuapp.com/api/orders/completed/" + restaurant
     );
     const { count } = res.data;
     setCompleteCount(count);
   };
-  const fetchcancelledcount = async () => {
+  const fetchcancelledcount = async (restaurant) => {
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/custom/cancelled"
+      "http://munkybox-admin.herokuapp.com/api/orders/cancelled/" + restaurant
     );
     const { count } = res.data;
     setCancelledCount(count);
   };
   const fetchStats = async (restaurant) => {
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/dashboard/Thai Express"
+      "http://munkybox-admin.herokuapp.com/api/orders/dashboard/" + restaurant
     );
     const dashboard = res.data;
-    console.log(dashboard);
     setDashboard(dashboard);
   };
-  const fetchCommission=async()=>{
-    const resp=await axios.get('http://munkybox-admin.herokuapp.com/api/checkout')
-    const {commission}=resp.data.data[0]
-    setCommission(commission)
-
-  }
-  const fetchRejectedcount=async()=>{
-    const response=await axios.get('http://munkybox-admin.herokuapp.com/api/orders/custom/rejected/')
-    const{count}=response.data
-    setRejected(count)
-  }
-  const fetchNotStartedcount=async()=>{
-    const response=await axios.get('http://munkybox-admin.herokuapp.com/api/orders/custom/accepted/')
-    const{count}=response.data
-    setNotStarted(count)
-  }
+  const fetchCommission = async () => {
+    const resp = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/checkout"
+    );
+    const { commission } = resp.data.data[0];
+    setCommission(commission);
+  };
+  const fetchRejectedcount = async (restaurant) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/rejected/" + restaurant
+    );
+    const { count } = response.data;
+    setRejected(count);
+  };
+  const fetchNotStartedcount = async (restaurant) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/accepted/" + restaurant
+    );
+    const { count } = response.data;
+    setNotStarted(count);
+  };
   useEffect(() => {
-    fetchCommission()
-  }, [commission])
+    fetchCommission();
+  }, [commission]);
   useEffect(() => {
     fetchOrders();
     fetchcompletedorders();
     fetchcancelledcount();
-fetchRejectedcount()
-    fetchNotStartedcount()
+    fetchRejectedcount();
+    fetchNotStartedcount();
     fetchStats(restaurant_name);
     console.log(restaurant_name);
   }, [restaurant_name]);
