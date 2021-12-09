@@ -27,6 +27,7 @@ export default function Dashboard({ navigation }) {
   const [activecount, setActiveCount] = useState(0);
   const [completecount, setCompleteCount] = useState(0);
   const [cancelledcount, setCancelledCount] = useState(0);
+  const [dashboard, setDashboard] = useState({});
 
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, city, restaurant_id } = restaurant;
@@ -53,6 +54,7 @@ export default function Dashboard({ navigation }) {
             active={activecount}
             complete={completecount}
             cancel={cancelledcount}
+            dashboard={dashboard}
           />
         );
 
@@ -87,11 +89,20 @@ export default function Dashboard({ navigation }) {
     const { count } = res.data;
     setCancelledCount(count);
   };
+  const fetchStats = async (restaurant) => {
+    const res = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/dashboard/" + restaurant
+    );
+    const dashboard = res.data;
+    console.log(dashboard);
+    setDashboard(dashboard);
+  };
   useEffect(() => {
     fetchOrders();
     fetchcompletedorders();
     fetchcancelledcount();
-  }, []);
+    fetchStats(restaurant_name);
+  }, [restaurant_name]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: PrimaryDark }}>

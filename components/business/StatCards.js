@@ -3,7 +3,7 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Badge } from "react-native-paper";
 import { width } from "../../Dimens";
 
-export default function StatCards({ active, cancel, complete }) {
+export default function StatCards({ active, cancel, complete,dashboard }) {
   return (
     <ScrollView horizontal>
       <View>
@@ -19,11 +19,11 @@ export default function StatCards({ active, cancel, complete }) {
               <Text style={styles.stat_head}>Sales</Text>
             </View>
             <View>
-              <Badge>2 orders</Badge>
+              <Badge>{active} orders</Badge>
             </View>
           </View>
           <View>
-            <Text style={styles.stat_value}>$200</Text>
+            <Text style={styles.stat_value}>{dashboard.grossRevenue}</Text>
           </View>
 
           <View
@@ -49,8 +49,8 @@ export default function StatCards({ active, cancel, complete }) {
             }}
           >
             <Text style={styles.stat_label}>2</Text>
-            <Text style={styles.stat_label}>$150</Text>
-            <Text style={styles.stat_label}>$12</Text>
+            <Text style={styles.stat_label}>{dashboard.totalRevenue}</Text>
+            <Text style={styles.stat_label}>{dashboard.totalDiscount}</Text>
           </View>
           <View
             style={{
@@ -101,7 +101,7 @@ export default function StatCards({ active, cancel, complete }) {
             >
               <Text style={styles.stat_head}>Orders</Text>
               <View>
-                <Badge>2</Badge>
+                <Badge>{parseInt(complete)+parseInt(active)+parseInt(cancel)}</Badge>
               </View>
             </View>
 
@@ -200,7 +200,6 @@ const styles = StyleSheet.create({
   stat_card: {
     backgroundColor: "white",
     width: width / 2.1,
-    // height: 120,
     flexGrow: 1,
     minHeight: 120,
     borderRadius: 8,
