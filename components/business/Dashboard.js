@@ -27,6 +27,8 @@ export default function Dashboard({ navigation }) {
   const [activecount, setActiveCount] = useState(0);
   const [completecount, setCompleteCount] = useState(0);
   const [cancelledcount, setCancelledCount] = useState(0);
+  const [notstarted,setNotStarted]=useState(0)
+  const [rejected,setRejected]=useState(0)
   const [dashboard, setDashboard] = useState({});
   const [commission,setCommission]=useState("")
 
@@ -55,8 +57,10 @@ export default function Dashboard({ navigation }) {
             active={activecount}
             complete={completecount}
             cancel={cancelledcount}
+            notstarted={notstarted}
             dashboard={dashboard}
             commission={commission}
+            rejected={rejected}
           />
         );
 
@@ -105,6 +109,16 @@ export default function Dashboard({ navigation }) {
     setCommission(commission)
 
   }
+  const fetchRejectedcount=async()=>{
+    const response=await axios.get('http://munkybox-admin.herokuapp.com/api/orders/custom/rejected/')
+    const{count}=response.data
+    setRejected(count)
+  }
+  const fetchNotStartedcount=async()=>{
+    const response=await axios.get('http://munkybox-admin.herokuapp.com/api/orders/custom/accepted/')
+    const{count}=response.data
+    setNotStarted(count)
+  }
   useEffect(() => {
     fetchCommission()
   }, [commission])
@@ -112,6 +126,8 @@ export default function Dashboard({ navigation }) {
     fetchOrders();
     fetchcompletedorders();
     fetchcancelledcount();
+fetchRejectedcount()
+    fetchNotStartedcount()
     fetchStats(restaurant_name);
   }, [restaurant_name]);
 
