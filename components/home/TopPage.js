@@ -48,16 +48,16 @@ export default function TopPage({ navigation }) {
     setMealCount(count);
   };
   const getAddOnCounts = () => {
-    const addOns = orders.map((el) => el.add_on);
-    if (Array.isArray(addOns)) {
-        try {
-          let addons = addOns[0][0];
-          let { item, qty } = addons;
-          setAddOn(item);
-          setQty(qty); 
-        } catch (error) {
-          console.log(error);
-        } 
+    try {
+      const addOns = orders.map((el) => el.add_on);
+      if (Array.isArray(addOns)) {
+        let addons = addOns[0][0];
+        let { item, qty } = addons;
+        setAddOn(item);
+        setQty(qty);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   useEffect(() => {
