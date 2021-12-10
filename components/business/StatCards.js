@@ -19,7 +19,7 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
     
   }, [visits])
   return (
-    <ScrollView horizontal contentContainerStyle={{flexGrow:1}}>
+    <View style={{flexDirection:"row"}} >
       <View>
         <View
           style={[
@@ -249,7 +249,8 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
           {/* Repeat Users */}
         </View>
       </View>
-    </ScrollView>
+   
+    </View>
   );
 }
 
