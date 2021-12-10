@@ -16,7 +16,6 @@ export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
   const [dinner, setDinner] = useState("");
   useEffect(() => {
     setMealTime(restaurant.category);
-    console.log(add_on_count);
   });
   const fetchSlotTime = async () => {
     const slots = await axios.get(
@@ -42,12 +41,10 @@ export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
   };
   useEffect(() => {
     fetchSlotTime();
-    
   }, []);
   const [isCollapse, setCollapse] = useState(true);
 
   const RenderAddon = ({ add_on, add_on_name, add_on_count }) => {
-    
     return (
       <View style={{ backgroundColor: WHITE, padding: 6 }}>
         {add_on &&
@@ -65,7 +62,7 @@ export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
             >
               <Text style={styles.mealTitle}>{add_on.add_on}</Text>
               <Text style={styles.mealTitle}>
-                X {add_on.add_on===add_on_name?add_on_count:0}
+                X {add_on.add_on === add_on_name ? add_on_count : 0}
               </Text>
             </View>
           ))}
@@ -119,7 +116,9 @@ export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
               />
               <Text style={styles.mealTitle}>{meal_name}</Text>
             </View>
-            <Text style={{ fontWeight: "bold" }}>X {slot === meal_time ? count : 0}</Text>
+            <Text style={{ fontWeight: "bold" }}>
+              X {slot === meal_time ? count : 0}
+            </Text>
           </View>
           <Divider />
         </View>

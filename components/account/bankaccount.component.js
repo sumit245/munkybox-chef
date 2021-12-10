@@ -36,9 +36,7 @@ export default function BankAccount() {
   });
   const [loading, setLoading] = useState("");
   const dispatch = useDispatch();
-  useEffect(() => {
-    console.log(info);
-  }, [info]);
+
   const onSubmit = () => {
     setEditable(!editable);
     const bank_info = {

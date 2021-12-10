@@ -258,7 +258,7 @@ export default function Dashboard({ navigation }) {
           onIndexChange={setIndex}
           renderTabBar={renderTabBar}
           initialLayout={{ width: layout.width }}
-        />
+      />
 
         <View
           style={{

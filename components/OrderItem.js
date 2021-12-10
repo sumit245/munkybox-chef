@@ -35,7 +35,7 @@ const CollapsedContent = ({ item }) => {
 
       if (supported) Linking.openURL(link);
     } catch (error) {
-      console.log(error);
+      alert(error)
     }
   };
   const theme = {

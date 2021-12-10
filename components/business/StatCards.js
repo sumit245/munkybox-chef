@@ -1,25 +1,35 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Badge } from "react-native-paper";
 import { width } from "../../Dimens";
 
-export default function StatCards({ active, cancel, complete,notstarted,rejected, dashboard,commission ,newUser,repeatedUser,cartconversion,visits}) {
-  const [menuvisits,setmenuvisits]=useState(0)
-  const [cartvisits,setcartvisits]=useState(0)
+export default function StatCards({
+  active,
+  cancel,
+  complete,
+  notstarted,
+  rejected,
+  dashboard,
+  commission,
+  newUser,
+  repeatedUser,
+  cartconversion,
+  visits,
+}) {
+  const [menuvisits, setmenuvisits] = useState(0);
+  const [cartvisits, setcartvisits] = useState(0);
   useEffect(() => {
-    try{
-      const {menuvisits,cartVisit}=visits
-      setmenuvisits(menuvisits)
-      setcartvisits(cartVisit)
+    try {
+      const { menuvisits, cartVisit } = visits;
+      setmenuvisits(menuvisits);
+      setcartvisits(cartVisit);
+    } catch {
+      setmenuvisits(0);
+      setcartvisits(0);
     }
-    catch{
-    setmenuvisits(0)
-    setcartvisits(0)
-    }
-    
-  }, [visits])
+  }, [visits]);
   return (
-    // <ScrollView horizontal>
+    <ScrollView horizontal>
       <View>
         <View
           style={[
@@ -43,7 +53,14 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
               </Text>
             </View>
             <View>
-              <Badge> {parseInt(complete) + parseInt(active) + parseInt(cancel)+parseInt(notstarted)} orders</Badge>
+              <Badge>
+                {" "}
+                {parseInt(complete) +
+                  parseInt(active) +
+                  parseInt(cancel) +
+                  parseInt(notstarted)}{" "}
+                orders
+              </Badge>
             </View>
           </View>
           <View>
@@ -129,11 +146,19 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
           </View>
           {/* Ads Campaign */}
           <View style={[styles.stat_card, { width: width / 3.1 }]}>
-<View style={{flexDirection:"row",alignItems:"center"}}>
-            <Text style={styles.stat_head}>Commission</Text>
-            <Text style={[styles.stat_label,{fontSize:8,marginBottom:0}]}>({commission}%)</Text>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Text style={styles.stat_head}>Commission</Text>
+              <Text
+                style={[styles.stat_label, { fontSize: 8, marginBottom: 0 }]}
+              >
+                ({commission}%)
+              </Text>
             </View>
-            <Text style={styles.stat_value}>${parseFloat(dashboard.grossRevenue)*parseFloat(commission)/100}</Text>
+            <Text style={styles.stat_value}>
+              $
+              {(parseFloat(dashboard.grossRevenue) * parseFloat(commission)) /
+                100}
+            </Text>
           </View>
           {/* Commission */}
 
@@ -144,7 +169,11 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
               <Text style={styles.stat_head}>Orders</Text>
               <View>
                 <Badge>
-                  {parseInt(complete) + parseInt(active) + parseInt(cancel)+parseInt(notstarted)+parseInt(rejected)}
+                  {parseInt(complete) +
+                    parseInt(active) +
+                    parseInt(cancel) +
+                    parseInt(notstarted) +
+                    parseInt(rejected)}
                 </Badge>
               </View>
             </View>
@@ -206,50 +235,52 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
               }}
             >
               <Text style={styles.stat_label}>Rejected</Text>
-              <Text style={[styles.stat_value, { color: "#777" }]}>{rejected}</Text>
+              <Text style={[styles.stat_value, { color: "#777" }]}>
+                {rejected}
+              </Text>
             </View>
           </View>
           {/* Orders */}
         </View>
       </View>
 
-      // <View>
-      //   <View style={[styles.stat_card, { width: width - 12 }]}>
-      //     <Text style={styles.stat_head}>Menu visits to orders conversion</Text>
-      //     <View
-      //       style={{ flexDirection: "row", justifyContent: "space-between" }}
-      //     >
-      //       <View>
-      //         <Text style={styles.stat_label}>Menu Visits</Text>
-      //         <Text style={styles.stat_value}>{menuvisits}</Text>
-      //       </View>
-      //       <View>
-      //         <Text style={styles.stat_label}>Visits to Cart</Text>
-      //         <Text style={styles.stat_value}>{cartvisits}</Text>
-      //       </View>
-      //       <View>
-      //         <Text style={styles.stat_label}>Cart to Orders</Text>
-      //         <Text style={styles.stat_value}>{cartconversion}</Text>
-      //       </View>
-      //     </View>
-      //   </View>
-      //   {/* Cart statistics  */}
+      <View>
+        <View style={[styles.stat_card, { width: width - 12 }]}>
+          <Text style={styles.stat_head}>Menu visits to orders conversion</Text>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <View>
+              <Text style={styles.stat_label}>Menu Visits</Text>
+              <Text style={styles.stat_value}>{menuvisits}</Text>
+            </View>
+            <View>
+              <Text style={styles.stat_label}>Visits to Cart</Text>
+              <Text style={styles.stat_value}>{cartvisits}</Text>
+            </View>
+            <View>
+              <Text style={styles.stat_label}>Cart to Orders</Text>
+              <Text style={styles.stat_value}>{cartconversion}</Text>
+            </View>
+          </View>
+        </View>
+        {/* Cart statistics  */}
 
-      //   <View style={{ flexDirection: "row" }}>
-      //     <View style={styles.stat_card}>
-      //       <Text style={styles.stat_head}>New Users</Text>
-      //       <Text style={styles.stat_value}>{newUser}</Text>
-      //     </View>
-      //     {/* New users */}
+        <View style={{ flexDirection: "row" }}>
+          <View style={styles.stat_card}>
+            <Text style={styles.stat_head}>New Users</Text>
+            <Text style={styles.stat_value}>{newUser}</Text>
+          </View>
+          {/* New users */}
 
-      //     <View style={styles.stat_card}>
-      //       <Text style={styles.stat_head}>Repeat Users</Text>
-      //       <Text style={styles.stat_value}>{repeatedUser}</Text>
-      //     </View>
-      //     {/* Repeat Users */}
-      //   </View>
-      // </View>
-    // </ScrollView>
+          <View style={styles.stat_card}>
+            <Text style={styles.stat_head}>Repeat Users</Text>
+            <Text style={styles.stat_value}>{repeatedUser}</Text>
+          </View>
+          {/* Repeat Users */}
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 

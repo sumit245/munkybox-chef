@@ -28,7 +28,7 @@ const PinPage = ({ route, navigation, entry }) => {
     try {
       const response = await AsyncStorage.getItem("credential");
       const { pin } = JSON.parse(response);
-      console.log(pin, enteredPin);
+
       if (pin === enteredPin) {
         const rest = await AsyncStorage.getItem("restaurant");
         const { _id } = JSON.parse(rest);
