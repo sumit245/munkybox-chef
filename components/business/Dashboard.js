@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   ScrollView,
-  StatusBar,
 } from "react-native";
 import Header from "../header/Header";
 import { useSelector } from "react-redux";
@@ -15,8 +14,6 @@ import {
   SecondaryLightColor,
   WHITE,
   SecondaryColor,
-  SecondaryDarkColor,
-  DARKGRAY,
 } from "../../Colors";
 import { styles } from "../campaign/campaign.styles";
 import Ants from "react-native-vector-icons/FontAwesome5";
@@ -52,7 +49,7 @@ export default function Dashboard({ navigation }) {
   const renderTabBar = (props) => (
     <TabBar
       {...props}
-      style={{ backgroundColor: PrimaryDark }}
+      style={{ backgroundColor: PrimaryDark, marginHorizontal: 4 }}
       indicatorStyle={{ backgroundColor: SecondaryColor }}
     />
   );
@@ -61,19 +58,19 @@ export default function Dashboard({ navigation }) {
     switch (route.key) {
       case "first":
         return (
-            <StatCards
-              active={activecount}
-              complete={completecount}
-              cancel={cancelledcount}
-              notstarted={notstarted}
-              dashboard={dashboard}
-              commission={commission}
-              rejected={rejected}
-              newUser={newUser}
-              repeatedUser={repeatedUser}
-              cartconversion={cartconversion}
-              visits={visits}
-            />
+          <StatCards
+            active={activecount}
+            complete={completecount}
+            cancel={cancelledcount}
+            notstarted={notstarted}
+            dashboard={dashboard}
+            commission={commission}
+            rejected={rejected}
+            newUser={newUser}
+            repeatedUser={repeatedUser}
+            cartconversion={cartconversion}
+            visits={visits}
+          />
         );
 
       case "second":
@@ -254,33 +251,71 @@ export default function Dashboard({ navigation }) {
           </Text>
         </View>
 
-        <View>
-          <TabView
-            navigationState={{ index, routes }}
-            renderScene={renderScene}
-            onIndexChange={setIndex}
-            renderTabBar={renderTabBar}
-            initialLayout={{ width: layout.width }}
-          />
-        </View>
+        <TabView
+          navigationState={{ index, routes }}
+          renderScene={renderScene}
+          style={{ minHeight: 480 }}
+          onIndexChange={setIndex}
+          renderTabBar={renderTabBar}
+          initialLayout={{ width: layout.width }}
+        />
 
-        <View style={{ backgroundColor: WHITE, marginVertical: 4 }}>
-          <Text>Performance this month</Text>
+        <View
+          style={{
+            backgroundColor: WHITE,
+            marginVertical: 4,
+            borderRadius: 4,
+            marginHorizontal: 2,
+            padding: 2,
+          }}
+        >
+          <Text
+            style={{
+              textTransform: "uppercase",
+              fontWeight: "bold",
+              fontSize: 16,
+              padding: 6,
+            }}
+          >
+            Performance this month
+          </Text>
           <View
             style={{
               flexDirection: "row",
               flex: 1,
               justifyContent: "space-between",
               backgroundColor: WHITE,
+              padding: 2,
             }}
           >
-            <View style={{ backgroundColor: "#fff" }}>
-              <Text>{acceptanceRate || 0}%</Text>
-              <Text>accept rate</Text>
+            <View style={{ backgroundColor: "#fff", paddingHorizontal: 20 }}>
+              <Text
+                style={{
+                  textTransform: "uppercase",
+                  fontWeight: "bold",
+                  fontSize: 22,
+                  textAlign: "center",
+                }}
+              >
+                {acceptanceRate || 0}%
+              </Text>
+              <Text style={{ fontWeight: "bold", fontSize: 14 }}>
+                accept rate
+              </Text>
             </View>
-            <View style={{ backgroundColor: "#fff" }}>
-              <Text>{rejectedRate || 0}%</Text>
-              <Text>reject rate</Text>
+            <View style={{ backgroundColor: "#fff", paddingHorizontal: 20 }}>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 22,
+                  textAlign: "center",
+                }}
+              >
+                {rejectedRate || 0}%
+              </Text>
+              <Text style={{ fontWeight: "bold", fontSize: 14 }}>
+                reject rate
+              </Text>
             </View>
           </View>
         </View>

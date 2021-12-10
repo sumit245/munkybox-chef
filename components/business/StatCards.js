@@ -19,7 +19,7 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
     
   }, [visits])
   return (
-    <View style={{flexDirection:"row"}} >
+    <ScrollView horizontal>
       <View>
         <View
           style={[
@@ -213,8 +213,8 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
         </View>
       </View>
 
-      <View>
-        <View style={[styles.stat_card, { width: width - 12 }]}>
+       <View>
+         <View style={[styles.stat_card, { width: width - 12 }]}>
           <Text style={styles.stat_head}>Menu visits to orders conversion</Text>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -241,16 +241,14 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
             <Text style={styles.stat_value}>{newUser}</Text>
           </View>
           {/* New users */}
-
           <View style={styles.stat_card}>
-            <Text style={styles.stat_head}>Repeat Users</Text>
+           <Text style={styles.stat_head}>Repeat Users</Text>
             <Text style={styles.stat_value}>{repeatedUser}</Text>
           </View>
           {/* Repeat Users */}
-        </View>
+       </View>
       </View>
-   
-    </View>
+    </ScrollView>
   );
 }
 
