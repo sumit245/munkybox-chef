@@ -19,7 +19,7 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
     
   }, [visits])
   return (
-    <ScrollView horizontal contentContainerStyle={{flexGrow:1}}>
+    // <ScrollView horizontal>
       <View>
         <View
           style={[
@@ -213,43 +213,43 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
         </View>
       </View>
 
-      <View>
-        <View style={[styles.stat_card, { width: width - 12 }]}>
-          <Text style={styles.stat_head}>Menu visits to orders conversion</Text>
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <View>
-              <Text style={styles.stat_label}>Menu Visits</Text>
-              <Text style={styles.stat_value}>{menuvisits}</Text>
-            </View>
-            <View>
-              <Text style={styles.stat_label}>Visits to Cart</Text>
-              <Text style={styles.stat_value}>{cartvisits}</Text>
-            </View>
-            <View>
-              <Text style={styles.stat_label}>Cart to Orders</Text>
-              <Text style={styles.stat_value}>{cartconversion}</Text>
-            </View>
-          </View>
-        </View>
-        {/* Cart statistics  */}
+      // <View>
+      //   <View style={[styles.stat_card, { width: width - 12 }]}>
+      //     <Text style={styles.stat_head}>Menu visits to orders conversion</Text>
+      //     <View
+      //       style={{ flexDirection: "row", justifyContent: "space-between" }}
+      //     >
+      //       <View>
+      //         <Text style={styles.stat_label}>Menu Visits</Text>
+      //         <Text style={styles.stat_value}>{menuvisits}</Text>
+      //       </View>
+      //       <View>
+      //         <Text style={styles.stat_label}>Visits to Cart</Text>
+      //         <Text style={styles.stat_value}>{cartvisits}</Text>
+      //       </View>
+      //       <View>
+      //         <Text style={styles.stat_label}>Cart to Orders</Text>
+      //         <Text style={styles.stat_value}>{cartconversion}</Text>
+      //       </View>
+      //     </View>
+      //   </View>
+      //   {/* Cart statistics  */}
 
-        <View style={{ flexDirection: "row" }}>
-          <View style={styles.stat_card}>
-            <Text style={styles.stat_head}>New Users</Text>
-            <Text style={styles.stat_value}>{newUser}</Text>
-          </View>
-          {/* New users */}
+      //   <View style={{ flexDirection: "row" }}>
+      //     <View style={styles.stat_card}>
+      //       <Text style={styles.stat_head}>New Users</Text>
+      //       <Text style={styles.stat_value}>{newUser}</Text>
+      //     </View>
+      //     {/* New users */}
 
-          <View style={styles.stat_card}>
-            <Text style={styles.stat_head}>Repeat Users</Text>
-            <Text style={styles.stat_value}>{repeatedUser}</Text>
-          </View>
-          {/* Repeat Users */}
-        </View>
-      </View>
-    </ScrollView>
+      //     <View style={styles.stat_card}>
+      //       <Text style={styles.stat_head}>Repeat Users</Text>
+      //       <Text style={styles.stat_value}>{repeatedUser}</Text>
+      //     </View>
+      //     {/* Repeat Users */}
+      //   </View>
+      // </View>
+    // </ScrollView>
   );
 }
 
