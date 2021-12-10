@@ -28,21 +28,28 @@ export default function CreateCoupon({ route, navigation }) {
   const [dinner, setDinner] = useState(false);
   const [duration, setDuration] = useState(7);
   const minDate = Date.now();
-  const resetAll=()=>{
-    setPlan(2)
-    setCode("")
-    setDiscount("")
-    setStartDate("")
-    setEndDate("")
-    setLunch(false)
-    setDinner(false)
-    setDuration(0)
-  }
-  const radioChanged=(newValue)=>{
-    setDuration(newValue)
-    setStartDate("")
-    setEndDate("")
-  }
+  const resetAll = () => {
+    setPlan(2);
+    setCode("");
+    setDiscount("");
+    setStartDate("");
+    setEndDate("");
+    setLunch(false);
+    setDinner(false);
+    setDuration(0);
+  };
+  const radioChanged = (newValue) => {
+    setDuration(newValue);
+    let today = moment(minDate);
+    if (newValue !== 0) {
+      const { start, end } = onDateChange(today, newValue);
+      setStartDate(start);
+      setEndDate(end);
+    } else {
+      setStartDate("");
+      setEndDate("");
+    }
+  };
   const onPreview = () => {
     navigation.navigate("preview_coupon", {
       type: type,
@@ -57,10 +64,13 @@ export default function CreateCoupon({ route, navigation }) {
     });
   };
   const dateHandler = (date, duration) => {
-    const { start, end } = onDateChange(date, duration);
-    setStartDate(start);
-    setEndDate(end);
-    setModalVisible(false);
+    if(duration!==0){
+      const { start, end } = onDateChange(date, duration);
+      setStartDate(start);
+      setEndDate(end);
+      setModalVisible(false);
+    }
+    
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -68,213 +78,226 @@ export default function CreateCoupon({ route, navigation }) {
         title={type === "net" ? "Net Discount" : "% Discount"}
         navigation={navigation}
       />
-<KeyboardAvoidingView style={{flex:1,justifyContent:"center"}} behavior="padding" enabled >
-      <ScrollView>
-        <View style={styles.card}>
-          <Text style={styles.bigText}>Apply discount on</Text>
-          <Text style={styles.smallText}>
-            Choose the items valid for this discount{" "}
-          </Text>
-          <View style={styles.cardBody}>
-            <RadioButton.Group
-              onValueChange={(newValue) => setPlan(newValue)}
-              value={plan}
-            >
-              <View style={styles.btnGroup}>
-                <RadioButton.Android value={2} color="#226ccf" />
-                <Text style={styles.bigText}>2 Meals</Text>
-              </View>
-              <View
-                style={{
-                  marginVertical: 6,
-                  marginHorizontal: "10%",
-                  borderTopColor: "#ccc",
-                  borderTopWidth: 0.5,
-                }}
-              />
-              <View style={styles.btnGroup}>
-                <RadioButton.Android value={15} color="#226ccf" />
-                <Text style={styles.bigText}>15 Meals</Text>
-              </View>
-              <View
-                style={{
-                  marginVertical: 6,
-                  marginHorizontal: "10%",
-                  borderTopColor: "#ccc",
-                  borderTopWidth: 0.5,
-                }}
-              />
-              <View style={styles.btnGroup}>
-                <RadioButton.Android value={30} color="#226ccf" />
-                <Text style={styles.bigText}>30 Meals</Text>
-              </View>
-            </RadioButton.Group>
-          </View>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.bigText}>
-            Select the {type === "net" ? "$" : "%"} value of discount
-          </Text>
-          <Text style={styles.smallText}>
-            This {type === "net" ? "$" : "%"} discount will be offered on
-            eligible orders{" "}
-          </Text>
+      <KeyboardAvoidingView
+        style={{ flex: 1, justifyContent: "center" }}
+        behavior="padding"
+        enabled
+      >
+        <ScrollView>
           <View style={styles.card}>
-            <TextInput
-              style={styles.input}
-              placeholder={"Discount" + (type === "net" ? " $" : " %")}
-              keyboardType="numeric"
-              returnKeyLabel="Done"
-              returnKeyType="done"
-              value={discount}
-              onChangeText={(text) => setDiscount(text)}
-            />
-          </View>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.bigText}>Select Duration</Text>
-          <Text style={styles.smallText}>
-            Choose the duration you want this to run for
-          </Text>
-          <View style={styles.cardBody}>
-            <RadioButton.Group
-              onValueChange={(newValue) => radioChanged(newValue)}
-              value={duration}
-            >
-              <View style={styles.btnGroup}>
-                <RadioButton.Android value={7} color="#226ccf" />
-                <View>
-                  <Text style={styles.bigText}>7 Days</Text>
-                  <Text style={styles.smallText}>
-                    {" "}
-                    Starts today till {moment().add(7, "days").format("DD MMM")}
-                  </Text>
-                </View>
-              </View>
-              <View
-                style={{
-                  marginVertical: 6,
-                  marginHorizontal: "10%",
-                  borderTopColor: "#ccc",
-                  borderTopWidth: 0.5,
-                }}
-              />
-              <View style={styles.btnGroup}>
-                <RadioButton.Android value={15} color="#226ccf" />
-                <View>
-                  <Text style={styles.bigText}>15 Days</Text>
-                  <Text style={styles.smallText}>
-                    Starts today till{" "}
-                    {moment().add(15, "days").format("DD MMM")}
-                  </Text>
-                </View>
-              </View>
-              <View
-                style={{
-                  marginVertical: 6,
-                  marginHorizontal: "10%",
-                  borderTopColor: "#ccc",
-                  borderTopWidth: 0.5,
-                }}
-              />
-              <View style={styles.btnGroup}>
-                <RadioButton.Android value={30} color="#226ccf" />
-                <View>
-                  <Text style={styles.bigText}>Custom duration</Text>
-                  <Text style={styles.smallText}>
-                    Select for custom offer duration
-                  </Text>
-                </View>
-              </View>
-            </RadioButton.Group>
-            {/* Radio for duration */}
-            <View style={styles.optionCard}>
-              <Text style={styles.optionsLabels}>Select plan duration</Text>
-              <View
-                style={styles.optionrow}
-                
+            <Text style={styles.bigText}>Apply discount on</Text>
+            <Text style={styles.smallText}>
+              Choose the items valid for this discount{" "}
+            </Text>
+            <View style={styles.cardBody}>
+              <RadioButton.Group
+                onValueChange={(newValue) => setPlan(newValue)}
+                value={plan}
               >
-                <Text>
-                  {start_date || "--"}
-                  {" to "}
-                  {end_date || "--"}
-                </Text>
-                <View style={{flexDirection:"row",alignItems:"center"}}>
-                <TouchableOpacity onPress={()=>{
-                  setStartDate("")
-                  setEndDate("")
-                }}
-                style={{marginRight:8}}
-                >
-                <Text style={{fontSize:12,fontWeight:"bold",color:"#f00"}}>Clear</Text>
-                  </TouchableOpacity>
-                <TouchableOpacity onPress={()=>setModalVisible(true)}>
-                <Icon name="ios-calendar-outline" color="#226ccf" size={22} />
-                  </TouchableOpacity>
+                <View style={styles.btnGroup}>
+                  <RadioButton.Android value={2} color="#226ccf" />
+                  <Text style={styles.bigText}>2 Meals</Text>
                 </View>
-
+                <View
+                  style={{
+                    marginVertical: 6,
+                    marginHorizontal: "10%",
+                    borderTopColor: "#ccc",
+                    borderTopWidth: 0.5,
+                  }}
+                />
+                <View style={styles.btnGroup}>
+                  <RadioButton.Android value={15} color="#226ccf" />
+                  <Text style={styles.bigText}>15 Meals</Text>
+                </View>
+                <View
+                  style={{
+                    marginVertical: 6,
+                    marginHorizontal: "10%",
+                    borderTopColor: "#ccc",
+                    borderTopWidth: 0.5,
+                  }}
+                />
+                <View style={styles.btnGroup}>
+                  <RadioButton.Android value={30} color="#226ccf" />
+                  <Text style={styles.bigText}>30 Meals</Text>
+                </View>
+              </RadioButton.Group>
+            </View>
+          </View>
+          <View style={styles.card}>
+            <Text style={styles.bigText}>
+              Select the {type === "net" ? "$" : "%"} value of discount
+            </Text>
+            <Text style={styles.smallText}>
+              This {type === "net" ? "$" : "%"} discount will be offered on
+              eligible orders{" "}
+            </Text>
+            <View style={styles.card}>
+              <TextInput
+                style={styles.input}
+                placeholder={"Discount" + (type === "net" ? " $" : " %")}
+                keyboardType="numeric"
+                returnKeyLabel="Done"
+                returnKeyType="done"
+                value={discount}
+                onChangeText={(text) => setDiscount(text)}
+              />
+            </View>
+          </View>
+          <View style={styles.card}>
+            <Text style={styles.bigText}>Select Duration</Text>
+            <Text style={styles.smallText}>
+              Choose the duration you want this to run for
+            </Text>
+            <View style={styles.cardBody}>
+              <RadioButton.Group
+                onValueChange={(newValue) => radioChanged(newValue)}
+                value={duration}
+              >
+                <View style={styles.btnGroup}>
+                  <RadioButton.Android value={7} color="#226ccf" />
+                  <View>
+                    <Text style={styles.bigText}>7 Days</Text>
+                    <Text style={styles.smallText}>
+                      {" "}
+                      Starts today till{" "}
+                      {moment().add(7, "days").format("DD MMM")}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    marginVertical: 6,
+                    marginHorizontal: "10%",
+                    borderTopColor: "#ccc",
+                    borderTopWidth: 0.5,
+                  }}
+                />
+                <View style={styles.btnGroup}>
+                  <RadioButton.Android value={15} color="#226ccf" />
+                  <View>
+                    <Text style={styles.bigText}>15 Days</Text>
+                    <Text style={styles.smallText}>
+                      Starts today till{" "}
+                      {moment().add(15, "days").format("DD MMM")}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    marginVertical: 6,
+                    marginHorizontal: "10%",
+                    borderTopColor: "#ccc",
+                    borderTopWidth: 0.5,
+                  }}
+                />
+                <View style={styles.btnGroup}>
+                  <RadioButton.Android value={0} color="#226ccf" />
+                  <View>
+                    <Text style={styles.bigText}>Custom duration</Text>
+                    <Text style={styles.smallText}>
+                      Select for custom offer duration
+                    </Text>
+                  </View>
+                </View>
+              </RadioButton.Group>
+              {/* Radio for duration */}
+              <View style={styles.optionCard}>
+                <Text style={styles.optionsLabels}>Select plan duration</Text>
+                <View style={styles.optionrow}>
+                  <Text>
+                    {start_date || "--"}
+                    {" to "}
+                    {end_date || "--"}
+                  </Text>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        setStartDate("");
+                        setEndDate("");
+                      }}
+                      style={{ marginRight: 8 }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: 12,
+                          fontWeight: "bold",
+                          color: "#f00",
+                        }}
+                      >
+                        Clear
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setModalVisible(true)}>
+                      <Icon
+                        name="ios-calendar-outline"
+                        color="#226ccf"
+                        size={22}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+              {/* Date Picker TODO:move to separate */}
+            </View>
+          </View>
+          <View style={styles.card}>
+            <Text style={styles.bigText}>Select time slots</Text>
+            <Text style={styles.smallText}>
+              The mealtime(s) on which the offer will be available to the
+              customers
+            </Text>
+            <View style={styles.cardBody}>
+              <View style={styles.btnGroup}>
+                <Checkbox.Android
+                  status={lunch ? "checked" : "unchecked"}
+                  onPress={() => {
+                    setLunch(!lunch);
+                  }}
+                  color="#226ccf"
+                />
+                <Text>Lunch (10AM -2PM)</Text>
+              </View>
+              <View
+                style={{
+                  marginVertical: 6,
+                  marginHorizontal: "10%",
+                  borderTopColor: "#ccc",
+                  borderTopWidth: 0.5,
+                }}
+              />
+              <View style={styles.btnGroup}>
+                <Checkbox.Android
+                  status={dinner ? "checked" : "unchecked"}
+                  onPress={() => {
+                    setDinner(!dinner);
+                  }}
+                  color="#226ccf"
+                />
+                <Text>Dinner (7pm -10pm)</Text>
               </View>
             </View>
-            {/* Date Picker TODO:move to separate */}
           </View>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.bigText}>Select time slots</Text>
-          <Text style={styles.smallText}>
-            The mealtime(s) on which the offer will be available to the
-            customers
-          </Text>
-          <View style={styles.cardBody}>
-            <View style={styles.btnGroup}>
-              <Checkbox.Android
-                status={lunch ? "checked" : "unchecked"}
-                onPress={() => {
-                  setLunch(!lunch);
-                }}
-                color="#226ccf"
-              />
-              <Text>Lunch (10AM -2PM)</Text>
-            </View>
-            <View
-              style={{
-                marginVertical: 6,
-                marginHorizontal: "10%",
-                borderTopColor: "#ccc",
-                borderTopWidth: 0.5,
-              }}
-            />
-            <View style={styles.btnGroup}>
-              <Checkbox.Android
-                status={dinner ? "checked" : "unchecked"}
-                onPress={() => {
-                  setDinner(!dinner);
-                }}
-                color="#226ccf"
-              />
-              <Text>Dinner (7pm -10pm)</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.bigText}>Type Promo Code</Text>
           <View style={styles.card}>
-            <TextInput
-              style={styles.input}
-              placeholder="META2020"
-              maxLength={8}
-              onChangeText={(text) => setCode(text)}
-              value={code}
-            />
+            <Text style={styles.bigText}>Type Promo Code</Text>
+            <View style={styles.card}>
+              <TextInput
+                style={styles.input}
+                placeholder="META2020"
+                maxLength={8}
+                onChangeText={(text) => setCode(text)}
+                value={code}
+              />
+            </View>
           </View>
-        </View>
-      </ScrollView>
-
+        </ScrollView>
       </KeyboardAvoidingView>
-      
+
       <View style={styles.bottomButtonGroup}>
         <TouchableOpacity
           style={[styles.actionButton, { backgroundColor: WHITE }]}
-          onPress={()=>resetAll()}
+          onPress={() => resetAll()}
         >
           <Text style={[styles.btnText, { color: PrimaryLight }]}>RESET</Text>
         </TouchableOpacity>
@@ -298,6 +321,7 @@ export default function CreateCoupon({ route, navigation }) {
             <CalendarPicker
               startFromMonday={true}
               minDate={minDate}
+              allowRangeSelection={duration===0}
               todayBackgroundColor="#f2e6ff"
               selectedDayColor="#2300e6"
               selectedDayTextColor="#FFFFFF"

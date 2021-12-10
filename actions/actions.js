@@ -25,7 +25,6 @@ export const loginMethod = (phone,navigation) => async (dispatch) => {
       
     } catch (error) {
       const entry = { entry: false };
-      console.log(entry);
       enter=entry
       dispatch({ type: ENTRY_METHOD, payload: entry });
       navigation.navigate("Pin",{entry:entry})

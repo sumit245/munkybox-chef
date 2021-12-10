@@ -16,7 +16,7 @@ export default function AddMealsLayout() {
   const { meals } = restaurant;
   const handler = (item, index) => {
     setIndex(index);
-    console.log(index);
+    
     return null;
   };
   return (

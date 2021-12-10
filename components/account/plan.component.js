@@ -43,9 +43,7 @@ export default function Plans() {
     setThirtyPlan(profile.base_30price)
     
   }, [])
-  const onChangeText = (e) => {
-    console.log(e);
-  };
+  
   return (
     <>
       <View style={styles.row}>
