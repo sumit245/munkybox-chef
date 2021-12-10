@@ -14,7 +14,9 @@ export default function Growth({ navigation }) {
     return null;
   };
   const trackCoupon = () => {
-    console.log("coup");
+    navigation.navigate("track", {
+      title: "Coupon",
+    });
   };
   const setCoupon = () => {
     navigation.navigate("selectpromo");
