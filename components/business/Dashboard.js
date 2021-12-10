@@ -5,6 +5,8 @@ import {
   SafeAreaView,
   TouchableOpacity,
   useWindowDimensions,
+  ScrollView,
+  StatusBar,
 } from "react-native";
 import Header from "../header/Header";
 import { useSelector } from "react-redux";
@@ -31,8 +33,10 @@ export default function Dashboard({ navigation }) {
   const [rejected, setRejected] = useState(0);
   const [dashboard, setDashboard] = useState({});
   const [commission, setCommission] = useState("");
-  const [cartconversion,setCartConversion]=useState(0)
-  const [visits,setvisits]=useState(0)
+  const [cartconversion, setCartConversion] = useState(0);
+  const [visits, setvisits] = useState(0);
+  const [acceptanceRate, setAcceptanceRate] = useState(0);
+  const [rejectedRate, setRejectedRate] = useState(0);
 
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, city, restaurant_id } = restaurant;
@@ -42,8 +46,8 @@ export default function Dashboard({ navigation }) {
     { key: "second", title: "Monthly" },
     { key: "third", title: "yearly" },
   ]);
-  const [newUser,setnewUser]=useState(0)
-  const [repeatedUser,setrepeatedUser]=useState(0)
+  const [newUser, setnewUser] = useState(0);
+  const [repeatedUser, setrepeatedUser] = useState(0);
 
   const renderTabBar = (props) => (
     <TabBar
@@ -83,12 +87,11 @@ export default function Dashboard({ navigation }) {
   };
 
   const fetchOrders = async (restaurant) => {
-    console.log(restaurant);
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/active/"+restaurant
+      "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
     );
     const { count } = res.data;
-    console.log("totalorders",count,restaurant);
+
     setActiveCount(count);
   };
   const fetchcompletedorders = async (restaurant) => {
@@ -96,7 +99,7 @@ export default function Dashboard({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders/completed/" + restaurant
     );
     const { count } = res.data;
-    
+
     setCompleteCount(count);
   };
   const fetchcancelledcount = async (restaurant) => {
@@ -134,19 +137,33 @@ export default function Dashboard({ navigation }) {
     const { count } = response.data;
     setNotStarted(count);
   };
-  const getuserByType=async(restaurant)=>{
-    const response=await axios.get('http://munkybox-admin.herokuapp.com/api/chefdashboard/getusertypesbyrestaurant/'+restaurant)
-    const {newusers,repeatedUsers}=response.data
-    console.log(response);
-    setnewUser(newusers)
-    setrepeatedUser(repeatedUsers)
-  }
-  const fetchVisit=async(restaurant)=>{
-    const response=await axios.get("http://munkybox-admin.herokuapp.com/api/chefdashboard/"+restaurant)
-    const {totalOrders,orders}=response.data
-    setCartConversion(totalOrders)
-    setvisits(orders)
-  }
+  const getuserByType = async (restaurant) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/getusertypesbyrestaurant/" +
+        restaurant
+    );
+    const { newusers, repeatedUsers } = response.data;
+
+    setnewUser(newusers);
+    setrepeatedUser(repeatedUsers);
+  };
+  const fetchVisit = async (restaurant) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant
+    );
+    const {
+      totalOrders,
+      orders,
+      accptanceRate,
+      rectanceRate,
+      acceptedCount,
+      rejectedCount,
+    } = response.data;
+    setCartConversion(totalOrders);
+    setvisits(orders);
+    setAcceptanceRate(accptanceRate);
+    setRejectedRate(rectanceRate);
+  };
   useEffect(() => {
     fetchCommission();
   }, [commission]);
@@ -154,90 +171,120 @@ export default function Dashboard({ navigation }) {
     fetchOrders(restaurant_name);
     fetchcompletedorders(restaurant_name);
     fetchcancelledcount(restaurant_name);
-    fetchVisit(restaurant_name)
+    fetchVisit(restaurant_name);
     fetchRejectedcount(restaurant_name);
     fetchNotStartedcount(restaurant_name);
     fetchStats(restaurant_name);
-    getuserByType(restaurant_name)
-    console.log(restaurant_name);
+    getuserByType(restaurant_name);
   }, [restaurant_name]);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: PrimaryDark }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: PrimaryDark,
+      }}
+    >
       <Header title={restaurant_name + ", " + city} />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          padding: 8,
-        }}
-      >
-        <View style={{ alignItems: "center" }}>
-          <TouchableOpacity
-            style={{
-              height: 60,
-              width: 60,
-              borderRadius: 15,
-              backgroundColor: "#226ccf",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Ants name="star" size={34} color={SecondaryLightColor} />
-          </TouchableOpacity>
-          <Text style={styles.smallText}>Customer Rating</Text>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            padding: 8,
+          }}
+        >
+          <View style={{ alignItems: "center" }}>
+            <TouchableOpacity
+              style={{
+                height: 60,
+                width: 60,
+                borderRadius: 15,
+                backgroundColor: "#226ccf",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Ants name="star" size={34} color={SecondaryLightColor} />
+            </TouchableOpacity>
+            <Text style={styles.smallText}>Customer Rating</Text>
+          </View>
+
+          <View style={{ alignItems: "center" }}>
+            <TouchableOpacity
+              style={{
+                height: 60,
+                width: 60,
+                borderRadius: 15,
+                backgroundColor: "#226ccfcc",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Ants name="wallet" size={34} color={SecondaryLightColor} />
+            </TouchableOpacity>
+            <Text style={styles.smallText}>Payouts & Finance</Text>
+          </View>
+
+          <View style={{ alignItems: "center" }}>
+            <TouchableOpacity
+              style={{
+                height: 60,
+                width: 60,
+                borderRadius: 15,
+                backgroundColor: "#226ccf",
+                //   opacity: 0.2,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onPress={() => navigation.navigate("myOrders")}
+            >
+              <Ants name="history" size={34} color={SecondaryLightColor} />
+            </TouchableOpacity>
+            <Text style={styles.smallText}>Past Orders</Text>
+          </View>
         </View>
 
-        <View style={{ alignItems: "center" }}>
-          <TouchableOpacity
-            style={{
-              height: 60,
-              width: 60,
-              borderRadius: 15,
-              backgroundColor: "#226ccfcc",
-              //   opacity: 0.2,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Ants name="wallet" size={34} color={SecondaryLightColor} />
-          </TouchableOpacity>
-          <Text style={styles.smallText}>Payouts & Finance</Text>
+        <View style={{ marginHorizontal: 4, padding: 4, marginVertical: 4 }}>
+          <Text style={{ color: WHITE, fontWeight: "bold" }}>
+            Business Overview
+          </Text>
+          <Text style={{ color: WHITE, fontSize: 12 }}>
+            Aggregated view of your business across all orders{" "}
+          </Text>
         </View>
 
-        <View style={{ alignItems: "center" }}>
-          <TouchableOpacity
-            style={{
-              height: 60,
-              width: 60,
-              borderRadius: 15,
-              backgroundColor: "#226ccf",
-              //   opacity: 0.2,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            onPress={() => navigation.navigate("myOrders")}
-          >
-            <Ants name="history" size={34} color={SecondaryLightColor} />
-          </TouchableOpacity>
-          <Text style={styles.smallText}>Past Orders</Text>
+        <View>
+          <TabView
+            navigationState={{ index, routes }}
+            renderScene={renderScene}
+            onIndexChange={setIndex}
+            renderTabBar={renderTabBar}
+            initialLayout={{ width: layout.width }}
+          />
         </View>
-      </View>
-      <View style={{ marginHorizontal: 4, padding: 4, marginVertical: 4 }}>
-        <Text style={{ color: WHITE, fontWeight: "bold" }}>
-          Business Overview
-        </Text>
-        <Text style={{ color: WHITE, fontSize: 12 }}>
-          Aggregated view of your business across all orders{" "}
-        </Text>
-      </View>
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        renderTabBar={renderTabBar}
-        initialLayout={{ width: layout.width }}
-      />
+
+        <View style={{ backgroundColor: WHITE, marginVertical: 4 }}>
+          <Text>Performance this month</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              flex: 1,
+              justifyContent: "space-between",
+              backgroundColor: WHITE,
+            }}
+          >
+            <View style={{ backgroundColor: "#fff" }}>
+              <Text>{acceptanceRate||0}%</Text>
+              <Text>accept rate</Text>
+            </View>
+            <View style={{ backgroundColor: "#fff" }}>
+              <Text>{rejectedRate||0}%</Text>
+              <Text>reject rate</Text>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
