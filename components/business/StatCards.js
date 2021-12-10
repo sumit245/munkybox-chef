@@ -1,10 +1,23 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Badge } from "react-native-paper";
 import { width } from "../../Dimens";
 
-export default function StatCards({ active, cancel, complete,notstarted,rejected, dashboard,commission ,newUser,repeatedUser}) {
-  console.log(commission);
+export default function StatCards({ active, cancel, complete,notstarted,rejected, dashboard,commission ,newUser,repeatedUser,cartconversion,visits}) {
+  const [menuvisits,setmenuvisits]=useState(0)
+  const [cartvisits,setcartvisits]=useState(0)
+  useEffect(() => {
+    try{
+      const {menuvisits,cartVisit}=visits
+      setmenuvisits(menuvisits)
+      setcartvisits(cartVisit)
+    }
+    catch{
+    setmenuvisits(0)
+    setcartvisits(0)
+    }
+    
+  }, [visits])
   return (
     <ScrollView horizontal>
       <View>
@@ -208,15 +221,15 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
           >
             <View>
               <Text style={styles.stat_label}>Menu Visits</Text>
-              <Text style={styles.stat_value}>1</Text>
+              <Text style={styles.stat_value}>{menuvisits}</Text>
             </View>
             <View>
               <Text style={styles.stat_label}>Visits to Cart</Text>
-              <Text style={styles.stat_value}>1</Text>
+              <Text style={styles.stat_value}>{cartvisits}</Text>
             </View>
             <View>
               <Text style={styles.stat_label}>Cart to Orders</Text>
-              <Text style={styles.stat_value}>1</Text>
+              <Text style={styles.stat_value}>{cartconversion}</Text>
             </View>
           </View>
         </View>

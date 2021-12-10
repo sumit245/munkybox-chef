@@ -31,6 +31,8 @@ export default function Dashboard({ navigation }) {
   const [rejected, setRejected] = useState(0);
   const [dashboard, setDashboard] = useState({});
   const [commission, setCommission] = useState("");
+  const [cartconversion,setCartConversion]=useState(0)
+  const [visits,setvisits]=useState(0)
 
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, city, restaurant_id } = restaurant;
@@ -65,6 +67,8 @@ export default function Dashboard({ navigation }) {
             rejected={rejected}
             newUser={newUser}
             repeatedUser={repeatedUser}
+            cartconversion={cartconversion}
+            visits={visits}
           />
         );
 
@@ -137,6 +141,12 @@ export default function Dashboard({ navigation }) {
     setnewUser(newusers)
     setrepeatedUser(repeatedUsers)
   }
+  const fetchVisit=async(restaurant)=>{
+    const response=await axios.get("http://munkybox-admin.herokuapp.com/api/chefdashboard/"+restaurant)
+    const {totalOrders,orders}=response.data
+    setCartConversion(totalOrders)
+    setvisits(orders)
+  }
   useEffect(() => {
     fetchCommission();
   }, [commission]);
@@ -144,6 +154,7 @@ export default function Dashboard({ navigation }) {
     fetchOrders(restaurant_name);
     fetchcompletedorders(restaurant_name);
     fetchcancelledcount(restaurant_name);
+    fetchVisit(restaurant_name)
     fetchRejectedcount(restaurant_name);
     fetchNotStartedcount(restaurant_name);
     fetchStats(restaurant_name);
