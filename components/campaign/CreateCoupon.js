@@ -63,12 +63,14 @@ export default function CreateCoupon({ route, navigation }) {
       discount: discount,
     });
   };
-  const dateHandler = (date, duration) => {
+  const dateHandler = (date, duration,type) => {
     if(duration!==0){
       const { start, end } = onDateChange(date, duration);
       setStartDate(start);
       setEndDate(end);
       setModalVisible(false);
+    }else{
+      console.log(duration);
     }
     
   };
@@ -328,6 +330,7 @@ export default function CreateCoupon({ route, navigation }) {
               scrollable
               onDateChange={(date) => dateHandler(date, duration)}
             />
+<View style={{flexDirection:"row",justifyContent:"flex-end"}}>
             <Button
               mode="text"
               color="#F00"
@@ -336,6 +339,15 @@ export default function CreateCoupon({ route, navigation }) {
             >
               cancel
             </Button>
+            <Button
+              mode="text"
+              color="#00f"
+              style={{ alignSelf: "flex-end" }}
+              onPress={() => setModalVisible(false)}
+            >
+              done
+            </Button>
+            </View>
           </View>
         </View>
       </Modal>
