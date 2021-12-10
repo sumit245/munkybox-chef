@@ -61,19 +61,19 @@ export default function Dashboard({ navigation }) {
     switch (route.key) {
       case "first":
         return (
-          <StatCards
-            active={activecount}
-            complete={completecount}
-            cancel={cancelledcount}
-            notstarted={notstarted}
-            dashboard={dashboard}
-            commission={commission}
-            rejected={rejected}
-            newUser={newUser}
-            repeatedUser={repeatedUser}
-            cartconversion={cartconversion}
-            visits={visits}
-          />
+            <StatCards
+              active={activecount}
+              complete={completecount}
+              cancel={cancelledcount}
+              notstarted={notstarted}
+              dashboard={dashboard}
+              commission={commission}
+              rejected={rejected}
+              newUser={newUser}
+              repeatedUser={repeatedUser}
+              cartconversion={cartconversion}
+              visits={visits}
+            />
         );
 
       case "second":
@@ -186,7 +186,7 @@ export default function Dashboard({ navigation }) {
       }}
     >
       <Header title={restaurant_name + ", " + city} />
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView>
         <View
           style={{
             flexDirection: "row",
@@ -275,11 +275,11 @@ export default function Dashboard({ navigation }) {
             }}
           >
             <View style={{ backgroundColor: "#fff" }}>
-              <Text>{acceptanceRate||0}%</Text>
+              <Text>{acceptanceRate || 0}%</Text>
               <Text>accept rate</Text>
             </View>
             <View style={{ backgroundColor: "#fff" }}>
-              <Text>{rejectedRate||0}%</Text>
+              <Text>{rejectedRate || 0}%</Text>
               <Text>reject rate</Text>
             </View>
           </View>

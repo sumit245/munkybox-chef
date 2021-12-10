@@ -19,7 +19,7 @@ export default function StatCards({ active, cancel, complete,notstarted,rejected
     
   }, [visits])
   return (
-    <ScrollView horizontal>
+    <ScrollView horizontal contentContainerStyle={{flexGrow:1}}>
       <View>
         <View
           style={[
