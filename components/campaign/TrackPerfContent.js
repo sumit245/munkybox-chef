@@ -14,9 +14,9 @@ function TrackPerfContent({
   address,
   banners,
   status,
+  title,
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
-  
 
   return (
     <View
@@ -50,7 +50,7 @@ function TrackPerfContent({
       </View>
       {banners && (
         <View style={{ flex: 1 }}>
-          <Text style={[styles.listing]}>Listing Ads</Text>
+          <Text style={[styles.listing]}>Listing {title}</Text>
           <TrackBannerCard banner={banners} status={status} />
         </View>
       )}
@@ -58,14 +58,16 @@ function TrackPerfContent({
       <View
         style={{
           justifyContent: "flex-end",
-          backgroundColor: "#666",
           padding: 4,
         }}
       >
         <Text
-          style={[styles.text, { fontWeight: "bold", textAlign: "center" }]}
+          style={[
+            styles.text,
+            { fontWeight: "bold", textAlign: "center", color: "#444" },
+          ]}
         >
-          Last Updated{timesnow}
+          Last Updated: {timesnow}
         </Text>
       </View>
     </View>
