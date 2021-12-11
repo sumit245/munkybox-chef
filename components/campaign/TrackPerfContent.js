@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/Entypo";
 import { useSelector } from "react-redux";
 import { DARKGRAY, SecondaryLightColor } from "../../Colors";
 import { styles } from "./campaign.styles";
@@ -27,11 +27,24 @@ function TrackPerfContent({
       }}
     >
       <View style={styles.trackOutlet}>
-        <Text style={styles.heading}>
-          <Icon name="restaurant" size={16} color={SecondaryLightColor} />{" "}
-          {restaurant}
-        </Text>
-        <Text style={[styles.smallText, { color: "#FFF" }]}>{address}</Text>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Icon name="shop" size={24} color={SecondaryLightColor} />
+          <View>
+            <Text
+              style={[styles.heading, { marginBottom: 0, marginHorizontal: 12 }]}
+            >
+              {restaurant}
+            </Text>
+            <Text
+              style={[
+                styles.smallText,
+                { color: "#FFF", marginHorizontal: 12, marginTop: 0 },
+              ]}
+            >
+              {address}
+            </Text>
+          </View>
+        </View>
         {notcoupons && (
           <View
             style={{

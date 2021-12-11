@@ -54,7 +54,7 @@ export default function TrackPerformance({ route, navigation }) {
   const renderTabBar = (props) => (
     <TabBar
       {...props}
-      style={{ backgroundColor: PrimaryDark }}
+      style={{ backgroundColor: PrimaryDark,marginHorizontal:2,marginBottom:8 }}
       indicatorStyle={{ backgroundColor: SecondaryColor }}
     />
   );
