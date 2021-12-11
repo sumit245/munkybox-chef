@@ -69,6 +69,7 @@ export default function TrackPerformance({ route, navigation }) {
             banners={banners}
             status={route.title}
             notcoupons={notcoupons}
+            title={title}
           />
         );
 
