@@ -24,19 +24,21 @@ function TrackPerfContent({ restaurant, address, banners, status }) {
           {restaurant}
         </Text>
         <Text style={[styles.smallText, { color: "#FFF" }]}>{address}</Text>
-        <View
-          style={{
-            flexDirection: "row",
-            marginTop: 2,
-          }}
-        >
-          <View style={styles.packContainer}>
-            <Text style={styles.packText}> 1 Live Pack </Text>
+        {banners && (
+          <View
+            style={{
+              flexDirection: "row",
+              marginTop: 2,
+            }}
+          >
+            <View style={styles.packContainer}>
+              <Text style={styles.packText}> 1 Live Pack </Text>
+            </View>
+            <View style={[styles.packContainer, { marginLeft: 4 }]}>
+              <Text style={styles.packText}> 0 upcoming Pack </Text>
+            </View>
           </View>
-          <View style={[styles.packContainer, { marginLeft: 4 }]}>
-            <Text style={styles.packText}> 0 upcoming Pack </Text>
-          </View>
-        </View>
+        )}
       </View>
       {banners && (
         <View style={{ flex: 1 }}>
