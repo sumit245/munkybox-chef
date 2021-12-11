@@ -13,6 +13,7 @@ export default function TrackPerformance({ route, navigation }) {
   const layout = useWindowDimensions();
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, city, locality, state } = restaurant;
+  const { notcoupons, title } = route.params;
   let address = locality + ", " + city + ", " + state;
 
   const banners = {
@@ -67,6 +68,7 @@ export default function TrackPerformance({ route, navigation }) {
             address={address}
             banners={banners}
             status={route.title}
+            notcoupons={notcoupons}
           />
         );
 

@@ -9,15 +9,14 @@ import TrackBannerCard from "./TrackBannerCard";
 import TrackPerfHead from "./TrackPerfHead";
 
 function TrackPerfContent({
-  navigation,
-  route,
+  notcoupons,
   restaurant,
   address,
   banners,
   status,
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
-  const { notcoupons } = route.params;
+  
 
   return (
     <View
