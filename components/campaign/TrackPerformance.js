@@ -79,7 +79,7 @@ export default function TrackPerformance({ route, navigation }) {
           <TrackPerfContent
             restaurant={restaurant_name}
             address={address}
-            banners={title === "Coupons" ? coupon : banners}
+            banners={title === "Coupons" ? coupon[0]: banners}
             status={route.title}
             notcoupons={notcoupon}
             title={title}
