@@ -64,6 +64,7 @@ export default function TrackBannerCard({ banner }) {
               styles.textContainer,
               {
                 padding: 4,
+                alignItems:"center",
                 marginVertical: 2,
                 borderBottomColor: "#999",
                 borderBottomWidth: 0.2,
