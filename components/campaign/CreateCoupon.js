@@ -63,16 +63,21 @@ export default function CreateCoupon({ route, navigation }) {
       discount: discount,
     });
   };
-  const dateHandler = (date, duration,type) => {
-    if(duration!==0){
-      const { start, end } = onDateChange(date, duration);
-      setStartDate(start);
-      setEndDate(end);
-      setModalVisible(false);
-    }else{
-      console.log(duration);
+  const dateHandler = (date, duration) => {
+    const { start, end } = onDateChange(date, duration);
+    setStartDate(start);
+    setEndDate(end);
+    setModalVisible(false);
+  };
+  const handleRangeDate = (date, type) => {
+    if (type === "END_DATE") {
+      setEndDate(moment(date).format("DD MMM, YYYY"));
+    } else {
+      setStartDate(moment(date).format("DD MMM, YYYY"));
+      setEndDate(null);
     }
     
+  
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -320,33 +325,48 @@ export default function CreateCoupon({ route, navigation }) {
       >
         <View style={styles.calenderView}>
           <View style={styles.calendarBody}>
-            <CalendarPicker
-              startFromMonday={true}
-              minDate={minDate}
-              allowRangeSelection={duration===0}
-              todayBackgroundColor="#f2e6ff"
-              selectedDayColor="#2300e6"
-              selectedDayTextColor="#FFFFFF"
-              scrollable
-              onDateChange={(date) => dateHandler(date, duration)}
-            />
-<View style={{flexDirection:"row",justifyContent:"flex-end"}}>
-            <Button
-              mode="text"
-              color="#F00"
-              style={{ alignSelf: "flex-end" }}
-              onPress={() => setModalVisible(false)}
+            {duration !== 0 ? (
+              <CalendarPicker
+                startFromMonday={true}
+                minDate={minDate}
+                todayBackgroundColor="#f2e6ff"
+                selectedDayColor="#2300e6"
+                selectedDayTextColor="#FFFFFF"
+                scrollable
+                onDateChange={(date) => dateHandler(date, duration)}
+              />
+            ) : (
+              <CalendarPicker
+                startFromMonday={true}
+                allowRangeSelection={true}
+                minDate={minDate}
+                todayBackgroundColor="#f2e6ff"
+                selectedDayColor="#2300e6"
+                selectedDayTextColor="#FFFFFF"
+                scrollable
+                onDateChange={handleRangeDate}
+              />
+            )}
+
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
-              cancel
-            </Button>
-            <Button
-              mode="text"
-              color="#00f"
-              style={{ alignSelf: "flex-end" }}
-              onPress={() => setModalVisible(false)}
-            >
-              done
-            </Button>
+              <Button
+                mode="text"
+                color="#F00"
+                style={{ alignSelf: "flex-end" }}
+                onPress={() => setModalVisible(false)}
+              >
+                cancel
+              </Button>
+              <Button
+                mode="text"
+                color="#F00"
+                style={{ alignSelf: "flex-end" }}
+                onPress={() => setModalVisible(false)}
+              >
+                done
+              </Button>
             </View>
           </View>
         </View>
