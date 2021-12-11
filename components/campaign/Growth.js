@@ -7,7 +7,8 @@ import PromoCard from "./PromoCard";
 export default function Growth({ navigation }) {
   const trackAds = () => {
     navigation.navigate("track", {
-      title: "Banner",
+      title: "Campaigns",
+      notcoupon: true,
     });
   };
   const viewAds = () => {
@@ -15,8 +16,8 @@ export default function Growth({ navigation }) {
   };
   const trackCoupon = () => {
     navigation.navigate("track", {
-      title: "Coupon",
-      notcoupon:true
+      title: "Coupons",
+      notcoupon: false,
     });
   };
   const setCoupon = () => {

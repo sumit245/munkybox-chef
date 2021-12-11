@@ -6,18 +6,18 @@ import { styles } from "./campaign.styles";
 import { DARKGRAY } from "../../Colors";
 export default function TrackBannerCard({ banner }) {
   const {
-    plan,
-    start,
-    end,
-    due,
-    day,
-    order,
-    revenue,
-    clicks,
-    users,
-    advert_id,
+    promo_code,
+    plan_name,
+    promo_id,
+    duration,
+    absolute_value,
+    start_date,
+    end_date,
     status,
   } = banner;
+  console.log(banner);
+  const due = 2;
+  const day = duration;
   return (
     <View
       style={{
@@ -31,15 +31,15 @@ export default function TrackBannerCard({ banner }) {
       }}
     >
       <TrackPerfHead
-        advert_id={advert_id}
-        plan_name={plan}
-        start_date={start}
-        end_date={end}
+        advert_id={promo_id}
+        plan_name={promo_code}
+        start_date={start_date}
+        end_date={end_date}
         due={due}
         day={day}
         status={status}
       />
-      {status === "active" ? (
+      {/* {status === "active" ? (
         <>
           <View style={{ marginVertical: 12, backgroundColor: "#ddd" }} />
 
@@ -48,7 +48,7 @@ export default function TrackBannerCard({ banner }) {
               styles.textContainer,
               {
                 padding: 4,
-                marginTop:"2%",
+                marginTop: "2%",
                 alignItems: "center",
                 marginVertical: 2,
                 borderBottomColor: "#999",
@@ -119,7 +119,7 @@ export default function TrackBannerCard({ banner }) {
             </View>
           </View>
         </>
-      ) : null}
+      ) : null} */}
     </View>
   );
 }

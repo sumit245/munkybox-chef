@@ -17,6 +17,9 @@ function TrackPerfContent({
   title,
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
+  useEffect(() => {
+    console.log(banners);
+  }, [banners]);
 
   return (
     <View
@@ -31,7 +34,10 @@ function TrackPerfContent({
           <Icon name="shop" size={24} color={SecondaryLightColor} />
           <View>
             <Text
-              style={[styles.heading, { marginBottom: 0, marginHorizontal: 12 }]}
+              style={[
+                styles.heading,
+                { marginBottom: 0, marginHorizontal: 12 },
+              ]}
             >
               {restaurant}
             </Text>
@@ -62,8 +68,8 @@ function TrackPerfContent({
         )}
       </View>
       {banners && (
-        <View style={{ flex: 1 }}>
-          <Text style={[styles.listing]}>Listing {title}</Text>
+        <View style={{ flex: 1, marginVertical: 4 }}>
+          <Text style={[styles.listing]}>{title}</Text>
           <TrackBannerCard banner={banners} status={status} />
         </View>
       )}
