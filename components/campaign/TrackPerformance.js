@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native";
 import { View, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
@@ -8,13 +8,25 @@ import { useSelector } from "react-redux";
 import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
 import TrackPerfContent from "./TrackPerfContent";
+import axios from "axios";
 
 export default function TrackPerformance({ route, navigation }) {
   const layout = useWindowDimensions();
   const restaurant = useSelector((state) => state.restaurant);
-  const { restaurant_name, city, locality, state } = restaurant;
-  const { notcoupons, title } = route.params;
+  const [coupon, setCoupon] = useState({});
+  const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
+  const { notcoupon, title } = route.params;
   let address = locality + ", " + city + ", " + state;
+  const fetchMyCoupon = async (restaurant) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/coupon/" + restaurant
+    );
+    const { data } = response;
+    setCoupon(data);
+  };
+  useEffect(() => {
+    fetchMyCoupon(restaurant_id);
+  }, [restaurant_id]);
 
   const banners = {
     advert_id: "ADVERT001",
@@ -30,6 +42,7 @@ export default function TrackPerformance({ route, navigation }) {
     due: 0.75,
     status: "active",
   };
+
   const inactivebanners = {
     advert_id: "ADVERT001",
     plan: "Gold",
@@ -66,9 +79,9 @@ export default function TrackPerformance({ route, navigation }) {
           <TrackPerfContent
             restaurant={restaurant_name}
             address={address}
-            banners={banners}
+            banners={title === "Coupons" ? coupon : banners}
             status={route.title}
-            notcoupons={notcoupons}
+            notcoupons={notcoupon}
             title={title}
           />
         );
