@@ -27,7 +27,7 @@ export default function TrackPerformance({ route, navigation }) {
     users: 1,
     day: 30,
     due: 0.75,
-    status:"active"
+    status: "active",
   };
   const inactivebanners = {
     advert_id: "ADVERT001",
@@ -41,7 +41,7 @@ export default function TrackPerformance({ route, navigation }) {
     users: 1,
     day: 30,
     due: 0.75,
-    status:"inactive"
+    status: "inactive",
   };
 
   const [index, setIndex] = React.useState(0);

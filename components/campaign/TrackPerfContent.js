@@ -8,8 +8,17 @@ import { styles } from "./campaign.styles";
 import TrackBannerCard from "./TrackBannerCard";
 import TrackPerfHead from "./TrackPerfHead";
 
-function TrackPerfContent({ restaurant, address, banners, status }) {
+function TrackPerfContent({
+  navigation,
+  route,
+  restaurant,
+  address,
+  banners,
+  status,
+}) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
+  const { notcoupons } = route.params;
+
   return (
     <View
       style={{
@@ -24,7 +33,7 @@ function TrackPerfContent({ restaurant, address, banners, status }) {
           {restaurant}
         </Text>
         <Text style={[styles.smallText, { color: "#FFF" }]}>{address}</Text>
-        {banners && (
+        {notcoupons && (
           <View
             style={{
               flexDirection: "row",
