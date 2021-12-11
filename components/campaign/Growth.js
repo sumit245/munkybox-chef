@@ -16,6 +16,7 @@ export default function Growth({ navigation }) {
   const trackCoupon = () => {
     navigation.navigate("track", {
       title: "Coupon",
+      notcoupon:true
     });
   };
   const setCoupon = () => {

@@ -121,7 +121,6 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     marginHorizontal:  18,
-    marginTop:40,
     marginBottom:"4%"
   },
   textContainer: {
@@ -142,8 +141,6 @@ export const styles = StyleSheet.create({
   trackOutlet: {
     backgroundColor: "#2266cf",
     padding: 8,
-    marginHorizontal: 0,
-    marginTop: 0,
   },
   trackHead: {
     borderColor: "#2266cf",
