@@ -27,7 +27,9 @@ export default function CreateCoupon({ route, navigation }) {
   const [lunch, setLunch] = useState(false);
   const [dinner, setDinner] = useState(false);
   const [duration, setDuration] = useState(7);
-  const minDate = Date.now();
+  let minDate = Date.now();
+  minDate = minDate + 24 * 60 * 60 * 1000;
+
   const resetAll = () => {
     setPlan(2);
     setCode("");
@@ -42,7 +44,7 @@ export default function CreateCoupon({ route, navigation }) {
     setDuration(newValue);
     let today = moment(minDate);
     if (newValue !== 0) {
-      const { start, end } = onDateChange(today, newValue);
+      const { start, end } = onDateChange(today, newValue-1);
       setStartDate(start);
       setEndDate(end);
     } else {
@@ -64,7 +66,7 @@ export default function CreateCoupon({ route, navigation }) {
     });
   };
   const dateHandler = (date, duration) => {
-    const { start, end } = onDateChange(date, duration);
+    const { start, end } = onDateChange(date, duration-1);
     setStartDate(start);
     setEndDate(end);
     setModalVisible(false);
@@ -76,8 +78,6 @@ export default function CreateCoupon({ route, navigation }) {
       setStartDate(moment(date).format("DD MMM, YYYY"));
       setEndDate(null);
     }
-    
-  
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -186,7 +186,7 @@ export default function CreateCoupon({ route, navigation }) {
                   <View>
                     <Text style={styles.bigText}>15 Days</Text>
                     <Text style={styles.smallText}>
-                      Starts today till{" "}
+                      Starts tomorrow till{" "}
                       {moment().add(15, "days").format("DD MMM")}
                     </Text>
                   </View>
@@ -329,7 +329,7 @@ export default function CreateCoupon({ route, navigation }) {
               <CalendarPicker
                 startFromMonday={true}
                 minDate={minDate}
-                todayBackgroundColor="#f2e6ff"
+                todayBackgroundColor="#fff"
                 selectedDayColor="#2300e6"
                 selectedDayTextColor="#FFFFFF"
                 scrollable
@@ -340,7 +340,7 @@ export default function CreateCoupon({ route, navigation }) {
                 startFromMonday={true}
                 allowRangeSelection={true}
                 minDate={minDate}
-                todayBackgroundColor="#f2e6ff"
+                todayBackgroundColor="#fff"
                 selectedDayColor="#2300e6"
                 selectedDayTextColor="#FFFFFF"
                 scrollable

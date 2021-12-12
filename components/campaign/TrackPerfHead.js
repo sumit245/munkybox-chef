@@ -28,7 +28,7 @@ export default function TrackPerfHead({
           ]}
         >
           {plan_name} ({" "}
-          {discount_type === "$" ? "$" + discount : discount + "%"} )
+          {discount_type === "$" ? "$" + discount : discount + "%"} OFF )
         </Text>
         <Text
           style={[

@@ -19,11 +19,11 @@ import {
 import CalendarPicker from "react-native-calendar-picker";
 import { onDateChange } from "../../helpers/commons";
 import moment from "moment";
-import { IconButton } from "react-native-paper";
 
 export default function CreateBanner({ route, navigation }) {
-  const { title, duration, rpc, advert_id, restaurant } = route.params;
-  const minDate = Date.now();
+  const { title, duration, rpc, advert_id, restaurant,restaurant_id } = route.params;
+  let minDate = Date.now();
+  minDate = minDate + 24 * 60 * 60 * 1000;
   const [selectedEndDate, setSelecteEndDate] = useState(null);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [code, setCode] = useState("");
@@ -189,8 +189,9 @@ export default function CreateBanner({ route, navigation }) {
                     borderRadius: 1,
                   }}
                 >
-                  {discTypes.map((data) => (
+                  {discTypes.map((data, key) => (
                     <Text
+                      key={key}
                       style={{ fontSize: 16, fontWeight: "bold" }}
                       onPress={() => selectDiscount(data)}
                     >
@@ -205,7 +206,7 @@ export default function CreateBanner({ route, navigation }) {
                     borderColor: "#777",
                     borderWidth: 0.2,
                     borderRadius: 1,
-                    borderBottomRightRadius:0
+                    borderBottomRightRadius: 0,
                   }}
                 >
                   <Text style={{ fontSize: 14, fontWeight: "bold" }}>
@@ -222,7 +223,7 @@ export default function CreateBanner({ route, navigation }) {
                   borderTopLeftRadius: 0,
                   borderBottomLeftRadius: 0,
                   borderWidth: 0.5,
-                  paddingVertical:1,
+                  paddingVertical: 1,
                   borderRadius: 1,
                 }}
               >
