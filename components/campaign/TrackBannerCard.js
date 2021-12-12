@@ -4,7 +4,7 @@ import TrackPerfHead from "./TrackPerfHead";
 import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./campaign.styles";
 import { DARKGRAY } from "../../Colors";
-export default function TrackBannerCard({ banner,flag_banner }) {
+export default function TrackBannerCard({ banner, flag_banner,promotedOrders }) {
   const {
     promo_code,
     category,
@@ -63,7 +63,7 @@ export default function TrackBannerCard({ banner,flag_banner }) {
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
 
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>{1}</Text>
+              <Text style={styles.bigText}>{promotedOrders.length}</Text>
               <Text style={styles.smallText}> Total Orders</Text>
             </View>
           </View>
@@ -101,7 +101,7 @@ export default function TrackBannerCard({ banner,flag_banner }) {
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> {1}</Text>
+              <Text style={styles.bigText}> {promotedOrders.length}</Text>
               <Text style={styles.smallText}> Total Clicks</Text>
             </View>
           </View>

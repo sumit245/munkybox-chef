@@ -59,7 +59,7 @@ export default function TrackPerfHead({
       <View style={styles.progressCounter}>
         <View style={{ marginVertical: 20 }} />
         <Text style={[styles.smallText, { color: "#fff", lineHeight: 16 }]}>
-          {day}{flag_banner && " Days"}
+          {day}{flag_banner? " Days":null}
         </Text>
         {status === "expired" ? (
           <TouchableOpacity style={{ height: 60, width: 60 }}>
