@@ -7,6 +7,7 @@ import { DARKGRAY } from "../../Colors";
 export default function TrackBannerCard({ banner }) {
   const {
     promo_code,
+    category,
     plan_name,
     discount_type,
     discount,
@@ -17,7 +18,6 @@ export default function TrackBannerCard({ banner }) {
     end_date,
     status,
   } = banner;
-
   return (
     <View
       style={{
@@ -32,6 +32,7 @@ export default function TrackBannerCard({ banner }) {
     >
       <TrackPerfHead
         advert_id={promo_id}
+        category={category}
         plan_name={promo_code}
         plan={plan_name}
         discount={discount}
@@ -117,7 +118,7 @@ export default function TrackBannerCard({ banner }) {
             <Icon name="person-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> {1}</Text>
-              <Text style={styles.smallText}> New Users</Text>
+              <Text style={styles.smallText}> Total Users</Text>
             </View>
           </View>
         </>

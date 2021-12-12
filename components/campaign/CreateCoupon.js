@@ -168,7 +168,7 @@ export default function CreateCoupon({ route, navigation }) {
                     <Text style={styles.bigText}>7 Days</Text>
                     <Text style={styles.smallText}>
                       {" "}
-                      Starts today till{" "}
+                      Starts tomorrow till{" "}
                       {moment().add(7, "days").format("DD MMM")}
                     </Text>
                   </View>
