@@ -8,6 +8,8 @@ export default function TrackBannerCard({ banner }) {
   const {
     promo_code,
     plan_name,
+    discount_type,
+    discount,
     promo_id,
     duration,
     absolute_value,
@@ -15,9 +17,7 @@ export default function TrackBannerCard({ banner }) {
     end_date,
     status,
   } = banner;
-  console.log(banner);
-  const due = 2;
-  const day = duration;
+
   return (
     <View
       style={{
@@ -27,19 +27,21 @@ export default function TrackBannerCard({ banner }) {
         borderRadius: 2,
         justifyContent: "space-between",
         flex: 1,
-        marginBottom: "40%",
+        marginBottom: "10%",
       }}
     >
       <TrackPerfHead
         advert_id={promo_id}
         plan_name={promo_code}
+        plan={plan_name}
+        discount={discount}
+        discount_type={discount_type}
         start_date={start_date}
         end_date={end_date}
-        due={due}
-        day={day}
+        day={duration}
         status={status}
       />
-      {/* {status === "active" ? (
+      {status === "Active" ? (
         <>
           <View style={{ marginVertical: 12, backgroundColor: "#ddd" }} />
 
@@ -59,7 +61,7 @@ export default function TrackBannerCard({ banner }) {
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
 
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>{order}</Text>
+              <Text style={styles.bigText}>{1}</Text>
               <Text style={styles.smallText}> Total Orders</Text>
             </View>
           </View>
@@ -78,7 +80,7 @@ export default function TrackBannerCard({ banner }) {
           >
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> ${revenue}</Text>
+              <Text style={styles.bigText}> ${155}</Text>
               <Text style={styles.smallText}> Total Revenue</Text>
             </View>
           </View>
@@ -97,7 +99,7 @@ export default function TrackBannerCard({ banner }) {
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> {clicks}</Text>
+              <Text style={styles.bigText}> {1}</Text>
               <Text style={styles.smallText}> Total Clicks</Text>
             </View>
           </View>
@@ -114,12 +116,12 @@ export default function TrackBannerCard({ banner }) {
           >
             <Icon name="person-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> {users}</Text>
+              <Text style={styles.bigText}> {1}</Text>
               <Text style={styles.smallText}> New Users</Text>
             </View>
           </View>
         </>
-      ) : null} */}
+      ) : null}
     </View>
   );
 }

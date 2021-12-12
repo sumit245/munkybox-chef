@@ -1,4 +1,4 @@
-import React, { useRef, useState,useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -19,18 +19,20 @@ import {
 import CalendarPicker from "react-native-calendar-picker";
 import { onDateChange } from "../../helpers/commons";
 import moment from "moment";
+import { IconButton } from "react-native-paper";
 
 export default function CreateBanner({ route, navigation }) {
-  const { title, duration, rpc, advert_id,restaurant } = route.params;
+  const { title, duration, rpc, advert_id, restaurant } = route.params;
   const minDate = Date.now();
   const [selectedEndDate, setSelecteEndDate] = useState(null);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [code, setCode] = useState("");
   const [discount, setDiscount] = useState("");
-  
+  const [discTypes, setdiscTypes] = useState(["%", "$"]);
+
   const dateHandler = (date, type) => {
     if (date !== null) {
-      const { start, end } = onDateChange(date, duration.split(" ")[0]-1);
+      const { start, end } = onDateChange(date, duration.split(" ")[0] - 1);
       let startDate = moment(start, "DD-MM-YYYY").toDate();
       setSelectedStartDate(date);
       let myDate = moment(end, "DD-MMM-YYYY").toDate();
@@ -49,7 +51,7 @@ export default function CreateBanner({ route, navigation }) {
       end_date,
       code,
       discount,
-      restaurant
+      restaurant,
     });
   };
   return (
@@ -100,9 +102,7 @@ export default function CreateBanner({ route, navigation }) {
           <Text style={{ color: "#000", fontWeight: "bold", fontSize: 16 }}>
             Choose duration
           </Text>
-          <Text style={styles.smallText}>
-            You are a valueable customer
-          </Text>
+          <Text style={styles.smallText}>You are a valueable customer</Text>
           <View
             style={[
               styles.cardBody,
@@ -116,7 +116,6 @@ export default function CreateBanner({ route, navigation }) {
               /click
             </Text>
           </View>
-
         </View>
         <View style={styles.card}>
           <Text style={[styles.bigText, { fontSize: 16 }]}>
@@ -162,7 +161,15 @@ export default function CreateBanner({ route, navigation }) {
           </View>
         </View>
         <View style={styles.card}>
-          <Text style={styles.bigText}>Add discount(% or $)</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.bigText}>Add discount</Text>
+            <View>
+              <IconButton icon="chevron-down" size={24} color="#666" />
+              {discTypes.map((data) => (
+                <Text >{data}</Text>
+              ))}
+            </View>
+          </View>
           <View style={styles.cardBody}>
             <TextInput
               style={styles.input}
@@ -181,7 +188,7 @@ export default function CreateBanner({ route, navigation }) {
           onPress={submitBanner}
         >
           <Text style={[styles.btnText, { color: "#FFF" }]}>
-          REVIEW CPC AD CAMPAIGN
+            REVIEW CPC AD CAMPAIGN
           </Text>
         </TouchableOpacity>
       </View>
