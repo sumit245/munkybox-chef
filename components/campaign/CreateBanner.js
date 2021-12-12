@@ -52,6 +52,7 @@ export default function CreateBanner({ route, navigation }) {
       start_date,
       end_date,
       code,
+      discount_type,
       discount,
       restaurant,
     });
