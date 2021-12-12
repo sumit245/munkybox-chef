@@ -21,7 +21,7 @@ export default function TrackPerformance({ route, navigation }) {
   let address = locality + ", " + city + ", " + state;
   const fetchMyCoupon = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/coupon/" + restaurant
+      "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" + restaurant
     );
     const { data } = response;
     setCoupon(data);
