@@ -15,11 +15,9 @@ function TrackPerfContent({
   banners,
   status,
   title,
+  flag_banner,
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
-  useEffect(() => {
-    console.log(banners);
-  }, [banners]);
 
   return (
     <View
@@ -70,7 +68,11 @@ function TrackPerfContent({
       {banners && (
         <View style={{ flex: 1, marginVertical: 4 }}>
           <Text style={[styles.listing]}>{title}</Text>
-          <TrackBannerCard banner={banners} status={status} />
+          <TrackBannerCard
+            banner={banners}
+            status={status}
+            flag_banner={flag_banner}
+          />
         </View>
       )}
       {/* </ScrollView> */}
