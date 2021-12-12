@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,18 +10,15 @@ import {
 import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
 import Icon from "react-native-vector-icons/Ionicons";
-import {
-  DARKGRAY,
-  SecondaryDarkColor,
-  SecondaryLightColor,
-  WHITE,
-} from "../../Colors";
+import { SecondaryDarkColor } from "../../Colors";
 import CalendarPicker from "react-native-calendar-picker";
 import { onDateChange } from "../../helpers/commons";
+import { RadioButton } from "react-native-paper";
 import moment from "moment";
 
 export default function CreateBanner({ route, navigation }) {
-  const { title, duration, rpc, advert_id, restaurant,restaurant_id } = route.params;
+  const { title, duration, rpc, advert_id, restaurant, restaurant_id } =
+    route.params;
   let minDate = Date.now();
   minDate = minDate + 24 * 60 * 60 * 1000;
   const [selectedEndDate, setSelecteEndDate] = useState(null);
@@ -31,6 +28,7 @@ export default function CreateBanner({ route, navigation }) {
   const [discount, setDiscount] = useState("");
   const [discTypes, setdiscTypes] = useState(["%", "$"]);
   const [discount_type, setDiscountType] = useState("%");
+  const [plan, setPlan] = useState("");
 
   const dateHandler = (date, type) => {
     if (date !== null) {
@@ -54,6 +52,7 @@ export default function CreateBanner({ route, navigation }) {
       code,
       discount_type,
       discount,
+      plan,
       restaurant,
     });
   };
@@ -238,6 +237,47 @@ export default function CreateBanner({ route, navigation }) {
               placeholder="$5"
               onChangeText={setDiscount}
             />
+          </View>
+        </View>
+        <View style={styles.card}>
+          <Text style={styles.bigText}>Apply discount on</Text>
+          <Text style={styles.smallText}>
+            Choose the items valid for this discount{" "}
+          </Text>
+          <View style={styles.cardBody}>
+            <RadioButton.Group
+              onValueChange={(newValue) => setPlan(newValue)}
+              value={plan}
+            >
+              <View style={styles.btnGroup}>
+                <RadioButton.Android value="2 Meals" color="#226ccf" />
+                <Text style={styles.bigText}>2 Meals</Text>
+              </View>
+              <View
+                style={{
+                  marginVertical: 6,
+                  marginHorizontal: "10%",
+                  borderTopColor: "#ccc",
+                  borderTopWidth: 0.5,
+                }}
+              />
+              <View style={styles.btnGroup}>
+                <RadioButton.Android value="15 Meals " color="#226ccf" />
+                <Text style={styles.bigText}>15 Meals</Text>
+              </View>
+              <View
+                style={{
+                  marginVertical: 6,
+                  marginHorizontal: "10%",
+                  borderTopColor: "#ccc",
+                  borderTopWidth: 0.5,
+                }}
+              />
+              <View style={styles.btnGroup}>
+                <RadioButton.Android value="30 Meals" color="#226ccf" />
+                <Text style={styles.bigText}>30 Meals</Text>
+              </View>
+            </RadioButton.Group>
           </View>
         </View>
       </ScrollView>

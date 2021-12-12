@@ -4,7 +4,7 @@ import TrackPerfHead from "./TrackPerfHead";
 import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./campaign.styles";
 import { DARKGRAY } from "../../Colors";
-export default function TrackBannerCard({ banner }) {
+export default function TrackBannerCard({ banner,flag_banner }) {
   const {
     promo_code,
     category,
@@ -41,6 +41,7 @@ export default function TrackBannerCard({ banner }) {
         end_date={end_date}
         day={duration}
         status={status}
+        flag_banner={flag_banner}
       />
       {status === "Active" ? (
         <>

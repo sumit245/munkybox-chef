@@ -19,6 +19,7 @@ export default function PreviewBanner({ route, navigation }) {
     discount_type,
     discount,
     restaurant,
+    plan
   } = route.params;
   const [checked, setChecked] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -181,6 +182,20 @@ export default function PreviewBanner({ route, navigation }) {
                   Discount
                 </Text>
                 <Text style={styles.text}>${discount}</Text>
+              </View>
+            </View>
+            <View style={[styles.textContainer, { marginBottom: -4 }]}>
+              <Icon
+                name="checkmark-circle"
+                size={22}
+                color="#FFF"
+                style={{ marginLeft: -10, marginTop: 4 }}
+              />
+              <View>
+                <Text style={[styles.heading, { textTransform: "uppercase" }]}>
+                  Applicable on
+                </Text>
+                <Text style={styles.text}>{plan}</Text>
               </View>
             </View>
           </View>

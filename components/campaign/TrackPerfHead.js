@@ -15,6 +15,7 @@ export default function TrackPerfHead({
   end_date,
   day,
   status,
+  flag_banner
 }) {
   let remaining = moment(end_date).diff(start_date, "Days");
 
@@ -36,8 +37,7 @@ export default function TrackPerfHead({
             { fontSize: 14, marginLeft: 0, lineHeight: 16, marginVertical: 0 },
           ]}
         >
-          {plan}{" "}
-          <Text>({category})</Text>
+          {plan} {!flag_banner ? <Text>({category})</Text> : null}
         </Text>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text
@@ -46,8 +46,8 @@ export default function TrackPerfHead({
               { color: "#fff", lineHeight: 16, marginVertical: 0 },
             ]}
           >
-            <Text style={{ fontWeight: "bold" }}>Duration:</Text> {start_date} -
-            {end_date}{" "}
+            <Text style={{ fontWeight: "bold" }}>Duration:</Text> {flag_banner?(moment(start_date).format("DD MMM,YYYY")):start_date} -
+            {flag_banner?(moment(end_date).format("DD MMM,YYYY")):end_date}
           </Text>
         </View>
 
@@ -59,7 +59,7 @@ export default function TrackPerfHead({
       <View style={styles.progressCounter}>
         <View style={{ marginVertical: 20 }} />
         <Text style={[styles.smallText, { color: "#fff", lineHeight: 16 }]}>
-          {day}
+          {day}{flag_banner && " Days"}
         </Text>
         {status === "expired" ? (
           <TouchableOpacity style={{ height: 60, width: 60 }}>

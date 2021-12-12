@@ -14,6 +14,8 @@ export default function TrackPerformance({ route, navigation }) {
   const layout = useWindowDimensions();
   const restaurant = useSelector((state) => state.restaurant);
   const [coupon, setCoupon] = useState({});
+  const [banner, setBanner] = useState({});
+  const [flag_banner,setFlagBanner]=useState(false)
   const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
   const { notcoupon, title } = route.params;
   let address = locality + ", " + city + ", " + state;
@@ -24,8 +26,17 @@ export default function TrackPerformance({ route, navigation }) {
     const { data } = response;
     setCoupon(data);
   };
+  const fetchMyBanner = async (restaurant) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant
+    );
+    const { data } = response;
+    setBanner(data);
+    setFlagBanner(true)
+  };
   useEffect(() => {
     fetchMyCoupon(restaurant_id);
+    fetchMyBanner(restaurant_id);
   }, [restaurant_id]);
 
   const banners = {
@@ -67,7 +78,11 @@ export default function TrackPerformance({ route, navigation }) {
   const renderTabBar = (props) => (
     <TabBar
       {...props}
-      style={{ backgroundColor: PrimaryDark,marginHorizontal:2,marginBottom:8 }}
+      style={{
+        backgroundColor: PrimaryDark,
+        marginHorizontal: 2,
+        marginBottom: 8,
+      }}
       indicatorStyle={{ backgroundColor: SecondaryColor }}
     />
   );
@@ -79,7 +94,8 @@ export default function TrackPerformance({ route, navigation }) {
           <TrackPerfContent
             restaurant={restaurant_name}
             address={address}
-            banners={title === "Coupons" ? coupon[0]: banners}
+            banners={title === "Coupons" ? coupon[0] : banner[0]}
+            flag_banner={flag_banner}
             status={route.title}
             notcoupons={notcoupon}
             title={title}
