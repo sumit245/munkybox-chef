@@ -25,7 +25,7 @@ export default function PreviewBanner({ route, navigation }) {
       <HeaderTwo title="Review your campaign" navigation={navigation} />
       <View style={{ flex: 1, justifyContent: "space-between" }}>
         <View>
-        <View style={[styles.textContainer,{marginTop:20}]}>
+        <View style={[styles.textContainer,{marginTop:20,marginBottom:0}]}>
           <Icon name="checkmark-circle" size={22} color="#FFF" style={{marginLeft:-10,marginTop:-4}} />
           <View>
             <Text style={[styles.heading, { textTransform: "uppercase",marginTop:-22 }]}>
