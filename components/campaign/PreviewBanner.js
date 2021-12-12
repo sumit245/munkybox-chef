@@ -30,7 +30,8 @@ export default function PreviewBanner({ route, navigation }) {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/promo/"
     );
-    const { data } = response;
+    const { data } = response.data;
+    
     let prom = data.length;
     let banner = {
       promo_id: "ADVERT00" + prom,
