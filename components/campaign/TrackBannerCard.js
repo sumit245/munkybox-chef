@@ -27,7 +27,7 @@ export default function TrackBannerCard({ banner }) {
         borderRadius: 2,
         justifyContent: "space-between",
         flex: 1,
-        marginBottom: "10%",
+        marginBottom: "20%",
       }}
     >
       <TrackPerfHead
