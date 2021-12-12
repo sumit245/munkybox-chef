@@ -27,8 +27,10 @@ export default function CreateBanner({ route, navigation }) {
   const [selectedEndDate, setSelecteEndDate] = useState(null);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [code, setCode] = useState("");
+  const [expand, setExpand] = useState(false);
   const [discount, setDiscount] = useState("");
   const [discTypes, setdiscTypes] = useState(["%", "$"]);
+  const [discount_type, setDiscountType] = useState("%");
 
   const dateHandler = (date, type) => {
     if (date !== null) {
@@ -53,6 +55,13 @@ export default function CreateBanner({ route, navigation }) {
       discount,
       restaurant,
     });
+  };
+  const toggleSelector = (state) => {
+    setExpand(state);
+  };
+  const selectDiscount = (data) => {
+    setDiscountType(data);
+    setExpand(!expand);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -163,11 +172,62 @@ export default function CreateBanner({ route, navigation }) {
         <View style={styles.card}>
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.bigText}>Add discount</Text>
-            <View>
-              <IconButton icon="chevron-down" size={24} color="#666" />
-              {discTypes.map((data) => (
-                <Text >{data}</Text>
-              ))}
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "flex-start",
+                marginHorizontal: 4,
+                padding: 0,
+              }}
+            >
+              {expand ? (
+                <View
+                  style={{
+                    padding: 4,
+                    borderColor: "#777",
+                    borderWidth: 0.2,
+                    borderRadius: 1,
+                  }}
+                >
+                  {discTypes.map((data) => (
+                    <Text
+                      style={{ fontSize: 16, fontWeight: "bold" }}
+                      onPress={() => selectDiscount(data)}
+                    >
+                      {data}
+                    </Text>
+                  ))}
+                </View>
+              ) : (
+                <View
+                  style={{
+                    padding: 4,
+                    borderColor: "#777",
+                    borderWidth: 0.2,
+                    borderRadius: 1,
+                    borderBottomRightRadius:0
+                  }}
+                >
+                  <Text style={{ fontSize: 14, fontWeight: "bold" }}>
+                    {discount_type}
+                  </Text>
+                </View>
+              )}
+
+              <TouchableOpacity
+                onPress={() => toggleSelector(!expand)}
+                style={{
+                  borderColor: "#777",
+                  borderLeftWidth: 0,
+                  borderTopLeftRadius: 0,
+                  borderBottomLeftRadius: 0,
+                  borderWidth: 0.5,
+                  paddingVertical:1,
+                  borderRadius: 1,
+                }}
+              >
+                <Icon name="chevron-down" size={22} color="#666" />
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.cardBody}>
