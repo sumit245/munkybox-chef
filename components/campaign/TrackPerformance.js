@@ -15,16 +15,20 @@ export default function TrackPerformance({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [coupon, setCoupon] = useState({});
   const [banner, setBanner] = useState({});
-  const [flag_banner,setFlagBanner]=useState(false)
+  const [flag_banner, setFlagBanner] = useState(false);
+  const [proms, setPromotedOrders] = useState([]);
   const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
   const { notcoupon, title } = route.params;
   let address = locality + ", " + city + ", " + state;
   const fetchMyCoupon = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/coupon/" + restaurant
+      "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
+        restaurant
     );
     const { data } = response;
-    setCoupon(data);
+    const { coupon, promotedOrders } = data;
+    setCoupon(coupon);
+    setPromotedOrders(promotedOrders);
   };
   const fetchMyBanner = async (restaurant) => {
     const response = await axios.get(
@@ -32,7 +36,7 @@ export default function TrackPerformance({ route, navigation }) {
     );
     const { data } = response;
     setBanner(data);
-    setFlagBanner(true)
+    setFlagBanner(true);
   };
   useEffect(() => {
     fetchMyCoupon(restaurant_id);
@@ -95,6 +99,7 @@ export default function TrackPerformance({ route, navigation }) {
             restaurant={restaurant_name}
             address={address}
             banners={title === "Coupons" ? coupon[0] : banner[0]}
+            promotedOrders={proms}
             flag_banner={flag_banner}
             status={route.title}
             notcoupons={notcoupon}
