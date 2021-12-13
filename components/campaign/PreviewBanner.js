@@ -41,6 +41,7 @@ export default function PreviewBanner({ route, navigation }) {
       duration: duration,
       start_date: start_date,
       end_date: end_date,
+      meal_plan:plan,
       promo_code: code,
       discount_type: discount_type,
       discount: discount,

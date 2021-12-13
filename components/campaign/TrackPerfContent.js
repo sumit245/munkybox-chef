@@ -53,7 +53,7 @@ function TrackPerfContent({
             </Text>
           </View>
         </View>
-        {notcoupons && (
+        {/* {notcoupons && (
           <View
             style={{
               flexDirection: "row",
@@ -67,7 +67,7 @@ function TrackPerfContent({
               <Text style={styles.packText}> 0 upcoming Pack </Text>
             </View>
           </View>
-        )}
+        )} */}
       </View>
       {banners && (
         <View style={{ flex: 1, marginVertical: 4 }}>
