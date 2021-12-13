@@ -16,7 +16,7 @@ export default function TrackCampaignCard({ banner, status }) {
         borderRadius: 2,
         justifyContent: "space-between",
         flex: 1,
-        marginBottom: "2%",
+        
       }}
     >
       <TrackCampaignHead
@@ -37,9 +37,7 @@ export default function TrackCampaignCard({ banner, status }) {
         style={[
           styles.textContainer,
           {
-            padding: 4,
             alignItems: "center",
-            marginVertical: 2,
             borderBottomColor: "#999",
             borderBottomWidth: 0.2,
           },
@@ -57,7 +55,6 @@ export default function TrackCampaignCard({ banner, status }) {
         style={[
           styles.textContainer,
           {
-            padding: 4,
             alignItems: "center",
             borderBottomColor: "#999",
             borderBottomWidth: 0.2,
@@ -75,7 +72,6 @@ export default function TrackCampaignCard({ banner, status }) {
         style={[
           styles.textContainer,
           {
-            padding: 4,
             alignItems: "center",
             borderBottomColor: "#999",
             borderBottomWidth: 0.2,
@@ -92,9 +88,7 @@ export default function TrackCampaignCard({ banner, status }) {
         style={[
           styles.textContainer,
           {
-            padding: 4,
             alignItems: "center",
-
             borderBottomColor: "#999",
             borderBottomWidth: 0.2,
           },
@@ -111,7 +105,6 @@ export default function TrackCampaignCard({ banner, status }) {
         style={[
           styles.textContainer,
           {
-            padding: 4,
             alignItems: "center",
           },
         ]}

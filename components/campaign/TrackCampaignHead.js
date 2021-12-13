@@ -21,7 +21,7 @@ export default function TrackCampaignHead({
   let remaining = moment(end_date).diff(moment(), "Days");
 
   return (
-    <View style={[styles.trackHead,{height:120}]}>
+    <View style={[styles.trackHead, { height: 100 }]}>
       <View>
         <Text
           style={[
@@ -29,7 +29,7 @@ export default function TrackCampaignHead({
             {
               fontSize: 16,
               marginLeft: 0,
-              lineHeight: 16,
+              lineHeight: 14,
             },
           ]}
         >
@@ -41,17 +41,17 @@ export default function TrackCampaignHead({
             {
               fontSize: 14,
               marginLeft: 0,
-              lineHeight: 16,
+              lineHeight: 14,
             },
           ]}
         >
           {category}
         </Text>
-        
+
         <Text
           style={[
             styles.heading,
-            { fontSize: 14, marginLeft: 0, lineHeight: 16 },
+            { fontSize: 14, marginLeft: 0, lineHeight: 14 },
           ]}
         >
           {plan_name} ({discount_type === "$" ? "$" + discount : discount + "%"}
@@ -62,7 +62,7 @@ export default function TrackCampaignHead({
           <Text
             style={[
               styles.smallText,
-              { color: "#fff", lineHeight: 16, marginVertical: 0 },
+              { color: "#fff", lineHeight: 14, marginVertical: 0 },
             ]}
           >
             <Text style={{ fontWeight: "bold" }}>Duration:</Text>{" "}
