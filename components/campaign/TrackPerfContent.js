@@ -16,7 +16,9 @@ function TrackPerfContent({
   status,
   title,
   flag_banner,
-  promotedOrders
+  promotedOrders,
+  discount,
+  revenue
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
 
@@ -74,6 +76,8 @@ function TrackPerfContent({
             status={status}
             flag_banner={flag_banner}
             promotedOrders={promotedOrders}
+            revenue={revenue}
+            discount={discount}
           />
         </View>
       )}

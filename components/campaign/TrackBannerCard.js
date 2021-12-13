@@ -4,7 +4,14 @@ import TrackPerfHead from "./TrackPerfHead";
 import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./campaign.styles";
 import { DARKGRAY } from "../../Colors";
-export default function TrackBannerCard({ banner, flag_banner,promotedOrders }) {
+import { Button } from "react-native-paper";
+export default function TrackBannerCard({
+  banner,
+  flag_banner,
+  promotedOrders,
+  revenue,
+  discount,
+}) {
   const {
     promo_code,
     category,
@@ -45,7 +52,9 @@ export default function TrackBannerCard({ banner, flag_banner,promotedOrders }) 
       />
       {status === "Active" ? (
         <>
-          <View style={{ marginVertical: 12, backgroundColor: "#ddd" }} />
+          <View style={{ marginVertical: 12, backgroundColor: "#ddd" }}>
+          <Button mode="text">CANCEL</Button>
+          </View>
 
           <View
             style={[
@@ -82,8 +91,8 @@ export default function TrackBannerCard({ banner, flag_banner,promotedOrders }) 
           >
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> ${155}</Text>
-              <Text style={styles.smallText}> Total Revenue</Text>
+              <Text style={styles.bigText}> ${revenue}</Text>
+              <Text style={styles.smallText}> Total Income</Text>
             </View>
           </View>
 
@@ -101,8 +110,8 @@ export default function TrackBannerCard({ banner, flag_banner,promotedOrders }) 
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> {promotedOrders.length}</Text>
-              <Text style={styles.smallText}> Total Clicks</Text>
+              <Text style={styles.bigText}> ${revenue - discount}</Text>
+              <Text style={styles.smallText}> Total Revenue</Text>
             </View>
           </View>
 
