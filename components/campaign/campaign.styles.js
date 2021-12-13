@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   smallText: {
     fontWeight: "bold",
     color: DARKGRAY,
-    lineHeight:20,
+    lineHeight: 20,
     fontSize: 14,
     marginVertical: 2,
   },
@@ -111,7 +111,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     color: "#ddd",
-    lineHeight:20,
+    lineHeight: 20,
     fontSize: 14,
     marginHorizontal: 18,
     textAlign: "justify",
@@ -120,23 +120,21 @@ export const styles = StyleSheet.create({
     color: "#FFF",
     fontWeight: "bold",
     fontSize: 16,
-    marginHorizontal:  18,
-    marginBottom:"2%"
+    marginHorizontal: 18,
+    marginBottom: "2%",
   },
   textContainer: {
     flexDirection: "row",
     marginHorizontal: 12,
-    marginLeft:20,
+    marginLeft: 20,
     alignItems: "baseline",
-    borderLeftColor:"#fff",
-    borderLeftWidth:1
+    borderLeftColor: "#fff",
+    borderLeftWidth: 1,
   },
-  checkContainer:{
+  checkContainer: {
     flexDirection: "row",
     marginHorizontal: 12,
     alignItems: "center",
-    
-
   },
   trackOutlet: {
     backgroundColor: PrimaryDark,

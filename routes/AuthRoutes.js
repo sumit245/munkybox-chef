@@ -18,6 +18,7 @@ import SelectBanners from "../components/campaign/SelectBanners";
 import CreateBanner from "../components/campaign/CreateBanner";
 import PreviewBanner from "../components/campaign/PreviewBanner";
 import TrackPerformance from "../components/campaign/TrackPerformance";
+import TrackCampaign from "../components/campaign/TrackCampaign"
 
 const Stack = createStackNavigator();
 
@@ -51,6 +52,7 @@ export default function AuthRoutes({ navigation }) {
       <Stack.Screen name="create_banner" component={CreateBanner} />
       <Stack.Screen name="preview_banner" component={PreviewBanner} />
       <Stack.Screen name="track" component={TrackPerformance} />
+      <Stack.Screen name="trackcampaign" component={TrackCampaign}/>
     </Stack.Navigator>
   );
 }
