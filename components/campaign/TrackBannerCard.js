@@ -11,6 +11,7 @@ export default function TrackBannerCard({
   promotedOrders,
   revenue,
   discountfromcoup,
+  unique
 }) {
   const {
     promo_code,
@@ -52,8 +53,8 @@ export default function TrackBannerCard({
       />
       {status === "Active" ? (
         <>
-          <View style={{ marginVertical: 12, backgroundColor: "#ddd" }}>
-          <Button mode="text">CANCEL</Button>
+          <View style={{ marginVertical: -16,alignItems:"flex-start" }}>
+          <Button mode="text" style={{backgroundColor:"#fff"}} color="#f00" >CANCEL</Button>
           </View>
 
           <View
@@ -92,7 +93,7 @@ export default function TrackBannerCard({
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> ${revenue}</Text>
-              <Text style={styles.smallText}> Total Income</Text>
+              <Text style={styles.smallText}> Total Base Income</Text>
             </View>
           </View>
 
@@ -110,8 +111,8 @@ export default function TrackBannerCard({
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> ${revenue - discountfromcoup}</Text>
-              <Text style={styles.smallText}> Total Revenue</Text>
+              <Text style={styles.bigText}> ${discountfromcoup}</Text>
+              <Text style={styles.smallText}> Total Discount Paid</Text>
             </View>
           </View>
 
@@ -127,7 +128,7 @@ export default function TrackBannerCard({
           >
             <Icon name="person-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> {1}</Text>
+              <Text style={styles.bigText}> {unique.length}</Text>
               <Text style={styles.smallText}> Total Users</Text>
             </View>
           </View>

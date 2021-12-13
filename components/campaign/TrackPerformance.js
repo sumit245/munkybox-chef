@@ -19,6 +19,7 @@ export default function TrackPerformance({ route, navigation }) {
   const [proms, setPromotedOrders] = useState([]);
   const [revenue, setRevenue] = useState(0);
   const [discount, setDiscount] = useState(0);
+  const[unique,setUnique]=useState(0)
   const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
   const { notcoupon, title } = route.params;
   let address = locality + ", " + city + ", " + state;
@@ -28,11 +29,12 @@ export default function TrackPerformance({ route, navigation }) {
         restaurant
     );
     const { data } = response;
-    const { coupons, promotedOrders, revenue, discount } = data;
+    const { coupons, promotedOrders, revenue, discount,unique } = data;
     setCoupon(coupons);
     setPromotedOrders(promotedOrders);
     setRevenue(revenue);
     setDiscount(discount);
+    setUnique(unique)
   };
   const fetchMyBanner = async (restaurant) => {
     const response = await axios.get(
@@ -110,6 +112,7 @@ export default function TrackPerformance({ route, navigation }) {
             title={title}
             revenue={revenue}
             discount={discount}
+            unique={unique}
           />
         );
 
