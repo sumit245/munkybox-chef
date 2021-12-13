@@ -77,7 +77,7 @@ function TrackPerfContent({
             flag_banner={flag_banner}
             promotedOrders={promotedOrders}
             revenue={revenue}
-            discount={discount}
+            discountfromcoup={discount}
           />
         </View>
       )}

@@ -10,7 +10,7 @@ export default function TrackBannerCard({
   flag_banner,
   promotedOrders,
   revenue,
-  discount,
+  discountfromcoup,
 }) {
   const {
     promo_code,
@@ -110,7 +110,7 @@ export default function TrackBannerCard({
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> ${revenue - discount}</Text>
+              <Text style={styles.bigText}> ${revenue - discountfromcoup}</Text>
               <Text style={styles.smallText}> Total Revenue</Text>
             </View>
           </View>
