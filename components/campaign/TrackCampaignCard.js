@@ -21,7 +21,7 @@ export default function TrackCampaignCard({ banner, status }) {
     >
       <TrackCampaignHead
         advert_id={banner.promo_id}
-        category={banner.category}
+        category={banner.meal_plan}
         plan_name={banner.promo_code}
         plan={banner.plan_name}
         rpc={banner.rpc}
@@ -94,7 +94,7 @@ export default function TrackCampaignCard({ banner, status }) {
           {
             padding: 4,
             alignItems: "center",
-            
+
             borderBottomColor: "#999",
             borderBottomWidth: 0.2,
           },
@@ -113,26 +113,6 @@ export default function TrackCampaignCard({ banner, status }) {
           {
             padding: 4,
             alignItems: "center",
-            
-            borderBottomColor: "#999",
-            borderBottomWidth: 0.2,
-          },
-        ]}
-      >
-        <Icon name="analytics-outline" size={24} color={DARKGRAY} />
-        <View style={{ marginLeft: 8 }}>
-          <Text style={styles.bigText}>$1</Text>
-          <Text style={styles.smallText}> Total Due</Text>
-        </View>
-      </View>
-
-      <View
-        style={[
-          styles.textContainer,
-          {
-            padding: 4,
-            alignItems: "center",
-            
           },
         ]}
       >
