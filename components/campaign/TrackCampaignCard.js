@@ -14,9 +14,6 @@ export default function TrackCampaignCard({ banner, status }) {
         borderWidth: 0.5,
         borderColor: DARKGRAY,
         borderRadius: 2,
-        justifyContent: "space-between",
-        flex: 1,
-        
       }}
     >
       <TrackCampaignHead
