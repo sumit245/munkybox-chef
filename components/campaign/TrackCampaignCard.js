@@ -14,8 +14,7 @@ export default function TrackCampaignCard({ banner, status }) {
         borderWidth: 0.5,
         borderColor: DARKGRAY,
         borderRadius: 2,
-        justifyContent: "space-between",
-        flex: 1,
+        
         
       }}
     >
@@ -37,6 +36,7 @@ export default function TrackCampaignCard({ banner, status }) {
         style={[
           styles.textContainer,
           {
+            marginTop:20,
             alignItems: "center",
             borderBottomColor: "#999",
             borderBottomWidth: 0.2,
@@ -72,6 +72,7 @@ export default function TrackCampaignCard({ banner, status }) {
         style={[
           styles.textContainer,
           {
+
             alignItems: "center",
             borderBottomColor: "#999",
             borderBottomWidth: 0.2,
