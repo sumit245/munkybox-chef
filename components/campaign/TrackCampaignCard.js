@@ -1,10 +1,8 @@
 import React from "react";
 import { Text, View } from "react-native";
-import TrackPerfHead from "./TrackPerfHead";
 import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./campaign.styles";
 import { DARKGRAY } from "../../Colors";
-import { Button } from "react-native-paper";
 import TrackCampaignHead from "./TrackCampaignHead";
 export default function TrackCampaignCard({ banner, status }) {
   return (
@@ -30,10 +28,17 @@ export default function TrackCampaignCard({ banner, status }) {
         status={banner.status}
       />
 
+      <View style={{ marginTop: 16,marginHorizontal:22 }}>
+        <Text style={{ fontWeight: "bold", fontSize: 16, color: "#22ccff" }}>
+          Due: $1
+        </Text>
+      </View>
+
       <View
         style={[
           styles.textContainer,
           {
+            marginTop: 8,
             alignItems: "center",
             borderBottomColor: "#999",
             borderBottomWidth: 0.2,
@@ -41,7 +46,6 @@ export default function TrackCampaignCard({ banner, status }) {
         ]}
       >
         <Icon name="cart-outline" size={24} color={DARKGRAY} />
-
         <View style={{ marginLeft: 8 }}>
           <Text style={styles.bigText}>1</Text>
           <Text style={styles.smallText}> Total Orders</Text>
@@ -60,7 +64,7 @@ export default function TrackCampaignCard({ banner, status }) {
       >
         <Icon name="cash-outline" size={24} color={DARKGRAY} />
         <View style={{ marginLeft: 8 }}>
-          <Text style={styles.bigText}>1</Text>
+          <Text style={styles.bigText}>$75</Text>
           <Text style={styles.smallText}> Total Base Income</Text>
         </View>
       </View>
@@ -77,10 +81,11 @@ export default function TrackCampaignCard({ banner, status }) {
       >
         <Icon name="analytics-outline" size={24} color={DARKGRAY} />
         <View style={{ marginLeft: 8 }}>
-          <Text style={styles.bigText}>1</Text>
+          <Text style={styles.bigText}>$10</Text>
           <Text style={styles.smallText}> Total Discount Paid</Text>
         </View>
       </View>
+
       <View
         style={[
           styles.textContainer,
