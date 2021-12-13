@@ -12,7 +12,7 @@ export default function Growth({ navigation }) {
     });
   };
   const viewAds = () => {
-    return null;
+    return null; //insert here
   };
   const trackCoupon = () => {
     navigation.navigate("track", {
