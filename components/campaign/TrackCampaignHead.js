@@ -18,7 +18,7 @@ export default function TrackCampaignHead({
   status,
   flag_banner,
 }) {
-  let remaining = moment(end_date).diff(start_date, "Days");
+  let remaining = moment(end_date).diff(moment(), "Days");
 
   return (
     <View style={styles.trackHead}>
@@ -79,7 +79,7 @@ export default function TrackCampaignHead({
           </Text>
         </View>
         <Text style={[styles.smallText, { color: "#fff", lineHeight: 16 }]}>
-          {day}
+          {day} Days
         </Text>
         <View style={styles.progressDonught}>
           <Text style={{ fontWeight: "bold", fontSize: 14 }}>{remaining}</Text>
