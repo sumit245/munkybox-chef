@@ -72,11 +72,10 @@ export default function TrackCampaign({ route, navigation }) {
   }, []);
 
   const inactivebanners = {
-    advert_id: "ADVERT001",
+    promo_id: "ADVERT001",
     plan: "Gold",
     start: "22/10/2021",
     end: "20/11/2021",
-    advert_id: "ADVERT001",
     order: 1,
     revenue: 80,
     clicks: 1,
@@ -123,14 +122,7 @@ export default function TrackCampaign({ route, navigation }) {
         );
 
       case "second":
-        return (
-          <TrackPerfContent
-            restaurant={restaurant_name}
-            address={address}
-            banners={inactivebanners}
-            status={route.title}
-          />
-        );
+        return null
 
       default:
         break;
