@@ -198,7 +198,7 @@ export const styles = StyleSheet.create({
     padding: 4,
     marginTop: "2%",
     alignItems: "center",
-    marginVertical: 2,
+    marginVertical: "4%",
     borderBottomColor: "#999",
     borderBottomWidth: 0.2,
     flexDirection: "row",
