@@ -7,13 +7,11 @@ import { DARKGRAY } from "../../Colors";
 import { Button } from "react-native-paper";
 export default function TrackBannerCard({
   banner,
-  flag_banner,
   promotedOrders,
   revenue,
   discountfromcoup,
-  unique
+  unique,
 }) {
-  
   const {
     promo_code,
     category,
@@ -50,12 +48,17 @@ export default function TrackBannerCard({
         end_date={end_date}
         day={duration}
         status={status}
-        flag_banner={flag_banner}
       />
       {status === "Active" ? (
         <>
-          <View style={{ marginVertical: -16,alignItems:"flex-start" }}>
-          <Button mode="text" style={{backgroundColor:"#fff"}} color="#f00" >CANCEL</Button>
+          <View style={{ marginVertical: -16, alignItems: "flex-start" }}>
+            <Button
+              mode="text"
+              style={{ backgroundColor: "#fff" }}
+              color="#f00"
+            >
+              CANCEL
+            </Button>
           </View>
 
           <View

@@ -15,7 +15,7 @@ export default function TrackPerformance({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [coupon, setCoupon] = useState({});
   const [banner, setBanner] = useState({});
-  const [flag_banner, setFlagBanner] = useState(false);
+  const [inactive, setInactive] = useState([]);
   const [proms, setPromotedOrders] = useState([]);
   const [revenue, setRevenue] = useState(0);
   const [discount, setDiscount] = useState(0);
@@ -32,24 +32,22 @@ export default function TrackPerformance({ route, navigation }) {
     );
     const { data } = response;
     const { coupons, promotedOrders, revenue, discount, unique } = data;
-    setCoupon(coupons);
+    const active =
+      Array.isArray(coupons) &&
+      coupons.filter((item) => item.status === "Active");
+    const inactive =
+      Array.isArray(coupons) &&
+      coupons.filter((item) => item.status === "Active");
+    setCoupon(active);
+    setInactive(inactive);
     setPromotedOrders(promotedOrders);
     setRevenue(revenue);
     setDiscount(discount);
     setUnique(unique);
-  };
-  const fetchMyBanner = async (restaurant) => {
-    const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant
-    );
-    const { data } = response;
-    setBanner(data);
-    setFlagBanner(true);
     setloaded(true);
   };
   useEffect(() => {
     fetchMyCoupon(restaurant_id);
-    fetchMyBanner(restaurant_id);
   }, [restaurant_id]);
 
   const [index, setIndex] = React.useState(0);
@@ -78,11 +76,9 @@ export default function TrackPerformance({ route, navigation }) {
             restaurant={restaurant_name}
             address={address}
             loaded={loaded}
-            banners={title === "Coupons" ? coupon[0] : banner[0]}
+            banners={coupon[0]}
             promotedOrders={proms}
-            flag_banner={flag_banner}
             status={route.title}
-            notcoupons={notcoupon}
             title={title}
             revenue={revenue}
             discount={discount}
@@ -91,7 +87,20 @@ export default function TrackPerformance({ route, navigation }) {
         );
 
       case "second":
-        return null;
+        return (
+          <TrackPerfContent
+            restaurant={restaurant_name}
+            address={address}
+            loaded={loaded}
+            banners={inactive[0]}
+            promotedOrders={proms}
+            status={route.title}
+            title={title}
+            revenue={revenue}
+            discount={discount}
+            unique={unique}
+          />
+        );
 
       default:
         break;
