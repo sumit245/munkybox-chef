@@ -187,7 +187,6 @@ export const styles = StyleSheet.create({
     borderColor: DARKGRAY,
     borderRadius: 2,
     justifyContent: "space-between",
-    flex: 1,
     marginBottom: "20%",
   },
   bannerHeadTexts: {

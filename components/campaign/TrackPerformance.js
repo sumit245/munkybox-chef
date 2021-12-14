@@ -75,6 +75,7 @@ export default function TrackPerformance({ route, navigation }) {
           <TrackPerfContent
             restaurant={restaurant_name}
             address={address}
+            active={true}
             loaded={loaded}
             banners={coupon[0]}
             promotedOrders={proms}
@@ -87,11 +88,11 @@ export default function TrackPerformance({ route, navigation }) {
         );
 
       case "second":
-        // return null;
         return (
           <TrackPerfContent
             restaurant={restaurant_name}
             address={address}
+            active={false}
             loaded={loaded}
             banners={inactive[0]}
             promotedOrders={proms}
