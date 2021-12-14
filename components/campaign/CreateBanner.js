@@ -262,7 +262,7 @@ export default function CreateBanner({ route, navigation }) {
                 }}
               />
               <View style={styles.btnGroup}>
-                <RadioButton.Android value="15 Meals " color="#226ccf" />
+                <RadioButton.Android value="15 Meals" color="#226ccf" />
                 <Text style={styles.bigText}>15 Meals</Text>
               </View>
               <View

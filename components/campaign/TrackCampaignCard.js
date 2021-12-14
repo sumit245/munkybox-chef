@@ -46,7 +46,7 @@ export default function TrackCampaignCard({ banner, status, stat }) {
 
       <View style={{ marginTop: 16, marginHorizontal: 22 }}>
         <Text style={{ fontWeight: "bold", fontSize: 16, color: "#22ccff" }}>
-          Due: $1
+          Due: ${due}
         </Text>
       </View>
 
