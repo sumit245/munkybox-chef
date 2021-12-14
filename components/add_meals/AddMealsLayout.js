@@ -5,7 +5,7 @@ import HeaderTabSwitch from "../header/HeaderTabSwitch";
 import ToggleLunchDinner from "../header/ToggleLunchDinner";
 import { Divider } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
-import { View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { styles } from "../../styles/headerstyle";
 
 const slots = ["Lunch", "Dinner"];
@@ -20,7 +20,7 @@ export default function AddMealsLayout() {
     return null;
   };
   return (
-    <>
+    <SafeAreaView style={{flex:1}}>
       <Header title={"Add Meal"}>
         <View style={styles.switch}>
           <ToggleLunchDinner />
@@ -29,6 +29,6 @@ export default function AddMealsLayout() {
       <Divider />
       <HeaderTabSwitch items={days} handler={handler} />
       <AddMealForm meal={meals[index]} />
-    </>
+    </SafeAreaView>
   );
 }
