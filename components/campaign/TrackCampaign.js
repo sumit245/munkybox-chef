@@ -7,7 +7,6 @@ import { PrimaryDark, SecondaryColor } from "../../Colors";
 import { useSelector } from "react-redux";
 import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
-import TrackPerfContent from "./TrackPerfContent";
 import axios from "axios";
 import TrackCampaignContent from "./TrackCampaignContent";
 import Loader from "../../helpers/Loader";
@@ -52,7 +51,8 @@ export default function TrackCampaign({ route, navigation }) {
       "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant
     );
     const { data } = response;
-    setBanner(data);
+    console.log(data);
+    setBanner(data[0]);
   };
 
   const fetchMyStats = async (restaurant) => {
@@ -108,9 +108,10 @@ export default function TrackCampaign({ route, navigation }) {
       case "first":
         return (
           <TrackCampaignContent
+            loaded={loaded}
             restaurant={restaurant_name}
             address={address}
-            banners={banner[0]}
+            banners={banner}
             promotedOrders={proms}
             status={route.title}
             title={title}
@@ -122,7 +123,7 @@ export default function TrackCampaign({ route, navigation }) {
         );
 
       case "second":
-        return null
+        return null;
 
       default:
         break;
