@@ -114,7 +114,7 @@ function TrackPerfContent({
             {/* bannercard top area */}
             {active && (
               <View>
-                <View style={{ alignItems: "flex-start" }}>
+                <View style={{ alignItems: "flex-start",marginTop:16 }}>
                   <Button
                     mode="text"
                     style={{ backgroundColor: "#fff" }}
