@@ -21,6 +21,7 @@ export default function TrackCampaign({ route, navigation }) {
   const [revenue, setRevenue] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [unique, setUnique] = useState(0);
+  const [stat, setStat] = useState({});
   const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
   const { title } = route.params;
   let address = locality + ", " + city + ", " + state;
@@ -34,8 +35,19 @@ export default function TrackCampaign({ route, navigation }) {
     setLoaded(true);
   };
 
+  const fetchMyStats = async (restaurant) => {
+    setLoaded(false);
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
+        restaurant
+    );
+    const { data } = response;
+    setStat(data);
+    setLoaded(true);
+  };
   useEffect(() => {
     fetchMyBanner(restaurant_id);
+    fetchMyStats(restaurant_id);
   }, [restaurant_id]);
 
   const inactivebanners = {
@@ -85,6 +97,7 @@ export default function TrackCampaign({ route, navigation }) {
             revenue={revenue}
             discount={discount}
             unique={unique}
+            stat={stat}
           />
         );
 

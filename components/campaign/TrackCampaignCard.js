@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./campaign.styles";
 import { DARKGRAY } from "../../Colors";
 import TrackCampaignHead from "./TrackCampaignHead";
-export default function TrackCampaignCard({ banner, status }) {
+
+export default function TrackCampaignCard({ banner, status, stat }) {
+  const [totalOrders, setTotalOrders] = useState(0);
+  const [due, setDue] = useState(0);
+  const [clicks, setClicks] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [revenue, setRevenue] = useState(0);
+  const [users, setUsers] = useState(0);
+  useEffect(() => {
+    const { totalOrders, due, clicks, discount, revenue, users } = stat;
+    setTotalOrders(totalOrders);
+    setDue(due);
+    setClicks(clicks);
+    setDiscount(discount);
+    setRevenue(revenue);
+    setUsers(users);
+  }, []);
   return (
     <View
       style={{
@@ -28,7 +44,7 @@ export default function TrackCampaignCard({ banner, status }) {
         status={banner.status}
       />
 
-      <View style={{ marginTop: 16,marginHorizontal:22 }}>
+      <View style={{ marginTop: 16, marginHorizontal: 22 }}>
         <Text style={{ fontWeight: "bold", fontSize: 16, color: "#22ccff" }}>
           Due: $1
         </Text>
@@ -47,7 +63,7 @@ export default function TrackCampaignCard({ banner, status }) {
       >
         <Icon name="cart-outline" size={24} color={DARKGRAY} />
         <View style={{ marginLeft: 8 }}>
-          <Text style={styles.bigText}>1</Text>
+          <Text style={styles.bigText}>{totalOrders}</Text>
           <Text style={styles.smallText}> Total Orders</Text>
         </View>
       </View>
@@ -64,7 +80,7 @@ export default function TrackCampaignCard({ banner, status }) {
       >
         <Icon name="cash-outline" size={24} color={DARKGRAY} />
         <View style={{ marginLeft: 8 }}>
-          <Text style={styles.bigText}>$75</Text>
+          <Text style={styles.bigText}>${revenue}</Text>
           <Text style={styles.smallText}> Total Base Income</Text>
         </View>
       </View>
@@ -81,7 +97,7 @@ export default function TrackCampaignCard({ banner, status }) {
       >
         <Icon name="analytics-outline" size={24} color={DARKGRAY} />
         <View style={{ marginLeft: 8 }}>
-          <Text style={styles.bigText}>$10</Text>
+          <Text style={styles.bigText}>${discount}</Text>
           <Text style={styles.smallText}> Total Discount Paid</Text>
         </View>
       </View>
@@ -98,7 +114,7 @@ export default function TrackCampaignCard({ banner, status }) {
       >
         <Icon name="analytics-outline" size={24} color={DARKGRAY} />
         <View style={{ marginLeft: 8 }}>
-          <Text style={styles.bigText}>1</Text>
+          <Text style={styles.bigText}>{clicks}</Text>
           <Text style={styles.smallText}> Total Clicks</Text>
         </View>
       </View>
@@ -113,7 +129,7 @@ export default function TrackCampaignCard({ banner, status }) {
       >
         <Icon name="person-outline" size={24} color={DARKGRAY} />
         <View style={{ marginLeft: 8 }}>
-          <Text style={styles.bigText}>1</Text>
+          <Text style={styles.bigText}>{users}</Text>
           <Text style={styles.smallText}> Total Users</Text>
         </View>
       </View>

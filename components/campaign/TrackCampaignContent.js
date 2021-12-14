@@ -6,7 +6,14 @@ import { SecondaryLightColor } from "../../Colors";
 import { styles } from "./campaign.styles";
 import TrackCampaignCard from "./TrackCampaignCard";
 
-function TrackCampaignContent({ restaurant, address, banners, status, title }) {
+function TrackCampaignContent({
+  restaurant,
+  address,
+  banners,
+  status,
+  title,
+  stat,
+}) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
 
   return (
@@ -42,7 +49,7 @@ function TrackCampaignContent({ restaurant, address, banners, status, title }) {
       </View>
       <View style={{ flex: 1, marginVertical: 4 }}>
         <Text style={[styles.listing]}>{title}</Text>
-        <TrackCampaignCard banner={banners} status={status} />
+        <TrackCampaignCard banner={banners} status={status} stat={stat} />
       </View>
 
       {/* </ScrollView> */}
