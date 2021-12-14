@@ -11,7 +11,6 @@ function TrackPerfContent({
   restaurant,
   address,
   banners,
-  status,
   title,
   promotedOrders,
   discountfromcoup,
@@ -29,12 +28,11 @@ function TrackPerfContent({
     start_date: "",
     end_date: "",
     category: "",
-    status:""
+    status: "",
   });
   let remaining = moment(banners.end_date).diff(moment(), "Days");
   useEffect(() => {
     let mount = true;
-    console.log(banners.status);
     setBanner(banners);
     return () => {
       mount = false;
@@ -91,7 +89,6 @@ function TrackPerfContent({
                 style={[
                   styles.heading,
                   {
-                    fontSize: 14,
                     marginLeft: 0,
                     lineHeight: 16,
                     marginVertical: 0,
