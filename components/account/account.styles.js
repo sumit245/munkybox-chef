@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
     flex:1,
     borderBottomColor: DARKGRAY,
     fontSize: 16,
-    
+    marginHorizontal:"4%"
   },
   planContainer:{flexDirection:"row",marginHorizontal:"4%",alignItems:"center",marginVertical:4},
   label: {
