@@ -52,36 +52,6 @@ export default function TrackPerformance({ route, navigation }) {
     fetchMyBanner(restaurant_id);
   }, [restaurant_id]);
 
-  const banners = {
-    advert_id: "ADVERT001",
-    plan: "Gold",
-    start: "22/10/2021",
-    end: "20/11/2021",
-    advert_id: "ADVERT001",
-    order: 1,
-    revenue: 80,
-    clicks: 1,
-    users: 1,
-    day: 30,
-    due: 0.75,
-    status: "active",
-  };
-
-  const inactivebanners = {
-    advert_id: "ADVERT001",
-    plan: "Gold",
-    start: "22/10/2021",
-    end: "20/11/2021",
-    advert_id: "ADVERT001",
-    order: 1,
-    revenue: 80,
-    clicks: 1,
-    users: 1,
-    day: 30,
-    due: 0.75,
-    status: "inactive",
-  };
-
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: "first", title: "active" },
@@ -107,6 +77,7 @@ export default function TrackPerformance({ route, navigation }) {
           <TrackPerfContent
             restaurant={restaurant_name}
             address={address}
+            loaded={loaded}
             banners={title === "Coupons" ? coupon[0] : banner[0]}
             promotedOrders={proms}
             flag_banner={flag_banner}
@@ -120,14 +91,7 @@ export default function TrackPerformance({ route, navigation }) {
         );
 
       case "second":
-        return (
-          <TrackPerfContent
-            restaurant={restaurant_name}
-            address={address}
-            banners={inactivebanners}
-            status={route.title}
-          />
-        );
+        return null;
 
       default:
         break;

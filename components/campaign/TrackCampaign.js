@@ -7,7 +7,6 @@ import { PrimaryDark, SecondaryColor } from "../../Colors";
 import { useSelector } from "react-redux";
 import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
-import TrackPerfContent from "./TrackPerfContent";
 import axios from "axios";
 import TrackCampaignContent from "./TrackCampaignContent";
 import Loader from "../../helpers/Loader";
@@ -52,6 +51,7 @@ export default function TrackCampaign({ route, navigation }) {
       "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant
     );
     const { data } = response;
+    console.log(data);
     setBanner(data);
   };
 
@@ -76,7 +76,6 @@ export default function TrackCampaign({ route, navigation }) {
     plan: "Gold",
     start: "22/10/2021",
     end: "20/11/2021",
-    advert_id: "ADVERT001",
     order: 1,
     revenue: 80,
     clicks: 1,
@@ -109,9 +108,10 @@ export default function TrackCampaign({ route, navigation }) {
       case "first":
         return (
           <TrackCampaignContent
+            loaded={loaded}
             restaurant={restaurant_name}
             address={address}
-            banners={banner[0]}
+            banners={banner}
             promotedOrders={proms}
             status={route.title}
             title={title}
@@ -123,14 +123,7 @@ export default function TrackCampaign({ route, navigation }) {
         );
 
       case "second":
-        return (
-          <TrackPerfContent
-            restaurant={restaurant_name}
-            address={address}
-            banners={inactivebanners}
-            status={route.title}
-          />
-        );
+        return null;
 
       default:
         break;

@@ -13,6 +13,7 @@ export default function TrackBannerCard({
   discountfromcoup,
   unique
 }) {
+  
   const {
     promo_code,
     category,
