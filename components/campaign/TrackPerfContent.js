@@ -30,15 +30,19 @@ function TrackPerfContent({
     category: "",
     status: "",
   });
-  let remaining = moment(banners.end_date).diff(moment(), "Days");
+  
+  const [loaded,setLoaded]=useState(false)
+  let remaining = moment(banner.end_date).diff(moment(), "Days");
   useEffect(() => {
     let mount = true;
     setBanner(banners);
+    
+    setLoaded(true)
     return () => {
       mount = false;
     };
   }, [banners]);
-
+if(loaded){
   return (
     <View style={[styles.container, { backgroundColor: "#fff" }]}>
       <View style={styles.trackOutlet}>
@@ -89,7 +93,7 @@ function TrackPerfContent({
             </View>
 
             <View style={styles.progressCounter}>
-              <Text style={[styles.bannerHeadTexts, { marginTop: "60%" }]}>
+              <Text style={[styles.bannerHeadTexts, { marginTop:36,marginBottom:4}]}>
                 {banner.duration}
               </Text>
               <View style={styles.progressDonught}>
@@ -155,5 +159,8 @@ function TrackPerfContent({
       {/* Bottom Text */}
     </View>
   );
+        }else{
+          return null
+        }
 }
 export default React.memo(TrackPerfContent);

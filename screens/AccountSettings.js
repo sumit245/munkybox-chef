@@ -20,8 +20,8 @@ export default function AccountSettings({ navigation }) {
           justifyContent: "space-between",
         }}
       >
-        <Profile />
         <View>
+        <Profile />
           <BankAccount />
           <Plans />
           <Addmeals navigation={navigation} />
