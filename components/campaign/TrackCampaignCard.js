@@ -14,15 +14,15 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
   const [users, setUsers] = useState(0);
   useEffect(() => {
     const { totalOrders, due, clicks, discount, revenue, users } = stat;
-    console.log(banner);
+    console.log("from card",banner);
     setTotalOrders(totalOrders);
     setDue(due);
     setClicks(clicks);
     setDiscount(discount);
     setRevenue(revenue);
     setUsers(users);
-  }, []);
-  
+  }, [stat]);
+  if (loaded && typeof banner !== "undefined") {
     return (
       <View
         style={{
@@ -32,22 +32,19 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
           borderRadius: 2,
         }}
       >
-        {loaded && (
-          <TrackCampaignHead
-            advert_id={banner.promo_id}
-            category={banner.meal_plan}
-            plan_name={banner.promo_code}
-            plan={banner.plan_name}
-            rpc={banner.rpc}
-            discount={banner.discount}
-            discount_type={banner.discount_type}
-            start_date={banner.start_date}
-            end_date={banner.end_date}
-            day={banner.duration}
-            status={banner.status}
-          />
-        )}
-
+        <TrackCampaignHead
+          advert_id={banner.promo_id}
+          category={banner.meal_plan}
+          plan_name={banner.promo_code}
+          plan={banner.plan_name}
+          rpc={banner.rpc}
+          discount={banner.discount}
+          discount_type={banner.discount_type}
+          start_date={banner.start_date}
+          end_date={banner.end_date}
+          day={banner.duration}
+          status={banner.status}
+        />
         <View style={{ marginTop: 16, marginHorizontal: 22 }}>
           <Text style={{ fontWeight: "bold", fontSize: 16, color: "#22ccff" }}>
             Due: ${due}
@@ -139,4 +136,7 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
         </View>
       </View>
     );
+  } else {
+    return null;
+  }
 }
