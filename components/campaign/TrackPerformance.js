@@ -19,22 +19,24 @@ export default function TrackPerformance({ route, navigation }) {
   const [proms, setPromotedOrders] = useState([]);
   const [revenue, setRevenue] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const[unique,setUnique]=useState(0)
+  const [loaded, setloaded] = useState(false);
+  const [unique, setUnique] = useState(0);
   const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
   const { notcoupon, title } = route.params;
   let address = locality + ", " + city + ", " + state;
+
   const fetchMyCoupon = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
         restaurant
     );
     const { data } = response;
-    const { coupons, promotedOrders, revenue, discount,unique } = data;
+    const { coupons, promotedOrders, revenue, discount, unique } = data;
     setCoupon(coupons);
     setPromotedOrders(promotedOrders);
     setRevenue(revenue);
     setDiscount(discount);
-    setUnique(unique)
+    setUnique(unique);
   };
   const fetchMyBanner = async (restaurant) => {
     const response = await axios.get(
@@ -43,6 +45,7 @@ export default function TrackPerformance({ route, navigation }) {
     const { data } = response;
     setBanner(data);
     setFlagBanner(true);
+    setloaded(true);
   };
   useEffect(() => {
     fetchMyCoupon(restaurant_id);
@@ -130,23 +133,27 @@ export default function TrackPerformance({ route, navigation }) {
         break;
     }
   };
-  return (
-    <SafeAreaView style={styles.container}>
-      <HeaderTwo title="History" navigation={navigation}>
-        <Icon
-          name="options-outline"
-          size={20}
-          color={SecondaryColor}
-          style={{ paddingRight: 6 }}
+  if (loaded) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <HeaderTwo title="History" navigation={navigation}>
+          <Icon
+            name="options-outline"
+            size={20}
+            color={SecondaryColor}
+            style={{ paddingRight: 6 }}
+          />
+        </HeaderTwo>
+        <TabView
+          navigationState={{ index, routes }}
+          renderScene={renderScene}
+          onIndexChange={setIndex}
+          renderTabBar={renderTabBar}
+          initialLayout={{ width: layout.width }}
         />
-      </HeaderTwo>
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        renderTabBar={renderTabBar}
-        initialLayout={{ width: layout.width }}
-      />
-    </SafeAreaView>
-  );
+      </SafeAreaView>
+    );
+  } else {
+    return null;
+  }
 }

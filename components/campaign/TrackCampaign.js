@@ -22,9 +22,30 @@ export default function TrackCampaign({ route, navigation }) {
   const [discount, setDiscount] = useState(0);
   const [unique, setUnique] = useState(0);
   const [stat, setStat] = useState({});
-  const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
+  const [restaurant_name, setRestaurant] = useState("");
+  const [city, setCity] = useState("");
+  const [locality, setLocality] = useState("");
+  const [state, setprovice] = useState("");
+  const [restaurant_id, setRestaurantID] = useState("");
+
   const { title } = route.params;
   let address = locality + ", " + city + ", " + state;
+
+  useEffect(() => {
+    let compount = true;
+    if (compount) {
+      const { restaurant_name, city, locality, state, restaurant_id } =
+        restaurant;
+      setRestaurant(restaurant_name);
+      setCity(city);
+      setLocality(locality);
+      setprovice(state);
+      setRestaurantID(restaurant_id);
+    }
+    return () => {
+      compount = false;
+    };
+  }, []);
 
   const fetchMyBanner = async (restaurant) => {
     const response = await axios.get(
@@ -32,7 +53,6 @@ export default function TrackCampaign({ route, navigation }) {
     );
     const { data } = response;
     setBanner(data);
-    setLoaded(true);
   };
 
   const fetchMyStats = async (restaurant) => {
@@ -42,14 +62,14 @@ export default function TrackCampaign({ route, navigation }) {
         restaurant
     );
     const { data } = response;
-    console.log(data);
     setStat(data);
     setLoaded(true);
   };
+
   useEffect(() => {
     fetchMyBanner(restaurant_id);
     fetchMyStats(restaurant_id);
-  }, [restaurant_id]);
+  }, []);
 
   const inactivebanners = {
     advert_id: "ADVERT001",
