@@ -60,11 +60,11 @@ export const styles = StyleSheet.create({
     marginHorizontal: "1%",
   },
   inputContainer: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.2,
     flex:1,
     borderBottomColor: DARKGRAY,
     fontSize: 16,
-    marginHorizontal:"4%"
+    marginHorizontal:"8%"
   },
   planContainer:{flexDirection:"row",marginHorizontal:"4%",alignItems:"center",marginVertical:4},
   label: {
