@@ -87,6 +87,7 @@ export default function TrackPerformance({ route, navigation }) {
         );
 
       case "second":
+        // return null;
         return (
           <TrackPerfContent
             restaurant={restaurant_name}

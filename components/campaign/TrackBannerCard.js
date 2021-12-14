@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { Text, View } from "react-native";
 import TrackPerfHead from "./TrackPerfHead";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -25,6 +26,7 @@ export default function TrackBannerCard({
     end_date,
     status,
   } = banner;
+  let remaining = moment(end_date).diff(moment(), "Days");
   return (
     <View
       style={{
@@ -37,18 +39,66 @@ export default function TrackBannerCard({
         marginBottom: "20%",
       }}
     >
-      <TrackPerfHead
-        advert_id={promo_id}
+      {/* <TrackPerfHead
+        promo_id={promo_id}
         category={category}
-        plan_name={promo_code}
-        plan={plan_name}
+        promo_code={promo_code}
+        plan_name={plan_name}
         discount={discount}
         discount_type={discount_type}
         start_date={start_date}
         end_date={end_date}
-        day={duration}
-        status={status}
-      />
+        duration={duration}
+      /> */}
+      <View style={styles.trackHead}>
+      <View>
+        <Text
+          style={[
+            styles.heading,
+            { fontSize: 14, marginLeft: 0, lineHeight: 16, marginVertical: 0 },
+          ]}
+        >
+          {promo_code} ({" "}
+          {discount_type === "$" ? "$" + discount : discount + "%"} OFF )
+        </Text>
+        <Text
+          style={[
+            styles.heading,
+            { fontSize: 14, marginLeft: 0, lineHeight: 16, marginVertical: 0 },
+          ]}
+        >
+          {plan_name}({category})
+        </Text>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text
+            style={[
+              styles.smallText,
+              { color: "#fff", lineHeight: 16, marginVertical: 0 },
+            ]}
+          >
+            <Text style={{ fontWeight: "bold" }}>Duration:</Text>{" "}
+            {start_date + "-" + end_date}
+          </Text>
+        </View>
+
+        <Text style={[styles.smallText, { color: "#fff", marginVertical: 0 }]}>
+          <Text style={{ fontWeight: "bold" }}>ID:</Text> {promo_id}{" "}
+        </Text>
+      </View>
+
+      <View style={styles.progressCounter}>
+        <View style={{ marginVertical: 20 }} />
+        <Text style={[styles.smallText, { color: "#fff", lineHeight: 16 }]}>
+          {duration}
+        </Text>
+        <View style={styles.progressDonught}>
+          <Text style={{ fontWeight: "bold", fontSize: 14 }}>{remaining}</Text>
+        </View>
+        <Text style={styles.smallText}>Days Left</Text>
+      </View>
+    </View>
+
+
       {status === "Active" ? (
         <>
           <View style={{ marginVertical: -16, alignItems: "flex-start" }}>
