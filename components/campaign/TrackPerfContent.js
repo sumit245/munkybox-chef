@@ -30,13 +30,13 @@ function TrackPerfContent({
     category: "",
     status: "",
   });
-  const [remaining,setRemaining]=useState(1)
+  
   const [loaded,setLoaded]=useState(false)
+  let remaining = moment(banner.end_date).diff(moment(), "Days");
   useEffect(() => {
     let mount = true;
     setBanner(banners);
-    let remaining = moment(banner.end_date).diff(moment(), "Days");
-    setRemaining(remaining)
+    
     setLoaded(true)
     return () => {
       mount = false;
@@ -93,7 +93,7 @@ if(loaded){
             </View>
 
             <View style={styles.progressCounter}>
-              <Text style={[styles.bannerHeadTexts, { marginTop: "60%" }]}>
+              <Text style={[styles.bannerHeadTexts, { marginTop:36,marginBottom:4}]}>
                 {banner.duration}
               </Text>
               <View style={styles.progressDonught}>
