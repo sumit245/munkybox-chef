@@ -147,21 +147,11 @@ function TrackPerfContent({
       </View>
       {/* Card area */}
 
-      <View
-        style={{
-          justifyContent: "flex-end",
-          padding: 4,
-        }}
-      >
-        <Text
-          style={[
-            styles.text,
-            { fontWeight: "bold", textAlign: "center", color: "#444" },
-          ]}
-        >
+      {/* <View> */}
+        <Text style={[styles.listing, { textAlign: "center" }]}>
           Last Updated: {timesnow}
         </Text>
-      </View>
+      {/* </View> */}
       {/* Bottom Text */}
     </View>
   );
