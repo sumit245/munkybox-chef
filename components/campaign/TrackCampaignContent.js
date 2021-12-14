@@ -16,9 +16,7 @@ function TrackCampaignContent({
   loaded,
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
-  console.log(banners);
-
-  if (loaded) {
+  if (loaded && typeof banners !=="undefined") {
     return (
       <View
         style={{
@@ -52,6 +50,7 @@ function TrackCampaignContent({
         </View>
         <View style={{ flex: 1, marginVertical: 4 }}>
           <Text style={[styles.listing]}>{title}</Text>
+
           <TrackCampaignCard
             banner={banners}
             status={status}

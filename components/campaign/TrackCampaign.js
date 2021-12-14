@@ -51,7 +51,6 @@ export default function TrackCampaign({ route, navigation }) {
       "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant
     );
     const { data } = response;
-    console.log(data);
     setBanner(data[0]);
   };
 
@@ -62,28 +61,16 @@ export default function TrackCampaign({ route, navigation }) {
         restaurant
     );
     const { data } = response;
-    setStat(data);
-    setLoaded(true);
+    if (typeof data !== "undefined") {
+      setStat(data);
+      setLoaded(true);
+    }
   };
 
   useEffect(() => {
     fetchMyBanner(restaurant_id);
     fetchMyStats(restaurant_id);
-  }, []);
-
-  const inactivebanners = {
-    promo_id: "ADVERT001",
-    plan: "Gold",
-    start: "22/10/2021",
-    end: "20/11/2021",
-    order: 1,
-    revenue: 80,
-    clicks: 1,
-    users: 1,
-    day: 30,
-    due: 0.75,
-    status: "inactive",
-  };
+  }, [restaurant_id]);
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -129,6 +116,7 @@ export default function TrackCampaign({ route, navigation }) {
         break;
     }
   };
+
   if (loaded) {
     return (
       <SafeAreaView style={styles.container}>
