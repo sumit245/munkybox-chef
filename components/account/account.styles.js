@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     width: "98%",
     marginHorizontal: "1%",
     borderBottomWidth: 0.5,
-    
     flexDirection: "row",
     borderBottomColor: "#ccc",
     backgroundColor: "#FFF",
@@ -70,13 +69,14 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: "bold",
+    marginBottom:4
   },
   labelContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginHorizontal: "4%",
     marginTop: 8,
-    marginVertical:4
+    marginVertical:8
   },
   centeredView: {
     flex: 1,
