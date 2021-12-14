@@ -42,6 +42,7 @@ export default function TrackCampaign({ route, navigation }) {
         restaurant
     );
     const { data } = response;
+    console.log(data);
     setStat(data);
     setLoaded(true);
   };
