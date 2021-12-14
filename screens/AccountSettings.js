@@ -16,7 +16,7 @@ export default function AccountSettings({ navigation }) {
       <ScrollView
         contentContainerStyle={{
           backgroundColor: "#fff",
-          // flex: 1,
+          flex: 1,
           justifyContent: "space-between",
         }}
       >
