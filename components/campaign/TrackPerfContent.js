@@ -40,13 +40,7 @@ function TrackPerfContent({
   }, [banners]);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "#fff",
-        justifyContent: "space-between",
-      }}
-    >
+    <View style={[styles.container, { backgroundColor: "#fff" }]}>
       <View style={styles.trackOutlet}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Shop name="shop" size={24} color={SecondaryLightColor} />
@@ -70,80 +64,32 @@ function TrackPerfContent({
           </View>
         </View>
       </View>
+      {/* Restaurant Details */}
+
       <View style={{ flex: 1, marginVertical: 4 }}>
         <Text style={[styles.listing]}>{title}</Text>
-        <View
-          style={{
-            marginHorizontal: 4,
-            borderWidth: 0.5,
-            borderColor: DARKGRAY,
-            borderRadius: 2,
-            justifyContent: "space-between",
-            flex: 1,
-            marginBottom: "20%",
-          }}
-        >
+        <View style={styles.bannerCard}>
           <View style={styles.trackHead}>
             <View>
-              <Text
-                style={[
-                  styles.heading,
-                  {
-                    marginLeft: 0,
-                    lineHeight: 16,
-                    marginVertical: 0,
-                  },
-                ]}
-              >
-                {banner.promo_code} ({" "}
+              <Text style={[styles.bannerHeadTexts, { fontSize: 16 }]}>
+                {banner.promo_code} (
                 {banner.discount_type === "$"
                   ? "$" + banner.discount
                   : banner.discount + "%"}{" "}
-                OFF )
+                OFF)
               </Text>
-              <Text
-                style={[
-                  styles.heading,
-                  {
-                    fontSize: 14,
-                    marginLeft: 0,
-                    lineHeight: 16,
-                    marginVertical: 0,
-                  },
-                ]}
-              >
+              <Text style={styles.bannerHeadTexts}>
                 {banner.plan_name}({banner.category})
               </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Text
-                  style={[
-                    styles.smallText,
-                    { color: "#fff", lineHeight: 16, marginVertical: 0 },
-                  ]}
-                >
-                  <Text style={{ fontWeight: "bold" }}>Duration:</Text>{" "}
-                  {banner.start_date + "-" + banner.end_date}
-                </Text>
-              </View>
-
-              <Text
-                style={[styles.smallText, { color: "#fff", marginVertical: 0 }]}
-              >
-                <Text style={{ fontWeight: "bold" }}>ID:</Text>{" "}
-                {banner.promo_id}{" "}
+              <Text style={styles.bannerHeadTexts}>
+                Duration:
+                {banner.start_date + "-" + banner.end_date}
               </Text>
+              <Text style={styles.bannerHeadTexts}>ID:{banner.promo_id}</Text>
             </View>
 
             <View style={styles.progressCounter}>
-              <View style={{ marginVertical: 20 }} />
-              <Text
-                style={[styles.smallText, { color: "#fff", lineHeight: 16 }]}
-              >
+              <Text style={[styles.bannerHeadTexts, { marginTop: "60%" }]}>
                 {banner.duration}
               </Text>
               <View style={styles.progressDonught}>
@@ -154,8 +100,9 @@ function TrackPerfContent({
               <Text style={styles.smallText}>Days Left</Text>
             </View>
           </View>
+          {/* bannercard top area */}
 
-          <View style={{ marginVertical: -16, alignItems: "flex-start" }}>
+          <View style={{ alignItems: "flex-start" }}>
             <Button
               mode="text"
               style={{ backgroundColor: "#fff" }}
@@ -165,39 +112,15 @@ function TrackPerfContent({
             </Button>
           </View>
 
-          <View
-            style={[
-              styles.textContainer,
-              {
-                padding: 4,
-                marginTop: "2%",
-                alignItems: "center",
-                marginVertical: 2,
-                borderBottomColor: "#999",
-                borderBottomWidth: 0.2,
-              },
-            ]}
-          >
+          <View style={styles.bannerRow}>
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
-
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>{promotedOrders.length}</Text>
               <Text style={styles.smallText}> Total Orders</Text>
             </View>
           </View>
 
-          <View
-            style={[
-              styles.textContainer,
-              {
-                padding: 4,
-                alignItems: "center",
-                marginVertical: 2,
-                borderBottomColor: "#999",
-                borderBottomWidth: 0.2,
-              },
-            ]}
-          >
+          <View style={styles.bannerRow}>
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> ${revenue}</Text>
@@ -205,18 +128,7 @@ function TrackPerfContent({
             </View>
           </View>
 
-          <View
-            style={[
-              styles.textContainer,
-              {
-                padding: 4,
-                alignItems: "center",
-                marginVertical: 2,
-                borderBottomColor: "#999",
-                borderBottomWidth: 0.2,
-              },
-            ]}
-          >
+          <View style={styles.bannerRow}>
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> ${discountfromcoup}</Text>
@@ -224,16 +136,7 @@ function TrackPerfContent({
             </View>
           </View>
 
-          <View
-            style={[
-              styles.textContainer,
-              {
-                padding: 4,
-                alignItems: "center",
-                marginVertical: 2,
-              },
-            ]}
-          >
+          <View style={styles.bannerRow}>
             <Icon name="person-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> {unique.length}</Text>
@@ -242,6 +145,7 @@ function TrackPerfContent({
           </View>
         </View>
       </View>
+      {/* Card area */}
 
       <View
         style={{
@@ -258,6 +162,7 @@ function TrackPerfContent({
           Last Updated: {timesnow}
         </Text>
       </View>
+      {/* Bottom Text */}
     </View>
   );
 }
