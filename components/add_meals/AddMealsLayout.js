@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddMealForm from "./AddMealForm";
+import ViewMeals from "./ViewMeals";
 import Header from "../header/Header";
 import { TabView, TabBar } from "react-native-tab-view";
 import ToggleLunchDinner from "../header/ToggleLunchDinner";
@@ -10,10 +10,12 @@ import { SafeAreaView, View } from "react-native";
 import { FAB } from "react-native-paper";
 import { styles } from "../../styles/headerstyle";
 import { width } from "../../Dimens";
+import AddEditMeals from "./AddEditMeals";
 
-export default function AddMealsLayout() {
+export default function AddMealsLayout({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [index, setIndex] = useState(0);
+  const [addState, setAddState] = useState(false);
   const { meals } = restaurant;
 
   const [routes] = React.useState([
@@ -42,19 +44,19 @@ export default function AddMealsLayout() {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case "first":
-        return <AddMealForm meal={meals[index]} />;
+        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
       case "second":
-        return <AddMealForm meal={meals[index]} />;
+        return <ViewMeals meal={meals[index]} />;
       case "third":
-        return <AddMealForm meal={meals[index]} />;
+        return <ViewMeals meal={meals[index]} />;
       case "fourth":
-        return <AddMealForm meal={meals[index]} />;
+        return <ViewMeals meal={meals[index]} />;
       case "fifth":
-        return <AddMealForm meal={meals[index]} />;
+        return <ViewMeals meal={meals[index]} />;
       case "sixth":
-        return <AddMealForm meal={meals[index]} />;
+        return <ViewMeals meal={meals[index]} />;
       case "seventh":
-        return <AddMealForm meal={meals[index]} />;
+        return <ViewMeals meal={meals[index]} />;
       default:
         break;
     }
@@ -80,7 +82,7 @@ export default function AddMealsLayout() {
         style={styles.fab}
         small
         icon="plus"
-        onPress={() => console.log("Pressed")}
+        onPress={() => setAddState(!addState)}
       />
     </SafeAreaView>
   );
