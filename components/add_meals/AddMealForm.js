@@ -8,8 +8,13 @@ import ViewAddOn from "./ViewAddOn";
 export default function AddMealForm({ meal }) {
   const [add_on, setAddOn] = useState([]);
   useEffect(() => {
-    const { add_on } = meal;
-    setAddOn(add_on);
+    try {
+      const { add_on } = meal;
+      setAddOn(add_on);
+    } catch (error) {
+      const add_on = [];
+      setAddOn(add_on);
+    }
   }, [meal]);
   try {
     return (
