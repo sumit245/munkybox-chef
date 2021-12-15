@@ -9,12 +9,12 @@ import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
 import TrackPerfContent from "./TrackPerfContent";
 import axios from "axios";
+import ListExpired from "./ListExpired";
 
 export default function TrackPerformance({ route, navigation }) {
   const layout = useWindowDimensions();
   const restaurant = useSelector((state) => state.restaurant);
   const [coupon, setCoupon] = useState({});
-  const [banner, setBanner] = useState({});
   const [inactive, setInactive] = useState([]);
   const [proms, setPromotedOrders] = useState([]);
   const [revenue, setRevenue] = useState(0);
@@ -37,7 +37,7 @@ export default function TrackPerformance({ route, navigation }) {
       coupons.filter((item) => item.status === "Active");
     const inactive =
       Array.isArray(coupons) &&
-      coupons.filter((item) => item.status === "Active");
+      coupons.filter((item) => item.status === "Inactive");
     setCoupon(active);
     setInactive(inactive);
     setPromotedOrders(promotedOrders);
@@ -72,12 +72,12 @@ export default function TrackPerformance({ route, navigation }) {
     switch (route.key) {
       case "first":
         return (
-          <TrackPerfContent
+          <ListExpired
             restaurant={restaurant_name}
             address={address}
             active={true}
             loaded={loaded}
-            banners={coupon[0]}
+            banners={coupon}
             promotedOrders={proms}
             status={route.title}
             title={title}
@@ -89,12 +89,12 @@ export default function TrackPerformance({ route, navigation }) {
 
       case "second":
         return (
-          <TrackPerfContent
+          <ListExpired
             restaurant={restaurant_name}
             address={address}
             active={false}
             loaded={loaded}
-            banners={inactive[0]}
+            banners={inactive}
             promotedOrders={proms}
             status={route.title}
             title={title}
