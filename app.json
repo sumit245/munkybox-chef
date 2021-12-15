@@ -10,6 +10,14 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your gallery for uploading images."
+        }
+      ]
+    ],
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -17,7 +25,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.sumitranjan245.munkyboxchef",
-      "googleServicesFile":"./GoogleService-Info.plist"
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,7 +33,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.sumitranjan245.munkyboxchef",
-      "googleServicesFile":"./google-services.json"
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"

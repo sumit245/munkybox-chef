@@ -1,34 +1,68 @@
 import React, { useState } from "react";
 import AddMealForm from "./AddMealForm";
 import Header from "../header/Header";
-import HeaderTabSwitch from "../header/HeaderTabSwitch";
+import { TabView, TabBar } from "react-native-tab-view";
 import ToggleLunchDinner from "../header/ToggleLunchDinner";
 import { Divider } from "react-native-paper";
+import { PrimaryDark, SecondaryColor } from "../../Colors";
 import { useSelector, useDispatch } from "react-redux";
-import { SafeAreaView, View } from "react-native";
+import { SafeAreaView, View, Text } from "react-native";
 import { styles } from "../../styles/headerstyle";
+import { width } from "../../Dimens";
 
-const slots = ["Lunch", "Dinner"];
-const days = ["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"];
 export default function AddMealsLayout() {
   const restaurant = useSelector((state) => state.restaurant);
   const [index, setIndex] = useState(0);
   const { meals } = restaurant;
-  const handler = (item, index) => {
-    setIndex(index);
-    
-    return null;
+
+  const [routes] = React.useState([
+    { key: "first", title: "Monday" },
+    { key: "second", title: "Tuesday" },
+    { key: "third", title: "Wednesday" },
+    { key: "fourth", title: "Thursday" },
+    { key: "fifth", title: "Friday" },
+    { key: "sixth", title: "Saturday" },
+    { key: "seventh", title: "Sunday" },
+  ]);
+  const renderTabBar = (props) => (
+    <TabBar
+      {...props}
+      tabStyle={{ width: width / 3 }}
+      style={{
+        backgroundColor: PrimaryDark,
+        marginHorizontal: 2,
+        marginBottom: 8,
+      }}
+      indicatorStyle={{ backgroundColor: SecondaryColor }}
+    />
+  );
+
+  const renderScene = ({ route }) => {
+    switch (route.key) {
+      case "first":
+        return <AddMealForm meal={meals[index]} />;
+      case "second":
+        return <AddMealForm meal={meals[index]} />;
+      default:
+        break;
+    }
   };
   return (
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <Header title={"Add Meal"}>
         <View style={styles.switch}>
           <ToggleLunchDinner />
         </View>
       </Header>
       <Divider />
-      <HeaderTabSwitch items={days} handler={handler} />
-      <AddMealForm meal={meals[index]} />
+      <TabView
+        lazy
+        swipeEnabled
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        renderTabBar={renderTabBar}
+      />
     </SafeAreaView>
   );
 }

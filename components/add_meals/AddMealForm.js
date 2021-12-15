@@ -1,48 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
-import {
-  DataTable,
-  FAB,
-  Avatar,
-  List,
-  Card,
-  Button,
-  Title,
-  Paragraph,
-} from "react-native-paper";
+import { View, StyleSheet, Text, Image } from "react-native";
+import { FAB, IconButton } from "react-native-paper";
+import Icon from "react-native-vector-icons/Ionicons";
+import { width } from "../../Dimens";
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="food" />;
 export default function AddMealForm({ meal }) {
   if (meal) {
     return (
       <View style={{ flex: 1 }}>
-        <Card>
-          <Card.Title
-            title={meal.meal_name}
-            subtitle={meal.description}
-            left={LeftContent}
+        <View style={styles.card}>
+          <Image
+            source={{ uri: meal.image }}
+            style={{ width: width - 8, height: width / 2 }}
           />
-          <Card.Cover
-            source={{
-              uri: meal.image,
+          <View
+            style={{
+              flexDirection: "row",
+              padding: 4,
+              alignItems: "center",
+              justifyContent:"space-between"
             }}
-          />
-          <Card.Content>
-            <Title>{meal.slot}</Title>
-            <Paragraph>{meal.type}</Paragraph>
-          </Card.Content>
-          <Card.Actions>
-            <Button>Edit</Button>
-            <Button>Done</Button>
-          </Card.Actions>
-        </Card>
-        {/* {meals.map((meal, key) => (
-          <List.AccordionGroup key={key}>
-            <List.Accordion title={meal.day} id="1">
-              
-            </List.Accordion>
-          </List.AccordionGroup>
-        ))} */}
+          >
+            <View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Text
+                  style={{ fontWeight: "bold", fontSize: 16, marginRight: 4 }}
+                >
+                  {meal.meal_name}
+                </Text>
+                <Icon
+                  name="square"
+                  color={meal.type === "veg" ? "#f00" : "#0f0"}
+                  size={16}
+                />
+              </View>
+              <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                {meal.description}
+              </Text>
+            </View>
+            <View>
+              <IconButton icon="lead-pencil" size={20} />
+            </View>
+          </View>
+        </View>
         <FAB
           style={styles.fab}
           small
@@ -65,5 +70,11 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     bottom: 0,
+  },
+  card: {
+    marginHorizontal: 4,
+    borderColor: "#777",
+    borderWidth: 0.2,
+    borderRadius: 4,
   },
 });
