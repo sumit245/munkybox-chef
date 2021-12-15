@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
-import { FAB, IconButton } from "react-native-paper";
+import { View, StyleSheet, Text, Image, ScrollView } from "react-native";
+import { IconButton } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 import { width } from "../../Dimens";
+import ViewAddOn from "./ViewAddOn";
 
 export default function AddMealForm({ meal }) {
-  if (meal) {
+  const [add_on, setAddOn] = useState([]);
+  useEffect(() => {
+    const { add_on } = meal;
+    setAddOn(add_on);
+  }, [meal]);
+  try {
     return (
-      <View style={{ flex: 1 }}>
+      <ScrollView>
         <View style={styles.card}>
           <Image
             source={{ uri: meal.image }}
@@ -18,7 +24,7 @@ export default function AddMealForm({ meal }) {
               flexDirection: "row",
               padding: 4,
               alignItems: "center",
-              justifyContent:"space-between"
+              justifyContent: "space-between",
             }}
           >
             <View>
@@ -39,7 +45,7 @@ export default function AddMealForm({ meal }) {
                   size={16}
                 />
               </View>
-              <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+              <Text style={{ fontWeight: "bold", fontSize: 14 }}>
                 {meal.description}
               </Text>
             </View>
@@ -47,34 +53,41 @@ export default function AddMealForm({ meal }) {
               <IconButton icon="lead-pencil" size={20} />
             </View>
           </View>
+          <ViewAddOn add_on={add_on} />
         </View>
-        <FAB
-          style={styles.fab}
-          small
-          icon="plus"
-          onPress={() => console.log("Pressed")}
-        />
-      </View>
+      </ScrollView>
     );
-  } else {
+  } catch (error) {
     return (
-      <View>
-        <Text>Empty</Text>
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
+        }}
+      >
+        <Icon name="sad-outline" size={60} color="orange" />
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 16,
+            color: "#444",
+            textAlign: "center",
+          }}
+        >
+          Sorry! You don't provide a meal on this day. Please add meals to get
+          more income
+        </Text>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
-  fab: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    bottom: 0,
-  },
   card: {
     marginHorizontal: 4,
     borderColor: "#777",
     borderWidth: 0.2,
     borderRadius: 4,
+    backgroundColor: "#fff",
   },
 });
