@@ -20,7 +20,7 @@ export default function Profile() {
     about,
     locality,
     city,
-    country,
+    state,
     postal_code,
     cuisine_type,
     documents,
@@ -60,7 +60,7 @@ export default function Profile() {
             {city}
           </Text>
           <Text style={{ color: "#fff" }}>
-            {country}
+            {state}
             {" - "}
             {postal_code}
           </Text>

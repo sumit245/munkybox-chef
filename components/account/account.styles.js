@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
   },
   inputContainer: {
     borderBottomWidth: 0.2,
-    flex:1,
+    
     borderBottomColor: DARKGRAY,
     fontSize: 16,
     marginHorizontal:"4%"
