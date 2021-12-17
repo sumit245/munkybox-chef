@@ -83,7 +83,7 @@ export default function Plans() {
             <TextInput
               value={twoPlan}
               editable={editable}
-              style={[styles.inputContainer,{marginHorizontal:0,marginVertical:0}]}
+              style={[styles.inputContainer,{marginHorizontal:0,marginVertical:0,flex:1}]}
               onChangeText={(e) => setTwoPlan(e)}
               keyboardType="numeric"
             />
@@ -99,7 +99,7 @@ export default function Plans() {
               <TextInput
               value={fifteenPlan}
               editable={editable}
-              style={[styles.inputContainer,{marginHorizontal:0,marginVertical:0}]}
+              style={[styles.inputContainer,{marginHorizontal:0,marginVertical:0,flex:1}]}
               onChangeText={(text)=>setFifteenPlan(text)}
               keyboardType="numeric"
             />
@@ -114,7 +114,7 @@ export default function Plans() {
               <Icon name="ios-logo-usd" size={14} color="#000"/>
               <TextInput
               value={thirtyPlan}
-              style={[styles.inputContainer,{marginHorizontal:0,marginVertical:0}]}
+              style={[styles.inputContainer,{marginHorizontal:0,marginVertical:0,flex:1}]}
               onChangeText={(text)=>setThirtyPlan(text)}
               keyboardType="numeric"
               editable={editable}

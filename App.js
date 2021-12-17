@@ -7,7 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default function App() {
-  // useEff6476412
+  
   return (
     <NavigationContainer>
       <Provider store={store}>
