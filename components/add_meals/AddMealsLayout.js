@@ -46,17 +46,17 @@ export default function AddMealsLayout({ navigation }) {
       case "first":
         return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
       case "second":
-        return <ViewMeals meal={meals[index]} />;
+        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
       case "third":
-        return <ViewMeals meal={meals[index]} />;
+        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
       case "fourth":
-        return <ViewMeals meal={meals[index]} />;
+        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
       case "fifth":
-        return <ViewMeals meal={meals[index]} />;
+        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
       case "sixth":
-        return <ViewMeals meal={meals[index]} />;
+        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
       case "seventh":
-        return <ViewMeals meal={meals[index]} />;
+        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
       default:
         break;
     }

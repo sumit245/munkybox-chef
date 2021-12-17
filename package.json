@@ -28,6 +28,7 @@
     "react-native-calendar-picker": "^7.1.2",
     "react-native-collapsible": "^1.5.3",
     "react-native-countdown-component": "^2.7.1",
+    "react-native-fs": "^2.18.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-otp-textinput": "0.0.8",
     "react-native-pager-view": "^5.4.0",

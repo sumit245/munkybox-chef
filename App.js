@@ -5,9 +5,10 @@ import { Provider } from "react-redux";
 import store from "./store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
 export default function App() {
-  // useEff6476412
+  // useEffect(() => {
+  //   AsyncStorage.clear();
+  // }, []);
   return (
     <NavigationContainer>
       <Provider store={store}>

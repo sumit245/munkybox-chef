@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  Button,
   Image,
   View,
   Platform,
@@ -18,13 +17,14 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 export default function AddEditMeals({ meal, day }) {
   const [image, setImage] = useState(null);
-  const [editable, setEditable] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [meal_type, setMealType] = useState("");
+  const [add_on, setAddOn] = useState([]);
   const [info, setInfo] = useState({
-    ownerName: "",
-    phoneNumber: "",
-    emailId: "",
-    aboutInfo: "",
+    meal_name: "",
+    type: "",
+    day: "",
+    slot: "",
+    description: "",
   });
 
   useEffect(() => {
@@ -46,14 +46,41 @@ export default function AddEditMeals({ meal, day }) {
       aspect: [4, 3],
       quality: 1,
     });
-    console.log(result);
     if (!result.cancelled) {
       setImage(result.uri);
     }
   };
+  const submitMeal = () => {
+    const data = {
+      day: day,
+      type: meal_type,
+      image: image,
+      add_on: add_on,
+      meal_name: info.mealName,
+      description: info.description,
+    };
+    console.log(data);
+  };
 
   return (
     <View style={styles.card}>
+      
+      <View
+        style={{ flexDirection: "row", justifyContent: "flex-end", padding: 4 }}
+      >
+        <TouchableOpacity onPress={submitMeal}>
+          <Text
+            style={{
+              fontWeight: "bold",
+              textTransform: "uppercase",
+              color: "#2222ff",
+            }}
+          >
+            Save
+          </Text>
+        </TouchableOpacity>
+      </View>
+
       <TouchableOpacity
         style={{
           alignItems: "center",
@@ -76,16 +103,16 @@ export default function AddEditMeals({ meal, day }) {
           <Icon name="camera-outline" size={100} color="#777" />
         )}
       </TouchableOpacity>
+      {/* Meal Image */}
 
       <View style={{ marginVertical: 4 }}>
         <View style={styles.labelContainer}>
           <Text style={styles.label}>Meal Name</Text>
         </View>
         <TextInput
-          value={info.ownerName}
+          value={info.mealName}
           style={styles.inputContainer}
           onChangeText={(text) => setInfo({ ...info, mealName: text })}
-          editable={editable}
         />
       </View>
       {/* Meal Name */}
@@ -95,31 +122,31 @@ export default function AddEditMeals({ meal, day }) {
           <Text style={styles.label}>Description</Text>
         </View>
         <TextInput
-          value={info.aboutInfo}
+          value={info.description}
           placeholder="Write a description in maximum 250 characters"
           placeholderTextColor="#777"
           multiline
           style={[styles.inputContainer, { textAlignVertical: "bottom" }]}
           numberOfLines={3}
-          onChangeText={(text) => setInfo({ ...info, aboutInfo: text })}
-          editable={editable}
+          onChangeText={(text) => setInfo({ ...info, description: text })}
         />
       </View>
+      {/* Description */}
+
       <View style={{ marginVertical: 4 }}>
         <View style={styles.labelContainer}>
           <Text style={styles.label}>Meal Type</Text>
         </View>
         <Picker
           style={{ marginHorizontal: 8 }}
-          selectedValue={selectedLanguage}
-          onValueChange={(itemValue, itemIndex) =>
-            setSelectedLanguage(itemValue)
-          }
+          selectedValue={meal_type}
+          onValueChange={(itemValue, itemIndex) => setMealType(itemValue)}
         >
           <Picker.Item label="Veg" value="veg" />
           <Picker.Item label="Non Veg" value="non-veg" />
         </Picker>
       </View>
+      {/* Meal Type */}
     </View>
   );
 }
@@ -189,7 +216,6 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     borderBottomWidth: 0.2,
-    flex: 1,
     borderBottomColor: DARKGRAY,
     fontSize: 16,
     marginHorizontal: "4%",
@@ -198,7 +224,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginHorizontal: "4%",
     alignItems: "center",
-    marginVertical: 4,
   },
   label: {
     fontSize: 16,
@@ -208,8 +233,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginHorizontal: "4%",
-    marginTop: 12,
-    marginVertical: 8,
+    marginTop: 8,
+    marginVertical: 4,
   },
   centeredView: {
     flex: 1,
