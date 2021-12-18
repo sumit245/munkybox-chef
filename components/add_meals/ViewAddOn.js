@@ -35,7 +35,7 @@ export default function ViewAddOn({ add_on }) {
         );
       } else {
         return (
-          <View style={{ marginHorizontal: 4, marginVertical: 4 }}>
+          <View style={{ marginHorizontal: 4, marginVertical: 4 }} key={index}>
             <Text>No add ons on this day</Text>
           </View>
         );
@@ -53,10 +53,12 @@ export default function ViewAddOn({ add_on }) {
         borderWidth: 0.5,
         borderBottomLeftRadius: 4,
         borderBottomRightRadius: 4,
-        padding:4
+        padding: 4,
       }}
-      ListHeaderComponent={()=>(
-          <Text style={{margin:8,fontWeight:"bold",fontSize:14}}>Add ons</Text>
+      ListHeaderComponent={() => (
+        <Text style={{ margin: 8, fontWeight: "bold", fontSize: 14 }}>
+          Add ons
+        </Text>
       )}
       renderItem={renderItem}
       data={add_on}

@@ -13,11 +13,17 @@ import * as ImagePicker from "expo-image-picker";
 import { Picker } from "@react-native-picker/picker";
 import { width } from "../../Dimens";
 import { DARKGRAY } from "../../Colors";
+import { useSelector } from "react-redux";
 import Icon from "react-native-vector-icons/Ionicons";
+import axios from "axios";
+import Loader from "../../helpers/Loader";
 
 export default function AddEditMeals({ meal, day, slot, index }) {
   const [image, setImage] = useState(null);
+  const restaurant = useSelector((state) => state.restaurant);
+  const [meals, setMeals] = useState([]);
   const [meal_type, setMealType] = useState("");
+  const [loading, setLoading] = useState(true);
   const [add_on, setAddOn] = useState([]);
   const [info, setInfo] = useState({
     meal_name: "",
@@ -39,6 +45,17 @@ export default function AddEditMeals({ meal, day, slot, index }) {
     })();
   }, []);
 
+  useEffect(() => {
+    let meals = [];
+    try {
+      meals = restaurant.meals;
+      setMeals(meals);
+    } catch (error) {
+      meals = [];
+      setMeals(meals);
+    }
+  }, []);
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -51,106 +68,134 @@ export default function AddEditMeals({ meal, day, slot, index }) {
     }
   };
   const submitMeal = async () => {
-    const base64 = await FileSystem.readAsStringAsync(image, {
-      encoding: "base64",
-    });
+    setLoading(false);
+    let base64 = "";
+    try {
+      base64 = await FileSystem.readAsStringAsync(image, {
+        encoding: "base64",
+      });
+    } catch (error) {
+      base64 = "";
+    }
+
     const data = {
       day: day,
+      slot: slot,
       type: meal_type,
       image: base64,
       add_on: add_on,
       meal_name: info.meal_name,
       description: info.description,
     };
-    console.log(data);
+    let dataToUpload = [...meals];
+    dataToUpload.splice(index, 0, data);
+    setMeals(dataToUpload);
+    const respone = await axios.put(
+      "http://munkybox-admin.herokuapp.com/api/newrest/" + restaurant._id,
+      {
+        meals: dataToUpload,
+      }
+    );
+    console.log(respone);
+    if (respone !== null) {
+      setLoading(true);
+    }
   };
 
-  return (
-    <View style={styles.card}>
-      <View
-        style={{ flexDirection: "row", justifyContent: "flex-end", padding: 4 }}
-      >
-        <TouchableOpacity onPress={submitMeal}>
-          <Text
-            style={{
-              fontWeight: "bold",
-              textTransform: "uppercase",
-              color: "#2222ff",
-            }}
-          >
-            Save
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <TouchableOpacity
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          borderStyle: "dashed",
-          borderWidth: 0.5,
-          borderColor: "#444",
-          borderRadius: 4,
-          height: width / 2,
-          width: width - 16,
-        }}
-        onPress={pickImage}
-      >
-        {image ? (
-          <Image
-            source={{ uri: image }}
-            style={{ width: width - 8, height: width / 2 }}
-          />
-        ) : (
-          <Icon name="camera-outline" size={100} color="#777" />
-        )}
-      </TouchableOpacity>
-      {/* Meal Image */}
-
-      <View style={{ marginVertical: 4 }}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Meal Name</Text>
-        </View>
-        <TextInput
-          value={info.mealName}
-          style={styles.inputContainer}
-          onChangeText={(text) => setInfo({ ...info, mealName: text })}
-        />
-      </View>
-      {/* Meal Name */}
-
-      <View style={{ marginVertical: 4 }}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Description</Text>
-        </View>
-        <TextInput
-          value={info.description}
-          placeholder="Write a description in maximum 250 characters"
-          placeholderTextColor="#777"
-          multiline
-          style={[styles.inputContainer, { textAlignVertical: "bottom" }]}
-          numberOfLines={3}
-          onChangeText={(text) => setInfo({ ...info, description: text })}
-        />
-      </View>
-      {/* Description */}
-
-      <View style={{ marginVertical: 4 }}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Meal Type</Text>
-        </View>
-        <Picker
-          style={{ marginHorizontal: 8 }}
-          selectedValue={meal_type}
-          onValueChange={(itemValue, itemIndex) => setMealType(itemValue)}
+  if (loading) {
+    return (
+      <View style={styles.card}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            padding: 4,
+          }}
         >
-          <Picker.Item label="Veg" value="veg" />
-          <Picker.Item label="Non Veg" value="non-veg" />
-        </Picker>
+          <TouchableOpacity onPress={submitMeal}>
+            <Text
+              style={{
+                fontWeight: "bold",
+                textTransform: "uppercase",
+                color: "#2222ff",
+              }}
+            >
+              Save
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            borderStyle: "dashed",
+            borderWidth: 0.5,
+            borderColor: "#444",
+            borderRadius: 4,
+            height: width / 2,
+            width: width - 16,
+          }}
+          onPress={pickImage}
+        >
+          {image ? (
+            <Image
+              source={{ uri: image }}
+              style={{ width: width - 8, height: width / 2 }}
+            />
+          ) : (
+            <Icon name="camera-outline" size={100} color="#777" />
+          )}
+        </TouchableOpacity>
+        {/* Meal Image */}
+
+        <View style={{ marginVertical: 4 }}>
+          <View style={styles.labelContainer}>
+            <Text style={styles.label}>Meal Name</Text>
+          </View>
+          <TextInput
+            value={info.mealName}
+            style={styles.inputContainer}
+            onChangeText={(text) => setInfo({ ...info, mealName: text })}
+          />
+        </View>
+        {/* Meal Name */}
+
+        <View style={{ marginVertical: 4 }}>
+          <View style={styles.labelContainer}>
+            <Text style={styles.label}>Description</Text>
+          </View>
+          <TextInput
+            value={info.description}
+            placeholder="Write a description in maximum 250 characters"
+            placeholderTextColor="#777"
+            multiline
+            style={[styles.inputContainer, { textAlignVertical: "bottom" }]}
+            numberOfLines={3}
+            onChangeText={(text) => setInfo({ ...info, description: text })}
+          />
+        </View>
+        {/* Description */}
+
+        <View style={{ marginVertical: 4 }}>
+          <View style={styles.labelContainer}>
+            <Text style={styles.label}>Meal Type</Text>
+          </View>
+          <Picker
+            style={{ marginHorizontal: 8 }}
+            selectedValue={meal_type}
+            onValueChange={(itemValue, itemIndex) => setMealType(itemValue)}
+          >
+            <Picker.Item label="Veg" value="veg" />
+            <Picker.Item label="Non Veg" value="non-veg" />
+          </Picker>
+        </View>
+        {/* Meal Type */}
       </View>
-      {/* Meal Type */}
-    </View>
-  );
+    );
+  } else {
+    return <Loader />;
+  }
 }
 const styles = StyleSheet.create({
   card: {
