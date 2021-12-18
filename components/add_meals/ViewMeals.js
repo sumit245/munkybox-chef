@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { width } from "../../Dimens";
 import ViewAddOn from "./ViewAddOn";
 
-export default function AddMealForm({ meal }) {
+export default function AddMealForm({ meal, slot, setEditState }) {
   const [add_on, setAddOn] = useState([]);
   useEffect(() => {
     try {
@@ -55,7 +55,11 @@ export default function AddMealForm({ meal }) {
               </Text>
             </View>
             <View>
-              <IconButton icon="lead-pencil" size={20} />
+              <IconButton
+                icon="lead-pencil"
+                size={20}
+                onPress={() => setEditState(true)}
+              />
             </View>
           </View>
           <ViewAddOn add_on={add_on} />

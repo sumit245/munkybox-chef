@@ -16,6 +16,8 @@ export default function AddMealsLayout({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [index, setIndex] = useState(0);
   const [addState, setAddState] = useState(false);
+  const [editState, setEditState] = useState(false);
+  const [slot, setSlot] = useState("Lunch");
   const { meals } = restaurant;
 
   const [routes] = React.useState([
@@ -41,22 +43,103 @@ export default function AddMealsLayout({ navigation }) {
     />
   );
 
+  const handleToggle = (data) => {
+    setSlot(data);
+  };
+
   const renderScene = ({ route }) => {
     switch (route.key) {
       case "first":
-        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
+        return addState ? (
+          <AddEditMeals slot={slot} day={route.title} index={index} />
+        ) : editState ? (
+          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+        ) : (
+          <ViewMeals
+            meal={meals[index]}
+            day={route.title}
+            slot={slot}
+            setEditState={setEditState}
+          />
+        );
       case "second":
-        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
+        return addState ? (
+          <AddEditMeals slot={slot} day={route.title} index={index} />
+        ) : editState ? (
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals[index]}
+            setEditState={setEditState}
+          />
+        ) : (
+          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
+        );
       case "third":
-        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
+        return addState ? (
+          <AddEditMeals slot={slot} day={route.title} index={index} />
+        ) : editState ? (
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals[index]}
+            setEditState={setEditState}
+          />
+        ) : (
+          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
+        );
       case "fourth":
-        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
+        return addState ? (
+          <AddEditMeals slot={slot} day={route.title} index={index} />
+        ) : editState ? (
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals[index]}
+            setEditState={setEditState}
+          />
+        ) : (
+          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
+        );
       case "fifth":
-        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
+        return addState ? (
+          <AddEditMeals slot={slot} day={route.title} index={index} />
+        ) : editState ? (
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals[index]}
+            setEditState={setEditState}
+          />
+        ) : (
+          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
+        );
       case "sixth":
-        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
+        return addState ? (
+          <AddEditMeals slot={slot} day={route.title} index={index} />
+        ) : editState ? (
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals[index]}
+            setEditState={setEditState}
+          />
+        ) : (
+          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
+        );
       case "seventh":
-        return addState ? <AddEditMeals /> : <ViewMeals meal={meals[index]} />;
+        return addState ? (
+          <AddEditMeals slot={slot} day={route.title} index={index} />
+        ) : editState ? (
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals[index]}
+            setEditState={setEditState}
+          />
+        ) : (
+          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
+        );
       default:
         break;
     }
@@ -65,7 +148,7 @@ export default function AddMealsLayout({ navigation }) {
     <SafeAreaView style={{ flex: 1 }}>
       <Header title={"Add Meal"}>
         <View style={styles.switch}>
-          <ToggleLunchDinner />
+          <ToggleLunchDinner handleToggle={handleToggle} />
         </View>
       </Header>
       <Divider />
@@ -81,7 +164,7 @@ export default function AddMealsLayout({ navigation }) {
       <FAB
         style={styles.fab}
         small
-        icon="plus"
+        icon={addState ? "close" : "plus"}
         onPress={() => setAddState(!addState)}
       />
     </SafeAreaView>

@@ -8,14 +8,14 @@ import {
   Text,
   TextInput,
 } from "react-native";
-
+import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
 import { Picker } from "@react-native-picker/picker";
 import { width } from "../../Dimens";
 import { DARKGRAY } from "../../Colors";
 import Icon from "react-native-vector-icons/Ionicons";
 
-export default function AddEditMeals({ meal, day }) {
+export default function AddEditMeals({ meal, day, slot, index }) {
   const [image, setImage] = useState(null);
   const [meal_type, setMealType] = useState("");
   const [add_on, setAddOn] = useState([]);
@@ -50,13 +50,16 @@ export default function AddEditMeals({ meal, day }) {
       setImage(result.uri);
     }
   };
-  const submitMeal = () => {
+  const submitMeal = async () => {
+    const base64 = await FileSystem.readAsStringAsync(image, {
+      encoding: "base64",
+    });
     const data = {
       day: day,
       type: meal_type,
-      image: image,
+      image: base64,
       add_on: add_on,
-      meal_name: info.mealName,
+      meal_name: info.meal_name,
       description: info.description,
     };
     console.log(data);
@@ -64,7 +67,6 @@ export default function AddEditMeals({ meal, day }) {
 
   return (
     <View style={styles.card}>
-      
       <View
         style={{ flexDirection: "row", justifyContent: "flex-end", padding: 4 }}
       >
