@@ -54,7 +54,6 @@ export default function AddEditMeals({ meal, day, slot, index }) {
   }, []);
 
   useEffect(() => {
-    console.log(meal);
     let meals = [];
     try {
       meals = restaurant.meals;
@@ -64,6 +63,10 @@ export default function AddEditMeals({ meal, day, slot, index }) {
       setMeals(meals);
     }
   }, []);
+
+  useEffect(() => {
+    setInfo({ ...info, ...meal });
+  }, [meal]);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
