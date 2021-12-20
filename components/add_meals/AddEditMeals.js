@@ -103,12 +103,12 @@ export default function AddEditMeals({ meal, day, slot, index }) {
     dataToUpload.splice(index, 0, data);
     console.log(index);
     setMeals(dataToUpload);
-    // const respone = await axios.put(
-    //   "http://munkybox-admin.herokuapp.com/api/newrest/" + restaurant._id,
-    //   {
-    //     meals: dataToUpload,
-    //   }
-    // );
+    const respone = await axios.put(
+      "http://munkybox-admin.herokuapp.com/api/newrest/" + restaurant._id,
+      {
+        meals: dataToUpload,
+      }
+    );
 
     if (respone !== null) {
       setLoading(true);
