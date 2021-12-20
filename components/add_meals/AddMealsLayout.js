@@ -66,79 +66,79 @@ export default function AddMealsLayout({ navigation }) {
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals
-            slot={slot}
-            day={route.title}
+          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+        ) : (
+          <ViewMeals
             meal={meals[index]}
+            day={route.title}
+            slot={slot}
             setEditState={setEditState}
           />
-        ) : (
-          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
         );
       case "third":
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals
-            slot={slot}
-            day={route.title}
+          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+        ) : (
+          <ViewMeals
             meal={meals[index]}
+            day={route.title}
+            slot={slot}
             setEditState={setEditState}
           />
-        ) : (
-          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
         );
       case "fourth":
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals
-            slot={slot}
-            day={route.title}
+          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+        ) : (
+          <ViewMeals
             meal={meals[index]}
+            day={route.title}
+            slot={slot}
             setEditState={setEditState}
           />
-        ) : (
-          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
         );
       case "fifth":
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals
-            slot={slot}
-            day={route.title}
+          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+        ) : (
+          <ViewMeals
             meal={meals[index]}
+            day={route.title}
+            slot={slot}
             setEditState={setEditState}
           />
-        ) : (
-          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
         );
       case "sixth":
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals
-            slot={slot}
-            day={route.title}
+          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+        ) : (
+          <ViewMeals
             meal={meals[index]}
+            day={route.title}
+            slot={slot}
             setEditState={setEditState}
           />
-        ) : (
-          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
         );
       case "seventh":
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals
-            slot={slot}
-            day={route.title}
+          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+        ) : (
+          <ViewMeals
             meal={meals[index]}
+            day={route.title}
+            slot={slot}
             setEditState={setEditState}
           />
-        ) : (
-          <ViewMeals meal={meals[index]} day={route.title} slot={slot} />
         );
       default:
         break;

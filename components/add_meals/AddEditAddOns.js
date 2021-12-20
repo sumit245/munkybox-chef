@@ -15,7 +15,12 @@ import { DARKGRAY } from "../../Colors";
 import Icon from "react-native-vector-icons/Ionicons";
 import { IconButton } from "react-native-paper";
 
-export default function AddEditAddOns({ data, editState }) {
+export default function AddEditAddOns({
+  data,
+  editState,
+  handleRemoveClicked,
+  addInputFields,
+}) {
   const [image, setImage] = useState(null);
   const [info, setInfo] = useState({
     add_on_name: "",
@@ -46,15 +51,6 @@ export default function AddEditAddOns({ data, editState }) {
       }
     })();
   }, []);
-
-  const addInputFields = () => {
-    setInfo([...info, { add_on_name: "", add_on_price: "", add_on_image: "" }]);
-  };
-  const handleRemoveClicked = () => {
-    const values = [...info];
-    values.pop();
-    setInfo(values);
-  };
 
   return (
     <View style={styles.card}>

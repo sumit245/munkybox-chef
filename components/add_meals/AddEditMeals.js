@@ -26,9 +26,9 @@ export default function AddEditMeals({ meal, day, slot, index }) {
   const [meals, setMeals] = useState([]);
   const [meal_type, setMealType] = useState("");
   const [loading, setLoading] = useState(true);
-  const [addOns, setaddOns] = useState([
+  const [addOns, setAddOns] = useState([
     {
-      add_on: "",
+      add_on_name: "",
       add_on_price: "",
       add_on_image: "",
     },
@@ -54,6 +54,7 @@ export default function AddEditMeals({ meal, day, slot, index }) {
   }, []);
 
   useEffect(() => {
+    console.log(meal);
     let meals = [];
     try {
       meals = restaurant.meals;
@@ -91,24 +92,39 @@ export default function AddEditMeals({ meal, day, slot, index }) {
       slot: slot,
       type: meal_type,
       image: base64,
-      add_on: add_on,
+      add_on: addOns,
       meal_name: info.meal_name,
       description: info.description,
     };
     let dataToUpload = [...meals];
     dataToUpload.splice(index, 0, data);
+    console.log(index);
     setMeals(dataToUpload);
-    const respone = await axios.put(
-      "http://munkybox-admin.herokuapp.com/api/newrest/" + restaurant._id,
-      {
-        meals: dataToUpload,
-      }
-    );
+    // const respone = await axios.put(
+    //   "http://munkybox-admin.herokuapp.com/api/newrest/" + restaurant._id,
+    //   {
+    //     meals: dataToUpload,
+    //   }
+    // );
 
     if (respone !== null) {
       setLoading(true);
     }
   };
+  const addInputFields = () => {
+    console.log(addOns.length);
+    setAddOns([
+      ...addOns,
+      { add_on_name: "", add_on_price: "", add_on_image: "" },
+    ]);
+  };
+  const handleRemoveClicked = () => {
+    const values = [...addOns];
+    values.pop();
+    setAddOns(values);
+  };
+
+  const saveHandler = () => {};
 
   if (loading) {
     return (
@@ -217,7 +233,13 @@ export default function AddEditMeals({ meal, day, slot, index }) {
             </Text>
           </View>
           {addOns.map((data, index) => (
-            <AddEditAddOns key={index} data={data} />
+            <AddEditAddOns
+              key={index}
+              data={data}
+              addHandler={addInputFields}
+              removeHandler={handleRemoveClicked}
+              saveHandler={saveHandler}
+            />
           ))}
         </View>
       </ScrollView>
