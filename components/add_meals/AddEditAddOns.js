@@ -7,17 +7,12 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  ScrollView,
 } from "react-native";
 //import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
-import { Picker } from "@react-native-picker/picker";
 import { width } from "../../Dimens";
 import { DARKGRAY } from "../../Colors";
-import { useSelector } from "react-redux";
 import Icon from "react-native-vector-icons/Ionicons";
-import axios from "axios";
-import Loader from "../../helpers/Loader";
 import { IconButton } from "react-native-paper";
 
 export default function AddEditAddOns({ data, editState }) {
