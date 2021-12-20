@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ViewMeals from "./ViewMeals";
 import Header from "../header/Header";
 import { TabView, TabBar } from "react-native-tab-view";
@@ -15,11 +15,11 @@ import AddEditMeals from "./AddEditMeals";
 export default function AddMealsLayout({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [index, setIndex] = useState(0);
+  const [day, setDay] = useState([]);
   const [addState, setAddState] = useState(false);
   const [editState, setEditState] = useState(false);
   const [slot, setSlot] = useState("Lunch");
   const { meals } = restaurant;
-
   const [routes] = React.useState([
     { key: "first", title: "Monday" },
     { key: "second", title: "Tuesday" },
@@ -42,6 +42,10 @@ export default function AddMealsLayout({ navigation }) {
       indicatorStyle={{ backgroundColor: SecondaryColor }}
     />
   );
+  useEffect(() => {
+    let day = meals.map((data, key) => data.day);
+    console.log(day);
+  }, []);
 
   const handleToggle = (data) => {
     setSlot(data);
@@ -53,10 +57,14 @@ export default function AddMealsLayout({ navigation }) {
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals.find((o) => o.day === route.title)}
+          />
         ) : (
           <ViewMeals
-            meal={meals[index]}
+            meal={meals.find((o) => o.day === route.title)}
             day={route.title}
             slot={slot}
             setEditState={setEditState}
@@ -66,10 +74,14 @@ export default function AddMealsLayout({ navigation }) {
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals.find((o) => o.day === route.title)}
+          />
         ) : (
           <ViewMeals
-            meal={meals[index]}
+            meal={meals.find((o) => o.day === route.title)}
             day={route.title}
             slot={slot}
             setEditState={setEditState}
@@ -79,10 +91,14 @@ export default function AddMealsLayout({ navigation }) {
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals.find((o) => o.day === route.title)}
+          />
         ) : (
           <ViewMeals
-            meal={meals[index]}
+            meal={meals.find((o) => o.day === route.title)}
             day={route.title}
             slot={slot}
             setEditState={setEditState}
@@ -92,10 +108,14 @@ export default function AddMealsLayout({ navigation }) {
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals.find((o) => o.day === route.title)}
+          />
         ) : (
           <ViewMeals
-            meal={meals[index]}
+            meal={meals.find((o) => o.day === route.title)}
             day={route.title}
             slot={slot}
             setEditState={setEditState}
@@ -105,10 +125,14 @@ export default function AddMealsLayout({ navigation }) {
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals.find((o) => o.day === route.title)}
+          />
         ) : (
           <ViewMeals
-            meal={meals[index]}
+            meal={meals.find((o) => o.day === route.title)}
             day={route.title}
             slot={slot}
             setEditState={setEditState}
@@ -118,10 +142,14 @@ export default function AddMealsLayout({ navigation }) {
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals.find((o) => o.day === route.title)}
+          />
         ) : (
           <ViewMeals
-            meal={meals[index]}
+            meal={meals.find((o) => o.day === route.title)}
             day={route.title}
             slot={slot}
             setEditState={setEditState}
@@ -131,10 +159,14 @@ export default function AddMealsLayout({ navigation }) {
         return addState ? (
           <AddEditMeals slot={slot} day={route.title} index={index} />
         ) : editState ? (
-          <AddEditMeals slot={slot} day={route.title} meal={meals[index]} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            meal={meals.find((o) => o.day === route.title)}
+          />
         ) : (
           <ViewMeals
-            meal={meals[index]}
+            meal={meals.find((o) => o.day === route.title)}
             day={route.title}
             slot={slot}
             setEditState={setEditState}
