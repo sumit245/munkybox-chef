@@ -9,7 +9,7 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import * as FileSystem from "expo-file-system";
+//import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
 import { Picker } from "@react-native-picker/picker";
 import { width } from "../../Dimens";
