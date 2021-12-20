@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  ScrollView,
 } from "react-native";
 import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
@@ -17,6 +18,7 @@ import { useSelector } from "react-redux";
 import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 import Loader from "../../helpers/Loader";
+import AddEditAddOns from "./AddEditAddOns";
 
 export default function AddEditMeals({ meal, day, slot, index }) {
   const [image, setImage] = useState(null);
@@ -24,7 +26,13 @@ export default function AddEditMeals({ meal, day, slot, index }) {
   const [meals, setMeals] = useState([]);
   const [meal_type, setMealType] = useState("");
   const [loading, setLoading] = useState(true);
-  const [add_on, setAddOn] = useState([]);
+  const [addOns, setaddOns] = useState([
+    {
+      add_on: "",
+      add_on_price: "",
+      add_on_image: "",
+    },
+  ]);
   const [info, setInfo] = useState({
     meal_name: "",
     type: "",
@@ -96,7 +104,7 @@ export default function AddEditMeals({ meal, day, slot, index }) {
         meals: dataToUpload,
       }
     );
-    console.log(respone);
+
     if (respone !== null) {
       setLoading(true);
     }
@@ -104,100 +112,124 @@ export default function AddEditMeals({ meal, day, slot, index }) {
 
   if (loading) {
     return (
-      <View style={styles.card}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            padding: 4,
-          }}
-        >
-          <TouchableOpacity onPress={submitMeal}>
-            <Text
-              style={{
-                fontWeight: "bold",
-                textTransform: "uppercase",
-                color: "#2222ff",
-              }}
-            >
-              Save
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <TouchableOpacity
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            borderStyle: "dashed",
-            borderWidth: 0.5,
-            borderColor: "#444",
-            borderRadius: 4,
-            height: width / 2,
-            width: width - 16,
-          }}
-          onPress={pickImage}
-        >
-          {image ? (
-            <Image
-              source={{ uri: image }}
-              style={{ width: width - 8, height: width / 2 }}
-            />
-          ) : (
-            <Icon name="camera-outline" size={100} color="#777" />
-          )}
-        </TouchableOpacity>
-        {/* Meal Image */}
-
-        <View style={{ marginVertical: 4 }}>
-          <View style={styles.labelContainer}>
-            <Text style={styles.label}>Meal Name</Text>
-          </View>
-          <TextInput
-            value={info.mealName}
-            style={styles.inputContainer}
-            onChangeText={(text) => setInfo({ ...info, mealName: text })}
-          />
-        </View>
-        {/* Meal Name */}
-
-        <View style={{ marginVertical: 4 }}>
-          <View style={styles.labelContainer}>
-            <Text style={styles.label}>Description</Text>
-          </View>
-          <TextInput
-            value={info.description}
-            placeholder="Write a description in maximum 250 characters"
-            placeholderTextColor="#777"
-            multiline
-            style={[styles.inputContainer, { textAlignVertical: "bottom" }]}
-            numberOfLines={3}
-            onChangeText={(text) => setInfo({ ...info, description: text })}
-          />
-        </View>
-        {/* Description */}
-
-        <View style={{ marginVertical: 4 }}>
-          <View style={styles.labelContainer}>
-            <Text style={styles.label}>Meal Type</Text>
-          </View>
-          <Picker
-            style={{ marginHorizontal: 8 }}
-            selectedValue={meal_type}
-            onValueChange={(itemValue, itemIndex) => setMealType(itemValue)}
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <View style={styles.card}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              padding: 4,
+            }}
           >
-            <Picker.Item label="Veg" value="veg" />
-            <Picker.Item label="Non Veg" value="non-veg" />
-          </Picker>
+            <TouchableOpacity onPress={submitMeal}>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  textTransform: "uppercase",
+                  color: "#2222ff",
+                }}
+              >
+                Save
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              borderStyle: "dashed",
+              borderWidth: 0.5,
+              borderColor: "#444",
+              borderRadius: 4,
+              height: width / 2,
+              width: width - 16,
+            }}
+            onPress={pickImage}
+          >
+            {image ? (
+              <Image
+                source={{ uri: image }}
+                style={{ width: width - 8, height: width / 2 }}
+              />
+            ) : (
+              <Icon name="camera-outline" size={100} color="#777" />
+            )}
+          </TouchableOpacity>
+          {/* Meal Image */}
+
+          <View style={{ marginVertical: 4 }}>
+            <View style={styles.labelContainer}>
+              <Text style={styles.label}>Meal Name</Text>
+            </View>
+            <TextInput
+              value={info.meal_name}
+              style={styles.inputContainer}
+              onChangeText={(text) => setInfo({ ...info, meal_name: text })}
+            />
+          </View>
+          {/* Meal Name */}
+
+          <View style={{ marginVertical: 4 }}>
+            <View style={styles.labelContainer}>
+              <Text style={styles.label}>Description</Text>
+            </View>
+            <TextInput
+              value={info.description}
+              placeholder="Write a description in maximum 250 characters"
+              placeholderTextColor="#777"
+              multiline
+              style={[styles.inputContainer, { textAlignVertical: "bottom" }]}
+              numberOfLines={3}
+              onChangeText={(text) => setInfo({ ...info, description: text })}
+            />
+          </View>
+          {/* Description */}
+
+          <View style={{ marginVertical: 4 }}>
+            <View style={styles.labelContainer}>
+              <Text style={styles.label}>Meal Type</Text>
+            </View>
+            <Picker
+              style={{ marginHorizontal: 8 }}
+              selectedValue={meal_type}
+              onValueChange={(itemValue, itemIndex) => setMealType(itemValue)}
+            >
+              <Picker.Item label="Veg" value="veg" />
+              <Picker.Item label="Non Veg" value="non-veg" />
+            </Picker>
+          </View>
+          {/* Meal Type */}
         </View>
-        {/* Meal Type */}
-      </View>
+        <View style={styles.addOnContainer}>
+          <View
+            style={{
+              flexDirection: "row",
+              marginHorizontal: 2,
+              justifyContent: "space-between",
+              alignItems: "baseline",
+            }}
+          >
+            <Text
+              style={{ fontWeight: "bold", padding: 4, marginHorizontal: 2 }}
+            >
+              Add More Add-ons
+            </Text>
+          </View>
+          {addOns.map((data, index) => (
+            <AddEditAddOns key={index} data={data} />
+          ))}
+        </View>
+      </ScrollView>
     );
   } else {
     return <Loader />;
   }
 }
 const styles = StyleSheet.create({
+  addOnContainer: {
+    marginVertical: 8,
+  },
   card: {
     marginHorizontal: 4,
     borderColor: "#777",

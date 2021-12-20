@@ -201,6 +201,7 @@ export default function Dashboard({ navigation }) {
                 alignItems: "center",
                 justifyContent: "center",
               }}
+              onPress={() => navigation.navigate("review_order")}
             >
               <Ants name="star" size={34} color={SecondaryLightColor} />
             </TouchableOpacity>
@@ -258,7 +259,7 @@ export default function Dashboard({ navigation }) {
           onIndexChange={setIndex}
           renderTabBar={renderTabBar}
           initialLayout={{ width: layout.width }}
-      />
+        />
 
         <View
           style={{

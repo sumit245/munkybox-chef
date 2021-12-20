@@ -20,6 +20,8 @@ import PreviewBanner from "../components/campaign/PreviewBanner";
 import TrackPerformance from "../components/campaign/TrackPerformance";
 import TrackCampaign from "../components/campaign/TrackCampaign";
 import AddEditMeals from "../components/add_meals/AddEditMeals";
+import Contacts from "../components/contacts/Contacts";
+import Reviews from "../components/reviews/reviews.component";
 
 const Stack = createStackNavigator();
 
@@ -43,6 +45,7 @@ export default function AuthRoutes({ navigation }) {
       <Stack.Screen name="orderDetails" component={OrderDetails} />
       <Stack.Screen name="Main" component={MainRoutes} />
       <Stack.Screen name="newOrders" component={NewOrders} />
+      <Stack.Screen name="review_order" component={Reviews} />
       <Stack.Screen name="add_meals" component={AddMealsLayout} />
       <Stack.Screen name="add_meals_form" component={AddEditMeals} />
       <Stack.Screen name="coupons" component={GenerateCoupon} />
@@ -55,6 +58,7 @@ export default function AuthRoutes({ navigation }) {
       <Stack.Screen name="preview_banner" component={PreviewBanner} />
       <Stack.Screen name="track" component={TrackPerformance} />
       <Stack.Screen name="trackcampaign" component={TrackCampaign} />
+      <Stack.Screen name="contacts" component={Contacts} />
     </Stack.Navigator>
   );
 }
