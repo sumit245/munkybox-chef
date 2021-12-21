@@ -15,7 +15,7 @@ export default function TrackPerformance({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [coupon, setCoupon] = useState({});
   const [inactive, setInactive] = useState([]);
-  const [proms, setPromotedOrders] = useState([]);
+  const [proms, setPromotedOrders] = useState(0);
   const [revenue, setRevenue] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [loaded, setloaded] = useState(false);
@@ -39,7 +39,7 @@ export default function TrackPerformance({ route, navigation }) {
       coupons.filter((item) => item.status === "Inactive");
     setCoupon(active);
     setInactive(inactive);
-    setPromotedOrders(promotedOrders);
+    setPromotedOrders(promotedOrders.length);
     setRevenue(revenue);
     setDiscount(discount);
     setUnique(unique);
@@ -47,6 +47,7 @@ export default function TrackPerformance({ route, navigation }) {
   };
   useEffect(() => {
     fetchMyCoupon(restaurant_id);
+    console.log(proms);
   }, [restaurant_id]);
 
   const [index, setIndex] = React.useState(0);
