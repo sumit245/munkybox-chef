@@ -7,7 +7,7 @@ import { DARKGRAY, SecondaryLightColor } from "../../Colors";
 import { Button } from "react-native-paper";
 import { styles } from "./campaign.styles";
 import axios from "axios";
-import CustomDialog from "../../helpers/CustomDialog";
+import CustomAlert from "../../helpers/CustomAlert.js"
 
 function TrackPerfContent({
   banners,
@@ -52,6 +52,7 @@ function TrackPerfContent({
     };
   }, [banners]);
   
+  if(!cancel){
     return (
       <View style={styles.bannerCard}>
         <View style={styles.trackHead}>
@@ -118,7 +119,7 @@ function TrackPerfContent({
               <Icon name="cart-outline" size={24} color={DARKGRAY} />
               <View style={{ marginLeft: 8 }}>
                 <Text style={styles.bigText}>
-                  {Array.isArray(promotedOrders) ? promotedOrders.length : 0}
+                  {promotedOrders}
                 </Text>
                 <Text style={styles.smallText}> Total Orders</Text>
               </View>
@@ -153,5 +154,8 @@ function TrackPerfContent({
         )}
       </View>
     )
+        }else{
+          return <CustomAlert  />
+        }
 }
 export default React.memo(TrackPerfContent);

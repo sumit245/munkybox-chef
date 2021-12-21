@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native";
-// import { View, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import Icon from "react-native-vector-icons/Ionicons";
 import { PrimaryDark, SecondaryColor } from "../../Colors";
@@ -11,11 +10,10 @@ import axios from "axios";
 import ListExpired from "./ListExpired";
 
 export default function TrackPerformance({ route, navigation }) {
-  // const layout = useWindowDimensions();
   const restaurant = useSelector((state) => state.restaurant);
   const [coupon, setCoupon] = useState({});
   const [inactive, setInactive] = useState([]);
-  const [proms, setPromotedOrders] = useState(0);
+  const [totalOrders, setPromotedOrders] = useState(0);
   const [revenue, setRevenue] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [loaded, setloaded] = useState(false);
@@ -31,6 +29,8 @@ export default function TrackPerformance({ route, navigation }) {
     );
     const { data } = response;
     const { coupons, promotedOrders, revenue, discount, unique } = data;
+    setPromotedOrders(promotedOrders.length);
+    console.log("Loaded",totalOrders);
     const active =
       Array.isArray(coupons) &&
       coupons.filter((item) => item.status === "Active");
@@ -39,7 +39,6 @@ export default function TrackPerformance({ route, navigation }) {
       coupons.filter((item) => item.status === "Inactive");
     setCoupon(active);
     setInactive(inactive);
-    setPromotedOrders(promotedOrders.length);
     setRevenue(revenue);
     setDiscount(discount);
     setUnique(unique);
@@ -47,8 +46,7 @@ export default function TrackPerformance({ route, navigation }) {
   };
   useEffect(() => {
     fetchMyCoupon(restaurant_id);
-    console.log(proms);
-  }, [restaurant_id]);
+  }, [totalOrders]);
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -78,7 +76,7 @@ export default function TrackPerformance({ route, navigation }) {
             active={true}
             loaded={loaded}
             banners={coupon}
-            promotedOrders={proms}
+            promotedOrders={totalOrders}
             status={route.title}
             title={title}
             revenue={revenue}
@@ -95,7 +93,7 @@ export default function TrackPerformance({ route, navigation }) {
             active={false}
             loaded={loaded}
             banners={inactive}
-            promotedOrders={proms}
+            promotedOrders={totalOrders}
             status={route.title}
             title={title}
             revenue={revenue}

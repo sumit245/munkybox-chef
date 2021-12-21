@@ -11,7 +11,7 @@ export default function ListExpired({
   address,
   active,
   loaded,
-  proms,
+  promotedOrders,
   status,
   title,
   revenue,
@@ -24,7 +24,7 @@ export default function ListExpired({
       active={active}
       loaded={loaded}
       banners={item}
-      promotedOrders={proms}
+      promotedOrders={promotedOrders}
       status={status}
       title={title}
       revenue={revenue}
