@@ -34,14 +34,20 @@ function TrackPerfContent({
   const [cancel,setCancel]=useState(false)
   let remaining = moment(banner.end_date).diff(moment(), "Days");
 
-  const updateCoupon = async (id) => {
+  const updateCoupon = () => {
     setCancel(true)
+    
+  };
+  const setInactive=async(id)=>{
     const response = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/coupon/" + id,
       { status: "Inactive" }
     );
     const { data } = response;
-  };
+    if(data!==null){
+      setCancel(false)
+    }
+  }
 
   useEffect(() => {
     let mount = true;
@@ -109,7 +115,7 @@ function TrackPerfContent({
                 mode="text"
                 style={{ backgroundColor: "#fff" }}
                 color="#f00"
-                onPress={() => updateCoupon(banner._id)}
+                onPress={() => updateCoupon()}
               >
                 CANCEL
               </Button>
@@ -155,7 +161,10 @@ function TrackPerfContent({
       </View>
     )
         }else{
-          return <CustomAlert  />
+          return <CustomAlert title="Are you sure?" 
+          text="Your active coupon will be set to inactive. Inactive coupons are not visible by users"
+          okHandler={()=>setInactive(banner._id)}
+           />
         }
 }
 export default React.memo(TrackPerfContent);
