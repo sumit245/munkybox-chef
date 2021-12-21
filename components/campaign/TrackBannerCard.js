@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import { Text, View } from "react-native";
-import TrackPerfHead from "./TrackPerfHead";
 import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./campaign.styles";
 import { DARKGRAY } from "../../Colors";
@@ -27,9 +26,7 @@ export default function TrackBannerCard({
     status,
   } = banner;
   let remaining = moment(end_date).diff(moment(), "Days");
-  useEffect(() => {
-    console.log(promotedOrders);
-  }, []);
+
   return (
     <View
       style={{
@@ -145,7 +142,7 @@ export default function TrackBannerCard({
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
 
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>{promotedOrders}</Text>
+              <Text style={styles.bigText}>12</Text>
               <Text style={styles.smallText}> Total Orders</Text>
             </View>
           </View>
