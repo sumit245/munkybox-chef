@@ -46,7 +46,7 @@ export default function AddMealForm({ meal, slot, setEditState }) {
                 </Text>
                 <Icon
                   name="square"
-                  color={meal.type === "veg" ? "#f00" : "#0f0"}
+                  color={meal.type === "non-veg" ? "#f00" : "#0f0"}
                   size={16}
                 />
               </View>
