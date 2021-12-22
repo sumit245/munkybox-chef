@@ -51,7 +51,6 @@ export default function TrackPerformance({ route, navigation }) {
   ]);
 
   const fetchData = () => {
-    console.log(pos);
     if (index == 0) {
       setIndex(1);
       setPos(1);

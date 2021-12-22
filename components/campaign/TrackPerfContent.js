@@ -1,13 +1,13 @@
 import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
-
 import Icon from "react-native-vector-icons/Ionicons";
 import { DARKGRAY, SecondaryLightColor } from "../../Colors";
 import { Button } from "react-native-paper";
 import { styles } from "./campaign.styles";
 import axios from "axios";
 import CustomAlert from "../../helpers/CustomAlert.js";
+import { useSelector } from "react-redux";
 
 function TrackPerfContent({
   banners,
@@ -30,6 +30,9 @@ function TrackPerfContent({
     status: "",
   });
 
+  const restaurant = useSelector((state) => state.restaurant);
+  const { _id, restaurant_name, promo } = restaurant;
+
   const [loaded, setLoaded] = useState(false);
   const [cancel, setCancel] = useState(false);
   const [pulled, setPulled] = useState(false);
@@ -39,12 +42,50 @@ function TrackPerfContent({
     setCancel(true);
   };
   const setInactive = async (id) => {
-    const response = await axios.put(
+    let myCoupon = {
+      promo_id: banners.promo_id,
+      category: banners.category,
+      plan_name: banners.plan_name,
+      discount_type: banners.discount_type,
+      absolute_value: banners.absolute_value,
+      start_date: banners.start_date,
+      end_date: banners.end_date,
+      promo_code: banners.promo_code,
+      price: banners.price,
+      discount: banners.discount,
+      duration: banners.duration,
+      status: "Inactive",
+      totalOrders: promotedOrders,
+      totalBaseIncome: revenue,
+      totalDiscountPaid: discount,
+      totalUsed: unique.length,
+    };
+    const couponresponse = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/coupon/" + id,
       { status: "Inactive" }
     );
-    const { data } = response;
-    if (data !== null) {
+    const dashboardResponse = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_name
+    );
+    const { dashboard } = await dashboardResponse.data;
+    const { coupons } = await dashboard;
+    let prevCoupons = [...coupons];
+    prevCoupons.push(myCoupon);
+    const updateDashboard = await axios.put(
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" +
+        restaurant_name +
+        "/" +
+        dashboard._id,
+      { coupons: prevCoupons }
+    );
+    let mypromos = [...promo];
+    mypromos.pop();
+    const restaurantUpdate = await axios.put(
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + _id,
+      { promo: mypromos }
+    );
+    const { status } = updateDashboard;
+    if (status === 200) {
       setCancel(false);
     }
   };
