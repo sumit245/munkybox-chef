@@ -8,6 +8,7 @@ import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
 import axios from "axios";
 import ListExpired from "./ListExpired";
+import { Provider } from "react-native-paper";
 
 export default function TrackPerformance({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -30,7 +31,7 @@ export default function TrackPerformance({ route, navigation }) {
     const { data } = response;
     const { coupons, promotedOrders, revenue, discount, unique } = data;
     setPromotedOrders(promotedOrders.length);
-    console.log("Loaded",totalOrders);
+    console.log("Loaded", totalOrders);
     const active =
       Array.isArray(coupons) &&
       coupons.filter((item) => item.status === "Active");
@@ -108,23 +109,25 @@ export default function TrackPerformance({ route, navigation }) {
   };
   if (loaded) {
     return (
-      <SafeAreaView style={styles.container}>
-        <HeaderTwo title="History" navigation={navigation}>
-          <Icon
-            name="options-outline"
-            size={20}
-            color={SecondaryColor}
-            style={{ paddingRight: 6 }}
+      <Provider>
+        <SafeAreaView style={styles.container}>
+          <HeaderTwo title="History" navigation={navigation}>
+            <Icon
+              name="options-outline"
+              size={20}
+              color={SecondaryColor}
+              style={{ paddingRight: 6 }}
+            />
+          </HeaderTwo>
+          <TabView
+            navigationState={{ index, routes }}
+            renderScene={renderScene}
+            onIndexChange={setIndex}
+            renderTabBar={renderTabBar}
+            // initialLayout={{ width: styles.width }}
           />
-        </HeaderTwo>
-        <TabView
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          renderTabBar={renderTabBar}
-          // initialLayout={{ width: styles.width }}
-        />
-      </SafeAreaView>
+        </SafeAreaView>
+      </Provider>
     );
   } else {
     return null;

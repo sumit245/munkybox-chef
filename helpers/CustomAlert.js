@@ -16,21 +16,23 @@ const CustomAlert = ({ title, text, cancelHandler, okHandler }) => {
     setShow(!show);
     okHandler();
   };
+  const cancel = () => {
+    setShow(!show);
+    cancelHandler();
+  };
   return (
-    <Provider>
-      <Portal>
-        <Dialog visible={show} onDismiss={hideDialog}>
-          <Dialog.Title>{title}</Dialog.Title>
-          <Dialog.Content>
-            <Paragraph>{text}</Paragraph>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={hideDialog}>Cancel</Button>
-            <Button onPress={done}>Done</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
-    </Provider>
+    <Portal>
+      <Dialog visible={show} onDismiss={hideDialog}>
+        <Dialog.Title>{title}</Dialog.Title>
+        <Dialog.Content>
+          <Paragraph>{text}</Paragraph>
+        </Dialog.Content>
+        <Dialog.Actions>
+          <Button onPress={cancel}>Cancel</Button>
+          <Button onPress={done}>Done</Button>
+        </Dialog.Actions>
+      </Dialog>
+    </Portal>
   );
 };
 
