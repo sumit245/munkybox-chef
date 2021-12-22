@@ -9,6 +9,7 @@ import { Checkbox, Divider } from "react-native-paper";
 import { SecondaryColor, SecondaryLightColor } from "../../Colors";
 import { useState } from "react";
 import CustomDialog from "../../helpers/CustomDialog";
+import moment from "moment";
 export default function PreviewCoupon({ navigation, route }) {
   const {
     type,
@@ -21,48 +22,60 @@ export default function PreviewCoupon({ navigation, route }) {
     start_date,
     end_date,
   } = route.params;
+  let diff = moment(end_date).diff(moment(start_date), "days");
+  diff = diff + 1;
   const restaurant = useSelector((state) => state.restaurant);
+  const { promo } = restaurant;
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [pop, showDelete] = useState(false);
 
   const submit = async () => {
-    setLoading(false);
-    const { _id, restaurant_id, base_2price, base_15price, base_30price } =
-      await restaurant;
-    const price =
-      plan === 2 ? base_2price : plan === 15 ? base_15price : base_30price;
-    let discountType = type === "net" ? "$" : "%";
-    let absoluteValue = type === "net" ? discount : (price * discount) / 100;
-    let promo = {
-      restaurant_id: restaurant_id,
-      category: [lunch, dinner],
-      plan_name: plan + " Meals",
-      promo_code: code,
-      discount_type: discountType,
-      absolute_value: absoluteValue,
-      start_date: start_date,
-      end_date: end_date,
-      price: price,
-      discount: discount,
-      duration: duration + " Days",
-    };
-    const response = await axios.post(
-      "https://munkybox-admin.herokuapp.com/api/coupon/",
-      promo
-    );
-    const coupon = await response.data;
-    promo.status = coupon.data.status;
-    promo.promo_id = coupon.data.promo_id;
-    const pushTorestaurant = await axios.put(
-      "https://munkybox-admin.herokuapp.com/api/newrest/" + _id,
-      { promo }
-    );
-    const rest = await pushTorestaurant.data;
-    setLoading(true);
-    navigation.navigate("submit_coupon", {
-      promo,
-    });
+    console.log(promo);
+    if (promo.length !== 0) {
+      alert(
+        "You already have an active coupon. Either wait for expiry or cancel it manually!!!"
+      );
+    } else {
+      setLoading(false);
+      const { _id, restaurant_id, base_2price, base_15price, base_30price } =
+        await restaurant;
+      const price =
+        plan === 2 ? base_2price : plan === 15 ? base_15price : base_30price;
+      let discountType = type === "net" ? "$" : "%";
+      let absoluteValue = type === "net" ? discount : (price * discount) / 100;
+      let diff = moment(end_date).diff(moment(start_date), "days");
+      diff = diff + 1;
+      let promo = {
+        restaurant_id: restaurant_id,
+        category: [lunch, dinner],
+        plan_name: plan + " Meals",
+        promo_code: code,
+        discount_type: discountType,
+        absolute_value: absoluteValue,
+        start_date: start_date,
+        end_date: end_date,
+        price: price,
+        discount: discount,
+        duration: diff + " Days",
+      };
+      const response = await axios.post(
+        "https://munkybox-admin.herokuapp.com/api/coupon/",
+        promo
+      );
+      const coupon = await response.data;
+      promo.status = await coupon.data.status;
+      promo.promo_id = await coupon.data.promo_id;
+      const pushTorestaurant = await axios.put(
+        "https://munkybox-admin.herokuapp.com/api/newrest/" + _id,
+        { promo }
+      );
+      const rest = await pushTorestaurant.data;
+      setLoading(true);
+      navigation.navigate("submit_coupon", {
+        promo,
+      });
+    }
   };
   if (loading) {
     return (
@@ -130,7 +143,7 @@ export default function PreviewCoupon({ navigation, route }) {
                 ]}
               >
                 Valid for:
-                <Text style={styles.smallText}> {duration} Days</Text>
+                <Text style={styles.smallText}> {diff} Days</Text>
               </Text>
               <Divider />
             </View>

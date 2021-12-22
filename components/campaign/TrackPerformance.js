@@ -34,15 +34,7 @@ export default function TrackPerformance({ route, navigation }) {
     const { data } = response;
     const { coupons, promotedOrders, revenue, discount, unique } = data;
     setPromotedOrders(promotedOrders.length);
-    console.log(coupons);
-    // const active =
-    //   Array.isArray(coupons) &&
-    //   coupons.filter((item) => item.status === "Active");
-    // const inactive =
-    //   Array.isArray(coupons) &&
-    //   coupons.filter((item) => item.status === "Inactive");
     setCoupon(coupons);
-    // setInactive(inactive);
     setRevenue(revenue);
     setDiscount(discount);
     setUnique(unique);
