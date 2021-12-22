@@ -212,7 +212,7 @@ function TrackPerfContent({
               <Icon name="person-outline" size={24} color={DARKGRAY} />
               <View style={{ marginLeft: 8 }}>
                 <Text style={styles.bigText}>
-                  {Array.isArray(unique) ? unique.length : 0}
+                  {Array.isArray(unique) ? unique.length : unique}
                 </Text>
                 <Text style={styles.smallText}> Total Users</Text>
               </View>
