@@ -62,7 +62,6 @@ function TrackPerfContent({
   }, [banners]);
 
   const pullToView = (id) => {
-    console.log(id);
     setPulled(true);
   };
 
