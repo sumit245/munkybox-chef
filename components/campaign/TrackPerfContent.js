@@ -7,7 +7,7 @@ import { DARKGRAY, SecondaryLightColor } from "../../Colors";
 import { Button } from "react-native-paper";
 import { styles } from "./campaign.styles";
 import axios from "axios";
-import CustomAlert from "../../helpers/CustomAlert.js"
+import CustomAlert from "../../helpers/CustomAlert.js";
 
 function TrackPerfContent({
   banners,
@@ -31,23 +31,26 @@ function TrackPerfContent({
   });
 
   const [loaded, setLoaded] = useState(false);
-  const [cancel,setCancel]=useState(false)
+  const [cancel, setCancel] = useState(false);
+  const [pulled, setPulled] = useState(false);
   let remaining = moment(banner.end_date).diff(moment(), "Days");
 
   const updateCoupon = () => {
-    setCancel(true)
-    
+    setCancel(true);
   };
-  const setInactive=async(id)=>{
+  const setInactive = async (id) => {
     const response = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/coupon/" + id,
       { status: "Inactive" }
     );
     const { data } = response;
-    if(data!==null){
-      setCancel(false)
+    if (data !== null) {
+      setCancel(false);
     }
-  }
+  };
+  const cancelHandler = () => {
+    setCancel(false);
+  };
 
   useEffect(() => {
     let mount = true;
@@ -57,8 +60,13 @@ function TrackPerfContent({
       mount = false;
     };
   }, [banners]);
-  
-  if(!cancel){
+
+  const pullToView = (id) => {
+    console.log(id);
+    setPulled(true);
+  };
+
+  if (!cancel) {
     return (
       <View style={styles.bannerCard}>
         <View style={styles.trackHead}>
@@ -79,10 +87,13 @@ function TrackPerfContent({
             </Text>
             <Text style={styles.bannerHeadTexts}>ID:{banner.promo_id}</Text>
           </View>
-  
+
           <View style={styles.progressCounter}>
             <Text
-              style={[styles.bannerHeadTexts, { marginTop: 36, marginBottom: 4 }]}
+              style={[
+                styles.bannerHeadTexts,
+                { marginTop: 36, marginBottom: 4 },
+              ]}
             >
               {banner.duration}
             </Text>
@@ -96,41 +107,51 @@ function TrackPerfContent({
         </View>
         {/* bannercard top area */}
 
-{!active &&(
-              <View style={{ alignItems: "flex-start", marginVertical: 16 }}>
-              <Button
-                mode="text"
-                style={{ backgroundColor: "#fff" }}
-                color="#22ccff"
-                
-              >
-                View
-              </Button>
-            </View>
-)}
-        {active && (
+        {!active && (
+          <View style={{ alignItems: "flex-start", marginVertical: 16 }}>
+            <Button
+              mode="text"
+              style={{ backgroundColor: "#fff" }}
+              color="#22ccff"
+              onPress={() => pullToView(banner._id)}
+            >
+              View
+            </Button>
+          </View>
+        )}
+
+        {active || pulled ? (
           <View>
             <View style={{ alignItems: "flex-start", marginTop: 16 }}>
-              <Button
-                mode="text"
-                style={{ backgroundColor: "#fff" }}
-                color="#f00"
-                onPress={() => updateCoupon()}
-              >
-                CANCEL
-              </Button>
+              {!pulled ? (
+                <Button
+                  mode="text"
+                  style={{ backgroundColor: "#fff" }}
+                  color="#f00"
+                  onPress={() => updateCoupon()}
+                >
+                  CANCEL
+                </Button>
+              ) : (
+                <Button
+                  mode="text"
+                  style={{ backgroundColor: "#fff" }}
+                  color="#f00"
+                  onPress={() => setPulled(false)}
+                >
+                  Close
+                </Button>
+              )}
             </View>
-  
+
             <View style={styles.bannerRow}>
               <Icon name="cart-outline" size={24} color={DARKGRAY} />
               <View style={{ marginLeft: 8 }}>
-                <Text style={styles.bigText}>
-                  {promotedOrders}
-                </Text>
+                <Text style={styles.bigText}>{promotedOrders}</Text>
                 <Text style={styles.smallText}> Total Orders</Text>
               </View>
             </View>
-  
+
             <View style={styles.bannerRow}>
               <Icon name="cash-outline" size={24} color={DARKGRAY} />
               <View style={{ marginLeft: 8 }}>
@@ -138,7 +159,7 @@ function TrackPerfContent({
                 <Text style={styles.smallText}> Total Base Income</Text>
               </View>
             </View>
-  
+
             <View style={styles.bannerRow}>
               <Icon name="analytics-outline" size={24} color={DARKGRAY} />
               <View style={{ marginLeft: 8 }}>
@@ -146,7 +167,7 @@ function TrackPerfContent({
                 <Text style={styles.smallText}> Total Discount Paid</Text>
               </View>
             </View>
-  
+
             <View style={[styles.bannerRow, { borderBottomWidth: 0 }]}>
               <Icon name="person-outline" size={24} color={DARKGRAY} />
               <View style={{ marginLeft: 8 }}>
@@ -157,14 +178,18 @@ function TrackPerfContent({
               </View>
             </View>
           </View>
-        )}
+        ) : null}
       </View>
-    )
-        }else{
-          return <CustomAlert title="Are you sure?" 
-          text="Your active coupon will be set to inactive. Inactive coupons are not visible by users"
-          okHandler={()=>setInactive(banner._id)}
-           />
-        }
+    );
+  } else {
+    return (
+      <CustomAlert
+        title="Are you sure?"
+        text="Your active coupon will be set to inactive. Inactive coupons are not visible by users"
+        okHandler={() => setInactive(banner._id)}
+        cancelHandler={cancelHandler}
+      />
+    );
+  }
 }
 export default React.memo(TrackPerfContent);
