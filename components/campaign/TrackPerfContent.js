@@ -7,7 +7,7 @@ import { DARKGRAY, SecondaryLightColor } from "../../Colors";
 import { Button } from "react-native-paper";
 import { styles } from "./campaign.styles";
 import axios from "axios";
-import CustomAlert from "../../helpers/CustomAlert.js"
+import CustomAlert from "../../helpers/CustomAlert"
 
 function TrackPerfContent({
   banners,
@@ -161,10 +161,10 @@ function TrackPerfContent({
       </View>
     )
         }else{
-          return <CustomAlert title="Are you sure?" 
-          text="Your active coupon will be set to inactive. Inactive coupons are not visible by users"
-          okHandler={()=>setInactive(banner._id)}
-           />
+          
+          return
+          <CustomAlert title="Asd" text="HH" okHandler={()=>setInactive(banner._id)}/>
+           
         }
 }
 export default React.memo(TrackPerfContent);
