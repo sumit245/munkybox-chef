@@ -80,11 +80,12 @@ function TrackPerfContent({
     );
     let mypromos = [...promo];
     mypromos.pop();
+    console.log(mypromos);
     const restaurantUpdate = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + _id,
       { promo: mypromos }
     );
-    const { status } = updateDashboard;
+    const { status } = restaurantUpdate;
     if (status === 200) {
       setCancel(false);
     }
