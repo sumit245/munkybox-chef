@@ -112,6 +112,7 @@ export default function TrackPerformance({ route, navigation }) {
         return (
           <ListExpiredCoupons
             restaurant={restaurant_name}
+            address={address}
             banners={coupon}
             active={false}
             loaded={loaded}

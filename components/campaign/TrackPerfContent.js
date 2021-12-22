@@ -82,7 +82,7 @@ function TrackPerfContent({
     mypromos.pop();
     console.log(mypromos);
     const restaurantUpdate = await axios.put(
-      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + _id,
+      "http://munkybox-admin.herokuapp.com/api/newrest/" + _id,
       { promo: mypromos }
     );
     const { status } = restaurantUpdate;
