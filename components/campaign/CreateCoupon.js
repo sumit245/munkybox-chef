@@ -44,7 +44,7 @@ export default function CreateCoupon({ route, navigation }) {
     setDuration(newValue);
     let today = moment(minDate);
     if (newValue !== 0) {
-      const { start, end } = onDateChange(today, newValue-1);
+      const { start, end } = onDateChange(today, newValue - 1);
       setStartDate(start);
       setEndDate(end);
     } else {
@@ -66,7 +66,7 @@ export default function CreateCoupon({ route, navigation }) {
     });
   };
   const dateHandler = (date, duration) => {
-    const { start, end } = onDateChange(date, duration-1);
+    const { start, end } = onDateChange(date, duration - 1);
     setStartDate(start);
     setEndDate(end);
     setModalVisible(false);
