@@ -23,36 +23,38 @@ export default function TrackPerformance({ route, navigation }) {
   const { notcoupon, title } = route.params;
   let address = locality + ", " + city + ", " + state;
 
-  const fetchMyCoupon = async (restaurant) => {
+  const fetchMyCoupon = async (restaurant, status) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
-        restaurant
+        restaurant +
+        "/" +
+        routes[index].title
     );
     const { data } = response;
     const { coupons, promotedOrders, revenue, discount, unique } = data;
     setPromotedOrders(promotedOrders.length);
-    console.log("Loaded", totalOrders);
-    const active =
-      Array.isArray(coupons) &&
-      coupons.filter((item) => item.status === "Active");
-    const inactive =
-      Array.isArray(coupons) &&
-      coupons.filter((item) => item.status === "Inactive");
-    setCoupon(active);
-    setInactive(inactive);
+
+    // const active =
+    //   Array.isArray(coupons) &&
+    //   coupons.filter((item) => item.status === "Active");
+    // const inactive =
+    //   Array.isArray(coupons) &&
+    //   coupons.filter((item) => item.status === "Inactive");
+    setCoupon(coupons);
+    // setInactive(inactive);
     setRevenue(revenue);
     setDiscount(discount);
     setUnique(unique);
     setloaded(true);
   };
   useEffect(() => {
-    fetchMyCoupon(restaurant_id);
+    fetchMyCoupon(restaurant_id, title);
   }, [totalOrders]);
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: "first", title: "active" },
-    { key: "second", title: "inactive" },
+    { key: "first", title: "Active" },
+    { key: "second", title: "Inactive" },
   ]);
 
   const renderTabBar = (props) => (
@@ -93,7 +95,7 @@ export default function TrackPerformance({ route, navigation }) {
             address={address}
             active={false}
             loaded={loaded}
-            banners={inactive}
+            banners={coupon}
             promotedOrders={totalOrders}
             status={route.title}
             title={title}
