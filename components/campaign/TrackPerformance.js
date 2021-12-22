@@ -14,6 +14,7 @@ export default function TrackPerformance({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [coupon, setCoupon] = useState({});
   const [inactive, setInactive] = useState([]);
+  const [pos, setPos] = useState(0);
   const [totalOrders, setPromotedOrders] = useState(0);
   const [revenue, setRevenue] = useState(0);
   const [discount, setDiscount] = useState(0);
@@ -23,17 +24,17 @@ export default function TrackPerformance({ route, navigation }) {
   const { notcoupon, title } = route.params;
   let address = locality + ", " + city + ", " + state;
 
-  const fetchMyCoupon = async (restaurant, status) => {
+  const fetchMyCoupon = async (restaurant, pos) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
         restaurant +
         "/" +
-        routes[index].title
+        routes[pos].title
     );
     const { data } = response;
     const { coupons, promotedOrders, revenue, discount, unique } = data;
     setPromotedOrders(promotedOrders.length);
-
+    console.log(coupons);
     // const active =
     //   Array.isArray(coupons) &&
     //   coupons.filter((item) => item.status === "Active");
@@ -48,14 +49,25 @@ export default function TrackPerformance({ route, navigation }) {
     setloaded(true);
   };
   useEffect(() => {
-    fetchMyCoupon(restaurant_id, title);
-  }, [totalOrders]);
+    fetchMyCoupon(restaurant_id, pos);
+  }, [pos]);
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: "first", title: "Active" },
     { key: "second", title: "Inactive" },
   ]);
+
+  const fetchData = () => {
+    console.log(pos);
+    if (index == 0) {
+      setIndex(1);
+      setPos(1);
+    } else {
+      setIndex(0);
+      setPos(0);
+    }
+  };
 
   const renderTabBar = (props) => (
     <TabBar
@@ -69,7 +81,7 @@ export default function TrackPerformance({ route, navigation }) {
     />
   );
 
-  const renderScene = ({ route }) => {
+  const renderScene = ({ route, index }) => {
     switch (route.key) {
       case "first":
         return (
@@ -124,7 +136,7 @@ export default function TrackPerformance({ route, navigation }) {
           <TabView
             navigationState={{ index, routes }}
             renderScene={renderScene}
-            onIndexChange={setIndex}
+            onIndexChange={fetchData}
             renderTabBar={renderTabBar}
             // initialLayout={{ width: styles.width }}
           />
