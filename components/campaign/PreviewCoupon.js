@@ -31,7 +31,6 @@ export default function PreviewCoupon({ navigation, route }) {
   const [pop, showDelete] = useState(false);
 
   const submit = async () => {
-    console.log(promo);
     if (promo.length !== 0) {
       alert(
         "You already have an active coupon. Either wait for expiry or cancel it manually!!!"

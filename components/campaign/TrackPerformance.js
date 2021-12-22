@@ -9,6 +9,7 @@ import { styles } from "./campaign.styles";
 import axios from "axios";
 import ListExpired from "./ListExpired";
 import { Provider } from "react-native-paper";
+import ListExpiredCoupons from "./ListExpiredCoupons";
 
 export default function TrackPerformance({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -25,20 +26,36 @@ export default function TrackPerformance({ route, navigation }) {
   let address = locality + ", " + city + ", " + state;
 
   const fetchMyCoupon = async (restaurant, pos) => {
-    const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
-        restaurant +
-        "/" +
-        routes[pos].title
-    );
-    const { data } = response;
-    const { coupons, promotedOrders, revenue, discount, unique } = data;
-    setPromotedOrders(promotedOrders.length);
-    setCoupon(coupons);
-    setRevenue(revenue);
-    setDiscount(discount);
-    setUnique(unique);
-    setloaded(true);
+    if (pos == 0) {
+      const response = await axios.get(
+        "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
+          restaurant +
+          "/" +
+          routes[pos].title
+      );
+      const { data } = response;
+      const { coupons, promotedOrders, revenue, discount, unique } = data;
+      setPromotedOrders(promotedOrders.length);
+      setCoupon(coupons);
+      setRevenue(revenue);
+      setDiscount(discount);
+      setUnique(unique);
+      setloaded(true);
+    } else {
+      const response = await axios.get(
+        "http://munkybox-admin.herokuapp.com/api/chefdashboard/" +
+          restaurant_name
+      );
+      const { data } = response;
+      const { coupons } = data.dashboard;
+      console.log(coupons);
+      // setPromotedOrders(promotedOrders.length);
+      setCoupon(coupons);
+      // setRevenue(revenue);
+      // setDiscount(discount);
+      // setUnique(unique);
+      // setloaded(true);
+    }
   };
   useEffect(() => {
     fetchMyCoupon(restaurant_id, pos);
@@ -93,18 +110,13 @@ export default function TrackPerformance({ route, navigation }) {
 
       case "second":
         return (
-          <ListExpired
+          <ListExpiredCoupons
             restaurant={restaurant_name}
-            address={address}
+            banners={coupon}
             active={false}
             loaded={loaded}
-            banners={coupon}
-            promotedOrders={totalOrders}
             status={route.title}
             title={title}
-            revenue={revenue}
-            discount={discount}
-            unique={unique}
           />
         );
 
