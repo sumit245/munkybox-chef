@@ -10,6 +10,7 @@ import { styles } from "./campaign.styles";
 import axios from "axios";
 import TrackCampaignContent from "./TrackCampaignContent";
 import Loader from "../../helpers/Loader";
+import ListExpireBanners from "./ListExpireBanners";
 
 export default function TrackCampaign({ route, navigation }) {
   const layout = useWindowDimensions();
@@ -20,38 +21,22 @@ export default function TrackCampaign({ route, navigation }) {
   const [revenue, setRevenue] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [unique, setUnique] = useState(0);
+  const [pos, setPos] = useState(0);
   const [stat, setStat] = useState({});
-  const [restaurant_name, setRestaurant] = useState("");
-  const [city, setCity] = useState("");
-  const [locality, setLocality] = useState("");
-  const [state, setprovice] = useState("");
-  const [restaurant_id, setRestaurantID] = useState("");
+  const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
 
   const { title } = route.params;
   let address = locality + ", " + city + ", " + state;
-
-  useEffect(() => {
-    let compount = true;
-    if (compount) {
-      const { restaurant_name, city, locality, state, restaurant_id } =
-        restaurant;
-      setRestaurant(restaurant_name);
-      setCity(city);
-      setLocality(locality);
-      setprovice(state);
-      setRestaurantID(restaurant_id);
-    }
-    return () => {
-      compount = false;
-    };
-  }, []);
 
   const fetchMyBanner = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant
     );
     const { data } = response;
-    setBanner(data[0]);
+    if (Array.isArray(data)) {
+      let banners = data.filter((item) => item.status === "active");
+      setBanner(banners);
+    }
   };
 
   const fetchMyStats = async (restaurant) => {
@@ -67,11 +52,31 @@ export default function TrackCampaign({ route, navigation }) {
     }
   };
 
+  const fetchMyExpiredBanner = async (restaurant_name) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_name
+    );
+    const { data } = response;
+    const { banners } = data.dashboard;
+    setBanner(banners);
+  };
+
   useEffect(() => {
     fetchMyBanner(restaurant_id);
     fetchMyStats(restaurant_id);
   }, [restaurant_id]);
-
+  const fetchData = () => {
+    if (index == 0) {
+      setIndex(1);
+      setPos(1);
+      fetchMyExpiredBanner(restaurant_name);
+    } else {
+      setIndex(0);
+      setPos(0);
+      fetchMyBanner(restaurant_id);
+      fetchMyStats(restaurant_id);
+    }
+  };
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: "first", title: "active" },
@@ -94,23 +99,27 @@ export default function TrackCampaign({ route, navigation }) {
     switch (route.key) {
       case "first":
         return (
-          <TrackCampaignContent
+          <ListExpireBanners
             loaded={loaded}
             restaurant={restaurant_name}
             address={address}
             banners={banner}
-            promotedOrders={proms}
-            status={route.title}
             title={title}
-            revenue={revenue}
             discount={discount}
-            unique={unique}
-            stat={stat}
           />
         );
 
       case "second":
-        return null;
+        return (
+          <ListExpireBanners
+            loaded={loaded}
+            restaurant={restaurant_name}
+            address={address}
+            banners={banner}
+            title={title}
+            discount={discount}
+          />
+        );
 
       default:
         break;
@@ -131,9 +140,8 @@ export default function TrackCampaign({ route, navigation }) {
         <TabView
           navigationState={{ index, routes }}
           renderScene={renderScene}
-          onIndexChange={setIndex}
+          onIndexChange={fetchData}
           renderTabBar={renderTabBar}
-          initialLayout={{ width: layout.width }}
         />
       </SafeAreaView>
     );
