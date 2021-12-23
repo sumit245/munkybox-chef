@@ -18,7 +18,7 @@ export default function TrackCampaignHead({
   status,
   flag_banner,
 }) {
-  let remaining = moment(end_date).diff(moment(), "Days");
+  let remaining = moment(end_date).diff(moment(start_date), "Days");
 
   return (
     <View style={[styles.trackHead, { height: 100 }]}>
