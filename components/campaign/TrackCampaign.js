@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
 import axios from "axios";
-import TrackCampaignContent from "./TrackCampaignContent";
+
 import Loader from "../../helpers/Loader";
 import ListExpireBanners from "./ListExpireBanners";
 
@@ -18,11 +18,10 @@ export default function TrackCampaign({ route, navigation }) {
   const [banner, setBanner] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [proms, setPromotedOrders] = useState([]);
-  const [revenue, setRevenue] = useState(0);
+
   const [discount, setDiscount] = useState(0);
-  const [unique, setUnique] = useState(0);
+
   const [pos, setPos] = useState(0);
-  const [stat, setStat] = useState({});
   const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
 
   const { title } = route.params;
@@ -33,23 +32,20 @@ export default function TrackCampaign({ route, navigation }) {
       "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant
     );
     const { data } = response;
-    if (Array.isArray(data)) {
-      let banners = data.filter((item) => item.status === "active");
-      setBanner(banners);
-    }
-  };
-
-  const fetchMyStats = async (restaurant) => {
-    setLoaded(false);
-    const response = await axios.get(
+    let banners = data.filter((item) => item.status === "active");
+    const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
         restaurant
     );
-    const { data } = response;
-    if (typeof data !== "undefined") {
-      setStat(data);
-      setLoaded(true);
-    }
+    const { clicks, discount, due, orders, revenue, users } = res.data;
+    let myBanner = [...banners];
+    (myBanner[0].clicks = clicks), (myBanner[0].totalDiscount = discount);
+    myBanner[0].revenue = revenue;
+    myBanner[0].due = due;
+    myBanner[0].users = users;
+    myBanner[0].orders = orders;
+    setBanner(myBanner);
+    setLoaded(true);
   };
 
   const fetchMyExpiredBanner = async (restaurant_name) => {
@@ -63,7 +59,6 @@ export default function TrackCampaign({ route, navigation }) {
 
   useEffect(() => {
     fetchMyBanner(restaurant_id);
-    fetchMyStats(restaurant_id);
   }, [restaurant_id]);
   const fetchData = () => {
     if (index == 0) {
@@ -74,7 +69,6 @@ export default function TrackCampaign({ route, navigation }) {
       setIndex(0);
       setPos(0);
       fetchMyBanner(restaurant_id);
-      fetchMyStats(restaurant_id);
     }
   };
   const [index, setIndex] = React.useState(0);

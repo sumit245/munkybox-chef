@@ -110,7 +110,8 @@ function TrackCampaignContent({ banners, stat, loaded }) {
               <Text style={styles.smallText}>Days Left</Text>
             </View>
           </View>
-
+          {/* Header Part */}
+          
           <View style={{ marginVertical: 16, marginHorizontal: 22 }}>
             <Text
               style={{ fontWeight: "bold", fontSize: 16, color: "#22ccff" }}
@@ -132,7 +133,7 @@ function TrackCampaignContent({ banners, stat, loaded }) {
           >
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>{0}</Text>
+              <Text style={styles.bigText}>{banners.orders.length}</Text>
               <Text style={styles.smallText}> Total Orders</Text>
             </View>
           </View>
