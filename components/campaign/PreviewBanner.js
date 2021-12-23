@@ -1,5 +1,5 @@
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
 import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
@@ -8,6 +8,7 @@ import { SecondaryDarkColor } from "../../Colors";
 import { Checkbox } from "react-native-paper";
 import Loader from "../../helpers/Loader";
 import axios from "axios";
+import { useSelector } from "react-redux";
 export default function PreviewBanner({ route, navigation }) {
   const {
     title,
@@ -19,41 +20,55 @@ export default function PreviewBanner({ route, navigation }) {
     discount_type,
     discount,
     restaurant,
-    plan
+    plan,
   } = route.params;
   const [checked, setChecked] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [hasPromo, sethasPromo] = useState(false);
+
   let start = moment(start_date).format("DD MMM, YYYY");
   let end = moment(end_date).format("DD MMM, YYYY");
+
   const submit = async () => {
-    setLoading(true);
-    const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/promo/"
+    const getMyBanner = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/promo/" +
+        restaurant.restaurant_id
     );
-    const { data } = response.data;
-    
-    let prom = data.length;
-    let banner = {
-      promo_id: "ADVERT00" + prom,
-      restaurant_id: restaurant.restaurant_id,
-      plan_name: title,
-      rpc: rpc,
-      duration: duration,
-      start_date: start_date,
-      end_date: end_date,
-      meal_plan:plan,
-      promo_code: code,
-      discount_type: discount_type,
-      discount: discount,
-    };
-    const res = await axios.post(
-      "http://munkybox-admin.herokuapp.com/api/promo/",
-      banner
-    );
-    setLoading(false);
-    navigation.navigate("submit_coupon", {
-      promo:banner,
-    });
+    const myBanner = await getMyBanner.data;
+    if (myBanner.length !== 0) {
+      alert(
+        "You already have an active campaign. Wait for expiry to create a new one!!!"
+      );
+    } else {
+      setLoading(true);
+      const response = await axios.get(
+        "http://munkybox-admin.herokuapp.com/api/promo/"
+      );
+      const { data } = response.data;
+
+      let prom = data.length;
+      let banner = {
+        promo_id: "ADVERT00" + prom,
+        restaurant_id: restaurant.restaurant_id,
+        plan_name: title,
+        rpc: rpc,
+        duration: duration,
+        start_date: start_date,
+        end_date: end_date,
+        meal_plan: plan,
+        promo_code: code,
+        discount_type: discount_type,
+        discount: discount,
+      };
+      const res = await axios.post(
+        "http://munkybox-admin.herokuapp.com/api/promo/",
+        banner
+      );
+      setLoading(false);
+      navigation.navigate("submit_coupon", {
+        promo: banner,
+      });
+    }
   };
   if (!loading) {
     return (
