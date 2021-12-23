@@ -133,7 +133,7 @@ export default function TrackCampaign({ route, navigation }) {
           renderScene={renderScene}
           onIndexChange={setIndex}
           renderTabBar={renderTabBar}
-          initialLayout={{ width: layout.width }}
+          // initialLayout={{ width: layout.width }}
         />
       </SafeAreaView>
     );

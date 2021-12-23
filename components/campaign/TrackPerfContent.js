@@ -80,7 +80,6 @@ function TrackPerfContent({
     );
     let mypromos = [...promo];
     mypromos.pop();
-    console.log(mypromos);
     const restaurantUpdate = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/newrest/" + _id,
       { promo: mypromos }

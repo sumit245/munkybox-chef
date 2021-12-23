@@ -142,7 +142,6 @@ export default function TrackPerformance({ route, navigation }) {
             renderScene={renderScene}
             onIndexChange={fetchData}
             renderTabBar={renderTabBar}
-            // initialLayout={{ width: styles.width }}
           />
         </SafeAreaView>
       </Provider>

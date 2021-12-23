@@ -31,7 +31,7 @@ export default function PreviewBanner({ route, navigation }) {
 
   const submit = async () => {
     const getMyBanner = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/promo/" +
+      "http://munkybox-admin.herokuapp.com/api/promo/getbannerslength/" +
         restaurant.restaurant_id
     );
     const myBanner = await getMyBanner.data;
