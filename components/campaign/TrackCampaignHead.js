@@ -96,7 +96,7 @@ export default function TrackCampaignHead({
           {day} Days
         </Text>
         <View style={styles.progressDonught}>
-          <Text style={{ fontWeight: "bold", fontSize: 14 }}>{remaining}</Text>
+          <Text style={{ fontWeight: "bold", fontSize: 14 }}>{remaining+1}</Text>
         </View>
         <Text style={styles.smallText}>Days Left</Text>
       </View>
