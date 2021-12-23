@@ -14,7 +14,7 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
   const [users, setUsers] = useState(0);
   useEffect(() => {
     const { totalOrders, due, clicks, discount, revenue, users } = stat;
-    console.log("from card",banner);
+    console.log("from card", banner);
     setTotalOrders(totalOrders);
     setDue(due);
     setClicks(clicks);
@@ -45,7 +45,7 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
           day={banner.duration}
           status={banner.status}
         />
-        <View style={{ marginTop: 16, marginHorizontal: 22 }}>
+        <View style={{ marginVertical: 16, marginHorizontal: 22 }}>
           <Text style={{ fontWeight: "bold", fontSize: 16, color: "#22ccff" }}>
             Due: ${due}
           </Text>
@@ -55,7 +55,7 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
           style={[
             styles.textContainer,
             {
-              marginTop: 8,
+              marginTop: 16,
               alignItems: "center",
               borderBottomColor: "#999",
               borderBottomWidth: 0.2,
@@ -76,6 +76,7 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
               alignItems: "center",
               borderBottomColor: "#999",
               borderBottomWidth: 0.2,
+              marginVertical: "4%",
             },
           ]}
         >
@@ -93,6 +94,7 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
               alignItems: "center",
               borderBottomColor: "#999",
               borderBottomWidth: 0.2,
+              marginVertical: "4%",
             },
           ]}
         >
@@ -110,6 +112,7 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
               alignItems: "center",
               borderBottomColor: "#999",
               borderBottomWidth: 0.2,
+              marginVertical: "4%",
             },
           ]}
         >
@@ -125,6 +128,7 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
             styles.textContainer,
             {
               alignItems: "center",
+              marginVertical: "4%",
             },
           ]}
         >
