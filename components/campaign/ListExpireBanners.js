@@ -5,6 +5,7 @@ import Shop from "react-native-vector-icons/Entypo";
 import { DARKGRAY, SecondaryLightColor } from "../../Colors";
 import { styles } from "./campaign.styles";
 import moment from "moment";
+import TrackCampaignContent from "./TrackCampaignContent";
 export default function ListExpireBanners({
   banners,
   restaurant,
@@ -17,16 +18,12 @@ export default function ListExpireBanners({
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
 
   const renderItem = ({ item }) => (
-    <TrackPerfContent
-      active={active}
-      loaded={loaded}
+    <TrackCampaignContent
+      restaurant={restaurant}
       banners={item}
-      promotedOrders={item.totalOrders}
       status={status}
       title={title}
-      revenue={item.totalBaseIncome}
-      discount={item.totalDiscountPaid}
-      unique={item.totalUsed}
+      loaded={loaded}
     />
   );
   const ListHeaderComponent = ({ restaurant, address }) => {
@@ -73,14 +70,14 @@ export default function ListExpireBanners({
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
             <Text style={styles.text}>
-              Sorry you dont have any coupons. Create a new to generate more
-              revenue
+              Sorry you dont have any campaign. Create a new to generate more
+              revenue!!!
             </Text>
           </View>
         )}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
-        keyExtractor={(item, index) => item.index}
+        keyExtractor={(item, index) => index}
       />
       <Text style={[styles.listing, { textAlign: "center" }]}>
         Last Updated: {timesnow}
