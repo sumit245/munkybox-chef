@@ -33,14 +33,13 @@ export default function TrackPerformance({ route, navigation }) {
           "/Active"
       );
       const { data } = response;
-      console.log(data);
-      // const { coupons, promotedOrders, revenue, discount, unique } = data;
-      // setPromotedOrders(promotedOrders.length);
-      // setCoupon(coupons);
-      // setRevenue(revenue);
-      // setDiscount(discount);
-      // setUnique(unique);
-      // setloaded(true);
+      const { coupons, promotedOrders, revenue, discount, unique } = data;
+      setPromotedOrders(promotedOrders.length);
+      setCoupon(coupons);
+      setRevenue(revenue);
+      setDiscount(discount);
+      setUnique(unique);
+      setloaded(true);
     } else {
       const response = await axios.get(
         "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_id

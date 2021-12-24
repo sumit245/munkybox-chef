@@ -12,7 +12,7 @@ export default function SelectBanners({ navigation }) {
   const [data, setData] = useState([]);
   const restaurant = useSelector((state) => state.restaurant);
   const fetchPlans = async () => {
-    const response = await axios.get("https://munkybox-admin.herokuapp.com/api/banner");
+    const response = await axios.get("http://munkybox-admin.herokuapp.com/api/banner");
     const bannerplans = await response.data.data;
     setData(bannerplans.reverse());
   };

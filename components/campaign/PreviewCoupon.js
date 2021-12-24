@@ -59,14 +59,14 @@ export default function PreviewCoupon({ navigation, route }) {
         duration: diff + " Days",
       };
       const response = await axios.post(
-        "https://munkybox-admin.herokuapp.com/api/coupon/",
+        "http://munkybox-admin.herokuapp.com/api/coupon/",
         promo
       );
       const coupon = await response.data;
       promo.status = await coupon.data.status;
       console.log(promo);
       const pushTorestaurant = await axios.put(
-        "https://munkybox-admin.herokuapp.com/api/newrest/" + _id,
+        "http://munkybox-admin.herokuapp.com/api/newrest/" + _id,
         { promo }
       );
       const rest = await pushTorestaurant.data;

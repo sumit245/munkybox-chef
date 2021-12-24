@@ -19,7 +19,7 @@ export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
   });
   const fetchSlotTime = async () => {
     const slots = await axios.get(
-      "https://munkybox-admin.herokuapp.com/api/slots"
+      "http://munkybox-admin.herokuapp.com/api/slots"
     );
     const { lunchSlots, dinnerSlots } = await slots.data[0];
     let first = lunchSlots[0];
