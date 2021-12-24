@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native";
-import { View, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import Icon from "react-native-vector-icons/Ionicons";
 import { PrimaryDark, SecondaryColor } from "../../Colors";
@@ -13,14 +12,10 @@ import Loader from "../../helpers/Loader";
 import ListExpireBanners from "./ListExpireBanners";
 
 export default function TrackCampaign({ route, navigation }) {
-  const layout = useWindowDimensions();
   const restaurant = useSelector((state) => state.restaurant);
   const [banner, setBanner] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const [proms, setPromotedOrders] = useState([]);
-
   const [discount, setDiscount] = useState(0);
-
   const [pos, setPos] = useState(0);
   const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
 
@@ -37,20 +32,21 @@ export default function TrackCampaign({ route, navigation }) {
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
         restaurant
     );
-    const { clicks, discount, due, orders, revenue, users } = res.data;
-    let myBanner = [...banners];
-    (myBanner[0].clicks = clicks), (myBanner[0].totalDiscount = discount);
-    myBanner[0].revenue = revenue;
-    myBanner[0].due = due;
-    myBanner[0].users = users;
-    myBanner[0].orders = orders;
-    setBanner(myBanner);
+    console.log(res.data);
+    // const { clicks, discount, due, orders, revenue, users } = res.data;
+    // let myBanner = [...banners];
+    // (myBanner[0].clicks = clicks), (myBanner[0].totalDiscount = discount);
+    // myBanner[0].revenue = revenue;
+    // myBanner[0].due = due;
+    // myBanner[0].users = users;
+    // myBanner[0].orders = orders;
+    setBanner(banners);
     setLoaded(true);
   };
 
-  const fetchMyExpiredBanner = async (restaurant_name) => {
+  const fetchMyExpiredBanner = async (restaurant_id) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_name
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_id
     );
     const { data } = response;
     const { banners } = data.dashboard;
@@ -64,7 +60,7 @@ export default function TrackCampaign({ route, navigation }) {
     if (index == 0) {
       setIndex(1);
       setPos(1);
-      fetchMyExpiredBanner(restaurant_name);
+      fetchMyExpiredBanner(restaurant_id);
     } else {
       setIndex(0);
       setPos(0);

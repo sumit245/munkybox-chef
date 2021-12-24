@@ -30,21 +30,20 @@ export default function TrackPerformance({ route, navigation }) {
       const response = await axios.get(
         "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
           restaurant +
-          "/" +
-          routes[pos].title
+          "/Active"
       );
       const { data } = response;
-      const { coupons, promotedOrders, revenue, discount, unique } = data;
-      setPromotedOrders(promotedOrders.length);
-      setCoupon(coupons);
-      setRevenue(revenue);
-      setDiscount(discount);
-      setUnique(unique);
-      setloaded(true);
+      console.log(data);
+      // const { coupons, promotedOrders, revenue, discount, unique } = data;
+      // setPromotedOrders(promotedOrders.length);
+      // setCoupon(coupons);
+      // setRevenue(revenue);
+      // setDiscount(discount);
+      // setUnique(unique);
+      // setloaded(true);
     } else {
       const response = await axios.get(
-        "http://munkybox-admin.herokuapp.com/api/chefdashboard/" +
-          restaurant_name
+        "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_id
       );
       const { data } = response;
       const { coupons } = data.dashboard;
@@ -54,7 +53,7 @@ export default function TrackPerformance({ route, navigation }) {
       // setRevenue(revenue);
       // setDiscount(discount);
       // setUnique(unique);
-      // setloaded(true);
+      setloaded(true);
     }
   };
   useEffect(() => {

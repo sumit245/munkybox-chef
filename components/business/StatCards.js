@@ -14,20 +14,9 @@ export default function StatCards({
   newUser,
   repeatedUser,
   cartconversion,
+  menuvisits,
   visits,
 }) {
-  const [menuvisits, setmenuvisits] = useState(0);
-  const [cartvisits, setcartvisits] = useState(0);
-  useEffect(() => {
-    try {
-      const { menuvisits, cartVisit } = visits;
-      setmenuvisits(menuvisits);
-      setcartvisits(cartVisit);
-    } catch {
-      setmenuvisits(0);
-      setcartvisits(0);
-    }
-  }, [visits]);
   return (
     <ScrollView horizontal>
       <View>
@@ -256,7 +245,7 @@ export default function StatCards({
             </View>
             <View>
               <Text style={styles.stat_label}>Visits to Cart</Text>
-              <Text style={styles.stat_value}>{cartvisits}</Text>
+              <Text style={styles.stat_value}>{visits}</Text>
             </View>
             <View>
               <Text style={styles.stat_label}>Cart to Orders</Text>

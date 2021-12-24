@@ -28,13 +28,13 @@ export default function Dashboard({ navigation }) {
   const [cancelledcount, setCancelledCount] = useState(0);
   const [notstarted, setNotStarted] = useState(0);
   const [rejected, setRejected] = useState(0);
-  const [dashboard, setDashboard] = useState({});
+  const [menuvisits, setMenuVisit] = useState(0);
   const [commission, setCommission] = useState("");
   const [cartconversion, setCartConversion] = useState(0);
   const [visits, setvisits] = useState(0);
   const [acceptanceRate, setAcceptanceRate] = useState(0);
   const [rejectedRate, setRejectedRate] = useState(0);
-
+  const [dashboard, setDashboard] = useState({});
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, city, restaurant_id } = restaurant;
   const [index, setIndex] = React.useState(0);
@@ -63,10 +63,11 @@ export default function Dashboard({ navigation }) {
             complete={completecount}
             cancel={cancelledcount}
             notstarted={notstarted}
-            dashboard={dashboard}
+            menuvisits={menuvisits}
             commission={commission}
             rejected={rejected}
             newUser={newUser}
+            dashboard={dashboard}
             repeatedUser={repeatedUser}
             cartconversion={cartconversion}
             visits={visits}
@@ -148,16 +149,13 @@ export default function Dashboard({ navigation }) {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant
     );
-    const {
-      totalOrders,
-      orders,
-      accptanceRate,
-      rectanceRate,
-      acceptedCount,
-      rejectedCount,
-    } = response.data;
+    const { totalOrders, orders, accptanceRate, rectanceRate, dashboard } =
+      response.data;
+    const { menuvisits, cartVisit } = dashboard;
+    console.log(menuvisits);
     setCartConversion(totalOrders);
-    setvisits(orders);
+    setMenuVisit(menuvisits);
+    setvisits(cartVisit);
     setAcceptanceRate(accptanceRate);
     setRejectedRate(rectanceRate);
   };
@@ -168,12 +166,12 @@ export default function Dashboard({ navigation }) {
     fetchOrders(restaurant_name);
     fetchcompletedorders(restaurant_name);
     fetchcancelledcount(restaurant_name);
-    fetchVisit(restaurant_name);
+    fetchVisit(restaurant_id);
     fetchRejectedcount(restaurant_name);
     fetchNotStartedcount(restaurant_name);
     fetchStats(restaurant_name);
     getuserByType(restaurant_name);
-  }, [restaurant_name]);
+  }, [restaurant_name, restaurant_id]);
 
   return (
     <SafeAreaView
@@ -231,7 +229,6 @@ export default function Dashboard({ navigation }) {
                 width: 60,
                 borderRadius: 15,
                 backgroundColor: "#226ccf",
-                //   opacity: 0.2,
                 alignItems: "center",
                 justifyContent: "center",
               }}
