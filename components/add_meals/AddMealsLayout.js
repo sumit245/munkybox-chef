@@ -58,7 +58,12 @@ export default function AddMealsLayout({ navigation }) {
     switch (route.key) {
       case "first":
         return addState ? (
-          <AddEditMeals slot={slot} day={route.title} index={index} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            index={index}
+            changeEditState={changeEditState}
+          />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
@@ -76,7 +81,12 @@ export default function AddMealsLayout({ navigation }) {
         );
       case "second":
         return addState ? (
-          <AddEditMeals slot={slot} day={route.title} index={index} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            index={index}
+            changeEditState={changeEditState}
+          />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
@@ -94,7 +104,12 @@ export default function AddMealsLayout({ navigation }) {
         );
       case "third":
         return addState ? (
-          <AddEditMeals slot={slot} day={route.title} index={index} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            index={index}
+            changeEditState={changeEditState}
+          />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
@@ -112,7 +127,12 @@ export default function AddMealsLayout({ navigation }) {
         );
       case "fourth":
         return addState ? (
-          <AddEditMeals slot={slot} day={route.title} index={index} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            index={index}
+            changeEditState={changeEditState}
+          />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
@@ -129,7 +149,12 @@ export default function AddMealsLayout({ navigation }) {
         );
       case "fifth":
         return addState ? (
-          <AddEditMeals slot={slot} day={route.title} index={index} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            index={index}
+            changeEditState={changeEditState}
+          />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
@@ -147,7 +172,12 @@ export default function AddMealsLayout({ navigation }) {
         );
       case "sixth":
         return addState ? (
-          <AddEditMeals slot={slot} day={route.title} index={index} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            index={index}
+            changeEditState={changeEditState}
+          />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
@@ -165,7 +195,12 @@ export default function AddMealsLayout({ navigation }) {
         );
       case "seventh":
         return addState ? (
-          <AddEditMeals slot={slot} day={route.title} index={index} />
+          <AddEditMeals
+            slot={slot}
+            day={route.title}
+            index={index}
+            changeEditState={changeEditState}
+          />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
