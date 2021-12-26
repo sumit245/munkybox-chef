@@ -20,7 +20,13 @@ import axios from "axios";
 import Loader from "../../helpers/Loader";
 import AddEditAddOns from "./AddEditAddOns";
 
-export default function AddEditMeals({ meal, day, slot, index }) {
+export default function AddEditMeals({
+  meal,
+  day,
+  slot,
+  index,
+  changeEditState,
+}) {
   const [image, setImage] = useState(null);
   const restaurant = useSelector((state) => state.restaurant);
   const [meals, setMeals] = useState([]);
@@ -100,8 +106,7 @@ export default function AddEditMeals({ meal, day, slot, index }) {
       description: info.description,
     };
     let dataToUpload = [...meals];
-    dataToUpload.splice(index, 0, data);
-    console.log(index);
+    dataToUpload.splice(index, 1, data);
     setMeals(dataToUpload);
     const respone = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/newrest/" + restaurant._id,
@@ -112,10 +117,10 @@ export default function AddEditMeals({ meal, day, slot, index }) {
 
     if (respone !== null) {
       setLoading(true);
+      changeEditState(false);
     }
   };
   const addInputFields = () => {
-    console.log(addOns.length);
     setAddOns([
       ...addOns,
       { add_on_name: "", add_on_price: "", add_on_image: "" },
@@ -140,12 +145,25 @@ export default function AddEditMeals({ meal, day, slot, index }) {
               padding: 4,
             }}
           >
+            <TouchableOpacity onPress={() => changeEditState(false)}>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  textTransform: "uppercase",
+                  color: "#ff2222",
+                  marginRight: 16,
+                }}
+              >
+                Close
+              </Text>
+            </TouchableOpacity>
             <TouchableOpacity onPress={submitMeal}>
               <Text
                 style={{
                   fontWeight: "bold",
                   textTransform: "uppercase",
                   color: "#2222ff",
+                  
                 }}
               >
                 Save

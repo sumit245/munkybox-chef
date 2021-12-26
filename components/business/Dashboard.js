@@ -126,6 +126,7 @@ export default function Dashboard({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders/rejected/" + restaurant
     );
     const { count } = response.data;
+    console.log(count);
     setRejected(count);
   };
   const fetchNotStartedcount = async (restaurant) => {

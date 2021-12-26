@@ -28,12 +28,12 @@ const PinPage = ({ route, navigation, entry }) => {
     try {
       const response = await AsyncStorage.getItem("credential");
       const { pin } = JSON.parse(response);
-
+      
       if (pin === enteredPin) {
         const rest = await AsyncStorage.getItem("restaurant");
         const { _id } = JSON.parse(rest);
         const res = await axios.get(
-          "https://munkybox-admin.herokuapp.com/api/newrest/" + _id
+          "http://munkybox-admin.herokuapp.com/api/newrest/" + _id
         );
         const restra = res.data;
         let newrest = JSON.stringify(restra);

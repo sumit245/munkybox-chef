@@ -44,11 +44,14 @@ export default function AddMealsLayout({ navigation }) {
   );
   useEffect(() => {
     let day = meals.map((data, key) => data.day);
-    console.log(day);
-  }, []);
+  }, [meals]);
 
   const handleToggle = (data) => {
     setSlot(data);
+  };
+
+  const changeEditState = (state) => {
+    setEditState(state);
   };
 
   const renderScene = ({ route }) => {
@@ -61,6 +64,7 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             meal={meals.find((o) => o.day === route.title)}
+            changeEditState={changeEditState}
           />
         ) : (
           <ViewMeals
@@ -78,6 +82,7 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             meal={meals.find((o) => o.day === route.title)}
+            changeEditState={changeEditState}
           />
         ) : (
           <ViewMeals
@@ -95,6 +100,7 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             meal={meals.find((o) => o.day === route.title)}
+            changeEditState={changeEditState}
           />
         ) : (
           <ViewMeals
@@ -129,6 +135,7 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             meal={meals.find((o) => o.day === route.title)}
+            changeEditState={changeEditState}
           />
         ) : (
           <ViewMeals
@@ -146,6 +153,7 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             meal={meals.find((o) => o.day === route.title)}
+            changeEditState={changeEditState}
           />
         ) : (
           <ViewMeals
@@ -163,6 +171,7 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             meal={meals.find((o) => o.day === route.title)}
+            changeEditState={changeEditState}
           />
         ) : (
           <ViewMeals

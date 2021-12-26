@@ -89,6 +89,7 @@ function TrackPerfContent({
       setCancel(false);
     }
   };
+  
   const cancelHandler = () => {
     setCancel(false);
   };
