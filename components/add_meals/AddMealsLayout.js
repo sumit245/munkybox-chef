@@ -62,12 +62,14 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             index={index}
+            addState={true}
             changeEditState={changeEditState}
           />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
             day={route.title}
+            addState={false}
             meal={meals.find((o) => o.day === route.title)}
             changeEditState={changeEditState}
           />
@@ -85,12 +87,14 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             index={index}
+            addState={true}
             changeEditState={changeEditState}
           />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
             day={route.title}
+            addState={false}
             meal={meals.find((o) => o.day === route.title)}
             changeEditState={changeEditState}
           />
@@ -108,12 +112,14 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             index={index}
+            addState={true}
             changeEditState={changeEditState}
           />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
             day={route.title}
+            addState={false}
             meal={meals.find((o) => o.day === route.title)}
             changeEditState={changeEditState}
           />
@@ -131,12 +137,14 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             index={index}
+            addState={true}
             changeEditState={changeEditState}
           />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
             day={route.title}
+            addState={false}
             meal={meals.find((o) => o.day === route.title)}
           />
         ) : (
@@ -153,12 +161,14 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             index={index}
+            addState={true}
             changeEditState={changeEditState}
           />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
             day={route.title}
+            addState={false}
             meal={meals.find((o) => o.day === route.title)}
             changeEditState={changeEditState}
           />
@@ -176,12 +186,14 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             index={index}
+            addState={true}
             changeEditState={changeEditState}
           />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
             day={route.title}
+            addState={false}
             meal={meals.find((o) => o.day === route.title)}
             changeEditState={changeEditState}
           />
@@ -199,12 +211,14 @@ export default function AddMealsLayout({ navigation }) {
             slot={slot}
             day={route.title}
             index={index}
+            addState={true}
             changeEditState={changeEditState}
           />
         ) : editState ? (
           <AddEditMeals
             slot={slot}
             day={route.title}
+            addState={false}
             meal={meals.find((o) => o.day === route.title)}
             changeEditState={changeEditState}
           />

@@ -25,6 +25,7 @@ export default function AddEditMeals({
   day,
   slot,
   index,
+  addState,
   changeEditState,
 }) {
   const [image, setImage] = useState(null);
@@ -106,7 +107,10 @@ export default function AddEditMeals({
       description: info.description,
     };
     let dataToUpload = [...meals];
-    dataToUpload.splice(index, 1, data);
+    addState
+      ? dataToUpload.splice(index, 0, data)
+      : dataToUpload.splice(index, 1, data);
+
     setMeals(dataToUpload);
     const respone = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/newrest/" + restaurant._id,
@@ -163,7 +167,6 @@ export default function AddEditMeals({
                   fontWeight: "bold",
                   textTransform: "uppercase",
                   color: "#2222ff",
-                  
                 }}
               >
                 Save
