@@ -19,6 +19,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 import Loader from "../../helpers/Loader";
 import AddEditAddOns from "./AddEditAddOns";
+import { RadioButton } from "react-native-paper";
 
 export default function AddEditMeals({
   meal,
@@ -40,9 +41,11 @@ export default function AddEditMeals({
       add_on_image: "",
     },
   ]);
+
+  const [checked, setChecked] = useState("veg");
   const [info, setInfo] = useState({
     meal_name: "",
-    type: "",
+    type: "veg",
     day: "",
     slot: "",
     description: "",
@@ -85,6 +88,10 @@ export default function AddEditMeals({
     if (!result.cancelled) {
       setImage(result.uri);
     }
+  };
+  const onRadioChanged = (value) => {
+    setChecked(value);
+    setInfo({ ...info, type: value });
   };
   const submitMeal = async () => {
     setLoading(false);
@@ -137,7 +144,9 @@ export default function AddEditMeals({
   };
 
   const saveHandler = () => {};
-
+  const onclose = (state) => {
+    changeEditState(state);
+  };
   if (loading) {
     return (
       <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -149,7 +158,7 @@ export default function AddEditMeals({
               padding: 4,
             }}
           >
-            <TouchableOpacity onPress={() => changeEditState(false)}>
+            <TouchableOpacity onPress={() => onclose(false)}>
               <Text
                 style={{
                   fontWeight: "bold",
@@ -230,14 +239,34 @@ export default function AddEditMeals({
             <View style={styles.labelContainer}>
               <Text style={styles.label}>Meal Type</Text>
             </View>
-            <Picker
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <RadioButton.Android
+                  value="veg"
+                  status={checked === "veg" ? "checked" : "unchecked"}
+                  onPress={() => onRadioChanged("veg")}
+                />
+                <Text>Veg</Text>
+              </View>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <RadioButton.Android
+                  value="non-veg"
+                  status={checked === "non-veg" ? "checked" : "unchecked"}
+                  onPress={() => onRadioChanged("non-veg")}
+                />
+                <Text>Non Veg</Text>
+              </View>
+            </View>
+            {/* <Picker
               style={{ marginHorizontal: 8 }}
               selectedValue={meal_type}
               onValueChange={(itemValue, itemIndex) => setMealType(itemValue)}
             >
               <Picker.Item label="Veg" value="veg" />
               <Picker.Item label="Non Veg" value="non-veg" />
-            </Picker>
+            </Picker> */}
           </View>
           {/* Meal Type */}
         </View>
