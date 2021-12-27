@@ -111,11 +111,12 @@ export default function AddEditMeals({
       ? dataToUpload.splice(index, 0, data)
       : dataToUpload.splice(index, 1, data);
 
-    setMeals(dataToUpload);
+   await setMeals(dataToUpload);
+    console.log(meals.length);
     const respone = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/newrest/" + restaurant._id,
       {
-        meals: dataToUpload,
+        meals: meals,
       }
     );
 
