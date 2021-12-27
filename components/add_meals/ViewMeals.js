@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image, ScrollView } from "react-native";
-import { IconButton } from "react-native-paper";
+import { IconButton, FAB } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 import { width } from "../../Dimens";
 import ViewAddOn from "./ViewAddOn";
 
-export default function AddMealForm({ meal, slot, setEditState }) {
+export default function AddMealForm({ meal, slot, setEditState, addHandler }) {
   const [add_on, setAddOn] = useState([]);
+  const [addState, setAddState] = useState(false);
+  const onChangeHandler = (state) => {
+    setAddState(state);
+    addHandler(state);
+  };
   useEffect(() => {
     try {
       const { add_on } = meal;
@@ -68,26 +73,34 @@ export default function AddMealForm({ meal, slot, setEditState }) {
     );
   } catch (error) {
     return (
-      <View
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          flex: 1,
-        }}
-      >
-        <Icon name="sad-outline" size={60} color="orange" />
-        <Text
+      <>
+        <View
           style={{
-            fontWeight: "bold",
-            fontSize: 16,
-            color: "#444",
-            textAlign: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            flex: 1,
           }}
         >
-          Sorry! You don't provide a meal on this day. Please add meals to get
-          more income
-        </Text>
-      </View>
+          <Icon name="sad-outline" size={60} color="orange" />
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 16,
+              color: "#444",
+              textAlign: "center",
+            }}
+          >
+            Sorry! You don't provide a meal on this day. Please add meals to get
+            more income
+          </Text>
+        </View>
+        <FAB
+          style={styles.fab}
+          small
+          icon={addState ? "close" : "plus"}
+          onPress={() => onChangeHandler(!addState)}
+        />
+      </>
     );
   }
 }
@@ -98,5 +111,11 @@ const styles = StyleSheet.create({
     borderWidth: 0.2,
     borderRadius: 4,
     backgroundColor: "#fff",
+  },
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    bottom: 0,
   },
 });

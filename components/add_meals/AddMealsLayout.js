@@ -11,6 +11,7 @@ import { FAB } from "react-native-paper";
 import { styles } from "../../styles/headerstyle";
 import { width } from "../../Dimens";
 import AddEditMeals from "./AddEditMeals";
+import axios from "axios";
 
 export default function AddMealsLayout({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -19,7 +20,7 @@ export default function AddMealsLayout({ navigation }) {
   const [addState, setAddState] = useState(false);
   const [editState, setEditState] = useState(false);
   const [slot, setSlot] = useState("Lunch");
-  const { meals } = restaurant;
+  const [meals, setMeals] = useState([]);
   const [routes] = React.useState([
     { key: "first", title: "Monday" },
     { key: "second", title: "Tuesday" },
@@ -29,6 +30,18 @@ export default function AddMealsLayout({ navigation }) {
     { key: "sixth", title: "Saturday" },
     { key: "seventh", title: "Sunday" },
   ]);
+  const { restaurant_id } = restaurant;
+  const fetchMeals = async (id) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/newrest/getchefbyId/" + id
+    );
+    const { data } = response;
+    const { meals } = data;
+    setMeals(meals);
+  };
+  useEffect(() => {
+    fetchMeals(restaurant_id);
+  }, [meals]);
   const renderTabBar = (props) => (
     <TabBar
       {...props}
@@ -44,7 +57,7 @@ export default function AddMealsLayout({ navigation }) {
   );
   useEffect(() => {
     let day = meals.map((data, key) => data.day);
-  }, [meals]);
+  }, [meals, addState, editState]);
 
   const handleToggle = (data) => {
     setSlot(data);
@@ -52,6 +65,10 @@ export default function AddMealsLayout({ navigation }) {
 
   const changeEditState = (state) => {
     setEditState(state);
+  };
+  const onChangeAddHandler = (state) => {
+    setAddState(state);
+    console.log(state);
   };
 
   const renderScene = ({ route }) => {
@@ -63,7 +80,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             index={index}
             addState={true}
-            changeEditState={changeEditState}
+            changeEditState={onChangeAddHandler}
           />
         ) : editState ? (
           <AddEditMeals
@@ -79,6 +96,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             slot={slot}
             setEditState={setEditState}
+            addHandler={onChangeAddHandler}
           />
         );
       case "second":
@@ -88,7 +106,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             index={index}
             addState={true}
-            changeEditState={changeEditState}
+            changeEditState={onChangeAddHandler}
           />
         ) : editState ? (
           <AddEditMeals
@@ -104,6 +122,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             slot={slot}
             setEditState={setEditState}
+            addHandler={onChangeAddHandler}
           />
         );
       case "third":
@@ -113,7 +132,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             index={index}
             addState={true}
-            changeEditState={changeEditState}
+            changeEditState={onChangeAddHandler}
           />
         ) : editState ? (
           <AddEditMeals
@@ -129,6 +148,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             slot={slot}
             setEditState={setEditState}
+            addHandler={onChangeAddHandler}
           />
         );
       case "fourth":
@@ -138,7 +158,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             index={index}
             addState={true}
-            changeEditState={changeEditState}
+            changeEditState={onChangeAddHandler}
           />
         ) : editState ? (
           <AddEditMeals
@@ -153,6 +173,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             slot={slot}
             setEditState={setEditState}
+            addHandler={onChangeAddHandler}
           />
         );
       case "fifth":
@@ -162,7 +183,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             index={index}
             addState={true}
-            changeEditState={changeEditState}
+            changeEditState={onChangeAddHandler}
           />
         ) : editState ? (
           <AddEditMeals
@@ -178,6 +199,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             slot={slot}
             setEditState={setEditState}
+            addHandler={onChangeAddHandler}
           />
         );
       case "sixth":
@@ -187,7 +209,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             index={index}
             addState={true}
-            changeEditState={changeEditState}
+            changeEditState={onChangeAddHandler}
           />
         ) : editState ? (
           <AddEditMeals
@@ -203,6 +225,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             slot={slot}
             setEditState={setEditState}
+            addHandler={onChangeAddHandler}
           />
         );
       case "seventh":
@@ -212,7 +235,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             index={index}
             addState={true}
-            changeEditState={changeEditState}
+            changeEditState={onChangeAddHandler}
           />
         ) : editState ? (
           <AddEditMeals
@@ -228,6 +251,7 @@ export default function AddMealsLayout({ navigation }) {
             day={route.title}
             slot={slot}
             setEditState={setEditState}
+            addHandler={onChangeAddHandler}
           />
         );
       default:
@@ -250,12 +274,6 @@ export default function AddMealsLayout({ navigation }) {
         onIndexChange={setIndex}
         renderTabBar={renderTabBar}
         initialLayout={{ width: width }}
-      />
-      <FAB
-        style={styles.fab}
-        small
-        icon={addState ? "close" : "plus"}
-        onPress={() => setAddState(!addState)}
       />
     </SafeAreaView>
   );
