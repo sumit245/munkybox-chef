@@ -38,6 +38,7 @@ const Item = ({ item, index, navigation }) => {
                   fontWeight: "bold",
                   textAlign: "center",
                   textAlignVertical: "center",
+                  textTransform: "capitalize",
                 }
               : item.status === "pending"
               ? {
@@ -49,9 +50,10 @@ const Item = ({ item, index, navigation }) => {
                   textAlignVertical: "center",
                   padding: 2,
                   borderRadius: 4,
+                  textTransform: "capitalize",
                 }
               : {
-                  backgroundColor: "#d9534f",
+                  backgroundColor: "#ffc300",
                   color: "#fff",
                   padding: 2,
                   borderRadius: 4,
@@ -59,6 +61,7 @@ const Item = ({ item, index, navigation }) => {
                   fontWeight: "bold",
                   textAlign: "center",
                   textAlignVertical: "center",
+                  textTransform: "capitalize",
                 },
           ]}
         >
@@ -106,17 +109,20 @@ const Item = ({ item, index, navigation }) => {
         </View>
 
         <View style={styles.cardRow}>
+          
           <Text style={styles.cardText}>
             Ordered at:
-            <Text style={styles.field}>{new Date().toDateString()}</Text>
+            <Text style={styles.field}>{item.ordered_at}</Text>
           </Text>
+
           <Text style={styles.cardText}>
             Total:
             <Text style={styles.field}>
-               {" $" +
+              {" $" +
                 (parseFloat(item.base_price) - parseFloat(item.discount || 0))}
             </Text>
           </Text>
+
         </View>
       </View>
     </View>

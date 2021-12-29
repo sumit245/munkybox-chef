@@ -38,10 +38,5 @@ export const styles = StyleSheet.create({
     padding: 4,
     alignItems: "center",
   },
-  fab: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    bottom: 0,
-  },
+
 });
