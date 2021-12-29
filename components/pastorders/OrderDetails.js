@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import Header from "../header/Header";
 import Export from "../header/Export";
 import { truncate_string } from "../../helpers/truncate_string";
@@ -11,7 +11,7 @@ export default function OrderDetails({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, restaurant_id } = restaurant;
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header chefName={restaurant_name} chefAddress={restaurant_id}>
         <Export />
       </Header>
@@ -117,6 +117,6 @@ export default function OrderDetails({ route, navigation }) {
           Notes: {order.notes}
         </Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

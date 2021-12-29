@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  FlatList,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  View,
-} from "react-native";
-import Export from "../components/header/Export";
+import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import Header from "../components/header/Header";
-
+import Export from "../components/header/Export";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import Item from "../components/pastorders/Item";
-import ToggleLunchDinner from "../components/header/ToggleLunchDinner";
 
 export default function PastOrders({ navigation }) {
   const [orders, setOrders] = useState([]);
-  const [slot, setSlot] = useState("");
   const restaurant = useSelector((state) => state.restaurant);
   const getApiData = async () => {
     const response = await axios.get(
@@ -31,15 +22,14 @@ export default function PastOrders({ navigation }) {
   const renderItem = ({ item }) => (
     <Item item={item} index={item._id} navigation={navigation} />
   );
-  const ListHeaderComponent = () => <Export navigation={navigation} />;
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar barStyle="light-content" />
       <Header
         title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
       >
         <View style={styles.switch}>
-          <ToggleLunchDinner handleToggle={(e) => setSlot(e)} />
+          <Export />
         </View>
       </Header>
 
@@ -47,7 +37,6 @@ export default function PastOrders({ navigation }) {
         data={orders}
         contentContainerStyle={{ paddingBottom: 10 }}
         renderItem={renderItem}
-        ListHeaderComponent={ListHeaderComponent}
         keyExtractor={(item) => item._id}
         showsVerticalScrollIndicator={false}
       />
@@ -61,7 +50,7 @@ const styles = StyleSheet.create({
   },
   switch: {
     position: "absolute",
-    right: 4,
+    left: "90%",
     bottom: 2,
     color: "#dfdfdf",
     flexDirection: "row",
