@@ -14,7 +14,10 @@ export default function PastOrders({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders"
     );
     const orders = await response.data;
-    setOrders(orders);
+    let myOrders = await orders.filter(
+      (item) => (item.restaurant = restaurant.restaurant_name)
+    );
+    setOrders(myOrders);
   };
   useEffect(() => {
     getApiData();
