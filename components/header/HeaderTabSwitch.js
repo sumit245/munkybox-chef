@@ -22,11 +22,13 @@ export default function HeaderTabSwitch({
   position,
   handler,
   setTabHandler,
+  returnCurrentIndex,
 }) {
   const [active, setActive] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const onItemSelected = (item, index) => {
     setCurrentIndex(index);
+    returnCurrentIndex(index);
     setActive(item);
     handler(item, index);
     if (index === currentIndex) {
@@ -36,6 +38,7 @@ export default function HeaderTabSwitch({
 
   useEffect(() => {
     setCurrentIndex(selected);
+    returnCurrentIndex(currentIndex);
   }, [selected]);
 
   return (

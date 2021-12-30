@@ -47,6 +47,7 @@ export default function Orders() {
   const [dinner, setDinner] = useState([]);
   const [lunch, setLunch] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [page, selectedPage] = useState(0);
   const [currentTab, setCurrentTab] = useState("11-12 AM");
   const [selected, setSelected] = useState(0);
   const [currentPage, setCurrentPage] = useState(false);
@@ -60,7 +61,7 @@ export default function Orders() {
     "Friday",
     "Saturday",
   ];
-  const dispatch = useDispatch();
+
   const { meals } = restaurant;
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
   let { restaurant_name, restaurant_id, _id } = restaurant;
@@ -102,6 +103,7 @@ export default function Orders() {
   useEffect(() => {
     fetchSlots();
   }, [currentTab]);
+
   const tabHandler = (tab, index) => {
     setCurrentTab(tab);
     setSelected(index);
@@ -116,7 +118,12 @@ export default function Orders() {
     fetchOrders(restaurant_id);
   }, [currentTab]);
   const handleToggle = (slot) => {
+    setLoaded(false);
+    let myorders = [...orders];
+    let filtered = myorders.filter((item) => item.category === slot);
+    setOrders(filtered);
     setSlot(slot);
+    setLoaded(true);
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -129,7 +136,8 @@ export default function Orders() {
         items={slot === "Lunch" ? lunch : dinner}
         handler={tabHandler}
         selected={selected}
-        setTabHandler={setCurrentPage}
+        setTabHandler={(data) => setCurrentPage(data)}
+        returnCurrentIndex={(page) => selectedPage(page)}
       >
         <Badge
           style={{
@@ -140,7 +148,7 @@ export default function Orders() {
           }}
           size={14}
         >
-          {selected === 0 ? orders.length : 0}
+          {selected === page ? orders.length : 0}
         </Badge>
       </HeaderTabSwitch>
       {loaded ? (
