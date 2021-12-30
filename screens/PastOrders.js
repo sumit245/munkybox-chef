@@ -17,7 +17,8 @@ export default function PastOrders({ navigation }) {
     let myOrders = await orders.filter(
       (item) => (item.restaurant = restaurant.restaurant_name)
     );
-    setOrders(myOrders);
+
+    setOrders(myOrders.reverse());
   };
   useEffect(() => {
     getApiData();
