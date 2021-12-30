@@ -100,7 +100,7 @@ export default function TopPage({ navigation }) {
       setMealCount(todayOrders.length);
       mealSelector(days[new Date().getDay() + 1]);
     } else {
-      let dayafter = moment().add(1, 'days');
+      let dayafter = moment().add(2, 'days');
       let todayOrders = orders.filter((item) =>
         dayafter.isBetween(item.start_date, item.end_date)
       );
