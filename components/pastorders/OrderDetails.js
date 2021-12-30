@@ -12,8 +12,10 @@ export default function OrderDetails({ route, navigation }) {
   const { restaurant_name, restaurant_id } = restaurant;
   return (
     <SafeAreaView style={styles.container}>
-      <Header chefName={restaurant_name} chefAddress={restaurant_id}>
-        <Export />
+      <Header
+        title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
+      >
+        {/* <Export /> */}
       </Header>
       <View style={styles.formHeader}>
         <View style={styles.row}>
