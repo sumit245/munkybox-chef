@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import Header from "../components/header/Header";
 import Export from "../components/header/Export";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import Item from "../components/pastorders/Item";
+import Icon from "react-native-vector-icons/Ionicons";
 
 export default function PastOrders({ navigation }) {
   const [orders, setOrders] = useState([]);
@@ -36,7 +44,16 @@ export default function PastOrders({ navigation }) {
           <Export />
         </View>
       </Header>
-
+      <TouchableOpacity
+        style={{
+          alignSelf: "flex-start",
+          marginHorizontal: 8,
+          marginVertical: 4,
+        }}
+        onPress={() => navigation.goBack()}
+      >
+        <Icon name="chevron-back" size={24} color="#2277fc" />
+      </TouchableOpacity>
       <FlatList
         data={orders}
         contentContainerStyle={{ paddingBottom: 10 }}

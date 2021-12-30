@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import Header from "../header/Header";
 import Export from "../header/Export";
 import { truncate_string } from "../../helpers/truncate_string";
@@ -7,6 +13,7 @@ import { styles } from "../../styles/itemstyle";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import Download from "../header/Download";
+import Icon from "react-native-vector-icons/Ionicons";
 export default function OrderDetails({ route, navigation }) {
   const { order } = route.params;
   const { address_type, city, flat_num, locality, postal_code } = order.address;
@@ -21,6 +28,16 @@ export default function OrderDetails({ route, navigation }) {
           <Download />
         </View>
       </Header>
+      <TouchableOpacity
+        style={{
+          alignSelf: "flex-start",
+          marginHorizontal: 8,
+          marginVertical: 4,
+        }}
+        onPress={() => navigation.goBack()}
+      >
+        <Icon name="chevron-back" size={24} color="#2277fc" />
+      </TouchableOpacity>
       <View style={styles.formHeader}>
         <View style={styles.row}>
           <View style={styles.headerRows}>
@@ -57,15 +74,15 @@ export default function OrderDetails({ route, navigation }) {
           <View style={styles.headerRows}>
             <Text style={styles.text}>Deliver to</Text>
             <Text style={{ textTransform: "uppercase", textAlign: "right" }}>
-              {address_type +
+              {(address_type || "") +
                 ", " +
-                flat_num +
+                (flat_num || "") +
                 ", " +
-                city +
+                (city || "") +
                 "\n " +
-                locality +
+                (locality || "") +
                 ", " +
-                postal_code}
+                (postal_code || "")}
             </Text>
           </View>
         </View>
