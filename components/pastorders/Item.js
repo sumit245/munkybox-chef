@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-
 import { styles } from "../../styles/itemstyle";
 import Icon from "react-native-vector-icons/Ionicons";
+import moment from "moment";
 
 const Item = ({ item, index, navigation }) => {
   const { start_date, end_date } = item;
