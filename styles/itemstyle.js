@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
     padding: 2,
   },
   row: {
-    marginVertical: 2,
+    marginVertical: 4,
   },
   headerRows: {
     paddingVertical: 1,
