@@ -5,6 +5,7 @@ import Export from "../header/Export";
 import { truncate_string } from "../../helpers/truncate_string";
 import { styles } from "../../styles/itemstyle";
 import { useSelector } from "react-redux";
+import moment from "moment";
 export default function OrderDetails({ route, navigation }) {
   const { order } = route.params;
   const { address_type, city, flat_num, locality, postal_code } = order.address;
@@ -25,8 +26,8 @@ export default function OrderDetails({ route, navigation }) {
             <Text style={styles.text}>Status</Text>
           </View>
           <View style={styles.headerRows}>
-            <Text>{truncate_string("ORD", order._id, 5)}</Text>
-            <Text>{order.order_time}</Text>
+            <Text>{order.order_id}</Text>
+            <Text>{moment(order.order_time).format("DD MM YYYY")}</Text>
             <Text style={{ textTransform: "uppercase" }}>{order.status}</Text>
           </View>
         </View>
@@ -36,7 +37,7 @@ export default function OrderDetails({ route, navigation }) {
             <Text style={styles.text}>Phone</Text>
           </View>
           <View style={styles.headerRows}>
-            <Text>{truncate_string("USER", order.user_id, 5)}</Text>
+            <Text>{order.user_id}</Text>
             <Text>{order.phone}</Text>
           </View>
         </View>
@@ -46,16 +47,17 @@ export default function OrderDetails({ route, navigation }) {
             <Text>{order.email_id}</Text>
           </View>
         </View>
+
         <View style={styles.row}>
           <View style={styles.headerRows}>
             <Text style={styles.text}>Deliver to</Text>
-            <Text style={{ textTransform: "uppercase" }}>
+            <Text style={{ textTransform: "uppercase", textAlign: "right" }}>
               {address_type +
                 ", " +
                 flat_num +
                 ", " +
                 city +
-                ", " +
+                "\n " +
                 locality +
                 ", " +
                 postal_code}
