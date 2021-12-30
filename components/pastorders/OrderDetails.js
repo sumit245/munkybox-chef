@@ -88,19 +88,9 @@ export default function OrderDetails({ route, navigation }) {
         </View>
         <View style={styles.row}>
           <View style={styles.headerRows}>
+            <Text style={styles.text}>plan</Text>
             <Text style={styles.text}>Start Date</Text>
             <Text style={styles.text}>End Date</Text>
-          </View>
-          <View style={styles.headerRows}>
-            <Text>{order.start_date}</Text>
-            <Text>{order.end_date}</Text>
-          </View>
-        </View>
-        <View style={styles.row}>
-          <View style={styles.headerRows}>
-            <Text style={styles.text}>plan</Text>
-            <Text style={styles.text}>Price</Text>
-            <Text style={styles.text}>Discount</Text>
           </View>
           <View style={styles.headerRows}>
             <Text>
@@ -110,10 +100,23 @@ export default function OrderDetails({ route, navigation }) {
                 ? "15 Days"
                 : "30 Days"}
             </Text>
-            <Text style={{ textAlign: "left", marginLeft: -60 }}>
-              {"$" + order.base_price}
-            </Text>
+            <Text>{order.start_date}</Text>
+            <Text>{order.end_date}</Text>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <View style={styles.headerRows}>
+            <Text style={styles.text}>Price</Text>
+            <Text style={styles.text}>Discount</Text>
+            <Text style={styles.text}>Total</Text>
+          </View>
+          <View style={styles.headerRows}>
+            <Text>{"$" + order.base_price}</Text>
             <Text>{"$" + order.discount}</Text>
+            <Text>
+              {"$" +
+                (parseFloat(order.base_price) - parseFloat(order.discount))}
+            </Text>
           </View>
         </View>
       </View>
