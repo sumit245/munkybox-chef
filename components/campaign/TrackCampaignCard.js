@@ -14,7 +14,6 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
   const [users, setUsers] = useState(0);
   useEffect(() => {
     const { totalOrders, due, clicks, discount, revenue, users } = stat;
-    console.log("from card", banner);
     setTotalOrders(totalOrders);
     setDue(due);
     setClicks(clicks);

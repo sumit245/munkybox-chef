@@ -46,7 +46,6 @@ export default function TrackPerformance({ route, navigation }) {
       );
       const { data } = response;
       const { coupons } = data.dashboard;
-      console.log(coupons);
       // setPromotedOrders(promotedOrders.length);
       setCoupon(coupons);
       // setRevenue(revenue);

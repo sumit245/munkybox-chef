@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import Menu from "./Menu";
 import Notification from "../header/Notification";
 import axios from "axios";
-import { PrimaryDark } from "../../Colors";
+import moment from "moment";
 const days = [
   "Sunday",
   "Monday",
@@ -29,41 +29,57 @@ export default function TopPage({ navigation }) {
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
 
   const mealSelector = (day) => {
-    if (!isEmpty(meals)) {
-      let currentMeal = meals.filter(function (e) {
-        return e.day === day;
-      });
-      setMeal(currentMeal[0]);
+    if (typeof day !== "undefined") {
+      if (!isEmpty(meals)) {
+        let currentMeal = meals.filter(function (e) {
+          return e.day === day;
+        });
+        setMeal(currentMeal[0]);
+      }
+    } else {
+      if (!isEmpty(meals)) {
+        let currentMeal = meals.filter(function (e) {
+          return e.day === "Sunday";
+        });
+        setMeal(currentMeal[0]);
+      }
     }
   };
+
   useEffect(() => {
     mealSelector(days[new Date().getDay()]);
   }, []);
+
   const fetchTotalOrders = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/active/"+restaurant
+      "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
     );
     const { data } = response;
     const { activeorders, count } = data;
     setOrders(activeorders);
-    setMealCount(count);
+    // console.log(count);
+    // setMealCount(count);
   };
+
   const getAddOnCounts = () => {
+    let addons = {};
     try {
       const addOns = orders.map((el) => el.add_on);
       if (Array.isArray(addOns)) {
-        let addons = addOns[0][0];
+        addons = addOns[0][0];
         let { item, qty } = addons;
         setAddOn(item);
         setQty(qty);
       }
     } catch (error) {
-      console.log(error);
+      addons = {};
     }
   };
+
   useEffect(() => {
     getAddOnCounts();
   }, [orders]);
+
   useEffect(() => {
     fetchTotalOrders(restaurant_id);
   }, [mealcount]);
@@ -71,12 +87,18 @@ export default function TopPage({ navigation }) {
   const onDayChanged = (day) => {
     if (day === "Today") {
       mealSelector(days[new Date().getDay()]);
+      const today = moment();
+      let todayOrders = orders.filter((item) =>
+        today.isBetween(item.start_date, item.end_date)
+      );
+      setMealCount(todayOrders.length);
     } else if (day === "Tomorrow") {
       mealSelector(days[new Date().getDay() + 1]);
     } else {
       mealSelector(days[new Date().getDay() + 2]);
     }
   };
+
   return (
     <SafeAreaView style={styles.mainPage}>
       <StatusBar />

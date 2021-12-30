@@ -32,7 +32,7 @@ export default function TrackCampaign({ route, navigation }) {
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
         restaurant
     );
-    console.log(res.data);
+
     // const { clicks, discount, due, orders, revenue, users } = res.data;
     // let myBanner = [...banners];
     // (myBanner[0].clicks = clicks), (myBanner[0].totalDiscount = discount);
