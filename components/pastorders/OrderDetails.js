@@ -15,7 +15,7 @@ export default function OrderDetails({ route, navigation }) {
       <Header
         title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
       >
-        {/* <Export /> */}
+        {/*<Export />*/}
       </Header>
       <View style={styles.formHeader}>
         <View style={styles.row}>
