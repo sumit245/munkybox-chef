@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
   },
   field: {
     fontSize: 12,
-    fontWeight:"normal",
+    fontWeight: "normal",
     color: "#444",
     padding: 1,
     textTransform: "uppercase",
@@ -122,5 +122,14 @@ export const styles = StyleSheet.create({
     marginHorizontal: 4,
     borderTopWidth: 0.4,
     borderTopColor: "#777",
+  },
+  switch: {
+    position: "absolute",
+    left: "90%",
+    bottom: 2,
+    color: "#dfdfdf",
+    flexDirection: "row",
+    padding: 4,
+    alignItems: "center",
   },
 });

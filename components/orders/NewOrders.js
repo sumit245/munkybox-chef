@@ -169,7 +169,7 @@ const Item = ({ item }) => {
 
         <Text style={{ padding: 2, marginVertical: 4 }}>
           <Text style={{ fontWeight: "bold", fontSize: 16 }}>Ordered at: </Text>
-          {moment(item.order_time).format("DD-MMM-YYYY HH:mm")}{" "}
+          {moment(item.order_time).format("DD-MMM-YYYY HH:mm a")}{" "}
         </Text>
         <View
           style={{

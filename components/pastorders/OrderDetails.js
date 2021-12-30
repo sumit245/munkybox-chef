@@ -6,6 +6,7 @@ import { truncate_string } from "../../helpers/truncate_string";
 import { styles } from "../../styles/itemstyle";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import Download from "../header/Download";
 export default function OrderDetails({ route, navigation }) {
   const { order } = route.params;
   const { address_type, city, flat_num, locality, postal_code } = order.address;
@@ -16,7 +17,9 @@ export default function OrderDetails({ route, navigation }) {
       <Header
         title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
       >
-        {/*<Export />*/}
+        <View style={styles.switch}>
+          <Download />
+        </View>
       </Header>
       <View style={styles.formHeader}>
         <View style={styles.row}>
@@ -27,7 +30,9 @@ export default function OrderDetails({ route, navigation }) {
           </View>
           <View style={styles.headerRows}>
             <Text>{order.order_id}</Text>
-            <Text>{moment(order.order_time).format("DD-MMM-YYYY HH:mm")}</Text>
+            <Text>
+              {moment(order.order_time).format("DD-MMM-YYYY HH:mm a")}
+            </Text>
             <Text style={{ textTransform: "uppercase" }}>{order.status}</Text>
           </View>
         </View>
