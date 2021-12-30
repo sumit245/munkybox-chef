@@ -9,7 +9,7 @@ import { Badge } from "react-native-paper";
 import HeaderTabSwitch from "../components/header/HeaderTabSwitch";
 import axios from "axios";
 import Loader from "../helpers/Loader";
-import { ORDERS } from "../EndPoints";
+import moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const ListEmptyComponent = () => (
@@ -81,14 +81,22 @@ export default function Orders() {
     setDinner(myDinner);
     setLoaded(true);
   };
-  const fetchOrders = async (restaurant_name) => {
-    const response = await axios.get(ORDERS);
-    let orders = response.data;
-    let neworders = orders.filter(
-      (item) => item.status === "accepted" && item.time === currentTab
+  const fetchOrders = async (restaurant) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
     );
-    if (orders !== null) {
-      setOrders(neworders);
+
+    const { activeorders, count } = response.data;
+
+    const today = moment();
+    let todayOrders = activeorders.filter(
+      (item) =>
+        today.isBetween(item.start_date, item.end_date) &&
+        item.time === currentTab
+    );
+
+    if (todayOrders !== null) {
+      setOrders(todayOrders);
     }
   };
   useEffect(() => {
@@ -105,7 +113,7 @@ export default function Orders() {
       });
       setMeal(currentMeal[0]);
     }
-    fetchOrders(restaurant_name);
+    fetchOrders(restaurant_id);
   }, [currentTab]);
   const handleToggle = (slot) => {
     setSlot(slot);
@@ -132,7 +140,7 @@ export default function Orders() {
           }}
           size={14}
         >
-          {currentPage ? orders.length : 0}
+          {selected === 0 ? orders.length : 0}
         </Badge>
       </HeaderTabSwitch>
       {loaded ? (

@@ -57,7 +57,6 @@ export default function TopPage({ navigation }) {
     const { data } = response;
     const { activeorders, count } = data;
     setOrders(activeorders);
-    // console.log(count);
     // setMealCount(count);
   };
 
@@ -82,7 +81,7 @@ export default function TopPage({ navigation }) {
 
   useEffect(() => {
     fetchTotalOrders(restaurant_id);
-  }, [mealcount]);
+  }, []);
 
   const onDayChanged = (day) => {
     if (day === "Today") {
@@ -93,14 +92,14 @@ export default function TopPage({ navigation }) {
       );
       setMealCount(todayOrders.length);
     } else if (day === "Tomorrow") {
-      let tomorrow = moment().add(1, 'days');
+      let tomorrow = moment().add(1, "days");
       let todayOrders = orders.filter((item) =>
         tomorrow.isBetween(item.start_date, item.end_date)
       );
       setMealCount(todayOrders.length);
       mealSelector(days[new Date().getDay() + 1]);
     } else {
-      let dayafter = moment().add(2, 'days');
+      let dayafter = moment().add(2, "days");
       let todayOrders = orders.filter((item) =>
         dayafter.isBetween(item.start_date, item.end_date)
       );
