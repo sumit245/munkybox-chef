@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   ScrollView,
+  StatusBar,
 } from "react-native";
 import Header from "../header/Header";
 import { useSelector } from "react-redux";
@@ -181,6 +182,7 @@ export default function Dashboard({ navigation }) {
         backgroundColor: PrimaryDark,
       }}
     >
+      <StatusBar/>
       <Header title={restaurant_name + ", " + city} />
       <ScrollView>
         <View

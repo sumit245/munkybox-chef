@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import Menu from "./Menu";
 import Notification from "../header/Notification";
 import axios from "axios";
+import { PrimaryDark } from "../../Colors";
 const days = [
   "Sunday",
   "Monday",
@@ -100,6 +101,7 @@ export default function TopPage({ navigation }) {
 const styles = StyleSheet.create({
   mainPage: {
     flex: 1,
+    //backgroundColor:PrimaryDark
   },
   switch: {
     position: "absolute",
