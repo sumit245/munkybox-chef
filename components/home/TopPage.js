@@ -64,7 +64,7 @@ export default function TopPage({ navigation }) {
     getAddOnCounts();
   }, [orders]);
   useEffect(() => {
-    fetchTotalOrders(restaurant_name);
+    fetchTotalOrders(restaurant_id);
   }, [mealcount]);
 
   const onDayChanged = (day) => {

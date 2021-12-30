@@ -85,7 +85,7 @@ export default function Orders() {
     const response = await axios.get(ORDERS);
     let orders = response.data;
     let neworders = orders.filter(
-      (item) => item.status === "started" && item.time === currentTab
+      (item) => item.status === "accepted" && item.time === currentTab
     );
     if (orders !== null) {
       setOrders(neworders);
