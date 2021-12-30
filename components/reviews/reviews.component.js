@@ -14,7 +14,6 @@ export default function Reviews({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/review/"
     );
     const { data } = response;
-    console.log(data);
     setReviews(data);
   };
   useEffect(() => {

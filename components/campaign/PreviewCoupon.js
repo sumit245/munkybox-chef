@@ -64,7 +64,7 @@ export default function PreviewCoupon({ navigation, route }) {
       );
       const coupon = await response.data;
       promo.status = await coupon.data.status;
-      console.log(promo);
+
       const pushTorestaurant = await axios.put(
         "http://munkybox-admin.herokuapp.com/api/newrest/" + _id,
         { promo }

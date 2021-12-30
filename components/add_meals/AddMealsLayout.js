@@ -68,7 +68,6 @@ export default function AddMealsLayout({ navigation }) {
   };
   const onChangeAddHandler = (state) => {
     setAddState(state);
-    console.log(state);
   };
 
   const renderScene = ({ route }) => {

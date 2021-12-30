@@ -31,13 +31,13 @@ export default function Login({ navigation }) {
     try {
       const { entry } = resp;
       setEntry(entry);
-    } catch {
-      console.log("error");
+    } catch (e) {
+      console.log(e);
     }
   };
   useEffect(() => {
     setentryMethod();
-  },[]);
+  }, []);
 
   const sendVerification = async () => {
     const phoneProvider = new firebase.auth.PhoneAuthProvider();
@@ -62,8 +62,7 @@ export default function Login({ navigation }) {
       code
     );
     await firebase.auth().signInWithCredential(credential);
-    await Promise.resolve(dispatch(loginMethod(phone,navigation)))
-      
+    await Promise.resolve(dispatch(loginMethod(phone, navigation)));
   };
 
   return (
@@ -96,8 +95,8 @@ export default function Login({ navigation }) {
             textAlignVertical: "top",
             borderRadius: 5,
           }}
-          codeTextStyle={{ marginTop:-6 }}
-          textInputStyle={{fontSize:18,marginTop:-6}}
+          codeTextStyle={{ marginTop: -6 }}
+          textInputStyle={{ fontSize: 18, marginTop: -6 }}
           onChangeFormattedText={(text) => {
             setPhone(text);
           }}
