@@ -13,7 +13,7 @@ export default function OrderDetails({ route, navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <Header chefName={restaurant_name} chefAddress={restaurant_id}>
-        <Export />
+        {/*<Export />*/}
       </Header>
       <View style={styles.formHeader}>
         <View style={styles.row}>
