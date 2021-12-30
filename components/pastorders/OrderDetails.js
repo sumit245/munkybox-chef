@@ -94,7 +94,7 @@ export default function OrderDetails({ route, navigation }) {
                 : "30 Days"}
             </Text>
             <Text style={{ textAlign: "left", marginLeft: -60 }}>
-              {"$" + order.price}
+              {"$" + order.base_price}
             </Text>
             <Text>{"$" + order.discount}</Text>
           </View>
