@@ -67,17 +67,7 @@ const Item = ({ item, index, navigation }) => {
         >
           {item.status}
         </Text>
-
-        <TouchableOpacity
-          style={styles.titleTextRight}
-          onPress={() =>
-            navigation.navigate("orderDetails", {
-              order: item,
-            })
-          }
-        >
-          <Icon name="md-eye" color="#227cfc" size={22} />
-        </TouchableOpacity>
+        <Text style={styles.cardText}>{item.category}</Text>
       </View>
       <View style={styles.cardBody}>
         <View style={styles.cardRow}>
@@ -109,10 +99,11 @@ const Item = ({ item, index, navigation }) => {
         </View>
 
         <View style={styles.cardRow}>
-          
           <Text style={styles.cardText}>
             Ordered at:
-            <Text style={styles.field}>{moment(item.order_time).format("DD-MMM-YYYY HH:mm a")}</Text>
+            <Text style={styles.field}>
+              {moment(item.order_time).format("DD-MMM-YYYY HH:mm a")}
+            </Text>
           </Text>
 
           <Text style={styles.cardText}>
@@ -122,7 +113,27 @@ const Item = ({ item, index, navigation }) => {
                 (parseFloat(item.base_price) - parseFloat(item.discount || 0))}
             </Text>
           </Text>
-
+        </View>
+        <View style={styles.cardRow}>
+          <TouchableOpacity
+            style={styles.titleTextRight}
+            onPress={() =>
+              navigation.navigate("orderDetails", {
+                order: item,
+              })
+            }
+          >
+            <Text
+              style={{
+                color: "#227cfc",
+                textTransform: "uppercase",
+                textAlign: "center",
+                fontWeight: "bold",
+              }}
+            >
+              View Details
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
