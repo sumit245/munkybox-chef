@@ -112,7 +112,7 @@ const Item = ({ item, index, navigation }) => {
           
           <Text style={styles.cardText}>
             Ordered at:
-            <Text style={styles.field}>{item.ordered_at}</Text>
+            <Text style={styles.field}>{moment(order.order_time).format("DD-MMM-YYYY HH:mm")}</Text>
           </Text>
 
           <Text style={styles.cardText}>
