@@ -114,7 +114,17 @@ const Item = ({ item, index, navigation }) => {
             </Text>
           </Text>
         </View>
-        <View style={styles.cardRow}>
+        <View
+          style={[
+            styles.cardRow,
+            {
+              padding: 4,
+              justifyContent: "center",
+              borderTopColor: "#777",
+              borderTopWidth: 0.5,
+            },
+          ]}
+        >
           <TouchableOpacity
             style={styles.titleTextRight}
             onPress={() =>
