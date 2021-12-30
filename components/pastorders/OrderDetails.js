@@ -27,7 +27,7 @@ export default function OrderDetails({ route, navigation }) {
           </View>
           <View style={styles.headerRows}>
             <Text>{order.order_id}</Text>
-            <Text>{moment(order.order_time).format("DD MM YYYY")}</Text>
+            <Text>{moment(order.order_time).format("DD-MMM-YYYY HH:mm")}</Text>
             <Text style={{ textTransform: "uppercase" }}>{order.status}</Text>
           </View>
         </View>
