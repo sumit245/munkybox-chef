@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, SafeAreaView, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { Switch } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 import Review from "./reviewdetails";
@@ -35,7 +41,9 @@ export default function Reviews({ navigation }) {
             borderBottomWidth: 0.5,
           }}
         >
-          <Icon name="chevron-back" size={24} />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Icon name="chevron-back" size={28} color="#223fdc" />
+          </TouchableOpacity>
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>
             User Feedback
           </Text>
