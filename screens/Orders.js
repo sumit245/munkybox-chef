@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ToggleLunchDinner from "../components/header/ToggleLunchDinner";
 import { WHITE, DARKGRAY } from "../Colors";
 import { Badge } from "react-native-paper";
-import HeaderTabSwitch from "../components/header/HeaderTabSwitch";
+import HeaderTabSwitch from "../components/header/HeaderOrderDispatch";
 import axios from "axios";
 import Loader from "../helpers/Loader";
 import moment from "moment";
@@ -139,17 +139,6 @@ export default function Orders() {
         setTabHandler={(data) => setCurrentPage(data)}
         returnCurrentIndex={(page) => selectedPage(page)}
       >
-        <Badge
-          style={{
-            margin: 4,
-            fontSize: 12,
-            backgroundColor: "red",
-            color: WHITE,
-          }}
-          size={14}
-        >
-          {selected === page ? orders.length : 0}
-        </Badge>
       </HeaderTabSwitch>
       {loaded ? (
         <FlatList

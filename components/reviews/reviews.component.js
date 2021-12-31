@@ -11,7 +11,7 @@ export default function Reviews({ navigation }) {
   const [reviews, setReviews] = useState([]);
   const fetchReviews = async (id) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/review/"
+      "http://munkybox-admin.herokuapp.com/api/review/getmyreview/" + id
     );
     const { data } = response;
     setReviews(data);
