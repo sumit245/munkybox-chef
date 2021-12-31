@@ -1,19 +1,20 @@
-import React from "react";
-import { FlatList, Text, View, Dimensions } from "react-native";
-import { Card, Avatar, Button } from "react-native-paper";
+import React, { useState } from "react";
+import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { useSelector, useDispatch } from "react-redux";
 
 export default function Review({ item, index }) {
+  const [isReplying, setReplying] = useState(false);
+  const sendReview = () => {};
   return (
     <View
       key={index}
       style={{
         marginHorizontal: 2,
-        marginVertical:2,
+        marginVertical: 2,
         borderRadius: 2,
         borderColor: "#777",
         borderWidth: 0.2,
+        backgroundColor: "#fff",
       }}
     >
       <View style={{ flexDirection: "row", padding: 8 }}>
@@ -23,7 +24,12 @@ export default function Review({ item, index }) {
       </View>
       <View style={{ flexDirection: "row", padding: 8 }}>
         <Text>
-          Delivered on: {item.delivered_on} | {item.plan_name}
+          Delivered on: {item.delivered_on} |{" "}
+          {item.plan_name === "twoPlan"
+            ? "2 Meals"
+            : item.plan_name === "fifteenPlan"
+            ? "15 Meals"
+            : "30 Meals"}
         </Text>
       </View>
       <View style={{ flexDirection: "row", padding: 8 }}>
@@ -43,11 +49,13 @@ export default function Review({ item, index }) {
           </Text>
         </View>
       </View>
-      {Array.isArray(item.issues) && (
+      {Array.isArray(item.likes) && (
         <View style={{ flexDirection: "row", padding: 8 }}>
-          <Text>Issues</Text>
-          {item.issues.map((issue, index) => (
-            <Text key={index}>{issue}</Text>
+          <Text>Likes: </Text>
+          {item.likes.map((issue, index) => (
+            <Text key={index} style={{ fontWeight: "bold" }}>
+              {issue},{" "}
+            </Text>
           ))}
         </View>
       )}
@@ -76,10 +84,26 @@ export default function Review({ item, index }) {
             fontWeight: "bold",
             textTransform: "uppercase",
           }}
+          onPress={setReplying}
         >
           reply
         </Text>
       </View>
+      {isReplying && (
+        <View style={{ flexDirection: "row", flex: 1, padding: 4 }}>
+          <TextInput
+            style={{
+              borderBottomColor: "cyan",
+              borderBottomWidth: 1,
+              minWidth: "90%",
+            }}
+            multiline={true}
+          />
+          <TouchableOpacity onPress={sendReview}>
+            <Icon name="ios-send" size={24} color="#226ccf" />
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }

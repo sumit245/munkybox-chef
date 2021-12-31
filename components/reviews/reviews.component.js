@@ -11,21 +11,26 @@ import Icon from "react-native-vector-icons/Ionicons";
 import Review from "./reviewdetails";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { width } from "../../Dimens";
 
 export default function Reviews({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [reviews, setReviews] = useState([]);
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [comment, setComment] = useState("");
   const fetchReviews = async (id) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/review/getmyreview/" + id
     );
     const { data } = response;
-    setReviews(data);
+    setReviews(data.reverse());
   };
   useEffect(() => {
     const { restaurant_id } = restaurant;
     fetchReviews(restaurant_id);
   }, []);
+  const calendar = () => {};
   const stars = [5, 4, 3, 2, 1];
   const renderItem = ({ item }) => <Review item={item} index={item.index} />;
   return (
@@ -36,6 +41,7 @@ export default function Reviews({ navigation }) {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
+            backgroundColor: "#fff",
             padding: 4,
             borderBottomColor: "#ddd",
             borderBottomWidth: 0.5,
@@ -49,7 +55,7 @@ export default function Reviews({ navigation }) {
           </Text>
           <Icon name="search" size={24} />
         </View>
-        {/* Header */}
+        {/* Header done */}
 
         <View
           style={{
@@ -60,24 +66,44 @@ export default function Reviews({ navigation }) {
             borderColor: "#ddd",
             borderWidth: 0.5,
             borderRadius: 2,
+            backgroundColor: "#fff",
             margin: 2,
+            marginBottom: 8,
             paddingHorizontal: "4%",
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
             <View style={{ marginRight: 12 }}>
               <Text>From</Text>
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                01 Dec,2021
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  minWidth: width / 3,
+                  borderBottomColor: "#000",
+                  borderBottomWidth: 1,
+                }}
+              >
+                {start}
               </Text>
             </View>
-            <Icon name="ios-calendar" size={20} color="#666" />
+            <TouchableOpacity onPress={calendar}>
+              <Icon name="ios-calendar" size={20} color="#666" />
+            </TouchableOpacity>
           </View>
           <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
             <View style={{ marginRight: 12 }}>
               <Text>To</Text>
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                20 Dec,2021
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  minWidth: width / 3,
+                  borderBottomColor: "#000",
+                  borderBottomWidth: 1,
+                }}
+              >
+                {end}
               </Text>
             </View>
             <Icon name="ios-calendar" size={20} color="#666" />
@@ -89,9 +115,11 @@ export default function Reviews({ navigation }) {
             padding: 4,
             borderColor: "#ddd",
             borderWidth: 0.5,
+            backgroundColor: "#fff",
             borderRadius: 2,
             margin: 2,
             paddingHorizontal: "4%",
+            marginVertical: 8,
           }}
         >
           <Text style={{ fontWeight: "bold", fontSize: 14 }}>
@@ -139,7 +167,7 @@ export default function Reviews({ navigation }) {
         style={{ marginBottom: 4 }}
         renderItem={renderItem}
         keyExtractor={(item, index) => index}
-        // contentContainerStyle={{marginBottom:10}}
+        contentContainerStyle={{ marginBottom: 10 }}
       />
       {/* </View> */}
     </SafeAreaView>
