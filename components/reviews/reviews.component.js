@@ -37,7 +37,6 @@ export default function Reviews({ navigation }) {
   const calendar = () => {};
   const filterStar = (star) => {
     console.log(typeof star);
-    // fetchReviews();
     setLoading(true);
     let allreview = [...reviews];
     let fliteredReview = allreview.filter((item) => item.rating === star);

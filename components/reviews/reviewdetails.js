@@ -31,9 +31,10 @@ export default function Review({ item, index }) {
             ? "15 Meals"
             : "30 Meals"}
         </Text>
+        <Text>Ordered on: {item.onder_time} </Text>
       </View>
       <View style={{ flexDirection: "row", padding: 8 }}>
-        <Text>Rating</Text>
+        <Text>Rating:{"  "}</Text>
         <View
           style={{
             borderRadius: 2,
@@ -53,9 +54,19 @@ export default function Review({ item, index }) {
         <View style={{ flexDirection: "row", padding: 8 }}>
           <Text>Likes: </Text>
           {item.likes.map((issue, index) => (
-            <Text key={index} style={{ fontWeight: "bold" }}>
-              {issue},{" "}
-            </Text>
+            <View
+              style={{
+                paddingHorizontal: 4,
+                padding: 2,
+                backgroundColor: "orange",
+                borderRadius: 2,
+                marginHorizontal: 2,
+              }}
+            >
+              <Text key={index} style={{ fontWeight: "bold", color: "#fff" }}>
+                {issue}
+              </Text>
+            </View>
           ))}
         </View>
       )}
