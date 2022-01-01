@@ -8,8 +8,6 @@ import {
   ScrollView,
 } from "react-native";
 import Header from "../header/Header";
-import Export from "../header/Export";
-import { truncate_string } from "../../helpers/truncate_string";
 import { styles } from "../../styles/itemstyle";
 import { useSelector } from "react-redux";
 import moment from "moment";
