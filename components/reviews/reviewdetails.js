@@ -3,10 +3,15 @@ import React, { useState } from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { avatarify } from "../../helpers/truncate_string";
+import { useSelector } from "react-redux";
 
 export default function Review({ item, index }) {
   const [isReplying, setReplying] = useState(false);
-  const sendReview = () => {};
+  const restaurant = useSelector((state) => state.restaurant);
+  const { restaurant_name } = restaurant;
+  const sendReview = () => {
+    setReplying(!isReplying);
+  };
   return (
     <View
       key={index}
@@ -19,34 +24,48 @@ export default function Review({ item, index }) {
         backgroundColor: "#fff",
       }}
     >
+      <Text
+        style={{
+          color: "orange",
+          fontWeight: "bold",
+          textTransform: "uppercase",
+          padding: 8,
+          textAlign: "right",
+        }}
+      >
+        details
+      </Text>
+
       <View>
         <View
           style={{ flexDirection: "row", alignItems: "flex-start", margin: 2 }}
         >
           <View
             style={{
-              height: 60,
-              width: 60,
-              borderRadius: 60,
+              height: 48,
+              width: 48,
+              borderRadius: 24,
               backgroundColor: "purple",
               justifyContent: "center",
               alignItems: "center",
               marginRight: 8,
             }}
           >
-            <Text style={{ fontWeight: "bold", fontSize: 20, color: "#FFF" }}>
+            <Text style={{ fontWeight: "bold", fontSize: 18, color: "#FFF" }}>
               {avatarify(item.user_name)}
             </Text>
           </View>
           <View style={{ marginTop: 4 }}>
-            <Text>{item.user_name}</Text>
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
               Order #{item.order_id} (Bill total: ${item.base_price})
+            </Text>
+            <Text style={{ fontSize: 14, fontWeight: "bold" }}>
+              {item.user_name}
             </Text>
           </View>
         </View>
-        <View style={{ padding: 8, marginLeft: 4 }}>
-          <View style={{ flexDirection: "row", padding: 8 }}>
+        <View style={{ marginLeft: 24 }}>
+          <View style={{ flexDirection: "row", padding: 4 }}>
             <Text>
               Delivered on: {item.delivered_on} |{" "}
               {item.plan_name === "twoPlan"
@@ -56,12 +75,12 @@ export default function Review({ item, index }) {
                 : "30 Meals"}
             </Text>
           </View>
-          <View style={{ padding: 8 }}>
+          <View style={{ padding: 4 }}>
             <Text>
               Ordered on: {moment(item.order_time).format("DD-MMM-YYYY")}{" "}
             </Text>
           </View>
-          <View style={{ flexDirection: "row", padding: 8 }}>
+          <View style={{ flexDirection: "row", padding: 4 }}>
             <Text>Rating:{"  "}</Text>
             <View
               style={{
@@ -79,7 +98,7 @@ export default function Review({ item, index }) {
             </View>
           </View>
           {Array.isArray(item.likes) && (
-            <View style={{ flexDirection: "row", padding: 8 }}>
+            <View style={{ flexDirection: "row", padding: 4 }}>
               <Text>Likes:{"   "}</Text>
               {item.likes.map((issue, index) => (
                 <View
@@ -101,40 +120,18 @@ export default function Review({ item, index }) {
               ))}
             </View>
           )}
-          <View style={{ flexDirection: "row", padding: 8 }}>
+          <View style={{ flexDirection: "row", padding: 4 }}>
             <Text style={{ color: "#000" }}>Comment: </Text>
             <Text style={{ color: "#000" }}>{item.details}</Text>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              padding: 8,
-              justifyContent: "space-between",
-            }}
-          >
-            <Text
-              style={{
-                color: "orange",
-                fontWeight: "bold",
-                textTransform: "uppercase",
-              }}
-            >
-              View order details
-            </Text>
-            <Text
-              style={{
-                color: "#226cff",
-                fontWeight: "bold",
-                textTransform: "uppercase",
-              }}
-              onPress={setReplying}
-            >
-              reply
-            </Text>
-          </View>
+        </View>
+        <View style={{ marginLeft: 60 }}>
+          <Text>{restaurant_name}</Text>
+          <Text>Comment from Chef</Text>
         </View>
       </View>
-      {isReplying && (
+
+      {isReplying ? (
         <View
           style={{
             flexDirection: "row",
@@ -161,6 +158,19 @@ export default function Review({ item, index }) {
             <Icon name="ios-send-outline" size={24} color="#3646ee" />
           </TouchableOpacity>
         </View>
+      ) : (
+        <Text
+          style={{
+            color: "#226cff",
+            fontWeight: "bold",
+            textTransform: "uppercase",
+            textAlign: "right",
+            padding: 4,
+          }}
+          onPress={setReplying}
+        >
+          reply
+        </Text>
       )}
     </View>
   );
