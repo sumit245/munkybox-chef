@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useState } from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -31,7 +32,11 @@ export default function Review({ item, index }) {
             ? "15 Meals"
             : "30 Meals"}
         </Text>
-        <Text>Ordered on: {item.onder_time} </Text>
+      </View>
+      <View style={{ padding: 8 }}>
+        <Text>
+          Ordered on: {moment(item.order_time).format("DD-MMM-YYYY")}{" "}
+        </Text>
       </View>
       <View style={{ flexDirection: "row", padding: 8 }}>
         <Text>Rating:{"  "}</Text>
@@ -44,26 +49,29 @@ export default function Review({ item, index }) {
             padding: 2,
           }}
         >
-          <Icon name="star" color="#fff" size={16} />
-          <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 14 }}>
+          <Icon name="star" color="#fff" size={12} />
+          <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 12 }}>
             {item.rating}
           </Text>
         </View>
       </View>
       {Array.isArray(item.likes) && (
         <View style={{ flexDirection: "row", padding: 8 }}>
-          <Text>Likes: </Text>
+          <Text>Likes:{"   "}</Text>
           {item.likes.map((issue, index) => (
             <View
               style={{
                 paddingHorizontal: 4,
                 padding: 2,
-                backgroundColor: "orange",
+                backgroundColor: "#0064b7",
                 borderRadius: 2,
                 marginHorizontal: 2,
               }}
             >
-              <Text key={index} style={{ fontWeight: "bold", color: "#fff" }}>
+              <Text
+                key={index}
+                style={{ fontWeight: "bold", color: "#fff", fontSize: 12 }}
+              >
                 {issue}
               </Text>
             </View>
@@ -71,6 +79,7 @@ export default function Review({ item, index }) {
         </View>
       )}
       <View style={{ flexDirection: "row", padding: 8 }}>
+        <Text style={{ color: "#000" }}>Comment: </Text>
         <Text style={{ color: "#000" }}>{item.details}</Text>
       </View>
       <View
@@ -101,17 +110,30 @@ export default function Review({ item, index }) {
         </Text>
       </View>
       {isReplying && (
-        <View style={{ flexDirection: "row", flex: 1, padding: 4 }}>
+        <View
+          style={{
+            flexDirection: "row",
+            flex: 1,
+            paddingHorizontal: 10,
+            paddingVertical: 8,
+            margin: 2,
+            borderRadius: 20,
+            borderColor: "#777",
+            borderWidth: 1,
+            alignItems: "baseline",
+          }}
+        >
           <TextInput
             style={{
-              borderBottomColor: "cyan",
+              borderBottomColor: "black",
               borderBottomWidth: 1,
-              minWidth: "90%",
+              minWidth: "88%",
             }}
             multiline={true}
+            placeholder="Type a message"
           />
           <TouchableOpacity onPress={sendReview}>
-            <Icon name="ios-send" size={24} color="#226ccf" />
+            <Icon name="ios-send-outline" size={24} color="#3646ee" />
           </TouchableOpacity>
         </View>
       )}

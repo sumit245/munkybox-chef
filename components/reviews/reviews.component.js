@@ -73,9 +73,9 @@ export default function Reviews({ navigation }) {
             <Icon name="chevron-back" size={28} color="#223fdc" />
           </TouchableOpacity>
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-            User Feedback
+            User feedback
           </Text>
-          <Icon name="search" size={24} />
+          <View />
         </View>
         {/* Header done */}
 
@@ -85,6 +85,7 @@ export default function Reviews({ navigation }) {
             justifyContent: "space-between",
             alignItems: "center",
             padding: 4,
+            height: 80,
             borderColor: "#ddd",
             borderWidth: 0.5,
             borderRadius: 2,
@@ -96,7 +97,7 @@ export default function Reviews({ navigation }) {
         >
           <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
             <View style={{ marginRight: 12 }}>
-              <Text>From</Text>
+              <Text>FROM</Text>
               <Text
                 style={{
                   fontSize: 20,
@@ -104,6 +105,7 @@ export default function Reviews({ navigation }) {
                   minWidth: width / 3,
                   borderBottomColor: "#000",
                   borderBottomWidth: 1,
+                  marginVertical: 2,
                 }}
               >
                 {start}
@@ -115,7 +117,7 @@ export default function Reviews({ navigation }) {
           </View>
           <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
             <View style={{ marginRight: 12 }}>
-              <Text>To</Text>
+              <Text>TO</Text>
               <Text
                 style={{
                   fontSize: 20,
@@ -123,6 +125,7 @@ export default function Reviews({ navigation }) {
                   minWidth: width / 3,
                   borderBottomColor: "#000",
                   borderBottomWidth: 1,
+                  marginVertical: 2,
                 }}
               >
                 {end}
@@ -144,7 +147,7 @@ export default function Reviews({ navigation }) {
             marginVertical: 8,
           }}
         >
-          <Text style={{ fontWeight: "bold", fontSize: 14, marginVertical: 4 }}>
+          <Text style={{ fontWeight: "bold", fontSize: 14, marginVertical: 8 }}>
             {" "}
             {reviews.length} USER REVIEW
           </Text>
@@ -152,7 +155,7 @@ export default function Reviews({ navigation }) {
             style={{
               flexDirection: "row",
               alignItems: "flex-end",
-              marginVertical: 8,
+              marginVertical: 20,
             }}
           >
             {stars.map((star, index) => (
