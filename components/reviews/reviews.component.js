@@ -12,26 +12,49 @@ import Review from "./reviewdetails";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { width } from "../../Dimens";
+import Loader from "../../helpers/Loader";
 
 export default function Reviews({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [reviews, setReviews] = useState([]);
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
-  const [comment, setComment] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [comment, setComment] = useState(true);
   const fetchReviews = async (id) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/review/getmyreview/" + id
     );
     const { data } = response;
     setReviews(data.reverse());
+    setLoading(false);
   };
   useEffect(() => {
     const { restaurant_id } = restaurant;
     fetchReviews(restaurant_id);
   }, []);
+
   const calendar = () => {};
-  const stars = [5, 4, 3, 2, 1];
+  const filterStar = (star) => {
+    console.log(typeof star);
+    // fetchReviews();
+    setLoading(true);
+    let allreview = [...reviews];
+    let fliteredReview = allreview.filter((item) => item.rating === star);
+    setReviews(fliteredReview);
+    setLoading(false);
+  };
+  const filterwithComment = () => {
+    setComment(!comment);
+    let allreview = [...reviews];
+    let fliteredReview = allreview.filter((item) => item.details === "");
+    if (!comment) {
+      setReviews(fliteredReview);
+    } else {
+      fetchReviews();
+    }
+  };
+  const stars = ["5", "4", "3", "2", "1"];
   const renderItem = ({ item }) => <Review item={item} index={item.index} />;
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -122,13 +145,19 @@ export default function Reviews({ navigation }) {
             marginVertical: 8,
           }}
         >
-          <Text style={{ fontWeight: "bold", fontSize: 14 }}>
+          <Text style={{ fontWeight: "bold", fontSize: 14, marginVertical: 4 }}>
             {" "}
             {reviews.length} USER REVIEW
           </Text>
-          <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "flex-end",
+              marginVertical: 8,
+            }}
+          >
             {stars.map((star, index) => (
-              <View
+              <TouchableOpacity
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -140,6 +169,7 @@ export default function Reviews({ navigation }) {
                   marginHorizontal: 4,
                   justifyContent: "center",
                 }}
+                onPress={() => filterStar(star)}
               >
                 <Icon name="star" size={16} color="#666" />
                 <Text
@@ -149,11 +179,11 @@ export default function Reviews({ navigation }) {
                   {" "}
                   {star}
                 </Text>
-              </View>
+              </TouchableOpacity>
             ))}
           </View>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Switch value={true} />
+            <Switch value={comment} onValueChange={filterwithComment} />
             <Text style={{ fontWeight: "bold", color: "#000" }}>
               Show only orders with comments
             </Text>
@@ -162,13 +192,17 @@ export default function Reviews({ navigation }) {
         {/* Review Selectors */}
       </View>
       {/* <View> */}
-      <FlatList
-        data={reviews}
-        style={{ marginBottom: 4 }}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index}
-        contentContainerStyle={{ marginBottom: 10 }}
-      />
+      {!loading ? (
+        <FlatList
+          data={reviews}
+          style={{ marginBottom: 4 }}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index}
+          contentContainerStyle={{ marginBottom: 10 }}
+        />
+      ) : (
+        <Loader />
+      )}
       {/* </View> */}
     </SafeAreaView>
   );
