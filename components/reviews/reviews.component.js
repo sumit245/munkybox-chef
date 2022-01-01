@@ -32,7 +32,7 @@ export default function Reviews({ navigation }) {
   useEffect(() => {
     const { restaurant_id } = restaurant;
     fetchReviews(restaurant_id);
-  }, [reviews]);
+  }, []);
 
   const calendar = () => {};
   const filterStar = (star) => {
