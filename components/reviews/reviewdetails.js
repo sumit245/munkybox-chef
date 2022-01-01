@@ -142,7 +142,7 @@ export default function Review({ item, index }) {
             maxWidth: "80%",
           }}
         >
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={{ flexDirection: "row", alignItems: "center",marginBottom:8 }}>
             <Text style={{ fontWeight: "bold", fontSize: 12, marginRight: 4 }}>
               {restaurant_name}
             </Text>
