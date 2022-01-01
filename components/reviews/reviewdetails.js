@@ -24,18 +24,28 @@ export default function Review({ item, index }) {
         backgroundColor: "#fff",
       }}
     >
-      <Text
+      <View
         style={{
-          color: "orange",
-          fontWeight: "bold",
-          textTransform: "uppercase",
-          padding: 8,
-          textAlign: "right",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginVertical: 8,
+          marginHorizontal: 4,
         }}
       >
-        details
-      </Text>
-
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+          Order #{item.order_id} (Bill total: ${item.base_price})
+        </Text>
+        <Text
+          style={{
+            color: "orange",
+            fontWeight: "bold",
+            textTransform: "uppercase",
+            textAlign: "right",
+          }}
+        >
+          details
+        </Text>
+      </View>
       <View>
         <View
           style={{ flexDirection: "row", alignItems: "flex-start", margin: 2 }}
@@ -56,9 +66,6 @@ export default function Review({ item, index }) {
             </Text>
           </View>
           <View style={{ marginTop: 4 }}>
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-              Order #{item.order_id} (Bill total: ${item.base_price})
-            </Text>
             <Text style={{ fontSize: 14, fontWeight: "bold" }}>
               {item.user_name}
             </Text>
@@ -125,7 +132,16 @@ export default function Review({ item, index }) {
             <Text style={{ color: "#000" }}>{item.details}</Text>
           </View>
         </View>
-        <View style={{ marginLeft: 60 }}>
+        <View
+          style={{
+            marginLeft: 60,
+            marginVertical: 16,
+            backgroundColor: "#ededed",
+            padding: 8,
+            borderRadius: 12,
+            maxWidth: "80%",
+          }}
+        >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Text style={{ fontWeight: "bold", fontSize: 12, marginRight: 4 }}>
               {restaurant_name}
