@@ -126,7 +126,28 @@ export default function Review({ item, index }) {
           </View>
         </View>
         <View style={{ marginLeft: 60 }}>
-          <Text>{restaurant_name}</Text>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text style={{ fontWeight: "bold", fontSize: 12, marginRight: 4 }}>
+              {restaurant_name}
+            </Text>
+            <View
+              style={{
+                paddingHorizontal: 4,
+                padding: 1,
+                backgroundColor: "#4464b7",
+                borderRadius: 14,
+                alignItems: "center",
+                justifyContent: "center",
+                marginHorizontal: 2,
+              }}
+            >
+              <Text
+                style={{ color: "#fff", fontSize: 10, textAlign: "center" }}
+              >
+                Replied ✔
+              </Text>
+            </View>
+          </View>
           <Text>Comment from Chef</Text>
         </View>
       </View>
@@ -152,6 +173,7 @@ export default function Review({ item, index }) {
               minWidth: "88%",
             }}
             multiline={true}
+            maxLength={450}
             placeholder="Type a message"
           />
           <TouchableOpacity onPress={sendReview}>
