@@ -19,7 +19,7 @@ const CustomDialog = ({ title, text, navigation,page }) => {
     <Provider>
       <Portal>
         <Dialog visible={show} onDismiss={hideDialog}>
-          <Dialog.Title>{title}</Dialog.Title>
+          <Dialog.Title style={{textAlign:"center"}}>{title}</Dialog.Title>
           <Dialog.Content>
             <Paragraph>{text}</Paragraph>
           </Dialog.Content>
