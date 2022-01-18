@@ -15,6 +15,7 @@ export default function HeaderTabSwitch({
   selected,
   handler,
   setTabHandler,
+  returnCurrentIndex
 }) {
   const [active, setActive] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
