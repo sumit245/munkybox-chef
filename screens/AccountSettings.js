@@ -7,6 +7,7 @@ import Plans from "../components/account/plan.component";
 import Logout from "../components/account/logout.component";
 import Addmeals from "../components/account/Addmeals";
 import Skipped from "../components/account/skipped.component";
+import AddDocument from "../components/account/adddocument.component";
 
 export default function AccountSettings({ navigation }) {
   return (
@@ -14,21 +15,20 @@ export default function AccountSettings({ navigation }) {
       <ScrollView
         contentContainerStyle={{
           backgroundColor: "#fff",
-          flex: 1,
+          flexGrow: 1,
           justifyContent: "space-between",
         }}
       >
         <View>
           <Profile />
-          <BankAccount />
+          <BankAccount navigation={navigation} />
           <Plans />
           <Addmeals navigation={navigation} />
           <Skipped navigation={navigation} />
-          {/* <Reviews navigation={navigation} /> */}
+          <AddDocument navigation={navigation} />
           <ContactUs navigation={navigation} />
         </View>
 
-        {/* <CouponComponent navigation={navigation} /> */}
         <Logout navigation={navigation} />
       </ScrollView>
     </SafeAreaView>

@@ -22,6 +22,7 @@ import TrackCampaign from "../components/campaign/TrackCampaign";
 import AddEditMeals from "../components/add_meals/AddEditMeals";
 import Contacts from "../components/contacts/Contacts";
 import Reviews from "../components/reviews/reviews.component";
+import Documents from "../components/documents/Documents";
 
 const Stack = createStackNavigator();
 
@@ -59,6 +60,7 @@ export default function AuthRoutes({ navigation }) {
       <Stack.Screen name="track" component={TrackPerformance} />
       <Stack.Screen name="trackcampaign" component={TrackCampaign} />
       <Stack.Screen name="contacts" component={Contacts} />
+      <Stack.Screen name="documents" component={Documents} />
     </Stack.Navigator>
   );
 }

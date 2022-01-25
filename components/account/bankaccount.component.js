@@ -15,7 +15,7 @@ import { editBankInfo } from "../../actions/actions";
 import { styles } from "./account.styles";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { ActivityIndicator } from "react-native-paper";
-export default function BankAccount() {
+export default function BankAccount({ navigation }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [editable, setEditable] = useState(false);
   const profile = useSelector((state) => state.restaurant);
@@ -50,6 +50,7 @@ export default function BankAccount() {
       setLoading("confirm");
       if (info.account_number !== info.confirmNumber) {
         alert("Confirm account number does not match");
+        return;
       } else {
         setLoading("onload");
         dispatch(editBankInfo(profile._id, bank_info));
@@ -181,12 +182,16 @@ export default function BankAccount() {
             title="Updated"
             text="You have successfully updated bank information"
             key="update"
+            navigation={navigation}
+            page="Setting"
           />
         ) : loading === "confirm" ? (
           <CustomDialog
             title="Are you sure?"
             text="By updating bank information your upcoming payouts will be made into new account details."
             key="confirm"
+            navigation={navigation}
+            page="Setting"
           />
         ) : null}
       </Collapsible>

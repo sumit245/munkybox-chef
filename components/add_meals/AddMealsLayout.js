@@ -21,7 +21,7 @@ export default function AddMealsLayout({ navigation }) {
   const [editState, setEditState] = useState(false);
   const [slot, setSlot] = useState("Lunch");
   const [meals, setMeals] = useState([]);
-  const [routes] = React.useState([
+  const [routes] = useState([
     { key: "first", title: "Monday" },
     { key: "second", title: "Tuesday" },
     { key: "third", title: "Wednesday" },
@@ -42,6 +42,7 @@ export default function AddMealsLayout({ navigation }) {
   useEffect(() => {
     fetchMeals(restaurant_id);
   }, [meals]);
+  
   const renderTabBar = (props) => (
     <TabBar
       {...props}

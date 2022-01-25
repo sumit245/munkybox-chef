@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import {
   View,
   TouchableOpacity,
@@ -20,6 +20,7 @@ export default function OtpComponent({ route, navigation }) {
   const [verificationCode, setVerificationCode] = useState("");
   const routes = useNavigationState((state) => state.routes);
   const currentRoute = routes[routes.length - 1].name;
+  const otpInput=useRef(null)
   return (
     <ImageBackground
       source={require("../../assets/chef-background.jpg")}
@@ -48,6 +49,7 @@ export default function OtpComponent({ route, navigation }) {
             }}
             returnKeyType="done"
             inputCellLength={1}
+            ref={otpInput}
           />
           
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -76,6 +78,7 @@ export default function OtpComponent({ route, navigation }) {
           >
             <TouchableOpacity
               style={[styles.loginBtn, { width: "46%", marginRight: "1%" }]}
+              onPress={()=>otpInput.current.clear()}
             >
               <Text style={styles.btnText}>Clear</Text>
             </TouchableOpacity>

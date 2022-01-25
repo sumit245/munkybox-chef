@@ -23,7 +23,7 @@ const CustomDialog = ({ title, text, navigation,page }) => {
           <Dialog.Content>
             <Paragraph>{text}</Paragraph>
           </Dialog.Content>
-          <Dialog.Actions>
+          <Dialog.Actions style={{alignItems:"center",justifyContent:"center"}}>
             <Button onPress={done}>Done</Button>
           </Dialog.Actions>
         </Dialog>
