@@ -13,7 +13,6 @@ export default function AddMealForm({ meal, slot, setEditState, addHandler }) {
     addHandler(state);
   };
   useEffect(() => {
-    console.log(meal.type)
     try {
       const { add_on } = meal;
       setAddOn(add_on);
@@ -22,7 +21,7 @@ export default function AddMealForm({ meal, slot, setEditState, addHandler }) {
       setAddOn(add_on);
     }
   }, [meal]);
-  
+
   try {
     return (
       <ScrollView>
