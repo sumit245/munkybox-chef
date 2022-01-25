@@ -41,16 +41,19 @@ export default function TrackPerformance({ route, navigation }) {
       setUnique(unique);
       setloaded(true);
     } else {
+      
       const response = await axios.get(
-        "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_id
-      );
+        "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
+          restaurant +
+          "/Inactive"
+             );
       const { data } = response;
-      const { coupons } = data.dashboard;
-      // setPromotedOrders(promotedOrders.length);
+      const { coupons, promotedOrders, revenue, discount, unique } = data;
+      setPromotedOrders(promotedOrders.length);
       setCoupon(coupons);
-      // setRevenue(revenue);
-      // setDiscount(discount);
-      // setUnique(unique);
+      setRevenue(revenue);
+      setDiscount(discount);
+       setUnique(unique);
       setloaded(true);
     }
   };
