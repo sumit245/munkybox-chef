@@ -156,15 +156,14 @@ const Item = ({ item }) => {
               fontWeight: "normal",
             }}
           >
-            {address_type +
-              ", " +
-              flat_num +
-              "," +
-              locality +
-              ", " +
-              city +
-              ", " +
-              postal_code}
+            {((address_type+
+              ", ")||"")  +
+              ((flat_num +
+                ",")||"") +
+              ((locality||"")) +
+              ((city +
+                ", ")||"") +
+              (postal_code ||"")}
           </Text>{" "}
         </Text>
 
