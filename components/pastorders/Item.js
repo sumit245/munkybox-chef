@@ -28,13 +28,13 @@ const Item = ({ item, index, navigation }) => {
         <Text style={styles.titleText}>Order Id: {item.order_id}</Text>
         <Text
           style={[
-            item.status === "started"
+            item.status === "accepted"
               ? {
                   backgroundColor: "#5ca85c",
                   color: "#ffffff",
                   padding: 2,
                   borderRadius: 4,
-                  marginLeft: -86,
+                  marginLeft: -70,
                   fontWeight: "bold",
                   textAlign: "center",
                   textAlignVertical: "center",
@@ -44,7 +44,7 @@ const Item = ({ item, index, navigation }) => {
               ? {
                   backgroundColor: "#ffc300",
                   color: "#ffffff",
-                  marginLeft: -86,
+                  marginLeft: -70,
                   fontWeight: "bold",
                   textAlign: "center",
                   textAlignVertical: "center",
@@ -53,11 +53,11 @@ const Item = ({ item, index, navigation }) => {
                   textTransform: "capitalize",
                 }
               : {
-                  backgroundColor: "#ffc300",
+                  backgroundColor: "#ff4300",
                   color: "#fff",
                   padding: 2,
                   borderRadius: 4,
-                  marginLeft: -86,
+                  marginLeft: -70,
                   fontWeight: "bold",
                   textAlign: "center",
                   textAlignVertical: "center",
@@ -65,7 +65,7 @@ const Item = ({ item, index, navigation }) => {
                 },
           ]}
         >
-          {item.status}
+         {" "} {item.status}
         </Text>
         <Text style={styles.cardText}>{item.category}</Text>
       </View>

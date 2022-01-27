@@ -52,6 +52,7 @@ export default function Contacts({ navigation }) {
     const { status } = await response.data;
     if (status === 200) {
       setDiscard(true);
+      
     }
   };
 
@@ -156,6 +157,8 @@ export default function Contacts({ navigation }) {
     return (
       <CustomDialog
         title="Are you Sure?"
+        navigation={navigation}
+        page="Setting"
         text="Your message will be discarded"
       />
     );

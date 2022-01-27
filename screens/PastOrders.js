@@ -23,10 +23,10 @@ export default function PastOrders({ navigation }) {
     );
     const orders = await response.data;
     let myOrders = await orders.filter(
-      (item) => (item.restaurant = restaurant.restaurant_name)
+      (item) => (item.restaurant === restaurant.restaurant_name)
     );
 
-    setOrders(myOrders.reverse());
+    setOrders(myOrders);
   };
   useEffect(() => {
     getApiData();

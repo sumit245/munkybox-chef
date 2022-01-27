@@ -141,17 +141,7 @@ export default function OrderDetails({ route, navigation }) {
             <Text style={styles.text}>Ordered on</Text>
             <Text style={styles.text}>PRICE</Text>
           </View>
-          {/* {order.add_on.map((data, key) => (
-          <View style={styles.tableRow} key={key}>
-            <Text style={{ maxWidth: 100, padding: 2 }} numberOfLines={4}>
-              {data.items.item}
-            </Text>
-            <Text style={{ marginLeft: -40, padding: 2 }}>
-              {data.items.order_date}
-            </Text>
-            <Text style={{ padding: 2 }}>{data.items.price}</Text>
-          </View>
-        ))} */}
+          
         </View>
       </ScrollView>
     </SafeAreaView>
