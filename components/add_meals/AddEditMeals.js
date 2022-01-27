@@ -9,9 +9,7 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-//import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
-import { Picker } from "@react-native-picker/picker";
 import { width } from "../../Dimens";
 import { DARKGRAY } from "../../Colors";
 import { useSelector } from "react-redux";
@@ -89,10 +87,12 @@ export default function AddEditMeals({
       setImage(result.uri);
     }
   };
+  
   const onRadioChanged = (value) => {
     setChecked(value);
     setInfo({ ...info, type: value });
   };
+
   const submitMeal = async () => {
     setLoading(false);
     let base64 = "";
@@ -137,6 +137,7 @@ export default function AddEditMeals({
       { add_on_name: "", add_on_price: "", add_on_image: "" },
     ]);
   };
+  
   const handleRemoveClicked = () => {
     const values = [...addOns];
     values.pop();
@@ -259,14 +260,6 @@ export default function AddEditMeals({
                 <Text>Non Veg</Text>
               </View>
             </View>
-            {/* <Picker
-              style={{ marginHorizontal: 8 }}
-              selectedValue={meal_type}
-              onValueChange={(itemValue, itemIndex) => setMealType(itemValue)}
-            >
-              <Picker.Item label="Veg" value="veg" />
-              <Picker.Item label="Non Veg" value="non-veg" />
-            </Picker> */}
           </View>
           {/* Meal Type */}
         </View>
