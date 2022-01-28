@@ -174,7 +174,7 @@ export default function StatCards({
                 alignItems: "center",
               }}
             >
-              <Text style={styles.stat_label}>Pending</Text>
+              <Text style={styles.stat_label}>Accepted</Text>
               <Text style={[styles.stat_value, { color: "#ffc300" }]}>
                 {notstarted}
               </Text>

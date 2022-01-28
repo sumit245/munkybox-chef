@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { avatarify } from "../../helpers/truncate_string";
 import { useSelector } from "react-redux";
 
-export default function Review({ item, index }) {
+export default function Review({ item, index,navigation }) {
   const [isReplying, setReplying] = useState(false);
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name } = restaurant;
@@ -42,6 +42,11 @@ export default function Review({ item, index }) {
             textTransform: "uppercase",
             textAlign: "right",
           }}
+          onPress={() =>
+            navigation.navigate("orderdetails", {
+              order: item,
+            })
+          }
         >
           details
         </Text>
@@ -72,19 +77,25 @@ export default function Review({ item, index }) {
           </View>
         </View>
         <View style={{ marginLeft: 24 }}>
-          <View style={{ flexDirection: "row", padding: 4 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              padding: 4,
+              flex: 1,
+              justifyContent: "space-between",
+            }}
+          >
+            <Text>Start Date: {item.start_date}</Text>
+            <Text>End Date: {item.end_date}</Text>
+          </View>
+          <View style={{ padding: 4 }}>
             <Text>
-              Delivered on: {item.delivered_on} |{" "}
+              Ordered on: {moment(item.order_time).format("DD-MMM-YYYY")} |{" "}
               {item.plan_name === "twoPlan"
                 ? "2 Meals"
                 : item.plan_name === "fifteenPlan"
                 ? "15 Meals"
                 : "30 Meals"}
-            </Text>
-          </View>
-          <View style={{ padding: 4 }}>
-            <Text>
-              Ordered on: {moment(item.order_time).format("DD-MMM-YYYY")}{" "}
             </Text>
           </View>
           <View style={{ flexDirection: "row", padding: 4 }}>
@@ -142,7 +153,13 @@ export default function Review({ item, index }) {
             maxWidth: "80%",
           }}
         >
-          <View style={{ flexDirection: "row", alignItems: "center",marginBottom:8 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginBottom: 8,
+            }}
+          >
             <Text style={{ fontWeight: "bold", fontSize: 12, marginRight: 4 }}>
               {restaurant_name}
             </Text>
