@@ -175,7 +175,7 @@ export default function Dashboard({ navigation }) {
     restaurant_name,
     restaurant_id,
     acceptanceRate,
-    rectanceRate,
+    rejectedRate,
     activecount,
     commission,
     completecount,
@@ -304,7 +304,7 @@ export default function Dashboard({ navigation }) {
                   textAlign: "center",
                 }}
               >
-                {acceptanceRate || 0}%
+                {acceptanceRate.toFixed(2) || 0}%
               </Text>
               <Text style={{ fontWeight: "bold", fontSize: 14 }}>
                 accept rate
@@ -318,7 +318,7 @@ export default function Dashboard({ navigation }) {
                   textAlign: "center",
                 }}
               >
-                {rejectedRate || 0}%
+                {rejectedRate.toFixed(2) || 0}%
               </Text>
               <Text style={{ fontWeight: "bold", fontSize: 14 }}>
                 reject rate
