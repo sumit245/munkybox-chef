@@ -22,9 +22,9 @@ const CustomAlert = ({ title, text, cancelHandler, okHandler }) => {
   return (
     <Portal>
       <Dialog visible={show} onDismiss={hideDialog}>
-        <Dialog.Title>{title}</Dialog.Title>
+        <Dialog.Title style={{textAlign:"center"}}>{title}</Dialog.Title>
         <Dialog.Content>
-          <Paragraph>{text}</Paragraph>
+          <Paragraph style={{textAlign:"center"}}>{text}</Paragraph>
         </Dialog.Content>
         <Dialog.Actions>
           <Button onPress={cancel}>Cancel</Button>
