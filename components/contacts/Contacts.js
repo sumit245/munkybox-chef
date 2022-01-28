@@ -11,10 +11,11 @@ import {
 import { width } from "../../Dimens";
 import { DARKGRAY } from "../../Colors";
 import Icon from "react-native-vector-icons/Ionicons";
-import { IconButton } from "react-native-paper";
+import { IconButton, Provider } from "react-native-paper";
 import { useSelector } from "react-redux";
 import CustomDialog from "../../helpers/CustomDialog";
 import axios from "axios";
+import CustomAlert from "../../helpers/CustomAlert";
 
 export default function Contacts({ navigation }) {
   const [info, setInfo] = useState({
@@ -52,7 +53,6 @@ export default function Contacts({ navigation }) {
     const { status } = await response.data;
     if (status === 200) {
       setDiscard(true);
-      
     }
   };
 
@@ -155,12 +155,14 @@ export default function Contacts({ navigation }) {
     );
   } else {
     return (
-      <CustomDialog
-        title="Are you Sure?"
-        navigation={navigation}
-        page="Setting"
-        text="Your message will be discarded"
-      />
+      <Provider>
+        <CustomAlert
+          title="Are you Sure?"
+          text="Your message will be discarded"
+          cancelHandler={() => navigation.refresh()}
+          doneHandler={() => navigation.goBack()}
+        />
+      </Provider>
     );
   }
 }

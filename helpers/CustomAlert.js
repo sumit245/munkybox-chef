@@ -5,7 +5,6 @@ import {
   Paragraph,
   Dialog,
   Portal,
-  Provider,
 } from "react-native-paper";
 
 const CustomAlert = ({ title, text, cancelHandler, okHandler }) => {
