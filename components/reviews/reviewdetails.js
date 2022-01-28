@@ -43,7 +43,7 @@ export default function Review({ item, index,navigation }) {
             textAlign: "right",
           }}
           onPress={() =>
-            navigation.navigate("orderdetails", {
+            navigation.navigate("orderDetails", {
               order: item,
             })
           }
