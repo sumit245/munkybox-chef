@@ -171,7 +171,15 @@ export default function Dashboard({ navigation }) {
     fetchNotStartedcount(restaurant_name);
     fetchStats(restaurant_name);
     getuserByType(restaurant_name);
-  }, [restaurant_name, restaurant_id]);
+  }, [
+    restaurant_name,
+    restaurant_id,
+    acceptanceRate,
+    rectanceRate,
+    activecount,
+    commission,
+    completecount,
+  ]);
 
   return (
     <SafeAreaView
@@ -180,7 +188,7 @@ export default function Dashboard({ navigation }) {
         backgroundColor: PrimaryDark,
       }}
     >
-      <StatusBar/>
+      <StatusBar />
       <Header title={restaurant_name + ", " + city} />
       <ScrollView>
         <View
