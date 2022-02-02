@@ -37,7 +37,9 @@ export default function CurrentPayout({
         <Text style={styles.smallText}>{orders} Orders</Text>
       </View>
       <TouchableOpacity
-        style={{
+              style={{
+                  width: 200,
+                  alignSelf:"center",
           borderRadius: 6,
           borderWidth: 0.2,
         paddingVertical:4,
