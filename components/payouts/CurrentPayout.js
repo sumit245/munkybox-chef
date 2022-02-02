@@ -29,12 +29,12 @@ export default function CurrentPayout({
           <Text style={styles.bigText}>{payout_date}</Text>
         </View>
       </View>
-      <View style={{ marginTop: 16 }}>
-        <Text style={styles.bigText}>Week So Far</Text>
-        <Text style={[styles.bigText, { color: "#008000", fontSize: 18 }]}>
+      <View style={{ marginVertical: 16 }}>
+        <Text style={[styles.smallText,{textTransform:"uppercase"}]}>Week So Far</Text>
+        <Text style={[styles.bigText, { color: "#008000", fontSize: 22 }]}>
           ${revenue}
         </Text>
-        <Text style={styles.smallText}>{orders} orders</Text>
+        <Text style={styles.smallText}>{orders} Orders</Text>
       </View>
       <TouchableOpacity
         style={{
@@ -44,11 +44,9 @@ export default function CurrentPayout({
           padding: 6,
           height: 44,
           backgroundColor: "#2962ff",
-          alignItems: "center",
-          justifyContent: "center",
         }}
       >
-        <Text style={[styles.btnText, { textAlign: "center" }]}>
+        <Text style={[styles.btnText, { textAlign: "center",color:"#fff" }]}>
           View Payout
         </Text>
       </TouchableOpacity>
