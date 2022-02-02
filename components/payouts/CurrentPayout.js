@@ -31,7 +31,7 @@ export default function CurrentPayout({
       </View>
       <View style={{ marginVertical: 16 }}>
         <Text style={[styles.smallText,{textTransform:"uppercase"}]}>Week So Far</Text>
-        <Text style={[styles.bigText, { color: "#008000", fontSize: 22 }]}>
+        <Text style={[styles.bigText, { color: "#008000", fontSize: 22,marginBottom:8 }]}>
           ${revenue}
         </Text>
         <Text style={styles.smallText}>{orders} Orders</Text>
@@ -40,13 +40,12 @@ export default function CurrentPayout({
         style={{
           borderRadius: 6,
           borderWidth: 0.2,
-          marginHorizontal: 2,
-          padding: 6,
+        paddingVertical:4,
           height: 44,
           backgroundColor: "#2962ff",
         }}
       >
-        <Text style={[styles.btnText, { textAlign: "center",color:"#fff" }]}>
+        <Text style={[styles.btnText, {color:"#fff" }]}>
           View Payout
         </Text>
       </TouchableOpacity>
