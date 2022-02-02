@@ -159,7 +159,7 @@ export default function Contacts({ navigation }) {
         <CustomAlert
           title="Are you Sure?"
           text="Your message will be discarded"
-          cancelHandler={() =>navigation.navigate("contacts")}
+          cancelHandler={() =>navigation.navigate("contacts")}            
           okHandler={() => navigation.goBack()}
         />
       </Provider>
