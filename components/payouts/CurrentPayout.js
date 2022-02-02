@@ -30,24 +30,33 @@ export default function CurrentPayout({
         </View>
       </View>
       <View style={{ marginVertical: 16 }}>
-        <Text style={[styles.smallText,{textTransform:"uppercase"}]}>Week So Far</Text>
-        <Text style={[styles.bigText, { color: "#008000", fontSize: 22,marginBottom:8 }]}>
+        <Text style={[styles.smallText, { textTransform: "uppercase" }]}>
+          Week So Far
+        </Text>
+        <Text
+          style={[
+            styles.bigText,
+            { color: "#008000", fontSize: 22, marginBottom: 8 },
+          ]}
+        >
           ${revenue}
         </Text>
         <Text style={styles.smallText}>{orders} Orders</Text>
       </View>
       <TouchableOpacity
-              style={{
-                  width: 200,
-                  alignSelf:"center",
+        style={{
+          width: 200,
+          alignSelf: "center",
           borderRadius: 6,
           borderWidth: 0.2,
-        paddingVertical:4,
+          paddingVertical: 4,
           height: 44,
           backgroundColor: "#2962ff",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <Text style={[styles.btnText, {color:"#fff" }]}>
+        <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
           View Payout
         </Text>
       </TouchableOpacity>
