@@ -23,6 +23,7 @@ import AddEditMeals from "../components/add_meals/AddEditMeals";
 import Contacts from "../components/contacts/Contacts";
 import Reviews from "../components/reviews/reviews.component";
 import Documents from "../components/documents/Documents";
+import PayoutHome from "../components/payouts/home.component";
 
 const Stack = createStackNavigator();
 
@@ -61,6 +62,7 @@ export default function AuthRoutes({ navigation }) {
       <Stack.Screen name="trackcampaign" component={TrackCampaign} />
       <Stack.Screen name="contacts" component={Contacts} />
       <Stack.Screen name="documents" component={Documents} />
+      <Stack.Screen name="payouts" component={PayoutHome}/>
     </Stack.Navigator>
   );
 }

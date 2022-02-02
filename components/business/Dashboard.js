@@ -90,51 +90,63 @@ export default function Dashboard({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
     );
     const { count } = res.data;
-
-    setActiveCount(count);
+    if (count !== null) {
+      setActiveCount(count);
+    }
   };
   const fetchcompletedorders = async (restaurant) => {
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/completed/" + restaurant
     );
     const { count } = res.data;
-
-    setCompleteCount(count);
+    if (count !== null) {
+      setCompleteCount(count);
+    }
   };
   const fetchcancelledcount = async (restaurant) => {
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/cancelled/" + restaurant
     );
     const { count } = res.data;
-    setCancelledCount(count);
+    if (count !== null) {
+      setCancelledCount(count);
+    }
   };
   const fetchStats = async (restaurant) => {
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/dashboard/" + restaurant
     );
     const dashboard = res.data;
-    setDashboard(dashboard);
+    if (dashboard !== null) {
+      setDashboard(dashboard);
+    }
   };
   const fetchCommission = async () => {
     const resp = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/checkout"
     );
     const { commission } = resp.data.data[0];
-    setCommission(commission);
+    if (commission !== null) {
+      setCommission(commission);
+    }
   };
   const fetchRejectedcount = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/rejected/" + restaurant
     );
     const { count } = response.data;
-    setRejected(count);
+    if (count!==null) {
+      setRejected(count);
+    }
   };
   const fetchNotStartedcount = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/accepted/" + restaurant
     );
     const { count } = response.data;
-    setNotStarted(count);
+    if (count !== null) {
+      setNotStarted(count);
+    }
   };
   const getuserByType = async (restaurant) => {
     const response = await axios.get(
@@ -142,9 +154,10 @@ export default function Dashboard({ navigation }) {
         restaurant
     );
     const { newusers, repeatedUsers } = response.data;
-
-    setnewUser(newusers);
-    setrepeatedUser(repeatedUsers);
+    if (newusers !== null && repeatedUsers !== null) {
+      setnewUser(newusers);
+      setrepeatedUser(repeatedUsers);
+    }
   };
   const fetchVisit = async (restaurant) => {
     const response = await axios.get(
@@ -153,11 +166,13 @@ export default function Dashboard({ navigation }) {
     const { totalOrders, orders, accptanceRate, rectanceRate, dashboard } =
       response.data;
     const { menuvisits, cartVisit } = dashboard;
-    setCartConversion(totalOrders);
-    setMenuVisit(menuvisits);
-    setvisits(cartVisit);
-    setAcceptanceRate(accptanceRate);
-    setRejectedRate(rectanceRate);
+    if (acceptanceRate !== null && rectanceRate !== null && totalOrders !== null && orders !== null) {
+      setCartConversion(totalOrders);
+      setMenuVisit(menuvisits);
+      setvisits(cartVisit);
+      setAcceptanceRate(accptanceRate);
+      setRejectedRate(rectanceRate);
+    }
   };
   useEffect(() => {
     fetchCommission();
@@ -225,6 +240,7 @@ export default function Dashboard({ navigation }) {
                 alignItems: "center",
                 justifyContent: "center",
               }}
+              onPress={()=>navigation.navigate("payouts")}
             >
               <Ants name="wallet" size={34} color={SecondaryLightColor} />
             </TouchableOpacity>
