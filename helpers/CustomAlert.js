@@ -21,11 +21,12 @@ const CustomAlert = ({ title, text, cancelHandler, okHandler }) => {
   };
   return (
     <Portal>
-      <Dialog visible={show} onDismiss={hideDialog}>
+      <Dialog visible={show} onDismiss={hideDialog} style={{width:"80%",alignSelf:"center"}} >
         <Dialog.Title style={{textAlign:"center"}}>{title}</Dialog.Title>
         <Dialog.Content>
           <Paragraph style={{textAlign:"center"}}>{text}</Paragraph>
         </Dialog.Content>
+        
         <Dialog.Actions style={{justifyContent:"space-between"}}>
           <Button onPress={cancel}>Cancel</Button>
           <Button onPress={done}>Done</Button>
