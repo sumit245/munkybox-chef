@@ -13,24 +13,56 @@ import Header from "../header/Header";
 import { Searchbar } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.title, textColor]}>{item.title}</Text>
-  </TouchableOpacity>
+const Item = ({ item }) => (
+  <View style={styles.card}>
+    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+      <View>
+        <Text style={styles.bigText}>Order Id</Text>
+        <Text style={styles.bigText}>Plan Name</Text>
+        <Text style={styles.bigText}>Base Price</Text>
+        <Text style={styles.bigText}>Commission</Text>
+        <Text style={styles.bigText}>Commission Amount</Text>
+        <Text style={styles.bigText}>Status</Text>
+      </View>
+      <View>
+        <Text style={styles.smallText}>{item.order_id}</Text>
+        <Text style={styles.smallText}>{item.plan_name}</Text>
+        <Text style={styles.smallText}>{item.base_price}</Text>
+        <Text style={styles.smallText}>{item.commission}</Text>
+        <Text style={styles.smallText}>{item.commission_amt}</Text>
+        <Text style={styles.smallText}>{item.status}</Text>
+      </View>
+    </View>
+  </View>
 );
 
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
+    order_id: "ORD001",
+    plan_name: "2 Meals",
+    base_price: "$15.00",
+    commission: "10%",
+    commission_amt: "$1.50",
+    status: "In Progress",
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
+    id: "bd7acbea-c1b1-46c4-aed5-3ad53abb28ba",
+    order_id: "ORD002",
+    plan_name: "15 Meals",
+    base_price: "$200.00",
+    commission: "10%",
+    commission_amt: "$20.00",
+    status: "Pending",
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
+    id: "bd7acbea-c1b1-36c4-aed5-3ad53abb28ba",
+    order_id: "ORD003",
+    plan_name: "30 Meals",
+    base_price: "$400.00",
+    commission: "10%",
+    commission_amt: "$40.00",
+    status: "Completed",
   },
 ];
 
@@ -44,17 +76,7 @@ export default function CommissionHistory() {
     </View>
   );
   const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
-    const color = item.id === selectedId ? "white" : "black";
-
-    return (
-      <Item
-        item={item}
-        onPress={() => setSelectedId(item.id)}
-        backgroundColor={{ backgroundColor }}
-        textColor={{ color }}
-      />
-    );
+    return <Item item={item} />;
   };
   return (
     <SafeAreaView>
@@ -100,5 +122,23 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+  },
+  card: {
+    backgroundColor: "#fff",
+    padding: 12,
+    margin: 4,
+    borderRadius: 8,
+  },
+  bigText: {
+    fontWeight: "bold",
+    fontSize: 16,
+    marginVertical: 2,
+  },
+  smallText: {
+    fontWeight: "bold",
+    color: "#777",
+    lineHeight: 20,
+    fontSize: 14,
+    marginVertical: 2,
   },
 });
