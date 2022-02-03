@@ -46,25 +46,25 @@ export default function CommissionTracking({
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Orders</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-            : $0
+             $0
           </Text>
         </View>
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Order Amount</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-            : $0
+             $0
           </Text>
         </View>
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Discount</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-            : $0
+             $0
           </Text>
         </View>
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Add Ons Amount</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-            : $0
+             $0
           </Text>
         </View>
         <View style={styles.cardRow}>
@@ -77,7 +77,7 @@ export default function CommissionTracking({
             }}
           >
             <Text style={[styles.smallText, { marginRight: 4, color: "#000" }]}>
-              : $0
+              $0
             </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate("commission_history")}
