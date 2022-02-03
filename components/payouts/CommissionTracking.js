@@ -45,7 +45,7 @@ export default function CommissionTracking({
         </View>
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Orders</Text>
-          <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
+          <Text style={[styles.smallText, { marginRight: 22, color: "#000" }]}>
              0
           </Text>
         </View>
