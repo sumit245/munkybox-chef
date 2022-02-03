@@ -12,6 +12,7 @@ export default function CurrentPayout({
   payout_date,
   revenue,
   orders,
+  navigation,
 }) {
   return (
     <View style={styles.card}>
@@ -55,6 +56,15 @@ export default function CurrentPayout({
           justifyContent: "center",
           alignItems: "center",
         }}
+        onPress={() =>
+          navigation.navigate("commission_tracking", {
+            current_cycle: current_cycle,
+            payout_date: payout_date,
+            revenue: revenue,
+            orders: orders,
+            navigation: navigation,
+          })
+        }
       >
         <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
           View Payout

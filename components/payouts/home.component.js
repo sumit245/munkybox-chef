@@ -1,11 +1,16 @@
-import { View, Text, SafeAreaView,useWindowDimensions } from "react-native";
+import { View, Text, SafeAreaView, useWindowDimensions } from "react-native";
 import React from "react";
 import Header from "../header/Header";
 import { TabView, TabBar } from "react-native-tab-view";
-import { PrimaryColor, SecondaryColor,PrimaryDark,PrimaryLight } from "../../Colors";
+import {
+  PrimaryColor,
+  SecondaryColor,
+  PrimaryDark,
+  PrimaryLight,
+} from "../../Colors";
 import CurrentPayout from "./CurrentPayout";
 import PastPayouts from "./PastPayouts";
-const PayoutHome = () => {
+const PayoutHome = ({ navigation }) => {
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -16,7 +21,7 @@ const PayoutHome = () => {
   const renderTabBar = (props) => (
     <TabBar
       {...props}
-      style={{ backgroundColor: PrimaryDark, }}
+      style={{ backgroundColor: PrimaryDark }}
       indicatorStyle={{ backgroundColor: SecondaryColor }}
     />
   );
@@ -29,6 +34,7 @@ const PayoutHome = () => {
             payout_date="17th Feb"
             revenue="0"
             orders="0"
+            navigation={navigation}
           />
         );
       case "second":
@@ -43,14 +49,14 @@ const PayoutHome = () => {
     <SafeAreaView>
       <Header title="Payouts & Finance" />
       {/* <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}> */}
-        <TabView
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          style={{ minHeight: 480 }}
-          onIndexChange={setIndex}
-          renderTabBar={renderTabBar}
-          initialLayout={{ width: layout.width }}
-        />
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        style={{ minHeight: 480 }}
+        onIndexChange={setIndex}
+        renderTabBar={renderTabBar}
+        initialLayout={{ width: layout.width }}
+      />
       {/* </View> */}
     </SafeAreaView>
   );

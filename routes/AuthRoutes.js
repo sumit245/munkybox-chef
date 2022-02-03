@@ -24,6 +24,8 @@ import Contacts from "../components/contacts/Contacts";
 import Reviews from "../components/reviews/reviews.component";
 import Documents from "../components/documents/Documents";
 import PayoutHome from "../components/payouts/home.component";
+import CommissionTracking from "../components/payouts/CommissionTracking";
+import CommissionHistory from "../components/payouts/CommissionHistory";
 
 const Stack = createStackNavigator();
 
@@ -62,7 +64,9 @@ export default function AuthRoutes({ navigation }) {
       <Stack.Screen name="trackcampaign" component={TrackCampaign} />
       <Stack.Screen name="contacts" component={Contacts} />
       <Stack.Screen name="documents" component={Documents} />
-      <Stack.Screen name="payouts" component={PayoutHome}/>
+      <Stack.Screen name="payouts" component={PayoutHome} />
+      <Stack.Screen name="commission_tracking" component={CommissionTracking} />
+      <Stack.Screen name="commission_history" component={CommissionHistory}/>
     </Stack.Navigator>
   );
 }

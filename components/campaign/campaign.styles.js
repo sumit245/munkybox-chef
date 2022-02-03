@@ -27,6 +27,15 @@ export const styles = StyleSheet.create({
     marginTop: 8,
     paddingTop: 8,
   },
+  cardRow: {
+    borderColor: "#777",
+    borderTopWidth: 1,
+    padding: 6,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 2,
+    paddingHorizontal:8
+  },
   bigText: {
     fontWeight: "bold",
     fontSize: 16,
