@@ -45,15 +45,27 @@ export default function CommissionTracking({
         </View>
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Orders</Text>
-          <Text style={[styles.smallText, { marginRight: 18 }]}>: $0</Text>
+          <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
+            : $0
+          </Text>
         </View>
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Order Amount</Text>
-          <Text style={[styles.smallText, { marginRight: 18 }]}>: $0</Text>
+          <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
+            : $0
+          </Text>
+        </View>
+        <View style={styles.cardRow}>
+          <Text style={styles.smallText}>Total Discount</Text>
+          <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
+            : $0
+          </Text>
         </View>
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Add Ons Amount</Text>
-          <Text style={[styles.smallText, { marginRight: 18 }]}>: $0</Text>
+          <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
+            : $0
+          </Text>
         </View>
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Admin Commission</Text>
@@ -64,25 +76,15 @@ export default function CommissionTracking({
               alignItems: "center",
             }}
           >
-            <Text style={[styles.smallText, { marginRight: 4 }]}>: $0</Text>
+            <Text style={[styles.smallText, { marginRight: 4, color: "#000" }]}>
+              : $0
+            </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate("commission_history")}
             >
               <Icon name="history" size={14} color="#026020" />
             </TouchableOpacity>
           </View>
-        </View>
-        <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Received Amount</Text>
-          <Text style={[styles.smallText, { marginRight: 18 }]}>: $0</Text>
-        </View>
-        <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Cancel Amount</Text>
-          <Text style={[styles.smallText, { marginRight: 18 }]}>: $0</Text>
-        </View>
-        <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Balance Amount</Text>
-          <Text style={[styles.smallText, { marginRight: 18 }]}>: $0</Text>
         </View>
       </View>
       <TouchableOpacity
