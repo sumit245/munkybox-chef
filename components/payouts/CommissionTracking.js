@@ -87,29 +87,6 @@ export default function CommissionTracking({
           </View>
         </View>
       </View>
-      <TouchableOpacity
-        style={{
-          width: "98%",
-          alignSelf: "center",
-          borderRadius: 20,
-          marginVertical: 14,
-          backgroundColor: "#023020",
-          padding: 6,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 18,
-            color: "#fff",
-            fontWeight: "bold",
-            padding: 2,
-          }}
-        >
-          Pay Request
-        </Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }
