@@ -30,7 +30,7 @@ export default function CommissionTracking({
               color: "#f00",
             }}
           >
-            Total Order Amount
+            Total Received Amount
           </Text>
           <Text
             style={{
@@ -46,7 +46,7 @@ export default function CommissionTracking({
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Orders</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-             $0
+             0
           </Text>
         </View>
         <View style={styles.cardRow}>
@@ -68,7 +68,7 @@ export default function CommissionTracking({
           </Text>
         </View>
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Admin Commission</Text>
+          <Text style={styles.smallText}>Total Admin Commission (10%)</Text>
           <View
             style={{
               flexDirection: "row",
