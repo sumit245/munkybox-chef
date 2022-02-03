@@ -99,7 +99,7 @@ export default function CommissionHistory() {
           <Icon name="calendar" size={20} color="#205000" />
         </TouchableOpacity>
       </View>
-      <Text>Total Commission Amount: $ 0.00 </Text>
+      <Text style={{textAlign:"center",fontWeight:"bold",padding:6}}>Total Commission Amount: $ 0.00 </Text>
       <FlatList
         data={DATA}
         renderItem={renderItem}
