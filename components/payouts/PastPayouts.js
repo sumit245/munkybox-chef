@@ -9,7 +9,7 @@ import {
 import React, { useState, useEffect } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const Item = ({ item }, navigation) => (
+const Item = ({ item, navigation }) => (
   <View style={styles.card}>
     <View
       style={{
@@ -115,7 +115,7 @@ export default function PastPayouts({ navigation }) {
     </View>
   );
   const renderItem = ({ item }) => {
-    return <Item item={item} key={item.id} />;
+    return <Item item={item} key={item.id} navigation={navigation} />;
   };
   return (
     <View>
