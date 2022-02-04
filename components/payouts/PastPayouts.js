@@ -115,7 +115,7 @@ export default function PastPayouts({ navigation }) {
     <View>
       <FlatList
         data={payouts}
-              renderItem={()=>renderItem(navigation)}
+              renderItem={renderItem}
               extraData={navigation}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={ListEmptyContent}
