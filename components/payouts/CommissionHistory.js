@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from "react-native";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
 import { Searchbar } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -28,8 +28,8 @@ const Item = ({ item }) => (
       <View>
         <Text style={styles.smallText}>{item.order_id}</Text>
         <Text style={styles.smallText}>{item.plan_name}</Text>
-                <Text style={styles.smallText}>{item.base_price}</Text>
-                <Text style={styles.smallText}>N/A</Text>
+        <Text style={styles.smallText}>{item.base_price}</Text>
+        <Text style={styles.smallText}>N/A</Text>
         <Text style={styles.smallText}>{item.commission}</Text>
         <Text style={styles.smallText}>{item.commission_amt}</Text>
         <Text style={styles.smallText}>{item.status}</Text>
@@ -71,15 +71,27 @@ const DATA = [
 export default function CommissionHistory() {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedId, setSelectedId] = React.useState(null);
-  const onChangeSearch = (query) => setSearchQuery(query);
+  const [orders, setOrders] = useState([]);
+  const onChangeSearch = (query) => {
+      setSearchQuery(query);
+      if (query !== "") {
+          let item = DATA.filter((item) => item.order_id === query);
+          setOrders(item); 
+      } else {
+          setOrders(DATA)
+      }
+  };
   const ListEmptyContent = () => (
     <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
       <Text>No orders to display</Text>
     </View>
   );
   const renderItem = ({ item }) => {
-    return <Item item={item} />;
+    return <Item item={item} key={item.id} />;
   };
+  useEffect(() => {
+    setOrders(DATA);
+  }, []);
   return (
     <SafeAreaView>
       <Header title="Commission History" />
@@ -101,9 +113,11 @@ export default function CommissionHistory() {
           <Icon name="calendar" size={20} color="#205000" />
         </TouchableOpacity>
       </View>
-      <Text style={{textAlign:"center",fontWeight:"bold",padding:6}}>Total Commission Amount: $ 0.00 </Text>
+      <Text style={{ textAlign: "center", fontWeight: "bold", padding: 6 }}>
+        Total Commission Amount: $ 0.00{" "}
+      </Text>
       <FlatList
-        data={DATA}
+        data={orders}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         extraData={selectedId}
