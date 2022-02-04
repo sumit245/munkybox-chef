@@ -1,15 +1,24 @@
-import { View, Text, FlatList, StyleSheet, StatusBar } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  StatusBar,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const Item = ({ item }) => (
+const Item = ({ item, navigation }) => (
   <View style={styles.card}>
-    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+    <View style={{ flexDirection: "row", justifyContent: "space-between",marginBottom:12 }}>
       <View>
         <Text style={styles.smallText}>{item.payout_cycle}</Text>
-        <Text style={[styles.bigText,{fontSize:24,color:"#205000"}]}>$ {item.revenue}</Text>
+        <Text style={[styles.bigText, { fontSize: 24, color: "#205000" }]}>
+          $ {item.revenue}
+        </Text>
       </View>
-      <View style={{alignItems:"flex-end"}}>
+      <View style={{ alignItems: "flex-end" }}>
         <Text style={styles.smallText}>
           {" "}
           <Icon
@@ -34,6 +43,31 @@ const Item = ({ item }) => (
         <Text style={styles.smallText}>{item.status_details}</Text>
       </View>
     </View>
+    <TouchableOpacity
+      style={{
+        width: 200,
+        alignSelf: "center",
+        borderRadius: 6,
+        borderWidth: 0.2,
+        paddingVertical: 4,
+        height: 44,
+        backgroundColor: "#2962ff",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      onPress={() =>
+        navigation.navigate("commission_tracking", {
+          current_cycle: item.payout_cycle,
+          payout_date: item.payout_date,
+          revenue: item.revenue,
+          navigation: navigation,
+        })
+      }
+    >
+      <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
+        View Payout
+      </Text>
+    </TouchableOpacity>
   </View>
 );
 
@@ -64,7 +98,7 @@ const DATA = [
   },
 ];
 
-export default function PastPayouts() {
+export default function PastPayouts({ navigation }) {
   const [payouts, setPayouts] = useState([]);
   useEffect(() => {
     setPayouts(DATA);
@@ -75,7 +109,7 @@ export default function PastPayouts() {
     </View>
   );
   const renderItem = ({ item }) => {
-    return <Item item={item} key={item.id} />;
+    return <Item item={item} key={item.id} navigation={navigation} />;
   };
   return (
     <View>
