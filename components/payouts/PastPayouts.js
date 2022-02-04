@@ -9,7 +9,7 @@ import {
 import React, { useState, useEffect } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const Item = ({ item, navigation }) => (
+const Item = ({ item},navigation) => (
   <View style={styles.card}>
     <View style={{ flexDirection: "row", justifyContent: "space-between",marginBottom:12 }}>
       <View>
