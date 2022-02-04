@@ -20,6 +20,7 @@ const Item = ({ item }) => (
         <Text style={styles.bigText}>Order Id</Text>
         <Text style={styles.bigText}>Plan Name</Text>
         <Text style={styles.bigText}>Base Price</Text>
+        <Text style={styles.bigText}>Discount</Text>
         <Text style={styles.bigText}>Commission</Text>
         <Text style={styles.bigText}>Commission Amount</Text>
         <Text style={styles.bigText}>Status</Text>
@@ -27,7 +28,8 @@ const Item = ({ item }) => (
       <View>
         <Text style={styles.smallText}>{item.order_id}</Text>
         <Text style={styles.smallText}>{item.plan_name}</Text>
-        <Text style={styles.smallText}>{item.base_price}</Text>
+                <Text style={styles.smallText}>{item.base_price}</Text>
+                <Text style={styles.smallText}>N/A</Text>
         <Text style={styles.smallText}>{item.commission}</Text>
         <Text style={styles.smallText}>{item.commission_amt}</Text>
         <Text style={styles.smallText}>{item.status}</Text>
