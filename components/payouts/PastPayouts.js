@@ -9,9 +9,15 @@ import {
 import React, { useState, useEffect } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const Item = ({ item},navigation) => (
+const Item = ({ item }, navigation) => (
   <View style={styles.card}>
-    <View style={{ flexDirection: "row", justifyContent: "space-between",marginBottom:12 }}>
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 12,
+      }}
+    >
       <View>
         <Text style={styles.smallText}>{item.payout_cycle}</Text>
         <Text style={[styles.bigText, { fontSize: 24, color: "#205000" }]}>
@@ -108,15 +114,15 @@ export default function PastPayouts({ navigation }) {
       <Text>No orders to display</Text>
     </View>
   );
-  const renderItem = ({ item,navigation }) => {
-    return <Item item={item} key={item.id} navigation={navigation} />;
+  const renderItem = ({ item }) => {
+    return <Item item={item} key={item.id} />;
   };
   return (
     <View>
       <FlatList
         data={payouts}
-              renderItem={renderItem}
-              extraData={navigation}
+        renderItem={renderItem}
+        extraData={navigation}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={ListEmptyContent}
       />

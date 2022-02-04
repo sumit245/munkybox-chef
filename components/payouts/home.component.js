@@ -38,7 +38,7 @@ const PayoutHome = ({ navigation }) => {
           />
         );
       case "second":
-        return <PastPayouts payouts={payhistory} />;
+        return <PastPayouts payouts={payhistory} navigation={navigation} />;
 
       default:
         break;
