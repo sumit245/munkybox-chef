@@ -108,7 +108,7 @@ export default function PastPayouts({ navigation }) {
       <Text>No orders to display</Text>
     </View>
   );
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item,navigation }) => {
     return <Item item={item} key={item.id} navigation={navigation} />;
   };
   return (
