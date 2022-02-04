@@ -50,7 +50,7 @@ const Item = ({ item, navigation }) => (
         borderRadius: 6,
         borderWidth: 0.2,
         paddingVertical: 4,
-        height: 44,
+        height: 28,
         backgroundColor: "#2962ff",
         justifyContent: "center",
         alignItems: "center",
@@ -74,7 +74,7 @@ const Item = ({ item, navigation }) => (
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    payout_cycle: "1st Jan - 15th Jan",
+    payout_cycle: "1st Jan 22 - 15th Jan 22",
     revenue: "0.00",
     status: "Paid",
     status_details: "",
@@ -82,7 +82,7 @@ const DATA = [
   },
   {
     id: "bd7acbea-c1b1-46c4-aed5-3ad53abb28ba",
-    payout_cycle: "15th Jan - 31st Jan",
+    payout_cycle: "15th Jan 22 - 31st Jan 22",
     revenue: "0.00",
     status: "On Hold",
     status_details: "Bank Details Incorrect",
@@ -90,7 +90,7 @@ const DATA = [
   },
   {
     id: "bd7acbea-c1b1-36c4-aed5-3ad53abb28ba",
-    payout_cycle: "1st Feb - 15th Feb",
+    payout_cycle: "1st Feb 22 - 15th Feb 22",
     revenue: "0.00",
     status: "Pending",
     status_details: "",
@@ -115,7 +115,8 @@ export default function PastPayouts({ navigation }) {
     <View>
       <FlatList
         data={payouts}
-        renderItem={renderItem}
+              renderItem={renderItem}
+              extraData={navigation}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={ListEmptyContent}
       />
