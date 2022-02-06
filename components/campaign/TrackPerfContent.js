@@ -17,7 +17,6 @@ function TrackPerfContent({
   unique,
   active,
 }) {
-  
   const [banner, setBanner] = useState({
     promo_code: "",
     promo_id: "",
@@ -65,6 +64,10 @@ function TrackPerfContent({
       "http://munkybox-admin.herokuapp.com/api/coupon/" + id,
       { status: "Inactive" }
     );
+    const restaurantUpdate = await axios.put(
+      "http://munkybox-admin.herokuapp.com/api/newrest/" + _id,
+      { promo: [] }
+    );
     const dashboardResponse = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_name
     );
@@ -79,18 +82,13 @@ function TrackPerfContent({
         dashboard._id,
       { coupons: prevCoupons }
     );
-    let mypromos = [...promo];
-    mypromos.pop();
-    const restaurantUpdate = await axios.put(
-      "http://munkybox-admin.herokuapp.com/api/newrest/" + _id,
-      { promo: mypromos }
-    );
+    console.log(restaurantUpdate);
     const { status } = restaurantUpdate;
     if (status === 200) {
       setCancel(false);
     }
   };
-  
+
   const cancelHandler = () => {
     setCancel(false);
   };
