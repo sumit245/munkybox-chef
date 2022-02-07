@@ -7,8 +7,8 @@ import {
   Portal,
 } from "react-native-paper";
 
-const CustomAlert = ({ title, text, cancelHandler, okHandler }) => {
-  const [show, setShow] = React.useState(true);
+const CustomAlert = ({ title, text, cancelHandler, okHandler,visible }) => {
+  const [show, setShow] = React.useState(visible);
   const hideDialog = () => setShow(!show);
 
   const done = () => {

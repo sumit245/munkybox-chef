@@ -28,6 +28,7 @@ export default function Contacts({ navigation }) {
     body: "",
   });
   const [discard, setDiscard] = useState(false);
+  const [visible, setVisible] = useState(true);
   const restaurant = useSelector((state) => state.restaurant);
 
   useEffect(() => {
@@ -154,8 +155,9 @@ export default function Contacts({ navigation }) {
       {discard && (
         <CustomAlert
           title="Are you Sure?"
+          visible={visible}
           text="Your message will be discarded"
-          cancelHandler={() => navigation.navigate("contacts")}
+          cancelHandler={() => setVisible(!visible)}
           okHandler={() => navigation.goBack()}
         />
       )}
