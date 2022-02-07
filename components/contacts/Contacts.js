@@ -56,8 +56,8 @@ export default function Contacts({ navigation }) {
     }
   };
 
-  if (!discard) {
     return (
+      <Provider>
       <SafeAreaView style={styles.container}>
         <View
           style={{
@@ -82,7 +82,7 @@ export default function Contacts({ navigation }) {
               padding: 4,
             }}
           >
-            <IconButton icon="attachment" color="#e61272" />
+            
             <IconButton icon="send" color="#126e72" onPress={sendEmail} />
             <IconButton icon="delete" color="#ef2145" onPress={setDiscard} />
           </View>
@@ -152,19 +152,19 @@ export default function Contacts({ navigation }) {
           </View>
         </ScrollView>
       </SafeAreaView>
-    );
-  } else {
-    return (
-      <Provider>
-        <CustomAlert
+      {
+        discard &&(
+          <CustomAlert
           title="Are you Sure?"
           text="Your message will be discarded"
           cancelHandler={() =>navigation.navigate("contacts")}            
           okHandler={() => navigation.goBack()}
         />
+        )
+      }
       </Provider>
     );
-  }
+  
 }
 const styles = StyleSheet.create({
   card: {
