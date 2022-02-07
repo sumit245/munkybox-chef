@@ -33,13 +33,6 @@ export default function TrackCampaign({ route, navigation }) {
         restaurant
     );
 
-    // const { clicks, discount, due, orders, revenue, users } = res.data;
-    // let myBanner = [...banners];
-    // (myBanner[0].clicks = clicks), (myBanner[0].totalDiscount = discount);
-    // myBanner[0].revenue = revenue;
-    // myBanner[0].due = due;
-    // myBanner[0].users = users;
-    // myBanner[0].orders = orders;
     setBanner(banners);
     setLoaded(true);
   };

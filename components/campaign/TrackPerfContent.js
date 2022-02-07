@@ -68,20 +68,22 @@ function TrackPerfContent({
       "http://munkybox-admin.herokuapp.com/api/newrest/" + _id,
       { promo: [] }
     );
-    const dashboardResponse = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_name
-    );
-    const { dashboard } = await dashboardResponse.data;
-    const { coupons } = await dashboard;
-    let prevCoupons = [...coupons];
-    prevCoupons.push(myCoupon);
-    const updateDashboard = await axios.put(
-      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" +
-        restaurant_name +
-        "/" +
-        dashboard._id,
-      { coupons: prevCoupons }
-    );
+    
+      const dashboardResponse = await axios.get(
+        "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_name
+      );
+      const { dashboard } = await dashboardResponse.data;
+      const { coupons } = await dashboard;
+      let prevCoupons = [...coupons];
+      prevCoupons.push(myCoupon);
+      const updateDashboard = await axios.put(
+        "http://munkybox-admin.herokuapp.com/api/chefdashboard/" +
+          restaurant_name +
+          "/" +
+          dashboard._id,
+        { coupons: prevCoupons }
+      );
+    
     console.log(restaurantUpdate);
     const { status } = restaurantUpdate;
     if (status === 200) {
@@ -106,7 +108,7 @@ function TrackPerfContent({
     setPulled(true);
   };
 
-  if (!cancel) {
+
     return (
       <View style={styles.bannerCard}>
         <View style={styles.trackHead}>
@@ -219,17 +221,17 @@ function TrackPerfContent({
             </View>
           </View>
         ) : null}
+        {cancel &&(
+          <CustomAlert
+          title="Are you sure?"
+          text="Your active coupon will be set to inactive. Inactive coupons are not visible by users"
+          okHandler={() => setInactive(banner._id)}
+          cancelHandler={cancelHandler}
+          visible={cancel}
+        />
+        )}
       </View>
     );
-  } else {
-    return (
-      <CustomAlert
-        title="Are you sure?"
-        text="Your active coupon will be set to inactive. Inactive coupons are not visible by users"
-        okHandler={() => setInactive(banner._id)}
-        cancelHandler={cancelHandler}
-      />
-    );
-  }
+  
 }
 export default React.memo(TrackPerfContent);
