@@ -48,9 +48,16 @@ export default function TrackPerformance({ route, navigation }) {
           "/Inactive"
              );
       const { data } = response;
+      const dashboardResponse = await axios.get(
+        "http://munkybox-admin.herokuapp.com/api/chefdashboard/"+restaurant
+    );
+    const dashres =await dashboardResponse.data
       const { coupons, promotedOrders, revenue, discount, unique } = data;
-      setPromotedOrders(promotedOrders.length);
       setCoupon(coupons);
+      const myCoupons=await dashres.coupons
+      console.log(myCoupons);
+      setPromotedOrders(promotedOrders.length);
+      
       setRevenue(revenue);
       setDiscount(discount);
       setUnique(unique);
