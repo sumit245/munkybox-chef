@@ -88,21 +88,23 @@ export default function TopPage({ navigation }) {
       mealSelector(days[new Date().getDay()]);
       const today = moment();
       let todayOrders = orders.filter((item) =>
-        today.isBetween(item.start_date, item.end_date)
+        today.isBetween(item.start_date, moment(item.end_date).add(1,"day"))
       );
       setMealCount(todayOrders.length);
     } else if (day === "Tomorrow") {
       let tomorrow = moment().add(1, "days");
       let todayOrders = orders.filter((item) =>
-        tomorrow.isBetween(item.start_date, item.end_date)
+        tomorrow.isBetween(item.start_date, moment(item.end_date).add(1,"day"))
       );
+      console.log(todayOrders);
       setMealCount(todayOrders.length);
       mealSelector(days[new Date().getDay() + 1]);
     } else {
       let dayafter = moment().add(2, "days");
       let todayOrders = orders.filter((item) =>
-        dayafter.isBetween(item.start_date, item.end_date)
+        dayafter.isBetween(item.start_date, moment(item.end_date).add(1,"day"))
       );
+      console.log(todayOrders);
       setMealCount(todayOrders.length);
       mealSelector(days[new Date().getDay() + 2]);
     }

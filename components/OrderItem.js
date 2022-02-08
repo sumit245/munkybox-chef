@@ -41,10 +41,12 @@ const CollapsedContent = ({ item }) => {
       alert(error);
     }
   };
+
   const theme = {
     ...DefaultTheme,
     fonts: "thin",
   };
+
   const getCurrentOrderDetails = async () => {
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/getcurrentorder/getOrderDetails/" +
@@ -90,6 +92,7 @@ const CollapsedContent = ({ item }) => {
   useEffect(() => {
     getCurrentOrderDetails();
   }, [item]);
+
   if (!loading) {
     return (
       <View style={styles.orderCard}>
@@ -194,7 +197,7 @@ const CollapsedContent = ({ item }) => {
                 Deliver to:{" "}
               </Text>
               <Text style={{ fontSize: 14 }}>
-                {flat_num + "," + locality + " " + city + "-" + postal_code ||
+                {flat_num + "," + (locality ||"")+ " " + city + "," + postal_code ||
                   "N/A"}
               </Text>
             </View>

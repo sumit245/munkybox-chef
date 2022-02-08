@@ -92,7 +92,7 @@ export default function Orders() {
     const today = moment();
     let todayOrders = activeorders.filter(
       (item) =>
-        today.isBetween(item.start_date, item.end_date) &&
+        today.isBetween(moment(item.start_date).subtract(1,"day"), item.end_date) &&
         item.time === currentTab
     );
 
