@@ -53,7 +53,7 @@ export default function TrackPerformance({ route, navigation }) {
       setCoupon(coupons);
       setRevenue(revenue);
       setDiscount(discount);
-       setUnique(unique);
+      setUnique(unique);
       setloaded(true);
     }
   };

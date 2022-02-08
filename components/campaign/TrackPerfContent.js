@@ -31,7 +31,7 @@ function TrackPerfContent({
   });
 
   const restaurant = useSelector((state) => state.restaurant);
-  const { _id, restaurant_name, promo } = restaurant;
+  const { _id, restaurant_name, promo,restaurant_id } = restaurant;
 
   const [loaded, setLoaded] = useState(false);
   const [cancel, setCancel] = useState(false);
@@ -68,13 +68,16 @@ function TrackPerfContent({
       "http://munkybox-admin.herokuapp.com/api/newrest/" + _id,
       { promo: [] }
     );
+  
+  
+
+
+    const dashboardResponse = await axios.get(
+        "http://munkybox-admin.herokuapp.com/api/chefdashboard/"+restaurant_id
+    );
+    const { dashboard } = await dashboardResponse.data;
     
-      const dashboardResponse = await axios.get(
-        "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_name
-      );
-      const { dashboard } = await dashboardResponse.data;
-      const { coupons } = await dashboard;
-      let prevCoupons = [...coupons];
+    let prevCoupons = [];
       prevCoupons.push(myCoupon);
       const updateDashboard = await axios.put(
         "http://munkybox-admin.herokuapp.com/api/chefdashboard/" +
@@ -84,8 +87,7 @@ function TrackPerfContent({
         { coupons: prevCoupons }
       );
     
-    console.log(restaurantUpdate);
-    const { status } = restaurantUpdate;
+    const { status } = updateDashboard;
     if (status === 200) {
       setCancel(false);
     }
