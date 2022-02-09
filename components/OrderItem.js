@@ -48,7 +48,6 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
   };
 
   const getCurrentOrderDetails = async () => {
-    console.log(item.order_id);
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/getcurrentorder/getOrderDetails/" +
         item.order_id
