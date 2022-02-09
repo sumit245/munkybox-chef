@@ -18,7 +18,7 @@ import axios from "axios";
 import { avatarify } from "../helpers/truncate_string";
 import Loader from "../helpers/Loader";
 
-const CollapsedContent = ({ item }) => {
+const CollapsedContent = ({ item, setcounterdecrease }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [pulled, setPulled] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -71,8 +71,8 @@ const CollapsedContent = ({ item }) => {
     );
     if (res.data !== null) {
       let { delivered } = res.data;
-      console.log(delivered);
       onToggleSwitch();
+      setcounterdecrease();
     }
     setLoading(false);
   };
@@ -285,8 +285,8 @@ const CollapsedContent = ({ item }) => {
   }
 };
 
-export default function OrderItem({ item, index, meal }) {
-  return <CollapsedContent item={item} />;
+export default function OrderItem({ item, index, meal, decrement }) {
+  return <CollapsedContent item={item} setcounterdecrease={decrement} />;
 }
 const styles = StyleSheet.create({
   orderCard: {

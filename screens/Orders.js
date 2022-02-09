@@ -62,13 +62,16 @@ export default function Orders() {
     "Friday",
     "Saturday",
   ];
-
   const { meals } = restaurant;
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
   let { restaurant_name, restaurant_id, _id } = restaurant;
 
+  const decrement = () => {
+    let localcount = count;
+    setCount(localcount - 1);
+  };
   const renderItem = ({ item }) => (
-    <OrderItem item={item} index={item._id} meal={meal} />
+    <OrderItem item={item} index={item._id} meal={meal} decrement={decrement} />
   );
   const fetchSlots = async () => {
     setLoaded(false);
