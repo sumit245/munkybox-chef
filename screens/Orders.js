@@ -51,6 +51,7 @@ export default function Orders() {
   const [currentTab, setCurrentTab] = useState("11-12 AM");
   const [selected, setSelected] = useState(0);
   const [currentPage, setCurrentPage] = useState(false);
+  const [count, setCount] = useState(0);
 
   const days = [
     "Sunday",
@@ -92,12 +93,15 @@ export default function Orders() {
     const today = moment();
     let todayOrders = activeorders.filter(
       (item) =>
-        today.isBetween(moment(item.start_date).subtract(1,"day"), item.end_date) &&
-        item.time === currentTab
+        today.isBetween(
+          moment(item.start_date).subtract(1, "day"),
+          item.end_date
+        ) && item.time === currentTab
     );
 
     if (todayOrders !== null) {
       setOrders(todayOrders);
+      setCount(todayOrders.length);
     }
   };
   useEffect(() => {
@@ -117,7 +121,7 @@ export default function Orders() {
     }
     fetchOrders(restaurant_id);
   }, [currentTab]);
-  
+
   const handleToggle = (slot) => {
     setLoaded(false);
     let myorders = [...orders];
@@ -139,9 +143,8 @@ export default function Orders() {
         selected={selected}
         setTabHandler={(data) => setCurrentPage(data)}
         returnCurrentIndex={(page) => selectedPage(page)}
-      >
-        
-      </HeaderTabSwitch>
+        mealCount={count}
+      ></HeaderTabSwitch>
       {loaded ? (
         <FlatList
           data={orders}
