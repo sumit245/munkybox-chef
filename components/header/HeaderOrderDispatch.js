@@ -52,18 +52,17 @@ export default function HeaderTabSwitch({
               onPress={() => onItemSelected(item, index)}
               key={index}
             >
-              <View>
-                <Text
-                  style={[
-                    styles.label,
-                    currentIndex === index
-                      ? { fontWeight: "bold", color: WHITE }
-                      : { color: WHITE },
-                  ]}
-                >
-                  {item}
-                </Text>
-              </View>
+              <Text
+                style={[
+                  styles.label,
+                  currentIndex === index
+                    ? { fontWeight: "bold", color: WHITE }
+                    : { color: WHITE },
+                ]}
+              >
+                {item}
+              </Text>
+
               {currentIndex === index ? (
                 <Badge
                   style={{

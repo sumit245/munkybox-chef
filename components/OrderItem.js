@@ -48,6 +48,7 @@ const CollapsedContent = ({ item }) => {
   };
 
   const getCurrentOrderDetails = async () => {
+    console.log(item.order_id);
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/getcurrentorder/getOrderDetails/" +
         item.order_id
@@ -60,10 +61,13 @@ const CollapsedContent = ({ item }) => {
 
   const setCurrentOrderDetails = async () => {
     setLoading(true);
-    const res = await axios.put(
-      "http://munkybox-admin.herokuapp.com/api/getcurrentorder/getandupdateorderstatus/" +
-        item.order_id,
-      { delivered: true }
+    const data = {
+      delivered: true,
+      order_id: item.order_id,
+    };
+    const res = await axios.post(
+      "http://munkybox-admin.herokuapp.com/api/getcurrentorder/",
+      data
     );
     if (res.data !== null) {
       let { delivered } = res.data;
@@ -197,8 +201,13 @@ const CollapsedContent = ({ item }) => {
                 Deliver to:{" "}
               </Text>
               <Text style={{ fontSize: 14 }}>
-                {flat_num + "," + (locality ||"")+ " " + city + "," + postal_code ||
-                  "N/A"}
+                {flat_num +
+                  "," +
+                  (locality || "") +
+                  " " +
+                  city +
+                  "," +
+                  postal_code || "N/A"}
               </Text>
             </View>
 
