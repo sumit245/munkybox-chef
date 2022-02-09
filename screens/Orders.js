@@ -50,7 +50,6 @@ export default function Orders() {
   const [page, selectedPage] = useState(0);
   const [currentTab, setCurrentTab] = useState("11-12 AM");
   const [selected, setSelected] = useState(0);
-  const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(false);
 
   const days = [
@@ -87,18 +86,18 @@ export default function Orders() {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
     );
-    const { activeorders } = response.data;
+
+    const { activeorders, count } = response.data;
+
     const today = moment();
     let todayOrders = activeorders.filter(
       (item) =>
-        today.isBetween(
-          moment(item.start_date).subtract(1, "day"),
-          item.end_date
-        ) && item.time === currentTab
+        today.isBetween(moment(item.start_date).subtract(1,"day"), item.end_date) &&
+        item.time === currentTab
     );
+
     if (todayOrders !== null) {
       setOrders(todayOrders);
-      setCount(todayOrders.length);
     }
   };
   useEffect(() => {
@@ -118,6 +117,7 @@ export default function Orders() {
     }
     fetchOrders(restaurant_id);
   }, [currentTab]);
+  
   const handleToggle = (slot) => {
     setLoaded(false);
     let myorders = [...orders];
@@ -136,11 +136,12 @@ export default function Orders() {
       <HeaderTabSwitch
         items={slot === "Lunch" ? lunch : dinner}
         handler={tabHandler}
-        mealCount={count}
         selected={selected}
         setTabHandler={(data) => setCurrentPage(data)}
         returnCurrentIndex={(page) => selectedPage(page)}
-      ></HeaderTabSwitch>
+      >
+        
+      </HeaderTabSwitch>
       {loaded ? (
         <FlatList
           data={orders}
