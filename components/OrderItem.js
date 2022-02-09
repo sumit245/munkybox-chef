@@ -60,7 +60,7 @@ const CollapsedContent = ({ item }) => {
 
   const setCurrentOrderDetails = async () => {
     setLoading(true);
-    const res = await axios.put(
+    const res = await axios.post(
       "http://munkybox-admin.herokuapp.com/api/getcurrentorder/getandupdateorderstatus/" +
         item.order_id,
       { delivered: true }
