@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, StatusBar, Text, SafeAreaView } from "react-native";
+import { StyleSheet, View, StatusBar, SafeAreaView } from "react-native";
 import CalTab from "../CalTab";
 import ToggleLunchDinner from "../header/ToggleLunchDinner";
 import Header from "../header/Header";
@@ -57,7 +57,6 @@ export default function TopPage({ navigation }) {
     const { data } = response;
     const { activeorders, count } = data;
     setOrders(activeorders);
-    // setMealCount(count);
   };
 
   const getAddOnCounts = () => {
