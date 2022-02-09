@@ -15,7 +15,8 @@ export default function HeaderTabSwitch({
   selected,
   handler,
   setTabHandler,
-  returnCurrentIndex
+  returnCurrentIndex,
+  mealCount
 }) {
   const [active, setActive] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -72,7 +73,7 @@ export default function HeaderTabSwitch({
                 }}
                 size={14}
               >
-                {0}
+                {mealCount}
               </Badge>
             </TouchableOpacity>
           ))}

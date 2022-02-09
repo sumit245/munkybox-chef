@@ -96,7 +96,6 @@ export default function TopPage({ navigation }) {
       let todayOrders = orders.filter((item) =>
         tomorrow.isBetween(item.start_date, moment(item.end_date).add(1,"day"))
       );
-      console.log(todayOrders);
       setMealCount(todayOrders.length);
       mealSelector(days[new Date().getDay() + 1]);
     } else {
@@ -104,7 +103,6 @@ export default function TopPage({ navigation }) {
       let todayOrders = orders.filter((item) =>
         dayafter.isBetween(item.start_date, moment(item.end_date).add(1,"day"))
       );
-      console.log(todayOrders);
       setMealCount(todayOrders.length);
       mealSelector(days[new Date().getDay() + 2]);
     }
