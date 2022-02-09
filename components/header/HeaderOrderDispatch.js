@@ -16,7 +16,7 @@ export default function HeaderTabSwitch({
   handler,
   setTabHandler,
   returnCurrentIndex,
-  mealCount
+  mealCount,
 }) {
   const [active, setActive] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -64,17 +64,19 @@ export default function HeaderTabSwitch({
                   {item}
                 </Text>
               </View>
-              <Badge
-                style={{
-                  margin: 4,
-                  fontSize: 12,
-                  backgroundColor: "red",
-                  color: WHITE,
-                }}
-                size={14}
-              >
-                {mealCount}
-              </Badge>
+              {currentIndex === index ? (
+                <Badge
+                  style={{
+                    margin: 4,
+                    fontSize: 12,
+                    backgroundColor: "red",
+                    color: WHITE,
+                  }}
+                  size={14}
+                >
+                  {mealCount}
+                </Badge>
+              ) : null}
             </TouchableOpacity>
           ))}
         </ScrollView>
