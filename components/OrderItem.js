@@ -22,8 +22,11 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [pulled, setPulled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [extras, setExtras] = useState([])
+  
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
   const { address_type, locality, city, flat_num, postal_code } = item.address;
+
 
   const openInMap = async (address) => {
     let addres = address.flat_num + "," + address.locality;
@@ -54,7 +57,9 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
         item.order_id
     );
     if (res.data !== null) {
-      let { delivered } = res.data;
+      let { delivered, add_on } = res.data;
+      setExtras(add_on)
+      console.log(extras);
       setIsSwitchOn(delivered);
     }
   };
@@ -76,6 +81,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
     }
     setLoading(false);
   };
+
   const makeCall = async (number) => {
     let phoneNumber = "";
     if (Platform.OS !== "android") {
@@ -93,6 +99,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
       })
       .catch((err) => console.log(err));
   };
+
   useEffect(() => {
     getCurrentOrderDetails();
   }, [item]);
@@ -213,15 +220,14 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
 
             <View
               style={{
-                flexDirection: item.add_on.length > 0 ? "column" : "row",
-
+                flexDirection: extras.length > 0 ? "column" : "row",
                 marginVertical: 2,
               }}
             >
               <Text style={{ fontWeight: "bold", fontSize: 16 }}>
                 Add ons:{" "}
               </Text>
-              {Array.isArray(item.add_on) && item.add_on.length > 0 ? (
+              {extras.length > 0 ? (
                 <View style={{ flexDirection: "column" }}>
                   <View style={styles.row}>
                     <View style={styles.th}>
@@ -247,7 +253,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
                       </Text>
                     </View>
                   </View>
-                  {item.add_on.map((data, key) => (
+                  {extras.map((data, key) => (
                     <View style={styles.row} key={key}>
                       <View style={styles.th}>
                         <Text
@@ -288,6 +294,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
 export default function OrderItem({ item, index, meal, decrement }) {
   return <CollapsedContent item={item} setcounterdecrease={decrement} />;
 }
+
 const styles = StyleSheet.create({
   orderCard: {
     backgroundColor: "#f9ffff",
