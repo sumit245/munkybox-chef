@@ -26,7 +26,7 @@ const CustomAlert = ({ title, text, cancelHandler, okHandler,visible }) => {
           <Paragraph style={{textAlign:"center"}}>{text}</Paragraph>
         </Dialog.Content>
         
-        <Dialog.Actions style={{justifyContent:"space-between"}}>
+        <Dialog.Actions style={{justifyContent:"space-evenly",}}>
           <Button onPress={cancel}>Cancel</Button>
           <Button onPress={done}>Done</Button>
         </Dialog.Actions>
