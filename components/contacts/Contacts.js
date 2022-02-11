@@ -161,7 +161,7 @@ export default function Contacts({ navigation }) {
           title="Are you Sure?"
           visible={discard}
           text="Your message will be discarded"
-          cancelHandler={() => cancelHandler}
+          cancelHandler={cancelHandler}
           okHandler={() => navigation.goBack()}
         />
       )}
