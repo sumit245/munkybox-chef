@@ -9,7 +9,8 @@ import {
   Text,
   ActivityIndicator,
 } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import Icon from "react-native-vector-icons/Ionicons";
+import { useSelector } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
 export const VerificationDocs = ({ navigation }) => {
@@ -44,7 +45,11 @@ export const VerificationDocs = ({ navigation }) => {
         data={papers}
         ListEmptyComponent={() => (
           <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <Text style={{ textAlign: "center", marginHorizontal: 8 }}>
               This Restaurant does not have any specific document

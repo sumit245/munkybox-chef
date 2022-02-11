@@ -92,7 +92,7 @@ export default function Orders() {
     );
 
     const { activeorders, count } = response.data;
-
+    console.log(activeorders);
     const today = moment();
     let todayOrders = activeorders.filter(
       (item) =>
@@ -102,10 +102,8 @@ export default function Orders() {
         ) && item.time === currentTab
     );
 
-    if (todayOrders !== null) {
-      setOrders(todayOrders);
-      setCount(todayOrders.length);
-    }
+    setOrders(todayOrders);
+    setCount(todayOrders.length);
   };
   useEffect(() => {
     fetchSlots();
