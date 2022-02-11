@@ -8,16 +8,24 @@ import {
   Dimensions,
   Text,
   ActivityIndicator,
+  SafeAreaView,
+  StatusBar,
+  TouchableOpacity,
 } from "react-native";
+<<<<<<< HEAD
 import Icon from "react-native-vector-icons/Ionicons";
 import { useSelector } from "react-redux";
+=======
+import  Icon  from "react-native-vector-icons/Ionicons";
+import { useSelector, useDispatch } from "react-redux";
+>>>>>>> 913795a31b9f7de3f9f8a21e76194ef2caaf664c
 
 const { width, height } = Dimensions.get("window");
 export const VerificationDocs = ({ navigation }) => {
   const [papers, setPapers] = useState([]);
   const [loading, setLoading] = useState(true);
   const profile = useSelector((state) => state.restaurant);
-  const { restaurant_id } = profile;
+  const { _id } = profile;
 
   const fetchPapers = async (id) => {
     const response = await axios.get(
@@ -29,8 +37,9 @@ export const VerificationDocs = ({ navigation }) => {
     setLoading(false);
   };
   useEffect(() => {
-    fetchPapers(restaurant_id);
-  }, [restaurant_id]);
+    console.log(_id);
+    fetchPapers(_id);
+  }, [_id]);
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -39,7 +48,12 @@ export const VerificationDocs = ({ navigation }) => {
     );
   } else {
     return (
-      <FlatList
+      <SafeAreaView style={{flex:1,marginTop:StatusBar.currentHeight||0}} >
+        <TouchableOpacity style={{position:"absolute",left:10,top:60,backgroundColor:"#fff",zIndex:1,width:30,height:30,borderRadius:15,justifyContent:"center"}}
+ onPress={()=>navigation.goBack()}>
+   <Icon name="chevron-back" size={26} color="#226ccf"/>
+   </TouchableOpacity>
+   <FlatList
         contentContainerStyle={{ marginHorizontal: 4 }}
         ItemSeparatorComponent={() => <View style={{ width: 0.1 * width }} />}
         data={papers}
@@ -64,7 +78,7 @@ export const VerificationDocs = ({ navigation }) => {
               margin: 1,
             }}
           >
-            <Image style={styles.imageThumbnail} source={{ uri: item.image }} />
+            <Image style={styles.imageThumbnail} source={{ uri: item.image }} resizeMode="contain" />
             <Text
               style={{
                 textAlign: "center",
@@ -73,7 +87,7 @@ export const VerificationDocs = ({ navigation }) => {
                 left: "40%",
                 fontWeight: "bold",
                 fontSize: 16,
-                color: "#fff",
+                color: "#000",
               }}
             >
               {item.image_name}
@@ -84,6 +98,8 @@ export const VerificationDocs = ({ navigation }) => {
         keyExtractor={(item, index) => index}
         showsHorizontalScrollIndicator={false}
       />
+      </SafeAreaView>
+      
     );
   }
 };

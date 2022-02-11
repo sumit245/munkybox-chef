@@ -88,7 +88,7 @@ export default function Orders() {
   };
   const fetchOrders = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/active" + restaurant
+      "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
     );
 
     const { activeorders, count } = response.data;
@@ -101,7 +101,6 @@ export default function Orders() {
           item.end_date
         ) && item.time === currentTab
     );
-
     setOrders(todayOrders);
     setCount(todayOrders.length);
   };
@@ -131,6 +130,7 @@ export default function Orders() {
     setSlot(slot);
     setLoaded(true);
   };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Header title={restaurant_name + ", " + restaurant_id}>
