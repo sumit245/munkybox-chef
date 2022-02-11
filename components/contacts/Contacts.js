@@ -147,7 +147,17 @@ export default function Contacts({ navigation }) {
                 placeholderTextColor="#777"
                 multiline
                 textAlignVertical="top"
-                style={[styles.inputContainer, { textAlignVertical: "bottom" }]}
+                style={[
+                  styles.inputContainer,
+                  {
+                    textAlignVertical: "bottom",
+                    borderColor: "#777",
+                    borderWidth: 0.5,
+                    borderRadius: 2,
+                    height: 250,
+                    padding: 4,
+                  },
+                ]}
                 numberOfLines={10}
                 onChangeText={(text) => setInfo({ ...info, body: text })}
               />
