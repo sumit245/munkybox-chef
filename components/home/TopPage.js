@@ -8,6 +8,7 @@ import Menu from "./Menu";
 import Notification from "../header/Notification";
 import axios from "axios";
 import moment from "moment";
+
 const days = [
   "Sunday",
   "Monday",
@@ -17,6 +18,7 @@ const days = [
   "Friday",
   "Saturday",
 ];
+
 export default function TopPage({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [meal, setMeal] = useState({});
@@ -25,7 +27,9 @@ export default function TopPage({ navigation }) {
   const [addOn, setAddOn] = useState("");
   const [qty, setQty] = useState(0);
   const [slot, setSlot] = useState("Lunch");
+
   const { restaurant_name, city, restaurant_id, meals } = restaurant;
+  
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
 
   const mealSelector = (day) => {

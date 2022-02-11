@@ -17,6 +17,7 @@ export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
   useEffect(() => {
     setMealTime(restaurant.category);
   });
+
   const fetchSlotTime = async () => {
     const slots = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/slots"
@@ -39,9 +40,11 @@ export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
     let completedinnerSlot = startdinner + "-" + enddinner;
     setDinner(completedinnerSlot);
   };
+
   useEffect(() => {
     fetchSlotTime();
   }, []);
+  
   const [isCollapse, setCollapse] = useState(true);
 
   const RenderAddon = ({ add_on, add_on_name, add_on_count }) => {
