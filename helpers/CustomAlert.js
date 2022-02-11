@@ -16,7 +16,6 @@ const CustomAlert = ({ title, text, cancelHandler, okHandler,visible }) => {
     okHandler();
   };
   const cancel = () => {
-    setShow(!show);
     cancelHandler();
   };
   return (

@@ -58,9 +58,8 @@ export default function Contacts({ navigation }) {
   };
 
   const cancelHandler = () => {
-    setVisible(false)
-    setDiscard(false)
-  }
+    setDiscard(false);
+  };
 
   return (
     <Provider>
@@ -160,7 +159,7 @@ export default function Contacts({ navigation }) {
       {discard && (
         <CustomAlert
           title="Are you Sure?"
-          visible={visible}
+          visible={discard}
           text="Your message will be discarded"
           cancelHandler={() => cancelHandler}
           okHandler={() => navigation.goBack()}
