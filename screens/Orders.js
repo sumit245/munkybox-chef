@@ -88,7 +88,7 @@ export default function Orders() {
   };
   const fetchOrders = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
+      "http://munkybox-admin.herokuapp.com/api/orders/active" + restaurant
     );
 
     const { activeorders, count } = response.data;

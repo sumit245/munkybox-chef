@@ -60,13 +60,13 @@ export default function AddMealForm({ meal, slot, setEditState, addHandler }) {
                 {meal.description}
               </Text>
             </View>
-            <View>
+            {/* <View>
               <IconButton
                 icon="lead-pencil"
                 size={20}
                 onPress={() => setEditState(true)}
               />
-            </View>
+            </View> */}
           </View>
           <ViewAddOn add_on={add_on} />
         </View>
@@ -95,12 +95,12 @@ export default function AddMealForm({ meal, slot, setEditState, addHandler }) {
             more income
           </Text>
         </View>
-        <FAB
+        {/* <FAB
           style={styles.fab}
           small
           icon={addState ? "close" : "plus"}
           onPress={() => onChangeHandler(!addState)}
-        />
+        /> */}
       </>
     );
   }
