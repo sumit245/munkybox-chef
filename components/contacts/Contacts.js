@@ -57,6 +57,11 @@ export default function Contacts({ navigation }) {
     }
   };
 
+  const cancelHandler = () => {
+    setVisible(false)
+    setDiscard(false)
+  }
+
   return (
     <Provider>
       <SafeAreaView style={styles.container}>
@@ -157,7 +162,7 @@ export default function Contacts({ navigation }) {
           title="Are you Sure?"
           visible={visible}
           text="Your message will be discarded"
-          cancelHandler={() => setVisible(!visible)}
+          cancelHandler={() => cancelHandler}
           okHandler={() => navigation.goBack()}
         />
       )}

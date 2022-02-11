@@ -261,9 +261,9 @@ export default function AddMealsLayout({ navigation }) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Header title={"Add Meal"}>
-        <View style={styles.switch}>
+        {/* <View style={styles.switch}>
           <ToggleLunchDinner handleToggle={handleToggle} />
-        </View>
+        </View> */}
       </Header>
       <Divider />
       <TabView
