@@ -144,7 +144,7 @@ export default function OrderDetails({ route, navigation }) {
         </View>
         <View style={styles.table}>
           <View style={[styles.tableHead, { justifyContent: "flex-end" }]}>
-            <Text>Total: {price}</Text>
+            <Text>Total: ${parseFloat(price).toFixed(2)}</Text>
           </View>
           <View style={styles.tableHead}>
             <Text style={styles.text}>Add on</Text>
