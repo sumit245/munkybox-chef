@@ -5,8 +5,8 @@ import Icon from "react-native-vector-icons/Entypo";
 
 export default function Download({ navigation }) {
   return (
-    <View style={{ flexDirection: "row" }}>
+    <TouchableOpacity style={{ flexDirection: "row" }}>
       <Icon name="export" size={26} color={SecondaryColor} />
-    </View>
+    </TouchableOpacity>
   );
 }
