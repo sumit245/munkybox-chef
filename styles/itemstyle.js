@@ -72,7 +72,7 @@ export const styles = StyleSheet.create({
     borderBottomColor: "#777",
   },
   table: {
-    marginTop: 8,
+    marginTop: 24,
     padding: 1,
     backgroundColor: "#FFF",
     marginHorizontal: 4,

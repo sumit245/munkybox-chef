@@ -25,13 +25,13 @@ const Item = ({ item, index, navigation }) => {
   return (
     <View style={styles.card} key={index}>
       <View style={styles.title}>
-        <Text style={styles.titleText}>Order Id: {item.order_id}</Text>
+        <Text style={styles.titleText}>#{item.order_id}</Text>
         <Text
           style={[
             item.status === "accepted"
               ? {
-                  backgroundColor: "#5ca85c",
-                  color: "#ffffff",
+                  color: "#5ca85c",
+                  
                   padding: 2,
                   borderRadius: 4,
                   marginLeft: -70,
@@ -42,8 +42,8 @@ const Item = ({ item, index, navigation }) => {
                 }
               : item.status === "pending"
               ? {
-                  backgroundColor: "#ffc300",
-                  color: "#ffffff",
+                  color: "#ffc300",
+                  
                   marginLeft: -70,
                   fontWeight: "bold",
                   textAlign: "center",
@@ -53,8 +53,8 @@ const Item = ({ item, index, navigation }) => {
                   textTransform: "capitalize",
                 }
               : {
-                  backgroundColor: "#ff4300",
-                  color: "#fff",
+                  color: "#ff4300",
+                  
                   padding: 2,
                   borderRadius: 4,
                   marginLeft: -70,
