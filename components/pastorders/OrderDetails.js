@@ -18,16 +18,20 @@ export default function OrderDetails({ route, navigation }) {
   const { address_type, city, flat_num, locality, postal_code } = order.address;
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, restaurant_id } = restaurant;
-  const price=""
+  function add(accumulator, a) {
+    return parseFloat(accumulator) + parseFloat(a);
+  }
+  const subtotals =
+    Array.isArray(order.add_on) && order.add_on.map((item) => item.subtotal);
+  let price = subtotals.reduce(add, 0);
   return (
     <SafeAreaView style={styles.container}>
-      <Header
-        title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
-      >
+      <Header title={restaurant_name + ", " + restaurant_id}>
         <View style={styles.switch}>
           <Download />
         </View>
       </Header>
+
       <TouchableOpacity
         style={{
           alignSelf: "flex-start",
@@ -38,6 +42,7 @@ export default function OrderDetails({ route, navigation }) {
       >
         <Icon name="chevron-back" size={24} color="#2277fc" />
       </TouchableOpacity>
+
       <ScrollView
         contentContainerStyle={{ justifyContent: "flex-start", flex: 1 }}
         contentInsetAdjustmentBehavior="automatic"
@@ -124,6 +129,7 @@ export default function OrderDetails({ route, navigation }) {
             </View>
           </View>
         </View>
+
         <View style={styles.row}>
           <Text
             style={{
@@ -137,7 +143,7 @@ export default function OrderDetails({ route, navigation }) {
           </Text>
         </View>
         <View style={styles.table}>
-          <View style={[styles.tableHead,{justifyContent:'flex-end'}]}>
+          <View style={[styles.tableHead, { justifyContent: "flex-end" }]}>
             <Text>Total: {price}</Text>
           </View>
           <View style={styles.tableHead}>
@@ -145,18 +151,29 @@ export default function OrderDetails({ route, navigation }) {
             <Text style={styles.text}>Ordered on</Text>
             <Text style={styles.text}>PRICE</Text>
           </View>
-          {
-            Array.isArray(order.add_on) && order.add_on.map((extra,key)=>(
-              <View style={{flexDirection:"row",justifyContent:"space-between",borderBottomWidth:0.5,borderBottomColor:"#777"}} key={key}>
+          {Array.isArray(order.add_on) &&
+            order.add_on.map((extra, key) => (
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  borderBottomWidth: 0.5,
+                  borderBottomColor: "#777",
+                }}
+                key={key}
+              >
                 <View>
-                <Text style={{padding:4}}>{extra.item}</Text>
-                <Text style={{padding:4}}>${parseFloat(extra.rate).toFixed(2)+" x "+extra.qty}</Text>
+                  <Text style={{ padding: 4 }}>{extra.item}</Text>
+                  <Text style={{ padding: 4 }}>
+                    ${parseFloat(extra.rate).toFixed(2) + " x " + extra.qty}
+                  </Text>
                 </View>
-                <Text style={{padding:4}}>{extra.order_date}</Text>
-                <Text style={{padding:4}}>${parseFloat(extra.subtotal).toFixed(2)}</Text>
+                <Text style={{ padding: 4 }}>{extra.order_date}</Text>
+                <Text style={{ padding: 4 }}>
+                  ${parseFloat(extra.subtotal).toFixed(2)}
+                </Text>
               </View>
-            ))
-          }
+            ))}
         </View>
       </ScrollView>
     </SafeAreaView>
