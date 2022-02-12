@@ -73,6 +73,7 @@ export default function Orders() {
   const renderItem = ({ item }) => (
     <OrderItem item={item} index={item._id} meal={meal} decrement={decrement} />
   );
+
   const fetchSlots = async () => {
     setLoaded(false);
     const response = await axios.get(
@@ -86,13 +87,12 @@ export default function Orders() {
     setDinner(myDinner);
     setLoaded(true);
   };
+
   const fetchOrders = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
     );
-
     const { activeorders, count } = response.data;
-    console.log(activeorders);
     const today = moment();
     let todayOrders = activeorders.filter(
       (item) =>
@@ -104,6 +104,10 @@ export default function Orders() {
     setOrders(todayOrders);
     setCount(todayOrders.length);
   };
+  // const setBadgeCounts = () => {
+    
+  // }
+
   useEffect(() => {
     fetchSlots();
   }, [currentTab]);

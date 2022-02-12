@@ -12,13 +12,8 @@ import {
   StatusBar,
   TouchableOpacity,
 } from "react-native";
-<<<<<<< HEAD
-import Icon from "react-native-vector-icons/Ionicons";
-import { useSelector } from "react-redux";
-=======
 import  Icon  from "react-native-vector-icons/Ionicons";
 import { useSelector, useDispatch } from "react-redux";
->>>>>>> 913795a31b9f7de3f9f8a21e76194ef2caaf664c
 
 const { width, height } = Dimensions.get("window");
 export const VerificationDocs = ({ navigation }) => {

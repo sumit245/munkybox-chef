@@ -22,11 +22,10 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [pulled, setPulled] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [extras, setExtras] = useState([])
-  
+  const [extras, setExtras] = useState([]);
+
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
   const { address_type, locality, city, flat_num, postal_code } = item.address;
-
 
   const openInMap = async (address) => {
     let addres = address.flat_num + "," + address.locality;
@@ -57,7 +56,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
     );
     if (res.data !== null) {
       let { delivered, add_on } = res.data;
-      setExtras(add_on)
+      setExtras(add_on);
       console.log(extras);
       setIsSwitchOn(delivered);
     }
@@ -65,13 +64,12 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
 
   const setCurrentOrderDetails = async () => {
     setLoading(true);
-    const data = {
-      order_id: item.order_id,
-      delivered: true,
-    };
-    const res = await axios.post(
-      "http://munkybox-admin.herokuapp.com/api/getcurrentorder/",
-      data
+    const res = await axios.put(
+      "http://munkybox-admin.herokuapp.com/api/getcurrentorder/getandupdateorderstatus/" +
+        item.order_id,
+      {
+        delivered: true,
+      }
     );
     if (res.data !== null) {
       let { delivered } = res.data;
