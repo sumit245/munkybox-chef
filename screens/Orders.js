@@ -104,9 +104,7 @@ export default function Orders() {
     setOrders(todayOrders);
     setCount(todayOrders.length);
   };
-  // const setBadgeCounts = () => {
-    
-  // }
+
 
   useEffect(() => {
     fetchSlots();
