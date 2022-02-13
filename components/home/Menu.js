@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import Collapsible from "react-native-collapsible";
 import axios from "axios";
 
-export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
+export default function Menu({ meal, slot, count, add_on_name, add_on_count,partAdds }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [meal_time, setMealTime] = useState("");
   const [lunch, setlunch] = useState("");
@@ -47,7 +47,8 @@ export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
   
   const [isCollapse, setCollapse] = useState(true);
 
-  const RenderAddon = ({ add_on, add_on_name, add_on_count }) => {
+  const RenderAddon = ({ add_on, add_on_name, add_on_count,partAdds }) => {
+    
     return (
       <View style={{ backgroundColor: WHITE, padding: 6 }}>
         {add_on &&
@@ -65,7 +66,8 @@ export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
             >
               <Text style={styles.mealTitle}>{add_on.add_on}</Text>
               <Text style={styles.mealTitle}>
-                X {add_on.add_on === add_on_name ? add_on_count : 0}
+                X {partAdds[key]!==""?partAdds[key]:0}
+                
               </Text>
             </View>
           ))}
@@ -189,6 +191,7 @@ export default function Menu({ meal, slot, count, add_on_name, add_on_count }) {
             add_on={add_on}
             add_on_count={add_on_count}
             add_on_name={add_on_name}
+            partAdds={partAdds}
           />
         </Collapsible>
       </View>

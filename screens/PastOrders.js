@@ -26,7 +26,7 @@ export default function PastOrders({ navigation }) {
       (item) => (item.restaurant === restaurant.restaurant_name)
     );
 
-    setOrders(myOrders);
+    setOrders(myOrders.reverse());
   };
   useEffect(() => {
     getApiData();
@@ -40,9 +40,7 @@ export default function PastOrders({ navigation }) {
       <Header
         title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
       >
-        <View style={styles.switch}>
-          <Export />
-        </View>
+        
       </Header>
       <TouchableOpacity
         style={{

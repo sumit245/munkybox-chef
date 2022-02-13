@@ -40,7 +40,7 @@ const Item = ({ item, index, navigation }) => {
                   textAlignVertical: "center",
                   textTransform: "capitalize",
                 }
-              : item.status === "pending"
+              : item.status === "started"
               ? {
                   color: "#ffc300",
                   marginLeft: -70,
