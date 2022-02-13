@@ -101,9 +101,18 @@ export default function TopPage({ navigation }) {
     getAddOnCounts();
   }, [orders, index]);
 
+  const fetchMealonMount = () => {
+    const today = moment();
+    let todayOrders = orders.filter((item) =>
+      today.isBetween(item.start_date, moment(item.end_date).add(1, "day"))
+    );
+    setMealCount(todayOrders.length);
+  };
+
   useEffect(() => {
     fetchTotalOrders(restaurant_id);
-  }, [orders,index]);
+    fetchMealonMount()
+  }, [orders, index]);
 
   const onDayChanged = (day) => {
     if (day === "Today") {
