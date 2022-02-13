@@ -62,7 +62,7 @@ export default function TopPage({ navigation }) {
 
   const fetchTotalOrders = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
+      "http://munkybox-admin.herokuapp.com/api/orders/forchefhome/" + restaurant
     );
     const { data } = response;
     const { activeorders, count } = data;
