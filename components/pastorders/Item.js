@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "../../styles/itemstyle";
-import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 
 const Item = ({ item, index, navigation }) => {
@@ -22,8 +21,10 @@ const Item = ({ item, index, navigation }) => {
       componentMounted = false;
     };
   }, []);
+
   return (
     <View style={styles.card} key={index}>
+      
       <View style={styles.title}>
         <Text style={styles.titleText}>#{item.order_id}</Text>
         <Text
@@ -31,7 +32,6 @@ const Item = ({ item, index, navigation }) => {
             item.status === "accepted"
               ? {
                   color: "#5ca85c",
-                  
                   padding: 2,
                   borderRadius: 4,
                   marginLeft: -70,
@@ -43,7 +43,6 @@ const Item = ({ item, index, navigation }) => {
               : item.status === "pending"
               ? {
                   color: "#ffc300",
-                  
                   marginLeft: -70,
                   fontWeight: "bold",
                   textAlign: "center",
@@ -54,7 +53,6 @@ const Item = ({ item, index, navigation }) => {
                 }
               : {
                   color: "#ff4300",
-                  
                   padding: 2,
                   borderRadius: 4,
                   marginLeft: -70,
@@ -69,6 +67,7 @@ const Item = ({ item, index, navigation }) => {
         </Text>
         <Text style={styles.cardText}>{item.category}</Text>
       </View>
+
       <View style={styles.cardBody}>
         <View style={styles.cardRow}>
           <Text style={styles.cardText}>

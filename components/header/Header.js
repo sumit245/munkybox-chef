@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import { styles } from "../../styles/headerstyle";
 import { showcurrendate } from "../../helpers/commons";
+
 export default function Header(props) {
   return (
     <View style={styles.header}>

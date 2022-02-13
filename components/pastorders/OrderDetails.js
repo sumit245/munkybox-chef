@@ -18,9 +18,11 @@ export default function OrderDetails({ route, navigation }) {
   const { address_type, city, flat_num, locality, postal_code } = order.address;
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, restaurant_id } = restaurant;
+
   function add(accumulator, a) {
     return parseFloat(accumulator) + parseFloat(a);
   }
+
   const subtotals =
     Array.isArray(order.add_on) && order.add_on.map((item) => item.subtotal);
   let price = subtotals.reduce(add, 0);
@@ -168,6 +170,7 @@ export default function OrderDetails({ route, navigation }) {
                     ${parseFloat(extra.rate).toFixed(2) + " x " + extra.qty}
                   </Text>
                 </View>
+                
                 <Text style={{ padding: 4 }}>{extra.order_date}</Text>
                 <Text style={{ padding: 4 }}>
                   ${parseFloat(extra.subtotal).toFixed(2)}
