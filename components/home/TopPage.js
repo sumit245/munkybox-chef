@@ -109,9 +109,6 @@ export default function TopPage({ navigation }) {
     setMealCount(todayOrders.length);
   };
 
-  useEffect(() => {
-    fetchMealonMount()
-  },[orders])
 
   useEffect(() => {
     fetchTotalOrders(restaurant_id);
