@@ -88,6 +88,8 @@ export default function Orders() {
     setLoaded(true);
   };
 
+  const isSameOrder = (a, b) => a.order_id == b.order_id;
+
   const fetchOrders = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
@@ -102,9 +104,26 @@ export default function Orders() {
         ) && item.time === currentTab
     );
     setOrders(todayOrders);
-    setCount(todayOrders.length);
+    const currentOrderResponse = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/getcurrentorder/"
+    );
+    const currentOrder = currentOrderResponse.data;
+    const filterByReference = (arr1, arr2) => {
+      let res = [];
+      res = arr1.filter((el) => {
+        return arr2.find((element) => {
+          return element.order_id === el.order_id;
+        });
+      });
+      return res;
+    };
+    let filtered_array = filterByReference(currentOrder, todayOrders);
+    let unDeliveredOrders = filtered_array.filter(
+      (item) => item.delivered === false
+    );
+    console.log("Filtered", filtered_array);
+    setCount(unDeliveredOrders.length);
   };
-
 
   useEffect(() => {
     fetchSlots();

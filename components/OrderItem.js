@@ -57,7 +57,6 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
     if (res.data !== null) {
       let { delivered, add_on } = res.data;
       setExtras(add_on);
-      console.log(extras);
       setIsSwitchOn(delivered);
     }
   };
