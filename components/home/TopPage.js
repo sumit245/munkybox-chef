@@ -27,7 +27,8 @@ export default function TopPage({ navigation }) {
   const [addOn, setAddOn] = useState("");
   const [qty, setQty] = useState(0);
   const [slot, setSlot] = useState("Lunch");
-
+  const [index,setIndex]=useState(0)
+const[partAddOn,setPartCounts]=useState([])
   const { restaurant_name, city, restaurant_id, meals } = restaurant;
   
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
@@ -54,6 +55,10 @@ export default function TopPage({ navigation }) {
     mealSelector(days[new Date().getDay()]);
   }, []);
 
+  function add(accumulator, a) {
+    return parseFloat(accumulator) + parseFloat(a);
+  }
+
   const fetchTotalOrders = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
@@ -67,12 +72,25 @@ export default function TopPage({ navigation }) {
     let addons = {};
     try {
       const addOns = orders.map((el) => el.add_on);
-      if (Array.isArray(addOns)) {
-        addons = addOns[0][0];
-        let { item, qty } = addons;
-        setAddOn(item);
-        setQty(qty);
+      let quantities=addOns.map((extras)=>
+      (
+        extras.map((item)=>(
+          item.qty
+        ))
+      ))
+      let subtotal=quantities.map((item)=>(item.reduce(add,0)))
+      let totalCount=subtotal.reduce(add,0)
+      if (index===0) {
+        console.log(subtotal);
+        setPartCounts(subtotal)
+        setAddOn(totalCount);
+        setQty(totalCount);
+      } else {
+        setPartCounts([0])
+        setAddOn(0)
+        setQty(0)
       }
+      
     } catch (error) {
       addons = {};
     }
@@ -80,7 +98,7 @@ export default function TopPage({ navigation }) {
 
   useEffect(() => {
     getAddOnCounts();
-  }, [orders]);
+  }, [orders,index]);
 
   useEffect(() => {
     fetchTotalOrders(restaurant_id);
@@ -94,6 +112,7 @@ export default function TopPage({ navigation }) {
         today.isBetween(item.start_date, moment(item.end_date).add(1,"day"))
       );
       setMealCount(todayOrders.length);
+      setIndex(0)
     } else if (day === "Tomorrow") {
       let tomorrow = moment().add(1, "days");
       let todayOrders = orders.filter((item) =>
@@ -101,6 +120,7 @@ export default function TopPage({ navigation }) {
       );
       setMealCount(todayOrders.length);
       mealSelector(days[new Date().getDay() + 1]);
+      setIndex(1)
     } else {
       let dayafter = moment().add(2, "days");
       let todayOrders = orders.filter((item) =>
@@ -108,6 +128,7 @@ export default function TopPage({ navigation }) {
       );
       setMealCount(todayOrders.length);
       mealSelector(days[new Date().getDay() + 2]);
+      setIndex(2)
     }
   };
 
@@ -126,6 +147,7 @@ export default function TopPage({ navigation }) {
         slot={slot}
         count={mealcount}
         add_on_name={addOn}
+        partAdds={partAddOn}
         add_on_count={qty}
       />
     </SafeAreaView>

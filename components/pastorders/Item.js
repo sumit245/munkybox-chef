@@ -31,7 +31,6 @@ const Item = ({ item, index, navigation }) => {
             item.status === "accepted"
               ? {
                   color: "#5ca85c",
-                  
                   padding: 2,
                   borderRadius: 4,
                   marginLeft: -70,
@@ -43,7 +42,6 @@ const Item = ({ item, index, navigation }) => {
               : item.status === "started"
               ? {
                   color: "#ffc300",
-                  
                   marginLeft: -70,
                   fontWeight: "bold",
                   textAlign: "center",
@@ -54,7 +52,6 @@ const Item = ({ item, index, navigation }) => {
                 }
               : {
                   color: "#ff4300",
-                  
                   padding: 2,
                   borderRadius: 4,
                   marginLeft: -70,
