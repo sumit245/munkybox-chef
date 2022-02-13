@@ -110,9 +110,12 @@ export default function TopPage({ navigation }) {
   };
 
   useEffect(() => {
-    fetchTotalOrders(restaurant_id);
     fetchMealonMount()
-  }, [orders, index]);
+  },[orders])
+
+  useEffect(() => {
+    fetchTotalOrders(restaurant_id);
+  }, []);
 
   const onDayChanged = (day) => {
     if (day === "Today") {
