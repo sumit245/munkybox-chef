@@ -7,17 +7,14 @@ import { SecondaryLightColor, WHITE } from "../../Colors";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Notification({ navigation }) {
-  const [count, setcount] = useState(1);
-  const [order, setOrder] = useState([]);
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders);
-  const restaurant=useSelector((state)=>state.restaurant)
-  const {restaurant_name}=restaurant
+  const restaurant = useSelector((state) => state.restaurant);
+  const { restaurant_name } = restaurant;
   useEffect(() => {
     let componentMounted = true;
     if (componentMounted) {
       dispatch(getOrder(restaurant_name));
-      setOrder(order);
     }
     return () => {
       componentMounted = false;
