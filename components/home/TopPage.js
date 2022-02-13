@@ -103,7 +103,7 @@ export default function TopPage({ navigation }) {
 
   useEffect(() => {
     fetchTotalOrders(restaurant_id);
-  }, []);
+  }, [orders,index]);
 
   const onDayChanged = (day) => {
     if (day === "Today") {
