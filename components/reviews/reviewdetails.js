@@ -200,7 +200,7 @@ export default function Review({ item, index, navigation }) {
             </Text>
           </View>
         </View>
-        {Array.isArray(item.comments) && item.comments.length !== 0 ? (
+        {item.comments.length > 0 ? (
           <View
             style={{
               marginLeft: 60,

@@ -62,7 +62,7 @@ export default function Reviews({ navigation }) {
   const stars = ["5", "4", "3", "2", "1"];
   
   const renderItem = ({ item }) => (
-    <Review item={item} index={item.index} navigation={navigation} />
+    <Review item={item} index={item._id} navigation={navigation} />
   );
 
   const ListHeaderComponent = () => (
