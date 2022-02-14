@@ -162,7 +162,7 @@ export default function StatCards({
             <Text style={styles.stat_value}>${totalCommission}</Text>
             <View style={{ marginVertical: 4, paddingVertical: 4 }} />
             <Text style={styles.stat_label}>Sales: ${salesCommission}</Text>
-            <Text style={styles.stat_label}>Ad Ons: ${addOnCommission}</Text>
+            <Text style={styles.stat_label}>Ad Ons: ${parseFloat(addOnCommission).toFixed(2)}</Text>
           </View>
           {/* Commission */}
 
