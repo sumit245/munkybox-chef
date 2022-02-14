@@ -26,7 +26,7 @@ export default function Notification({ navigation }) {
   return (
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center" }}
-      onPress={() => navigation.navigate("newOrders", { order: orders })}
+      onPress={() => navigation.navigate("newOrders", { order: order })}
     >
       <Icon
         name="ios-notifications-outline"
