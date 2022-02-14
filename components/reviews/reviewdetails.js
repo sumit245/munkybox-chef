@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { avatarify } from "../../helpers/truncate_string";
@@ -11,7 +11,19 @@ export default function Review({ item, index, navigation }) {
   const [text, onChangeText] = useState("");
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name } = restaurant;
-  const sendReview = () => {};
+  const [star, setStars] = useState([]);
+  const fetchStar = () => {
+    let stars = [];
+    for (let index = 0; index < parseInt(item.rating); index++) {
+      stars.push(index);
+    }
+    setStars(stars);
+  };
+
+  useEffect(() => {
+    fetchStar();
+  }, [item]);
+
   const submitReply = async () => {
     setReplying(!isReplying);
     let reply = {
@@ -27,7 +39,7 @@ export default function Review({ item, index, navigation }) {
       { comments: myReply }
     );
     const { data } = response;
-    console.log(data);
+
     if (data !== null) {
       alert("Your reply has been updated!!!");
     }
@@ -122,9 +134,19 @@ export default function Review({ item, index, navigation }) {
                 : "30 Meals"}
             </Text>
           </View>
-          <View style={{ flexDirection: "row", padding: 4 }}>
+          <View style={{ flexDirection: "row", padding: 4,alignItems:"center" }}>
             <Text>Rating:{"  "}</Text>
-            <View
+            {star.map((x, i) => (
+              <Icon
+                name="star"
+                color="orange"
+                size={14}
+                style={{ padding: 2 }}
+                key={i}
+              />
+            ))}
+
+            {/* <View
               style={{
                 borderRadius: 2,
                 backgroundColor: "orange",
@@ -137,7 +159,7 @@ export default function Review({ item, index, navigation }) {
               <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 12 }}>
                 {item.rating}
               </Text>
-            </View>
+            </View> */}
           </View>
           {Array.isArray(item.likes) && (
             <View
