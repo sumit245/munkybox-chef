@@ -4,13 +4,33 @@ import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { avatarify } from "../../helpers/truncate_string";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
-export default function Review({ item, index,navigation }) {
+export default function Review({ item, index, navigation }) {
   const [isReplying, setReplying] = useState(false);
+  const [text, onChangeText] = useState("");
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name } = restaurant;
-  const sendReview = () => {
+  const sendReview = () => {};
+  const submitReply = async () => {
     setReplying(!isReplying);
+    let reply = {
+      role: "chef",
+      body: text,
+      restaurant_name: restaurant_name,
+      commented_at: moment(),
+    };
+    let myReply = [reply];
+    let id = item._id;
+    const response = await axios.put(
+      "http://munkybox-admin.herokuapp.com/api/review/" + id,
+      { comments: myReply }
+    );
+    const { data } = response;
+    console.log(data);
+    if (data !== null) {
+      alert("Your reply has been updated!!!");
+    }
   };
   return (
     <View
@@ -74,6 +94,10 @@ export default function Review({ item, index,navigation }) {
             <Text style={{ fontSize: 14, fontWeight: "bold" }}>
               {item.user_name}
             </Text>
+            <Text style={{ fontSize: 14, marginVertical: 2 }}>
+              Reviewed at:{" "}
+              {moment(item.review_at).format("DD MMM YYYY hh:mm:ss")}
+            </Text>
           </View>
         </View>
         <View style={{ marginLeft: 24 }}>
@@ -116,8 +140,11 @@ export default function Review({ item, index,navigation }) {
             </View>
           </View>
           {Array.isArray(item.likes) && (
-            <View style={{ flexDirection: "row", padding: 4 }}>
+            <View
+              style={{ flexDirection: "row", padding: 4, flexWrap: "wrap" }}
+            >
               <Text>Likes:{"   "}</Text>
+              {/* <View style={{ flexDirection: "row" }}> */}
               {item.likes.map((issue, index) => (
                 <View
                   style={{
@@ -126,63 +153,75 @@ export default function Review({ item, index,navigation }) {
                     backgroundColor: "#0064b7",
                     borderRadius: 2,
                     marginHorizontal: 2,
+                    marginVertical: 2,
                   }}
                 >
                   <Text
                     key={index}
-                    style={{ fontWeight: "bold", color: "#fff", fontSize: 12 }}
+                    style={{
+                      fontWeight: "bold",
+                      color: "#fff",
+                      fontSize: 12,
+                    }}
                   >
                     {issue}
                   </Text>
                 </View>
               ))}
+              {/* </View> */}
             </View>
           )}
           <View style={{ flexDirection: "row", padding: 4 }}>
             <Text style={{ color: "#000" }}>Comment: </Text>
-            <Text style={{ color: "#000" }}>{item.details}</Text>
+            <Text style={{ color: "#000", flex: 1, flexWrap: "wrap" }}>
+              {item.details}
+            </Text>
           </View>
         </View>
-        <View
-          style={{
-            marginLeft: 60,
-            marginVertical: 16,
-            backgroundColor: "#ededed",
-            padding: 8,
-            borderRadius: 12,
-            maxWidth: "80%",
-          }}
-        >
+        {Array.isArray(item.comments) && item.comments.length !== 0 ? (
           <View
             style={{
-              flexDirection: "row",
-              alignItems: "center",
-              marginBottom: 8,
+              marginLeft: 60,
+              marginVertical: 16,
+              backgroundColor: "#ededed",
+              padding: 8,
+              borderRadius: 12,
+              maxWidth: "80%",
             }}
           >
-            <Text style={{ fontWeight: "bold", fontSize: 12, marginRight: 4 }}>
-              {restaurant_name}
-            </Text>
             <View
               style={{
-                paddingHorizontal: 4,
-                padding: 1,
-                backgroundColor: "#4464b7",
-                borderRadius: 14,
+                flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "center",
-                marginHorizontal: 2,
+                marginBottom: 8,
               }}
             >
               <Text
-                style={{ color: "#fff", fontSize: 10, textAlign: "center" }}
+                style={{ fontWeight: "bold", fontSize: 12, marginRight: 4 }}
               >
-                Replied ✔
+                {restaurant_name}
               </Text>
+              <View
+                style={{
+                  paddingHorizontal: 4,
+                  padding: 1,
+                  backgroundColor: "#4464b7",
+                  borderRadius: 14,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginHorizontal: 2,
+                }}
+              >
+                <Text
+                  style={{ color: "#fff", fontSize: 10, textAlign: "center" }}
+                >
+                  Replied ✔
+                </Text>
+              </View>
             </View>
+            <Text>{item.comments[0].body}</Text>
           </View>
-          <Text>Comment from Chef</Text>
-        </View>
+        ) : null}
       </View>
 
       {isReplying ? (
@@ -205,11 +244,12 @@ export default function Review({ item, index,navigation }) {
               borderBottomWidth: 1,
               minWidth: "88%",
             }}
+            onChangeText={onChangeText}
             multiline={true}
             maxLength={450}
             placeholder="Type a message"
           />
-          <TouchableOpacity onPress={sendReview}>
+          <TouchableOpacity onPress={submitReply}>
             <Icon name="ios-send-outline" size={24} color="#3646ee" />
           </TouchableOpacity>
         </View>
