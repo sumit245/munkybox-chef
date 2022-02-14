@@ -16,6 +16,8 @@ export default function StatCards({
   cartconversion,
   menuvisits,
   visits,
+  addOnCounts,
+  addOnRevenue,
 }) {
   return (
     <ScrollView horizontal>
@@ -128,10 +130,12 @@ export default function StatCards({
         </View>
         {/* Sales */}
         <View style={{ flexDirection: "row" }}>
-          <View style={[styles.stat_card, { width: width / 3.1 }]}>
-            <Text style={styles.stat_head}>Ads Campaign</Text>
-            <Text style={styles.stat_value}>Due: $0.75 </Text>
-            <Text style={styles.stat_label}>Paid: $0</Text>
+          <View style={[styles.stat_card, { width: width / 3 }]}>
+            <Text style={styles.stat_head}>Adons Revenue</Text>
+            <Text style={styles.stat_value}>
+              ${parseFloat(addOnRevenue).toFixed(2) || 0}
+            </Text>
+            <Text style={styles.stat_label}>on {addOnCounts || 0} ad-ons</Text>
           </View>
           {/* Ads Campaign */}
           <View style={[styles.stat_card, { width: width / 3.1 }]}>
@@ -256,13 +260,18 @@ export default function StatCards({
         {/* Cart statistics  */}
 
         <View style={{ flexDirection: "row" }}>
-          <View style={styles.stat_card}>
+          <View style={[styles.stat_card, { width: 3.1 }]}>
+            <Text style={styles.stat_head}>Ads Campaign</Text>
+            <Text style={styles.stat_value}>Due: $15.0</Text>
+            <Text style={styles.stat_label}>Paid: $0</Text>
+          </View>
+          <View style={[styles.stat_card, { width: 3.1 }]}>
             <Text style={styles.stat_head}>New Users</Text>
             <Text style={styles.stat_value}>{newUser}</Text>
           </View>
           {/* New users */}
 
-          <View style={styles.stat_card}>
+          <View style={[styles.stat_card, { width: 3.1 }]}>
             <Text style={styles.stat_head}>Repeat Users</Text>
             <Text style={styles.stat_value}>{repeatedUser}</Text>
           </View>

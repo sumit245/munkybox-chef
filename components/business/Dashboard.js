@@ -39,6 +39,8 @@ export default function Dashboard({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, city, restaurant_id } = restaurant;
   const [index, setIndex] = React.useState(0);
+  const [totalAddOnRevenue, setTotalAddOnRevenue] = useState(0);
+  const [totalAddOns, setTotalAddOns] = useState(0);
   const [routes] = React.useState([
     { key: "first", title: "Weekly" },
     { key: "second", title: "Monthly" },
@@ -72,6 +74,8 @@ export default function Dashboard({ navigation }) {
             repeatedUser={repeatedUser}
             cartconversion={cartconversion}
             visits={visits}
+            addOnCounts={totalAddOns}
+            addOnRevenue={totalAddOnRevenue}
           />
         );
 
@@ -84,6 +88,10 @@ export default function Dashboard({ navigation }) {
         break;
     }
   };
+
+  function add(accumulator, a) {
+    return parseFloat(accumulator) + parseFloat(a);
+  }
 
   const fetchOrders = async (restaurant) => {
     const res = await axios.get(
@@ -135,7 +143,7 @@ export default function Dashboard({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders/rejected/" + restaurant
     );
     const { count } = response.data;
-    if (count!==null) {
+    if (count !== null) {
       setRejected(count);
     }
   };
@@ -166,7 +174,12 @@ export default function Dashboard({ navigation }) {
     const { totalOrders, orders, accptanceRate, rectanceRate, dashboard } =
       response.data;
     const { menuvisits, cartVisit } = dashboard;
-    if (acceptanceRate !== null && rectanceRate !== null && totalOrders !== null && orders !== null) {
+    if (
+      acceptanceRate !== null &&
+      rectanceRate !== null &&
+      totalOrders !== null &&
+      orders !== null
+    ) {
       setCartConversion(totalOrders);
       setMenuVisit(menuvisits);
       setvisits(cartVisit);
@@ -174,6 +187,28 @@ export default function Dashboard({ navigation }) {
       setRejectedRate(rectanceRate);
     }
   };
+  const getAddOnCounts = async (id) => {
+    const res = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/"
+    );
+    let orders = res.data;
+    orders = orders.filter(
+      (item) => item.restaurant_id === id && item.status !== "rejected"
+    );
+    const addOns = orders.map((el) => el.add_on);
+    let quantities = addOns.map((extras) => extras.map((item) => item.qty));
+    let subtotal = quantities.map((item) => item.reduce(add, 0));
+    let totalCount = subtotal.reduce(add, 0);
+    setTotalAddOns(totalCount);
+    let prices = addOns.map((extras) => extras.map((item) => item.subtotal));
+    let subtotalPrice = prices.map((item) => item.reduce(add, 0));
+    let totalPrice = subtotalPrice.reduce(add, 0);
+    setTotalAddOnRevenue(totalPrice);
+  };
+  useEffect(() => {
+    getAddOnCounts(restaurant_id);
+  });
+
   useEffect(() => {
     fetchCommission();
   }, [commission]);
@@ -240,7 +275,7 @@ export default function Dashboard({ navigation }) {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-              onPress={()=>navigation.navigate("payouts")}
+              onPress={() => navigation.navigate("payouts")}
             >
               <Ants name="wallet" size={34} color={SecondaryLightColor} />
             </TouchableOpacity>
