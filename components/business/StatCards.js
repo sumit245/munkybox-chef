@@ -19,6 +19,19 @@ export default function StatCards({
   addOnCounts,
   addOnRevenue,
 }) {
+  const [addOnCommission, setAddCommission] = useState(0);
+  const [totalCommission, setTotalCommission] = useState(0);
+  const [salesCommission, setSalesCommission] = useState(0);
+  const calculateCommissionAddOns = () => {
+    let x = (parseFloat(addOnRevenue) * parseFloat(commission)) / 100;
+    let y = (parseFloat(dashboard.grossRevenue) * parseFloat(commission)) / 100;
+    setAddCommission(x);
+    setSalesCommission(y);
+    setTotalCommission(x + y);
+  };
+  useEffect(() => {
+    calculateCommissionAddOns();
+  }, [addOnRevenue]);
   return (
     <ScrollView horizontal>
       <View>
@@ -97,7 +110,6 @@ export default function StatCards({
                 marginVertical: 4,
                 padding: 2,
                 paddingHorizontal: 8,
-
                 borderRadius: 1,
                 borderWidth: 0.2,
                 alignItems: "center",
@@ -147,11 +159,9 @@ export default function StatCards({
                 ({commission}%)
               </Text>
             </View>
-            <Text style={styles.stat_value}>
-              $
-              {(parseFloat(dashboard.grossRevenue) * parseFloat(commission)) /
-                100}
-            </Text>
+            <Text style={styles.stat_value}>${totalCommission}</Text>
+            <Text style={styles.stat_label}>Sales: ${salesCommission}</Text>
+            <Text style={styles.stat_label}>Ad Ons: ${totalCommission}</Text>
           </View>
           {/* Commission */}
 
