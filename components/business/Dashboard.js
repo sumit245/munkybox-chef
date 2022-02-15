@@ -136,6 +136,7 @@ export default function Dashboard({ navigation }) {
     const { commission } = resp.data.data[0];
     if (commission !== null) {
       setCommission(commission);
+      
     }
   };
   const fetchRejectedcount = async (restaurant) => {
@@ -212,6 +213,7 @@ export default function Dashboard({ navigation }) {
   useEffect(() => {
     fetchCommission();
   }, [commission]);
+
   useEffect(() => {
     fetchOrders(restaurant_name);
     fetchcompletedorders(restaurant_name);
