@@ -32,7 +32,7 @@ export default function StatCards({
   };
   useEffect(() => {
     calculateCommissionAddOns();
-  }, [addOnRevenue]);
+  }, [addOnRevenue, commission, dashboard]);
   return (
     <ScrollView horizontal>
       <View>
@@ -162,8 +162,12 @@ export default function StatCards({
             </View>
             <Text style={styles.stat_value}>${totalCommission}</Text>
             <View style={{ marginVertical: 4, paddingVertical: 4 }} />
-            <Text style={styles.stat_label}>Sales: ${parseFloat(salesCommission).toFixed(2)}</Text>
-            <Text style={styles.stat_label}>Ad Ons: ${parseFloat(addOnCommission).toFixed(2)}</Text>
+            <Text style={styles.stat_label}>
+              Sales: ${parseFloat(salesCommission).toFixed(2)}
+            </Text>
+            <Text style={styles.stat_label}>
+              Ad Ons: ${parseFloat(addOnCommission).toFixed(2)}
+            </Text>
           </View>
           {/* Commission */}
 

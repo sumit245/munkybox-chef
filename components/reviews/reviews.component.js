@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   FlatList,
   TouchableOpacity,
-  ScrollView,
+  Modal
 } from "react-native";
 import { Switch } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -60,7 +60,7 @@ export default function Reviews({ navigation }) {
     }
   };
   const stars = ["5", "4", "3", "2", "1"];
-  
+
   const renderItem = ({ item }) => (
     <Review item={item} index={item._id} navigation={navigation} />
   );

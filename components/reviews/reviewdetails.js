@@ -12,6 +12,7 @@ export default function Review({ item, index, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name } = restaurant;
   const [star, setStars] = useState([]);
+  
   const fetchStar = () => {
     let stars = [];
     for (let index = 0; index < parseInt(item.rating); index++) {
