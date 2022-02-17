@@ -137,12 +137,7 @@ export default function TrackPerformance({ route, navigation }) {
       <Provider>
         <SafeAreaView style={styles.container}>
           <HeaderTwo title="History" navigation={navigation}>
-            <Icon
-              name="options-outline"
-              size={20}
-              color={SecondaryColor}
-              style={{ paddingRight: 6 }}
-            />
+           
           </HeaderTwo>
           <TabView
             navigationState={{ index, routes }}

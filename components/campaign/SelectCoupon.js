@@ -15,8 +15,8 @@ export default function SelectCoupon({ navigation }) {
       <PromoCard
         title="What type of promotion is it?"
         icon="shopping-sale"
-        head="% Discount"
-        subhead="Increasing order volumes, Increasing average order value"
+        head="% Discount (Coming Soon *)"
+        subhead="Increasing order volumes, Increasing average order value."
         ok="SELECT"
         okHandler={() => onTypeSelected("per")}
       />

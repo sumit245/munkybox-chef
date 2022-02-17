@@ -168,8 +168,8 @@ export default function CreateCoupon({ route, navigation }) {
                     <Text style={styles.bigText}>7 Days</Text>
                     <Text style={styles.smallText}>
                       {" "}
-                      Starts tomorrow till{" "}
-                      {moment().add(7, "days").format("DD MMM")}
+                      Starts today till{" "}
+                      {moment().add(6, "days").format("DD MMM")}
                     </Text>
                   </View>
                 </View>
@@ -186,8 +186,8 @@ export default function CreateCoupon({ route, navigation }) {
                   <View>
                     <Text style={styles.bigText}>15 Days</Text>
                     <Text style={styles.smallText}>
-                      Starts tomorrow till{" "}
-                      {moment().add(15, "days").format("DD MMM")}
+                      Starts today till{" "}
+                      {moment().add(14, "days").format("DD MMM")}
                     </Text>
                   </View>
                 </View>
@@ -216,7 +216,7 @@ export default function CreateCoupon({ route, navigation }) {
                   <Text>
                     {start_date || "--"}
                     {" to "}
-                    {end_date || "--"}
+                    {end_date|| "--"}
                   </Text>
                   <View style={{ flexDirection: "row", alignItems: "center" }}>
                     <TouchableOpacity

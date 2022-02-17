@@ -199,6 +199,15 @@ function TrackPerfContent({
             <View style={styles.bannerRow}>
               <Icon name="cash-outline" size={24} color={DARKGRAY} />
               <View style={{ marginLeft: 8 }}>
+                <Text style={styles.bigText}> ${parseFloat(revenue)-parseFloat(discount)}</Text>
+                <Text style={styles.smallText}> Total Net Income</Text>
+              </View>
+            </View>
+
+
+            <View style={styles.bannerRow}>
+              <Icon name="cash-outline" size={24} color={DARKGRAY} />
+              <View style={{ marginLeft: 8 }}>
                 <Text style={styles.bigText}> ${revenue}</Text>
                 <Text style={styles.smallText}> Total Base Income</Text>
               </View>
