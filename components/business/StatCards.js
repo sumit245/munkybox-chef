@@ -32,7 +32,7 @@ export default function StatCards({
   };
   useEffect(() => {
     calculateCommissionAddOns();
-  }, [addOnRevenue, commission, dashboard]);
+  }, [commission]);
   return (
     <ScrollView horizontal>
       <View>

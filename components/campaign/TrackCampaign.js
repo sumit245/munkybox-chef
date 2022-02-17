@@ -32,7 +32,6 @@ export default function TrackCampaign({ route, navigation }) {
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
         restaurant
     );
-
     setBanner(banners);
     setLoaded(true);
   };

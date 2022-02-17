@@ -73,6 +73,12 @@ export default function TopPage({ navigation }) {
     let addons = {};
     try {
       const addOns = orders.map((el) => el.add_on);
+      // let todayExtras = addOns.map((extras) =>
+      //   extras.filter(
+      //     (item) => item.order_date === moment().format("dd-MMM-YYYY")
+      //   )
+      // );
+      // console.log(todayExtras);
       let quantities = addOns.map((extras) => extras.map((item) => item.qty));
       let addonssubtotal = [];
       for (let index = 0; index < quantities.length; index++) {
