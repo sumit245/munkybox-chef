@@ -10,6 +10,7 @@ import axios from "axios";
 import ListExpired from "./ListExpired";
 import { Provider } from "react-native-paper";
 import ListExpiredCoupons from "./ListExpiredCoupons";
+import { set } from "react-native-reanimated";
 
 export default function TrackPerformance({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -42,25 +43,32 @@ export default function TrackPerformance({ route, navigation }) {
       setloaded(true);
     } else {
       
-      const response = await axios.get(
-        "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
-          restaurant +
-          "/Inactive"
-             );
-      const { data } = response;
+      /**
+        const response = await axios.get(
+          "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
+            restaurant +
+            "/Inactive"
+               );
+        const { data } = response;
+      */
       const dashboardResponse = await axios.get(
         "http://munkybox-admin.herokuapp.com/api/chefdashboard/"+restaurant
     );
     const dashres =await dashboardResponse.data
-      const { coupons, promotedOrders, revenue, discount, unique } = data;
-      setCoupon(coupons);
-      const myCoupons=await dashres.coupons
-      console.log(myCoupons);
-      setPromotedOrders(promotedOrders.length);
-      
-      setRevenue(revenue);
-      setDiscount(discount);
-      setUnique(unique);
+    const {coupons}=dashres.dashboard
+    console.log(coupons);
+    //setCoupon(coupons)
+      /**
+        const { coupons, promotedOrders, revenue, discount, unique } = data;
+        setCoupon(coupons);
+        const myCoupons=await dashres.coupons
+        console.log(myCoupons);
+        setPromotedOrders(promotedOrders.length);
+        
+        setRevenue(revenue);
+        setDiscount(discount);
+        setUnique(unique);
+      */
       setloaded(true);
     }
   };
