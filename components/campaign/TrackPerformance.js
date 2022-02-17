@@ -41,27 +41,28 @@ export default function TrackPerformance({ route, navigation }) {
       setUnique(unique);
       setloaded(true);
     } else {
-      
-      const response = await axios.get(
-        "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
-          restaurant +
-          "/Inactive"
-             );
-      const { data } = response;
+      // const response = await axios.get(
+      //   "http://munkybox-admin.herokuapp.com/api/coupon/getcouponforchef/" +
+      //     restaurant +
+      //     "/Inactive"
+      //        );
+      // const { data } = response;
       const dashboardResponse = await axios.get(
-        "http://munkybox-admin.herokuapp.com/api/chefdashboard/"+restaurant
-    );
-    const dashres =await dashboardResponse.data
-      const { coupons, promotedOrders, revenue, discount, unique } = data;
-      setCoupon(coupons);
-      const myCoupons=await dashres.coupons
-      console.log(myCoupons);
+        "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant
+      );
+      const dashres = await dashboardResponse.data;
+      const { coupons } = dashres.dashboard;
+      setCoupon(coupons[0]);
+      console.log(coupons[0]);
+      // const { coupons, promotedOrders, revenue, discount, unique } = data;
+      // setCoupon(coupons);
+      // const myCoupons=await dashres.coupons
+      // console.log(myCoupons);
       setPromotedOrders(promotedOrders.length);
-      
-      setRevenue(revenue);
-      setDiscount(discount);
-      setUnique(unique);
-      setloaded(true);
+      // setRevenue(revenue);
+      // setDiscount(discount);
+      // setUnique(unique);
+      // setloaded(true);
     }
   };
   useEffect(() => {
@@ -136,9 +137,7 @@ export default function TrackPerformance({ route, navigation }) {
     return (
       <Provider>
         <SafeAreaView style={styles.container}>
-          <HeaderTwo title="History" navigation={navigation}>
-           
-          </HeaderTwo>
+          <HeaderTwo title="History" navigation={navigation}></HeaderTwo>
           <TabView
             navigationState={{ index, routes }}
             renderScene={renderScene}
