@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { loginMethod } from "../../actions/actions";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
-import firebase from "../../firebase";
+import firebase from "../../_firebase";
 import PhoneInput from "react-native-phone-number-input";
 import { styles } from "./auth.style";
 import Logo from "../Logo";
