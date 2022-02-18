@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 import TrackPerfContent from "./TrackPerfContent";
 import Shop from "react-native-vector-icons/Entypo";
@@ -16,7 +16,9 @@ export default function ListExpireBanners({
   title,
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
-
+  useEffect(()=>{
+    console.log(typeof banners);
+  })
   const renderItem = ({ item }) => (
     <TrackCampaignContent
       restaurant={restaurant}
