@@ -28,10 +28,10 @@ export default function TrackCampaign({ route, navigation }) {
     );
     const { data } = response;
     let banners = data.filter((item) => item.status === "active");
-    const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
-        restaurant
-    );
+    // const res = await axios.get(
+    //   "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
+    //     restaurant
+    // );
     setBanner(banners);
     setLoaded(true);
   };
@@ -48,6 +48,7 @@ export default function TrackCampaign({ route, navigation }) {
   useEffect(() => {
     fetchMyBanner(restaurant_id);
   }, [restaurant_id]);
+
   const fetchData = () => {
     if (index == 0) {
       setIndex(1);
