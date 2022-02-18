@@ -56,6 +56,7 @@ export default function TrackCampaign({ route, navigation }) {
     setDiscount(discount);
     setOrder(totalOrders);
   };
+
   useEffect(() => {
     fetchMyBanner(restaurant_id);
     fetchStat(restaurant_id);
@@ -116,6 +117,10 @@ export default function TrackCampaign({ route, navigation }) {
             banners={banner}
             title={title}
             discount={discount}
+            orders={orders}
+            revenue={revenue}
+            discount={discount}
+            users={users}
           />
         );
 
