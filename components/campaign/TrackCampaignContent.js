@@ -170,10 +170,28 @@ function TrackCampaignContent({ banners, stat, loaded,orders,revenue,discount,us
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>{discount || 0}</Text>
+              <Text style={styles.bigText}>${discount || 0}</Text>
               <Text style={styles.smallText}> Total Discount Paid</Text>
             </View>
           </View>
+          <View
+            style={[
+              styles.textContainer,
+              {
+                alignItems: "center",
+                borderBottomColor: "#999",
+                borderBottomWidth: 0.2,
+                marginVertical: "4%",
+              },
+            ]}
+          >
+            <Icon name="analytics-outline" size={24} color={DARKGRAY} />
+            <View style={{ marginLeft: 8 }}>
+              <Text style={styles.bigText}>${(parseFloat(revenue)- parseFloat(discount)) || 0}</Text>
+              <Text style={styles.smallText}> Total Net Income</Text>
+            </View>
+          </View>
+
 
           <View
             style={[
