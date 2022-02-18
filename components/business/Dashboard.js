@@ -102,6 +102,7 @@ export default function Dashboard({ navigation }) {
       setActiveCount(count);
     }
   };
+
   const fetchcompletedorders = async (restaurant) => {
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/completed/" + restaurant
@@ -111,6 +112,7 @@ export default function Dashboard({ navigation }) {
       setCompleteCount(count);
     }
   };
+
   const fetchcancelledcount = async (restaurant) => {
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/cancelled/" + restaurant
@@ -120,6 +122,7 @@ export default function Dashboard({ navigation }) {
       setCancelledCount(count);
     }
   };
+
   const fetchStats = async (restaurant) => {
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/dashboard/" + restaurant
@@ -129,6 +132,7 @@ export default function Dashboard({ navigation }) {
       setDashboard(dashboard);
     }
   };
+
   const fetchCommission = async () => {
     const resp = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/checkout"
@@ -139,6 +143,7 @@ export default function Dashboard({ navigation }) {
       
     }
   };
+
   const fetchRejectedcount = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/rejected/" + restaurant
@@ -148,6 +153,7 @@ export default function Dashboard({ navigation }) {
       setRejected(count);
     }
   };
+
   const fetchNotStartedcount = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/accepted/" + restaurant
@@ -157,6 +163,7 @@ export default function Dashboard({ navigation }) {
       setNotStarted(count);
     }
   };
+  
   const getuserByType = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/getusertypesbyrestaurant/" +

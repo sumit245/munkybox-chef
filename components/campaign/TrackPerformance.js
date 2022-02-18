@@ -15,7 +15,6 @@ import { set } from "react-native-reanimated";
 export default function TrackPerformance({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [coupon, setCoupon] = useState({});
-  const [inactive, setInactive] = useState([]);
   const [pos, setPos] = useState(0);
   const [totalOrders, setPromotedOrders] = useState(0);
   const [revenue, setRevenue] = useState(0);
@@ -51,6 +50,7 @@ export default function TrackPerformance({ route, navigation }) {
       setCoupon(coupons);
     }
   };
+
   useEffect(() => {
     fetchMyCoupon(restaurant_id, pos);
   }, [pos]);
@@ -119,6 +119,7 @@ export default function TrackPerformance({ route, navigation }) {
         break;
     }
   };
+
   if (loaded) {
     return (
       <Provider>

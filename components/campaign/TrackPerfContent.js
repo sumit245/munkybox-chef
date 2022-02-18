@@ -61,10 +61,12 @@ function TrackPerfContent({
       totalDiscountPaid: discount,
       totalUsed: unique.length,
     };
+    
     const couponresponse = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/coupon/" + id,
       { status: "Inactive" }
     );
+
     const restaurantUpdate = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/newrest/" + _id,
       { promo: [] }

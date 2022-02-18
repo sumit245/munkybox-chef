@@ -32,7 +32,7 @@ export default function StatCards({
   };
   useEffect(() => {
     calculateCommissionAddOns();
-  }, [commission]);
+  }, [commission,dashboard]);
   return (
     <ScrollView horizontal>
       <View>
