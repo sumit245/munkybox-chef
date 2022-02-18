@@ -78,8 +78,6 @@ function TrackPerfContent({
 
     const { dashboard } = await dashboardResponse.data;
     const { coupons } = dashboard
-    console.log(...coupons);
-
     let prevCoupons = [...coupons];
       prevCoupons.push(myCoupon);
       const updateDashboard = await axios.put(

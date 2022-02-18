@@ -27,8 +27,9 @@ export default function CreateCoupon({ route, navigation }) {
   const [lunch, setLunch] = useState(false);
   const [dinner, setDinner] = useState(false);
   const [duration, setDuration] = useState(7);
+
   let minDate = Date.now();
-  minDate = minDate + 24 * 60 * 60 * 1000;
+  // minDate = minDate + 24 * 60 * 60 * 1000;
 
   const resetAll = () => {
     setPlan(2);
