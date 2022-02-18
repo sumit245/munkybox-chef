@@ -59,6 +59,7 @@ export default function PreviewBanner({ route, navigation }) {
         promo_code: code,
         discount_type: discount_type,
         discount: discount,
+        status:"active"
       };
       const res = await axios.post(
         "http://munkybox-admin.herokuapp.com/api/promo/",
