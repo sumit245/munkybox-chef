@@ -61,7 +61,7 @@ function TrackPerfContent({
       totalDiscountPaid: discount,
       totalUsed: unique.length,
     };
-    
+
     const couponresponse = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/coupon/" + id,
       { status: "Inactive" }
@@ -77,7 +77,9 @@ function TrackPerfContent({
     );
 
     const { dashboard } = await dashboardResponse.data;
-    
+    const { coupons } = dashboard
+    console.log(...coupons);
+
     let prevCoupons = [];
       prevCoupons.push(myCoupon);
       const updateDashboard = await axios.put(
