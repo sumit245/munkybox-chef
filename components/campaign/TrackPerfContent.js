@@ -80,7 +80,7 @@ function TrackPerfContent({
     const { coupons } = dashboard
     console.log(...coupons);
 
-    let prevCoupons = [];
+    let prevCoupons = [...coupons];
       prevCoupons.push(myCoupon);
       const updateDashboard = await axios.put(
         "http://munkybox-admin.herokuapp.com/api/chefdashboard/" +
