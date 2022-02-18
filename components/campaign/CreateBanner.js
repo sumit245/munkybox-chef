@@ -134,7 +134,7 @@ export default function CreateBanner({ route, navigation }) {
         </View>
         <View style={styles.card}>
           <Text style={[styles.bigText, { fontSize: 16 }]}>
-            Pick a start date
+            Duration
           </Text>
           <Text
             style={[
