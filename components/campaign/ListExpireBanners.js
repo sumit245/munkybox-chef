@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
-import TrackPerfContent from "./TrackPerfContent";
 import Shop from "react-native-vector-icons/Entypo";
 import { DARKGRAY, SecondaryLightColor } from "../../Colors";
 import { styles } from "./campaign.styles";
@@ -16,7 +15,7 @@ export default function ListExpireBanners({
   title,
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
-  
+
   const renderItem = ({ item }) => (
     <TrackCampaignContent
       restaurant={restaurant}
@@ -26,6 +25,7 @@ export default function ListExpireBanners({
       loaded={loaded}
     />
   );
+
   const ListHeaderComponent = ({ restaurant, address }) => {
     return (
       <>
@@ -58,6 +58,7 @@ export default function ListExpireBanners({
       </>
     );
   };
+
   return (
     <View style={[styles.container, { backgroundColor: "#fff" }]}>
       <FlatList

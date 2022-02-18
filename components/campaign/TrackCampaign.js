@@ -41,8 +41,17 @@ export default function TrackCampaign({ route, navigation }) {
     setBanner(banners);
   };
 
+  const fetchStat = async (id) => {
+    const res = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
+        id
+    );
+    const { data } = res;
+    console.log(data);
+  };
   useEffect(() => {
     fetchMyBanner(restaurant_id);
+    fetchStat(restaurant_id);
   }, [restaurant_id]);
 
   const fetchData = () => {
@@ -108,9 +117,7 @@ export default function TrackCampaign({ route, navigation }) {
   if (loaded) {
     return (
       <SafeAreaView style={styles.container}>
-        <HeaderTwo title="History" navigation={navigation}>
-        
-        </HeaderTwo>
+        <HeaderTwo title="History" navigation={navigation}></HeaderTwo>
         <TabView
           navigationState={{ index, routes }}
           renderScene={renderScene}
