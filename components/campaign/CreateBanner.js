@@ -40,7 +40,10 @@ export default function CreateBanner({ route, navigation }) {
     }
   };
   useEffect(() => {
-    dateHandler();
+    setSelectedStartDate(minDate)
+    let endDate=moment(minDate).add(duration,"days")
+    setSelecteEndDate(endDate)
+
   }, []);
   const submitBanner = () => {
     const start_date = moment(selectedStartDate, "DD-MMM-YYYY").toString();
