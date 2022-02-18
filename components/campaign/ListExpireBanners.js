@@ -16,9 +16,7 @@ export default function ListExpireBanners({
   title,
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
-  useEffect(()=>{
-    console.log(typeof banners);
-  })
+  
   const renderItem = ({ item }) => (
     <TrackCampaignContent
       restaurant={restaurant}

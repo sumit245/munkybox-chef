@@ -13,7 +13,7 @@ import ListExpireBanners from "./ListExpireBanners";
 
 export default function TrackCampaign({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
-  const [banner, setBanner] = useState({});
+  const [banner, setBanner] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [discount, setDiscount] = useState(0);
   const [pos, setPos] = useState(0);
@@ -28,10 +28,6 @@ export default function TrackCampaign({ route, navigation }) {
     );
     const { data } = response;
     let banners = data.filter((item) => item.status === "active");
-    // const res = await axios.get(
-    //   "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
-    //     restaurant
-    // );
     setBanner(banners);
     setLoaded(true);
   };

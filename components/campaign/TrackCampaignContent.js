@@ -1,11 +1,14 @@
 import moment from "moment";
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { SecondaryLightColor, DARKGRAY } from "../../Colors";
 import { styles } from "./campaign.styles";
 
 function TrackCampaignContent({ banners, stat, loaded }) {
+  useEffect(() => {
+    console.log(banners);
+  });
   if (loaded && typeof banners !== "undefined") {
     let remaining = moment(banners.end_date).diff(
       moment(banners.start_date),
@@ -111,7 +114,7 @@ function TrackCampaignContent({ banners, stat, loaded }) {
             </View>
           </View>
           {/* Header Part */}
-          
+
           <View style={{ marginVertical: 16, marginHorizontal: 22 }}>
             <Text
               style={{ fontWeight: "bold", fontSize: 16, color: "#22ccff" }}
@@ -133,7 +136,7 @@ function TrackCampaignContent({ banners, stat, loaded }) {
           >
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>{banners.orders.length}</Text>
+              <Text style={styles.bigText}>{banners.orders}</Text>
               <Text style={styles.smallText}> Total Orders</Text>
             </View>
           </View>
@@ -169,7 +172,7 @@ function TrackCampaignContent({ banners, stat, loaded }) {
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>${banners.totalDiscount}</Text>
+              <Text style={styles.bigText}>${banners.totalDiscount || 0}</Text>
               <Text style={styles.smallText}> Total Discount Paid</Text>
             </View>
           </View>
