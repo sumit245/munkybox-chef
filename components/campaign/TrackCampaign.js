@@ -16,6 +16,9 @@ export default function TrackCampaign({ route, navigation }) {
   const [banner, setBanner] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [discount, setDiscount] = useState(0);
+  const [orders, setOrder] = useState(0);
+  const [revenue, setRevenue] = useState(0);
+  const [users, setUsers] = useState(0);
   const [pos, setPos] = useState(0);
   const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
 
@@ -47,7 +50,11 @@ export default function TrackCampaign({ route, navigation }) {
         id
     );
     const { data } = res;
-    console.log(data);
+    const { revenue, users, discount, totalOrders } = data;
+    setUsers(users);
+    setRevenue(revenue);
+    setDiscount(discount);
+    setOrder(totalOrders);
   };
   useEffect(() => {
     fetchMyBanner(restaurant_id);
@@ -93,7 +100,10 @@ export default function TrackCampaign({ route, navigation }) {
             address={address}
             banners={banner}
             title={title}
+            orders={orders}
+            revenue={revenue}
             discount={discount}
+            users={users}
           />
         );
 

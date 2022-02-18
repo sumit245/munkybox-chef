@@ -13,6 +13,10 @@ export default function ListExpireBanners({
   loaded,
   status,
   title,
+  orders,
+  discount,
+  revenue,
+  users,
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
 
@@ -20,6 +24,10 @@ export default function ListExpireBanners({
     <TrackCampaignContent
       restaurant={restaurant}
       banners={item}
+      discount={discount}
+      revenue={revenue}
+      orders={orders}
+      users={users}
       status={status}
       title={title}
       loaded={loaded}
