@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -20,7 +20,7 @@ export default function CreateBanner({ route, navigation }) {
   const { title, duration, rpc, advert_id, restaurant, restaurant_id } =
     route.params;
   let minDate = Date.now();
-  minDate = minDate + 24 * 60 * 60 * 1000;
+  // minDate = minDate + 24 * 60 * 60 * 1000;
   const [selectedEndDate, setSelecteEndDate] = useState(null);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [code, setCode] = useState("");
@@ -39,6 +39,9 @@ export default function CreateBanner({ route, navigation }) {
       setSelecteEndDate(myDate);
     }
   };
+  useEffect(() => {
+    dateHandler();
+  }, []);
   const submitBanner = () => {
     const start_date = moment(selectedStartDate, "DD-MMM-YYYY").toString();
     const end_date = moment(selectedEndDate, "DD-MMM-YYYY").toString();

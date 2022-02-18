@@ -29,7 +29,6 @@ export default function CreateCoupon({ route, navigation }) {
   const [duration, setDuration] = useState(7);
 
   let minDate = Date.now();
-  // minDate = minDate + 24 * 60 * 60 * 1000;
 
   const resetAll = () => {
     setPlan(2);
@@ -41,6 +40,7 @@ export default function CreateCoupon({ route, navigation }) {
     setDinner(false);
     setDuration(0);
   };
+
   const radioChanged = (newValue) => {
     setDuration(newValue);
     let today = moment(minDate);
