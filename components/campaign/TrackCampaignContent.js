@@ -5,10 +5,8 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { SecondaryLightColor, DARKGRAY } from "../../Colors";
 import { styles } from "./campaign.styles";
 
-function TrackCampaignContent({ banners, stat, loaded }) {
-  useEffect(() => {
-    console.log(banners);
-  });
+function TrackCampaignContent({ banners, stat, loaded,orders,revenue,discount,users}) {
+  
   if (loaded && typeof banners !== "undefined") {
     let remaining = moment(banners.end_date).diff(
       moment(banners.start_date),
@@ -136,7 +134,7 @@ function TrackCampaignContent({ banners, stat, loaded }) {
           >
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>{banners.orders}</Text>
+              <Text style={styles.bigText}>{orders}</Text>
               <Text style={styles.smallText}> Total Orders</Text>
             </View>
           </View>
@@ -154,7 +152,7 @@ function TrackCampaignContent({ banners, stat, loaded }) {
           >
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>${banners.revenue}</Text>
+              <Text style={styles.bigText}>${revenue}</Text>
               <Text style={styles.smallText}> Total Base Income</Text>
             </View>
           </View>
@@ -172,7 +170,7 @@ function TrackCampaignContent({ banners, stat, loaded }) {
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>${banners.totalDiscount || 0}</Text>
+              <Text style={styles.bigText}>{discount || 0}</Text>
               <Text style={styles.smallText}> Total Discount Paid</Text>
             </View>
           </View>
@@ -206,7 +204,7 @@ function TrackCampaignContent({ banners, stat, loaded }) {
           >
             <Icon name="person-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>{banners.users}</Text>
+              <Text style={styles.bigText}>{users}</Text>
               <Text style={styles.smallText}> Total Users</Text>
             </View>
           </View>
