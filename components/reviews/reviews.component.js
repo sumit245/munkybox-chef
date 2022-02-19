@@ -16,6 +16,7 @@ import { width } from "../../Dimens";
 import Loader from "../../helpers/Loader";
 import CalendarPicker from "react-native-calendar-picker";
 import moment from "moment";
+import { SecondaryColor, SecondaryDarkColor, SecondaryLightColor } from "../../Colors";
 
 export default function Reviews({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -28,6 +29,7 @@ export default function Reviews({ navigation }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const [startSelector, setStartSelector] = useState(false);
   const [endSelector, setEndSelector] = useState(false);
+  const [selectedStar, setSelectedStar] = useState(0);
 
   const fetchReviews = async (id) => {
     const response = await axios.get(
@@ -52,6 +54,7 @@ export default function Reviews({ navigation }) {
     setShowCalendar(!showCalendar);
   };
   const filterFromDate = () => {
+    setSelectedStar(0);
     let review = tempreview.filter(
       (item) =>
         moment(item.review_at) >= moment(start) &&
@@ -73,6 +76,7 @@ export default function Reviews({ navigation }) {
   };
   const filterStar = (star) => {
     setLoading(true);
+    setSelectedStar(star);
     let allreview = [...tempreview];
     let fliteredReview = allreview.filter((item) => item.rating === star);
     setReviews(fliteredReview);
@@ -80,6 +84,7 @@ export default function Reviews({ navigation }) {
   };
   const filterwithComment = () => {
     setComment(!comment);
+    setSelectedStar(0);
     console.log(comment);
     let allreview = [...tempreview];
     let filteredReview = allreview.filter((item) => item.details !== "");
@@ -156,6 +161,7 @@ export default function Reviews({ navigation }) {
         </View>
       </View>
       {/* Date Picker */}
+
       <View
         style={{
           padding: 4,
@@ -191,12 +197,22 @@ export default function Reviews({ navigation }) {
                 borderWidth: 0.8,
                 marginHorizontal: 4,
                 justifyContent: "center",
+                backgroundColor:
+                  star === selectedStar ? SecondaryLightColor : "#fff",
               }}
               onPress={() => filterStar(star)}
             >
-              <Icon name="star" size={16} color="#666" />
+              <Icon
+                name="star"
+                size={16}
+                color={star === selectedStar ? "#fff" : "#666"}
+              />
               <Text
-                style={{ fontSize: 18, fontWeight: "bold", color: "#666" }}
+                style={{
+                  fontSize: 18,
+                  fontWeight: "bold",
+                  color: star === selectedStar ? "#fff" : "#666",
+                }}
                 key={index}
               >
                 {" "}
