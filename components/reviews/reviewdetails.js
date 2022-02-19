@@ -12,7 +12,7 @@ export default function Review({ item, index, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name } = restaurant;
   const [star, setStars] = useState([]);
-  
+
   const fetchStar = () => {
     let stars = [];
     for (let index = 0; index < parseInt(item.rating); index++) {
@@ -75,10 +75,11 @@ export default function Review({ item, index, navigation }) {
             textTransform: "uppercase",
             textAlign: "right",
           }}
-          onPress={() =>
-            navigation.navigate("orderDetails", {
-              order: item,
-            })
+          onPress={
+            () => console.log(item)
+            // navigation.navigate("orderDetails", {
+            //   order: item,
+            // })
           }
         >
           details
@@ -135,7 +136,9 @@ export default function Review({ item, index, navigation }) {
                 : "30 Meals"}
             </Text>
           </View>
-          <View style={{ flexDirection: "row", padding: 4,alignItems:"center" }}>
+          <View
+            style={{ flexDirection: "row", padding: 4, alignItems: "center" }}
+          >
             <Text>Rating:{"  "}</Text>
             {star.map((x, i) => (
               <Icon

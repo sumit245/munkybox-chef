@@ -5,24 +5,29 @@ import {
   SafeAreaView,
   FlatList,
   TouchableOpacity,
-  Modal
 } from "react-native";
-import { Switch } from "react-native-paper";
+import { Button, Switch, Modal } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 import Review from "./reviewdetails";
+import { styles } from "../campaign/campaign.styles";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { width } from "../../Dimens";
 import Loader from "../../helpers/Loader";
+import CalendarPicker from "react-native-calendar-picker";
+import moment from "moment";
 
 export default function Reviews({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [reviews, setReviews] = useState([]);
   const [tempreview, setTempReview] = useState([]);
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
+  const [start, setStart] = useState(Date());
+  const [end, setEnd] = useState(Date());
   const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [startSelector, setStartSelector] = useState(false);
+  const [endSelector, setEndSelector] = useState(false);
 
   const fetchReviews = async (id) => {
     const response = await axios.get(
@@ -38,8 +43,34 @@ export default function Reviews({ navigation }) {
     fetchReviews(restaurant_id);
   }, []);
 
-  const calendar = () => {};
-
+  const dateHandler = (date) => {
+    if (startSelector) {
+      setStart(date);
+    } else {
+      setEnd(date);
+    }
+    setShowCalendar(!showCalendar);
+  };
+  const filterFromDate = () => {
+    let review = tempreview.filter(
+      (item) =>
+        moment(item.review_at) >= moment(start) &&
+        moment(item.review_at) <= moment(end)
+    );
+    setReviews(review);
+  };
+  useEffect(() => {
+    filterFromDate();
+  }, [start, end]);
+  const selectStartDate = () => {
+    setStartSelector(true);
+    setShowCalendar(!showCalendar);
+  };
+  const selectEndDate = () => {
+    setStartSelector(false);
+    setEndSelector(true);
+    setShowCalendar(!showCalendar);
+  };
   const filterStar = (star) => {
     setLoading(true);
     let allreview = [...tempreview];
@@ -96,10 +127,10 @@ export default function Reviews({ navigation }) {
                 marginVertical: 2,
               }}
             >
-              {start}
+              {moment(start).format("DD-MMM-YYYY")}
             </Text>
           </View>
-          <TouchableOpacity onPress={calendar}>
+          <TouchableOpacity onPress={selectStartDate}>
             <Icon name="ios-calendar" size={20} color="#666" />
           </TouchableOpacity>
         </View>
@@ -116,10 +147,12 @@ export default function Reviews({ navigation }) {
                 marginVertical: 2,
               }}
             >
-              {end}
+              {moment(end).format("DD-MMM-YYYY")}
             </Text>
           </View>
-          <Icon name="ios-calendar" size={20} color="#666" />
+          <TouchableOpacity onPress={selectEndDate}>
+            <Icon name="ios-calendar" size={20} color="#666" />
+          </TouchableOpacity>
         </View>
       </View>
       {/* Date Picker */}
@@ -223,6 +256,47 @@ export default function Reviews({ navigation }) {
       ) : (
         <Loader />
       )}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={showCalendar}
+        onRequestClose={() => {
+          setModalVisible(false);
+        }}
+      >
+        <View style={styles.calenderView}>
+          <View style={styles.calendarBody}>
+            <CalendarPicker
+              startFromMonday={true}
+              todayBackgroundColor="#fff"
+              selectedDayColor="#2300e6"
+              selectedDayTextColor="#FFFFFF"
+              scrollable
+              onDateChange={(date) => dateHandler(date)}
+            />
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Button
+                mode="text"
+                color="#F00"
+                style={{ alignSelf: "flex-end" }}
+                onPress={() => setShowCalendar(false)}
+              >
+                cancel
+              </Button>
+              <Button
+                mode="text"
+                color="#F00"
+                style={{ alignSelf: "flex-end" }}
+                onPress={() => setShowCalendar(false)}
+              >
+                done
+              </Button>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }
