@@ -25,6 +25,20 @@ export default function Review({ item, index, navigation }) {
     fetchStar();
   }, [item]);
 
+  const fetchOrderById = async (id) => {
+    const res = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/getOrderbyID/" + id
+    );
+    const { data } = res;
+    if (data !== null) {
+      navigation.navigate("orderDetails", {
+        order: data,
+      });
+    } else {
+      alert("No Matching Order Found!!!");
+    }
+  };
+
   const submitReply = async () => {
     setReplying(!isReplying);
     let reply = {
@@ -75,12 +89,7 @@ export default function Review({ item, index, navigation }) {
             textTransform: "uppercase",
             textAlign: "right",
           }}
-          onPress={
-            () => console.log(item)
-            // navigation.navigate("orderDetails", {
-            //   order: item,
-            // })
-          }
+          onPress={() => fetchOrderById(item.order_id)}
         >
           details
         </Text>
