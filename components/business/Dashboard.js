@@ -319,14 +319,30 @@ export default function Dashboard({ navigation }) {
           </Text>
         </View>
 
-        <TabView
+        {/* <TabView
           navigationState={{ index, routes }}
           renderScene={renderScene}
           style={{ minHeight: 480 }}
           onIndexChange={setIndex}
           renderTabBar={renderTabBar}
           initialLayout={{ width: layout.width }}
-        />
+        /> */}
+        <StatCards
+            active={activecount}
+            complete={completecount}
+            cancel={cancelledcount}
+            notstarted={notstarted}
+            menuvisits={menuvisits}
+            commission={commission}
+            rejected={rejected}
+            newUser={newUser}
+            dashboard={dashboard}
+            repeatedUser={repeatedUser}
+            cartconversion={cartconversion}
+            visits={visits}
+            addOnCounts={totalAddOns}
+            addOnRevenue={totalAddOnRevenue}
+          />
 
         <View
           style={{

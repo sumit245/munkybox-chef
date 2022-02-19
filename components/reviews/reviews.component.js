@@ -16,7 +16,11 @@ import { width } from "../../Dimens";
 import Loader from "../../helpers/Loader";
 import CalendarPicker from "react-native-calendar-picker";
 import moment from "moment";
-import { SecondaryColor, SecondaryDarkColor, SecondaryLightColor } from "../../Colors";
+import {
+  SecondaryColor,
+  SecondaryDarkColor,
+  SecondaryLightColor,
+} from "../../Colors";
 
 export default function Reviews({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -58,7 +62,7 @@ export default function Reviews({ navigation }) {
     let review = tempreview.filter(
       (item) =>
         moment(item.review_at) >= moment(start) &&
-        moment(item.review_at) <= moment(end).add(1,"day")
+        moment(item.review_at) <= moment(end).add(1, "day")
     );
     setReviews(review);
   };
