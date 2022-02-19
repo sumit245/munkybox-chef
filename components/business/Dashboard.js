@@ -138,6 +138,7 @@ export default function Dashboard({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/checkout"
     );
     const { commission } = resp.data.data[0];
+    console.log(commission);
     if (commission !== null) {
       setCommission(commission);
       
@@ -222,12 +223,12 @@ export default function Dashboard({ navigation }) {
   }, [commission]);
 
   useEffect(() => {
-    fetchOrders(restaurant_name);
-    fetchcompletedorders(restaurant_name);
-    fetchcancelledcount(restaurant_name);
+    fetchOrders(restaurant_id);
+    fetchcompletedorders(restaurant_id);
+    fetchcancelledcount(restaurant_id);
     fetchVisit(restaurant_id);
-    fetchRejectedcount(restaurant_name);
-    fetchNotStartedcount(restaurant_name);
+    fetchRejectedcount(restaurant_id);
+    fetchNotStartedcount(restaurant_id);
     fetchStats(restaurant_name);
     getuserByType(restaurant_name);
   }, [

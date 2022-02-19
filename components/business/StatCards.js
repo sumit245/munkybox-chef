@@ -160,7 +160,7 @@ export default function StatCards({
                 ({commission}%)
               </Text>
             </View>
-            <Text style={styles.stat_value}>${totalCommission}</Text>
+            <Text style={styles.stat_value}>${parseFloat(totalCommission).toFixed(2)}</Text>
             <View style={{ marginVertical: 4, paddingVertical: 4 }} />
             <Text style={styles.stat_label}>
               Sales: ${parseFloat(salesCommission).toFixed(2)}

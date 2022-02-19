@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import {
   DARKGRAY,
   PrimaryDark,
@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: PrimaryDark,
+    marginTop:StatusBar.currentHeight||0
   },
   card: {
     marginHorizontal: 4,
