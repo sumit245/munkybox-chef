@@ -327,6 +327,7 @@ export default function Dashboard({ navigation }) {
           renderTabBar={renderTabBar}
           initialLayout={{ width: layout.width }}
         /> */}
+        <View style={{height:60}}/>
         <StatCards
             active={activecount}
             complete={completecount}
