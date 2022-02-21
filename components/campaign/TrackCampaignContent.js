@@ -1,12 +1,32 @@
 import moment from "moment";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { SecondaryLightColor, DARKGRAY } from "../../Colors";
 import { styles } from "./campaign.styles";
 
-function TrackCampaignContent({ banners, stat, loaded,orders,revenue,discount,users}) {
-  
+function TrackCampaignContent({ banners, stat, loaded, users }) {
+  const [discount, setDiscount] = useState(0);
+  const [orders, setOrder] = useState(0);
+  const [revenue, setRevenue] = useState(0);
+  const [users, setUsers] = useState(0);
+
+  const fetchStat = async (id) => {
+    const res = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
+        id
+    );
+    const { data } = res;
+    const { revenue, users, discount, totalOrders } = data;
+    setUsers(users);
+    setRevenue(revenue);
+    setDiscount(discount);
+    setOrder(totalOrders);
+  };
+  useEffect(() => {
+    fetchStat(banners.promo_id);
+  }, []);
+
   if (loaded && typeof banners !== "undefined") {
     let remaining = moment(banners.end_date).diff(
       moment(banners.start_date),
@@ -187,11 +207,12 @@ function TrackCampaignContent({ banners, stat, loaded,orders,revenue,discount,us
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>${(parseFloat(revenue)- parseFloat(discount)) || 0}</Text>
+              <Text style={styles.bigText}>
+                ${parseFloat(revenue) - parseFloat(discount) || 0}
+              </Text>
               <Text style={styles.smallText}> Total Net Income</Text>
             </View>
           </View>
-
 
           <View
             style={[
