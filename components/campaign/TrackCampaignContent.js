@@ -4,8 +4,9 @@ import { View, Text } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { SecondaryLightColor, DARKGRAY } from "../../Colors";
 import { styles } from "./campaign.styles";
+import axios from "axios"
 
-function TrackCampaignContent({ banners, stat, loaded, users }) {
+function TrackCampaignContent({ banners, stat, loaded, }) {
   const [discount, setDiscount] = useState(0);
   const [orders, setOrder] = useState(0);
   const [revenue, setRevenue] = useState(0);
