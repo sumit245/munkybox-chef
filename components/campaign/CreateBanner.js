@@ -53,7 +53,7 @@ export default function CreateBanner({ route, navigation }) {
       duration,
       rpc,
       advert_id,
-      start_date,
+      start_date:moment().toString(),
       end_date,
       code,
       discount_type,

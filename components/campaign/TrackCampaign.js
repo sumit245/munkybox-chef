@@ -37,10 +37,11 @@ export default function TrackCampaign({ route, navigation }) {
 
   const fetchMyExpiredBanner = async (restaurant_id) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant_id
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_id
     );
-    const { data } = response;
-    let banners = data.filter((item) => item.status === "Inactive");
+    const { dashboard } = response.data;
+    const {banners}=dashboard
+    //let banners = data.filter((item) => item.status === "Inactive");
     setBanner(banners);
   };
 

@@ -144,6 +144,7 @@ export default function OrderDetails({ route, navigation }) {
             Notes: {order.notes}
           </Text>
         </View>
+     
         <View style={styles.table}>
           <View style={[styles.tableHead, { justifyContent: "flex-end" }]}>
             <Text>Total: ${parseFloat(price).toFixed(2)}</Text>
@@ -178,6 +179,7 @@ export default function OrderDetails({ route, navigation }) {
               </View>
             ))}
         </View>
+     
       </ScrollView>
     </SafeAreaView>
   );
