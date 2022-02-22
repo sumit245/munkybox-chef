@@ -60,7 +60,7 @@ export default function TrackCampaign({ route, navigation }) {
 
   useEffect(() => {
     fetchMyBanner(restaurant_id);
-    fetchStat(restaurant_id);
+    // fetchStat(restaurant_id);
   }, [restaurant_id]);
 
   const fetchData = () => {

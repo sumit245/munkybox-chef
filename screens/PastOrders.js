@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Header from "../components/header/Header";
-import Export from "../components/header/Export";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import Item from "../components/pastorders/Item";
@@ -23,7 +22,7 @@ export default function PastOrders({ navigation }) {
     );
     const orders = await response.data;
     let myOrders = await orders.filter(
-      (item) => (item.restaurant === restaurant.restaurant_name)
+      (item) => (item.restaurant_id === restaurant.restaurant_id)
     );
 
     setOrders(myOrders.reverse());

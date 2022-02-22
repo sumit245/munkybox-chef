@@ -128,6 +128,7 @@ export default function Dashboard({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders/dashboard/" + restaurant
     );
     const dashboard = res.data;
+    console.log(dashboard);
     if (dashboard !== null) {
       setDashboard(dashboard);
     }
