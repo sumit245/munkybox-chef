@@ -38,66 +38,44 @@ const Item = ({ item }) => (
   </View>
 );
 
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    order_id: "ORD001",
-    plan_name: "2 Meals",
-    base_price: "$15.00",
-    commission: "10%",
-    commission_amt: "$1.50",
-    status: "In Progress",
-  },
-  {
-    id: "bd7acbea-c1b1-46c4-aed5-3ad53abb28ba",
-    order_id: "ORD002",
-    plan_name: "15 Meals",
-    base_price: "$200.00",
-    commission: "10%",
-    commission_amt: "$20.00",
-    status: "Pending",
-  },
-  {
-    id: "bd7acbea-c1b1-36c4-aed5-3ad53abb28ba",
-    order_id: "ORD003",
-    plan_name: "30 Meals",
-    base_price: "$400.00",
-    commission: "10%",
-    commission_amt: "$40.00",
-    status: "Completed",
-  },
-];
+const DATA = [];
 
 export default function CommissionHistory() {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedId, setSelectedId] = React.useState(null);
   const [orders, setOrders] = useState([]);
+
   const onChangeSearch = (query) => {
-      setSearchQuery(query);
-      if (query !== "") {
-          let item = DATA.filter((item) => item.order_id === query);
-          setOrders(item); 
-      } else {
-          setOrders(DATA)
-      }
+    setSearchQuery(query);
+    if (query !== "") {
+      let item = DATA.filter((item) => item.order_id === query);
+      setOrders(item);
+    } else {
+      setOrders(DATA);
+    }
   };
+
   const ListEmptyContent = () => (
     <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
       <Text>No orders to display</Text>
     </View>
   );
+
   const renderItem = ({ item }) => {
     return <Item item={item} key={item.id} />;
   };
+
   useEffect(() => {
     setOrders(DATA);
   }, []);
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <Header title="Commission History" />
       <View
         style={{
           flexDirection: "row",
+          backgroundColor: "#fff",
           alignItems: "center",
           marginVertical: 2,
           marginHorizontal: 2,
@@ -118,6 +96,7 @@ export default function CommissionHistory() {
       </Text>
       <FlatList
         data={orders}
+        contentContainerStyle={{ paddingBottom: 10 }}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         extraData={selectedId}

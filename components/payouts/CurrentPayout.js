@@ -12,6 +12,7 @@ export default function CurrentPayout({
   payout_date,
   revenue,
   orders,
+  addOns,
   navigation,
 }) {
   return (
@@ -43,6 +44,7 @@ export default function CurrentPayout({
           ${revenue}
         </Text>
         <Text style={styles.smallText}>{orders} Orders</Text>
+        <Text style={styles.smallText}>{addOns} Add-ons</Text>
       </View>
       <TouchableOpacity
         style={{
@@ -62,6 +64,7 @@ export default function CurrentPayout({
             payout_date: payout_date,
             revenue: revenue,
             orders: orders,
+            addOns:addOns,
             navigation: navigation,
           })
         }

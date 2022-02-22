@@ -15,6 +15,7 @@ export default function CommissionTracking({
   payout_date,
   revenue,
   orders,
+  addOns,
   navigation,
 }) {
   return (
@@ -43,30 +44,49 @@ export default function CommissionTracking({
             $0.00
           </Text>
         </View>
+
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Orders</Text>
           <Text style={[styles.smallText, { marginRight: 22, color: "#000" }]}>
              0
           </Text>
         </View>
+
+        <View style={styles.cardRow}>
+          <Text style={styles.smallText}>Total Add-ons</Text>
+          <Text style={[styles.smallText, { marginRight: 22, color: "#000" }]}>
+             0
+          </Text>
+        </View>
+
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Order Amount</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
              $0
           </Text>
         </View>
+
+        <View style={styles.cardRow}>
+          <Text style={styles.smallText}>Total Add-ons Amount</Text>
+          <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
+             $0
+          </Text>
+        </View>
+
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Discount</Text>
-          <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-             $0
+          <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
+            -$0
           </Text>
         </View>
+
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Add Ons Amount</Text>
-          <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-             $0
+          <Text style={styles.smallText}>Total Ad-on due</Text>
+          <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
+             -$0
           </Text>
         </View>
+
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Admin Commission (10%)</Text>
           <View
@@ -76,8 +96,8 @@ export default function CommissionTracking({
               alignItems: "center",
             }}
           >
-            <Text style={[styles.smallText, { marginRight: 4, color: "#000" }]}>
-              $0
+            <Text style={[styles.smallText, { marginRight: 4, color: "#f00" }]}>
+              -$0
             </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate("commission_history")}
@@ -86,6 +106,7 @@ export default function CommissionTracking({
             </TouchableOpacity>
           </View>
         </View>
+
       </View>
     </SafeAreaView>
   );

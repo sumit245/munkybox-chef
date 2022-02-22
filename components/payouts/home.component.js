@@ -30,10 +30,11 @@ const PayoutHome = ({ navigation }) => {
       case "first":
         return (
           <CurrentPayout
-            current_cycle="1st Feb - 15th Feb"
-            payout_date="17th Feb"
+            current_cycle="15th Feb - 02nd Mar"
+            payout_date="4th Mar"
             revenue="0"
             orders="0"
+            addOns="0"
             navigation={navigation}
           />
         );
