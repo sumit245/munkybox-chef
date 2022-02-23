@@ -284,7 +284,13 @@ export default function Dashboard({ navigation }) {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-              onPress={() => navigation.navigate("payouts")}
+              onPress={() =>
+                navigation.navigate("payouts", {
+                  commission: commission,
+                  totalAddOns: totalAddOns,
+                  totalAddOnRevenue: totalAddOnRevenue,
+                })
+              }
             >
               <Ants name="wallet" size={34} color={SecondaryLightColor} />
             </TouchableOpacity>

@@ -10,7 +10,8 @@ import {
 } from "../../Colors";
 import CurrentPayout from "./CurrentPayout";
 import PastPayouts from "./PastPayouts";
-const PayoutHome = ({ navigation }) => {
+const PayoutHome = ({ route, navigation }) => {
+  const { commission, totalAddOns, totalAddOnReveneue } = route.params;
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -34,6 +35,9 @@ const PayoutHome = ({ navigation }) => {
             payout_date="4th Mar"
             revenue="0"
             orders="0"
+            totalAddOns={totalAddOns}
+            commission={commission}
+            totalAddOnReveneue={totalAddOnReveneue}
             addOns="0"
             navigation={navigation}
           />

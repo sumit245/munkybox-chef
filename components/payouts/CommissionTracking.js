@@ -5,19 +5,24 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { styles } from "../campaign/campaign.styles";
 import Header from "../header/Header";
 import Icon from "react-native-vector-icons/Fontisto";
 
-export default function CommissionTracking({
-  current_cycle,
-  payout_date,
-  revenue,
-  orders,
-  addOns,
-  navigation,
-}) {
+export default function CommissionTracking({ route, navigation }) {
+  const {
+    revenue,
+    orders,
+    numOrders,
+    totalAddOns,
+    totalAddOnRevenue,
+    totalDiscount,
+    commission,
+  } = route.params;
+  useEffect(() => {
+    console.log(numOrders);
+  }, []);
   return (
     <SafeAreaView>
       <Header title="Commission Tracking" />
@@ -41,49 +46,49 @@ export default function CommissionTracking({
               color: "#000",
             }}
           >
-            $0.00
+            ${revenue}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Orders</Text>
           <Text style={[styles.smallText, { marginRight: 22, color: "#000" }]}>
-             0
+            {numOrders}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Add-ons</Text>
           <Text style={[styles.smallText, { marginRight: 22, color: "#000" }]}>
-             0
+            ${totalAddOns}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Order Amount</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-             $0
+            $0
           </Text>
         </View>
 
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Add-ons Amount</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-             $0
+            ${totalAddOnRevenue}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Discount</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
-            -$0
+            -${totalDiscount}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Ad-on due</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
-             -$0
+            -$0
           </Text>
         </View>
 
@@ -97,7 +102,7 @@ export default function CommissionTracking({
             }}
           >
             <Text style={[styles.smallText, { marginRight: 4, color: "#f00" }]}>
-              -$0
+              -${commission}
             </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate("commission_history")}
@@ -106,7 +111,6 @@ export default function CommissionTracking({
             </TouchableOpacity>
           </View>
         </View>
-
       </View>
     </SafeAreaView>
   );

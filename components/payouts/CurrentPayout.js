@@ -4,17 +4,41 @@ import {
   TouchableOpacityBase,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "../campaign/campaign.styles";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function CurrentPayout({
   current_cycle,
   payout_date,
-  revenue,
-  orders,
   addOns,
+  totalAddOns,
+  totalAddOnRevenue,
+  commission,
   navigation,
 }) {
+  const [revenue, setRevenue] = useState(0);
+  const [orders, setOrders] = useState([]);
+  const [discount, setDiscount] = useState(0);
+  const [numOrders, setNumOrders] = useState(0);
+  const restaurant = useSelector((state) => state.restaurant);
+  const { restaurant_name, city, restaurant_id } = restaurant;
+  const chefPayouts = async (id) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getchefpayout/" +
+        id
+    );
+    const { totalBaseIncome, totalDiscount, orders, numOrders } = response.data;
+    setRevenue(parseFloat(totalBaseIncome) - parseFloat(totalDiscount));
+    setNumOrders(numOrders);
+    setDiscount(totalDiscount);
+    setOrders(orders);
+  };
+  useEffect(() => {
+    chefPayouts(restaurant_id);
+    console.log(totalAddOnRevenue);
+  }, []);
   return (
     <View style={styles.card}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -43,8 +67,8 @@ export default function CurrentPayout({
         >
           ${revenue}
         </Text>
-        <Text style={styles.smallText}>{orders} Orders</Text>
-        <Text style={styles.smallText}>{addOns} Add-ons</Text>
+        <Text style={styles.smallText}>{numOrders} Orders</Text>
+        <Text style={styles.smallText}>{totalAddOns} Add-ons</Text>
       </View>
       <TouchableOpacity
         style={{
@@ -64,7 +88,11 @@ export default function CurrentPayout({
             payout_date: payout_date,
             revenue: revenue,
             orders: orders,
-            addOns:addOns,
+            numOrders: numOrders,
+            totalAddOns: totalAddOns,
+            totalAddOnRevenue: totalAddOnRevenue,
+            totalDiscount: discount,
+            commission: commission,
             navigation: navigation,
           })
         }
