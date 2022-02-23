@@ -16,6 +16,7 @@ export default function CommissionTracking({ route, navigation }) {
     orders,
     numOrders,
     totalAddOns,
+    totalOrderRevenue,
     totalAddOnReveneue,
     totalDiscount,
     commission,
@@ -66,7 +67,7 @@ export default function CommissionTracking({ route, navigation }) {
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Order Amount ($)</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-            ${revenue}
+            ${totalOrderRevenue}
           </Text>
         </View>
 
@@ -109,7 +110,8 @@ export default function CommissionTracking({ route, navigation }) {
               onPress={() =>
                 navigation.navigate("commission_history", {
                   orders: orders,
-                  netCommission:netCommission
+                  netCommission: netCommission,
+                  commission: commission,
                 })
               }
             >

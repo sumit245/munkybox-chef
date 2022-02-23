@@ -13,7 +13,7 @@ import Header from "../header/Header";
 import { Searchbar } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const Item = ({ item }) => (
+const Item = ({ item, commission }) => (
   <View style={styles.card}>
     <View style={{ justifyContent: "flex-end", alignItems: "flex-end" }}>
       <Text
@@ -31,7 +31,7 @@ const Item = ({ item }) => (
         <Text style={styles.bigText}>Plan Name</Text>
         <Text style={styles.bigText}>Base Price</Text>
         <Text style={styles.bigText}>Discount</Text>
-        <Text style={styles.bigText}>Commission</Text>
+        <Text style={styles.bigText}>Commission({commission}%)</Text>
       </View>
       <View>
         <Text></Text>
@@ -44,7 +44,9 @@ const Item = ({ item }) => (
         </Text>
         <Text style={styles.smallText}>${item.base_price}</Text>
         <Text style={styles.smallText}>${item.discount}</Text>
-        <Text style={styles.smallText}>{item.commission}</Text>
+        <Text style={styles.smallText}>
+          {parseFloat(item.base_price) * parseFloat(commission) * 0.01}
+        </Text>
       </View>
     </View>
   </View>
@@ -54,7 +56,7 @@ export default function CommissionHistory({ route, navigation }) {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedId, setSelectedId] = React.useState(null);
   const [DATA, setData] = useState([]);
-  const { orders, netCommission } = route.params;
+  const { orders, netCommission, commission } = route.params;
 
   useEffect(() => {
     setData(orders);
@@ -77,7 +79,7 @@ export default function CommissionHistory({ route, navigation }) {
   );
 
   const renderItem = ({ item }) => {
-    return <Item item={item} key={item.id} />;
+    return <Item item={item} key={item.id} commission={commission} />;
   };
 
   return (
