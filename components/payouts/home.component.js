@@ -36,8 +36,9 @@ const PayoutHome = ({ route, navigation }) => {
     const { totalBaseIncome, totalDiscount, orders, numOrders } = response.data;
     let tbre = parseFloat(totalBaseIncome) * 0.01 * parseFloat(commission);
     let tbc = parseFloat(addOnReveneue) * 0.01 * parseFloat(commission);
-    let amt=parseFloat(totalBaseIncome)+parseFloat(addOnReveneue)
-    let adminCommission = tbre+tbc;
+    console.log(tbc);
+    let amt = parseFloat(totalBaseIncome) + parseFloat(addOnReveneue);
+    let adminCommission = tbre + tbc;
     setNetCommission(adminCommission);
     setRevenue(parseFloat(amt) - parseFloat(adminCommission));
     setNumOrders(numOrders);
