@@ -16,7 +16,14 @@ import Icon from "react-native-vector-icons/Ionicons";
 const Item = ({ item }) => (
   <View style={styles.card}>
     <View style={{ justifyContent: "flex-end", alignItems: "flex-end" }}>
-      <Text style={styles.smallText}>{item.status}</Text>
+      <Text
+        style={[
+          styles.smallText,
+          { fontWeight: "normal", textTransform: "uppercase" },
+        ]}
+      >
+        {item.status}
+      </Text>
     </View>
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       <View>
@@ -28,7 +35,13 @@ const Item = ({ item }) => (
       </View>
       <View>
         <Text></Text>
-        <Text style={styles.smallText}>{item.plan}</Text>
+        <Text style={styles.smallText}>
+          {item.plan === "twoPlan"
+            ? "2 Days"
+            : item.plan === "fifteenPlan"
+            ? "15 Days"
+            : "30 Days"}
+        </Text>
         <Text style={styles.smallText}>${item.base_price}</Text>
         <Text style={styles.smallText}>${item.discount}</Text>
         <Text style={styles.smallText}>{item.commission}</Text>
