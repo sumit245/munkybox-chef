@@ -128,7 +128,6 @@ export default function Dashboard({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/orders/dashboard/" + restaurant
     );
     const dashboard = res.data;
-    console.log(dashboard);
     if (dashboard !== null) {
       setDashboard(dashboard);
     }
@@ -142,7 +141,6 @@ export default function Dashboard({ navigation }) {
     console.log(commission);
     if (commission !== null) {
       setCommission(commission);
-      
     }
   };
 
@@ -165,7 +163,7 @@ export default function Dashboard({ navigation }) {
       setNotStarted(count);
     }
   };
-  
+
   const getuserByType = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/getusertypesbyrestaurant/" +
@@ -230,7 +228,7 @@ export default function Dashboard({ navigation }) {
     fetchVisit(restaurant_id);
     fetchRejectedcount(restaurant_id);
     fetchNotStartedcount(restaurant_id);
-    fetchStats(restaurant_name);
+    fetchStats(restaurant_id);
     getuserByType(restaurant_name);
   }, [
     restaurant_name,
@@ -328,23 +326,23 @@ export default function Dashboard({ navigation }) {
           renderTabBar={renderTabBar}
           initialLayout={{ width: layout.width }}
         /> */}
-        <View style={{height:60}}/>
+        <View style={{ height: 60 }} />
         <StatCards
-            active={activecount}
-            complete={completecount}
-            cancel={cancelledcount}
-            notstarted={notstarted}
-            menuvisits={menuvisits}
-            commission={commission}
-            rejected={rejected}
-            newUser={newUser}
-            dashboard={dashboard}
-            repeatedUser={repeatedUser}
-            cartconversion={cartconversion}
-            visits={visits}
-            addOnCounts={totalAddOns}
-            addOnRevenue={totalAddOnRevenue}
-          />
+          active={activecount}
+          complete={completecount}
+          cancel={cancelledcount}
+          notstarted={notstarted}
+          menuvisits={menuvisits}
+          commission={commission}
+          rejected={rejected}
+          newUser={newUser}
+          dashboard={dashboard}
+          repeatedUser={repeatedUser}
+          cartconversion={cartconversion}
+          visits={visits}
+          addOnCounts={totalAddOns}
+          addOnRevenue={totalAddOnRevenue}
+        />
 
         <View
           style={{
