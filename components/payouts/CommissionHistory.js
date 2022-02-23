@@ -27,7 +27,7 @@ const Item = ({ item }) => (
         <Text style={styles.bigText}>Commission</Text>
       </View>
       <View>
-        <></>
+        <Text></Text>
         <Text style={styles.smallText}>{item.plan}</Text>
         <Text style={styles.smallText}>${item.base_price}</Text>
         <Text style={styles.smallText}>${item.discount}</Text>
