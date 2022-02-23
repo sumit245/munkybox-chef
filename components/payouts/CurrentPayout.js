@@ -6,38 +6,21 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "../campaign/campaign.styles";
-import axios from "axios";
-import { useSelector } from "react-redux";
+
 
 export default function CurrentPayout({
   current_cycle,
   payout_date,
+  revenue,
+  orders,
+  discount,
+  numOrders,
   totalAddOns,
   commission,
   totalAddOnReveneue,
   navigation,
 }) {
-  const [revenue, setRevenue] = useState(0);
-  const [orders, setOrders] = useState([]);
-  const [discount, setDiscount] = useState(0);
-  const [numOrders, setNumOrders] = useState(0);
-  const restaurant = useSelector((state) => state.restaurant);
-  const { restaurant_name, city, restaurant_id } = restaurant;
-  const chefPayouts = async (id) => {
-    const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getchefpayout/" +
-        id
-    );
-    const { totalBaseIncome, totalDiscount, orders, numOrders } = response.data;
-    setRevenue(parseFloat(totalBaseIncome) - parseFloat(totalDiscount));
-    setNumOrders(numOrders);
-    setDiscount(totalDiscount);
-    setOrders(orders);
-  };
-  useEffect(() => {
-    chefPayouts(restaurant_id);
-    console.log(totalAddOnReveneue);
-  }, []);
+  
   return (
     <View style={styles.card}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>

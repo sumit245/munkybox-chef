@@ -1,15 +1,13 @@
-import { View, Text, SafeAreaView, useWindowDimensions } from "react-native";
+import { SafeAreaView, useWindowDimensions } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
 import { TabView, TabBar } from "react-native-tab-view";
-import {
-  PrimaryColor,
-  SecondaryColor,
-  PrimaryDark,
-  PrimaryLight,
-} from "../../Colors";
+import { SecondaryColor, PrimaryDark } from "../../Colors";
 import CurrentPayout from "./CurrentPayout";
 import PastPayouts from "./PastPayouts";
+import axios from "axios";
+import { useSelector } from "react-redux";
+
 const PayoutHome = ({ route, navigation }) => {
   const { commission, totalAddOns, totalAddOnRevenue } = route.params;
   const layout = useWindowDimensions();
@@ -17,14 +15,34 @@ const PayoutHome = ({ route, navigation }) => {
   const [commi, setCommission] = useState(0);
   const [addOns, setTotalAddOns] = useState(0);
   const [addOnReveneue, setTotalAddOnRevenue] = useState(0);
+  const [revenue, setRevenue] = useState(0);
+  const [orders, setOrders] = useState([]);
+  const [discount, setDiscount] = useState(0);
+  const [numOrders, setNumOrders] = useState(0);
+
   const [routes] = React.useState([
     { key: "first", title: "Current Payout" },
     { key: "second", title: "Past Payout" },
   ]);
   const [payhistory, setPayHistory] = React.useState([]);
+
+  const restaurant = useSelector((state) => state.restaurant);
+  const { restaurant_id } = restaurant;
+  const chefPayouts = async (id) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getchefpayout/" +
+        id
+    );
+    const { totalBaseIncome, totalDiscount, orders, numOrders } = response.data;
+    setRevenue(parseFloat(totalBaseIncome) - parseFloat(totalDiscount));
+    setNumOrders(numOrders);
+    setDiscount(totalDiscount);
+    setOrders(orders);
+  };
+
   useEffect(() => {
+    chefPayouts(restaurant_id);
     setCommission(commission);
-    console.log(totalAddOnRevenue);
     setTotalAddOns(totalAddOns);
     setTotalAddOnRevenue(totalAddOnRevenue);
   }, []);
@@ -43,6 +61,10 @@ const PayoutHome = ({ route, navigation }) => {
           <CurrentPayout
             current_cycle="15th Feb - 02nd Mar"
             payout_date="4th Mar"
+            revenue={revenue}
+            orders={orders}
+            discount={discount}
+            numOrders={numOrders}
             totalAddOns={addOns}
             commission={commi}
             totalAddOnReveneue={addOnReveneue}
