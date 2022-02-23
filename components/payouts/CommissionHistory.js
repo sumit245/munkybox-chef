@@ -15,24 +15,23 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 const Item = ({ item }) => (
   <View style={styles.card}>
+    <View style={{ justifyContent: "flex-end", alignItems: "flex-end" }}>
+      <Text style={styles.smallText}>{item.status}</Text>
+    </View>
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       <View>
-        <Text style={styles.bigText}>Order Id</Text>
+        <Text style={styles.bigText}>#{item.order_id}</Text>
         <Text style={styles.bigText}>Plan Name</Text>
         <Text style={styles.bigText}>Base Price</Text>
         <Text style={styles.bigText}>Discount</Text>
         <Text style={styles.bigText}>Commission</Text>
-        <Text style={styles.bigText}>Commission Amount</Text>
         <Text style={styles.bigText}>Status</Text>
       </View>
       <View>
-        <Text style={styles.smallText}>{item.order_id}</Text>
         <Text style={styles.smallText}>{item.plan_name}</Text>
-        <Text style={styles.smallText}>{item.base_price}</Text>
-        <Text style={styles.smallText}>N/A</Text>
+        <Text style={styles.smallText}>${item.base_price}</Text>
+        <Text style={styles.smallText}>{item.discount}||0</Text>
         <Text style={styles.smallText}>{item.commission}</Text>
-        <Text style={styles.smallText}>{item.commission_amt}</Text>
-        <Text style={styles.smallText}>{item.status}</Text>
       </View>
     </View>
   </View>
@@ -41,7 +40,12 @@ const Item = ({ item }) => (
 export default function CommissionHistory({ route, navigation }) {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedId, setSelectedId] = React.useState(null);
-  const { orders } = route.params;
+  const [DATA, setData] = useState([]);
+  const { orders, netCommission } = route.params;
+
+  useEffect(() => {
+    setData(orders);
+  }, [DATA]);
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
@@ -86,7 +90,7 @@ export default function CommissionHistory({ route, navigation }) {
         </TouchableOpacity>
       </View>
       <Text style={{ textAlign: "center", fontWeight: "bold", padding: 6 }}>
-        Total Commission Amount: $ 0.00{" "}
+        Total Commission Amount: $ {netCommission}{" "}
       </Text>
       <FlatList
         data={orders}

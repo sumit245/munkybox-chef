@@ -109,6 +109,7 @@ export default function CommissionTracking({ route, navigation }) {
               onPress={() =>
                 navigation.navigate("commission_history", {
                   orders: orders,
+                  netCommission:netCommission
                 })
               }
             >
