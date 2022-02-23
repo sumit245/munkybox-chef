@@ -36,7 +36,6 @@ const PayoutHome = ({ route, navigation }) => {
     const { totalBaseIncome, totalDiscount, orders, numOrders } = response.data;
     let tbre = parseFloat(totalBaseIncome) * 0.01 * parseFloat(commission);
     let tbc = parseFloat(addOnReveneue) * 0.01 * parseFloat(commission);
-    console.log(tbc);
     let amt = parseFloat(totalBaseIncome) + parseFloat(addOnReveneue);
     let adminCommission = parseFloat(tbre) + parseFloat(tbc);
     setNetCommission(adminCommission);
@@ -51,7 +50,7 @@ const PayoutHome = ({ route, navigation }) => {
     setTotalAddOns(totalAddOns);
     setTotalAddOnRevenue(totalAddOnRevenue);
     chefPayouts(restaurant_id);
-  }, []);
+  }, [revenue]);
 
   const renderTabBar = (props) => (
     <TabBar
