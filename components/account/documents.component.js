@@ -32,7 +32,6 @@ export const VerificationDocs = ({ navigation }) => {
     setLoading(false);
   };
   useEffect(() => {
-    console.log(_id);
     fetchPapers(_id);
   }, [_id]);
   if (loading) {

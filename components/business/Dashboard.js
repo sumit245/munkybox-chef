@@ -138,7 +138,6 @@ export default function Dashboard({ navigation }) {
       "http://munkybox-admin.herokuapp.com/api/checkout"
     );
     const { commission } = resp.data.data[0];
-    console.log(commission);
     if (commission !== null) {
       setCommission(commission);
     }

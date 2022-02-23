@@ -16,7 +16,7 @@ export default function CommissionTracking({ route, navigation }) {
     orders,
     numOrders,
     totalAddOns,
-    totalAddOnRevenue,
+    totalAddOnReveneue,
     totalDiscount,
     commission,
   } = route.params;
@@ -74,7 +74,7 @@ export default function CommissionTracking({ route, navigation }) {
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Add-ons Amount</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-            ${totalAddOnRevenue}
+            ${totalAddOnReveneue}
           </Text>
         </View>
 

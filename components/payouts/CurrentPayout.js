@@ -12,10 +12,9 @@ import { useSelector } from "react-redux";
 export default function CurrentPayout({
   current_cycle,
   payout_date,
-  addOns,
   totalAddOns,
-  totalAddOnRevenue,
   commission,
+  totalAddOnReveneue,
   navigation,
 }) {
   const [revenue, setRevenue] = useState(0);
@@ -37,7 +36,7 @@ export default function CurrentPayout({
   };
   useEffect(() => {
     chefPayouts(restaurant_id);
-    console.log(totalAddOnRevenue);
+    console.log(totalAddOnReveneue);
   }, []);
   return (
     <View style={styles.card}>
@@ -90,7 +89,7 @@ export default function CurrentPayout({
             orders: orders,
             numOrders: numOrders,
             totalAddOns: totalAddOns,
-            totalAddOnRevenue: totalAddOnRevenue,
+            totalAddOnReveneue: totalAddOnReveneue,
             totalDiscount: discount,
             commission: commission,
             navigation: navigation,

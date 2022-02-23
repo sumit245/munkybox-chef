@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, useWindowDimensions } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
 import { TabView, TabBar } from "react-native-tab-view";
 import {
@@ -11,14 +11,24 @@ import {
 import CurrentPayout from "./CurrentPayout";
 import PastPayouts from "./PastPayouts";
 const PayoutHome = ({ route, navigation }) => {
-  const { commission, totalAddOns, totalAddOnReveneue } = route.params;
+  const { commission, totalAddOns, totalAddOnRevenue } = route.params;
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
+  const [commi, setCommission] = useState(0);
+  const [addOns, setTotalAddOns] = useState(0);
+  const [addOnReveneue, setTotalAddOnRevenue] = useState(0);
   const [routes] = React.useState([
     { key: "first", title: "Current Payout" },
     { key: "second", title: "Past Payout" },
   ]);
   const [payhistory, setPayHistory] = React.useState([]);
+  useEffect(() => {
+    setCommission(commission);
+    console.log(totalAddOnRevenue);
+    setTotalAddOns(totalAddOns);
+    setTotalAddOnRevenue(totalAddOnRevenue);
+  }, []);
+
   const renderTabBar = (props) => (
     <TabBar
       {...props}
@@ -33,12 +43,9 @@ const PayoutHome = ({ route, navigation }) => {
           <CurrentPayout
             current_cycle="15th Feb - 02nd Mar"
             payout_date="4th Mar"
-            revenue="0"
-            orders="0"
-            totalAddOns={totalAddOns}
-            commission={commission}
-            totalAddOnReveneue={totalAddOnReveneue}
-            addOns="0"
+            totalAddOns={addOns}
+            commission={commi}
+            totalAddOnReveneue={addOnReveneue}
             navigation={navigation}
           />
         );
