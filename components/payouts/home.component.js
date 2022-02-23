@@ -19,7 +19,7 @@ const PayoutHome = ({ route, navigation }) => {
   const [orders, setOrders] = useState([]);
   const [discount, setDiscount] = useState(0);
   const [numOrders, setNumOrders] = useState(0);
-
+  const [netCommission, setNetCommission] = useState(0);
   const [routes] = React.useState([
     { key: "first", title: "Current Payout" },
     { key: "second", title: "Past Payout" },
@@ -34,17 +34,20 @@ const PayoutHome = ({ route, navigation }) => {
         id
     );
     const { totalBaseIncome, totalDiscount, orders, numOrders } = response.data;
-    setRevenue(parseFloat(totalBaseIncome) - parseFloat(totalDiscount));
+    let amt = parseFloat(totalBaseIncome) + parseFloat(addOnReveneue);
+    let adminCommission = amt * 0.01 * commission;
+    setNetCommission(adminCommission);
+    setRevenue(parseFloat(amt) - parseFloat(adminCommission));
     setNumOrders(numOrders);
     setDiscount(totalDiscount);
     setOrders(orders);
   };
 
   useEffect(() => {
-    chefPayouts(restaurant_id);
     setCommission(commission);
     setTotalAddOns(totalAddOns);
     setTotalAddOnRevenue(totalAddOnRevenue);
+    chefPayouts(restaurant_id);
   }, []);
 
   const renderTabBar = (props) => (
@@ -68,6 +71,7 @@ const PayoutHome = ({ route, navigation }) => {
             totalAddOns={addOns}
             commission={commi}
             totalAddOnReveneue={addOnReveneue}
+            netCommission={netCommission}
             navigation={navigation}
           />
         );

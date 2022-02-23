@@ -7,7 +7,6 @@ import {
 import React, { useEffect, useState } from "react";
 import { styles } from "../campaign/campaign.styles";
 
-
 export default function CurrentPayout({
   current_cycle,
   payout_date,
@@ -18,9 +17,9 @@ export default function CurrentPayout({
   totalAddOns,
   commission,
   totalAddOnReveneue,
+  netCommission,
   navigation,
 }) {
-  
   return (
     <View style={styles.card}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -75,6 +74,7 @@ export default function CurrentPayout({
             totalAddOnReveneue: totalAddOnReveneue,
             totalDiscount: discount,
             commission: commission,
+            netCommission: netCommission,
             navigation: navigation,
           })
         }

@@ -19,10 +19,9 @@ export default function CommissionTracking({ route, navigation }) {
     totalAddOnReveneue,
     totalDiscount,
     commission,
+    netCommission,
   } = route.params;
-  useEffect(() => {
-    console.log(numOrders);
-  }, []);
+
   return (
     <SafeAreaView>
       <Header title="Commission Tracking" />
@@ -51,49 +50,51 @@ export default function CommissionTracking({ route, navigation }) {
         </View>
 
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Orders</Text>
+          <Text style={styles.smallText}># of Orders</Text>
           <Text style={[styles.smallText, { marginRight: 22, color: "#000" }]}>
             {numOrders}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Add-ons</Text>
+          <Text style={styles.smallText}># of Add-ons</Text>
           <Text style={[styles.smallText, { marginRight: 22, color: "#000" }]}>
-            ${totalAddOns}
+            {totalAddOns}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Order Amount</Text>
+          <Text style={styles.smallText}>Total Order Amount ($)</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
             ${revenue}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Add-ons Amount</Text>
+          <Text style={styles.smallText}>Total Add-ons Amount ($)</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
             ${totalAddOnReveneue}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Discount</Text>
+          <Text style={styles.smallText}>Total Discount ($)</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
             -${totalDiscount}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Ad-on due</Text>
+          <Text style={styles.smallText}>Total Campaign due ($)</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
             -$0
           </Text>
         </View>
 
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Admin Commission (10%)</Text>
+          <Text style={styles.smallText}>
+            Total Admin Commission ({commission}%)
+          </Text>
           <View
             style={{
               flexDirection: "row",
@@ -102,7 +103,7 @@ export default function CommissionTracking({ route, navigation }) {
             }}
           >
             <Text style={[styles.smallText, { marginRight: 4, color: "#f00" }]}>
-              -${commission}
+              -${netCommission}
             </Text>
             <TouchableOpacity
               onPress={() =>
