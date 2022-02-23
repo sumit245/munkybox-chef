@@ -25,12 +25,12 @@ const Item = ({ item }) => (
         <Text style={styles.bigText}>Base Price</Text>
         <Text style={styles.bigText}>Discount</Text>
         <Text style={styles.bigText}>Commission</Text>
-        <Text style={styles.bigText}>Status</Text>
       </View>
       <View>
-        <Text style={styles.smallText}>{item.plan_name}</Text>
+        <></>
+        <Text style={styles.smallText}>{item.plan}</Text>
         <Text style={styles.smallText}>${item.base_price}</Text>
-        <Text style={styles.smallText}>{item.discount}||0</Text>
+        <Text style={styles.smallText}>${item.discount}</Text>
         <Text style={styles.smallText}>{item.commission}</Text>
       </View>
     </View>
@@ -90,7 +90,7 @@ export default function CommissionHistory({ route, navigation }) {
         </TouchableOpacity>
       </View>
       <Text style={{ textAlign: "center", fontWeight: "bold", padding: 6 }}>
-        Total Commission Amount: $ {netCommission}{" "}
+        Total Commission Amount: $ {netCommission}
       </Text>
       <FlatList
         data={orders}
