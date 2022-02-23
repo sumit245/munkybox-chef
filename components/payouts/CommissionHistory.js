@@ -45,7 +45,7 @@ const Item = ({ item, commission }) => (
         <Text style={styles.smallText}>${item.base_price}</Text>
         <Text style={styles.smallText}>${item.discount}</Text>
         <Text style={styles.smallText}>
-          {parseFloat(item.base_price) * parseFloat(commission) * 0.01}
+         ${parseFloat(item.base_price) * parseFloat(commission) * 0.01}
         </Text>
       </View>
     </View>
