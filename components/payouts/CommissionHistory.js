@@ -10,7 +10,7 @@ import {
 
 import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
-import { Searchbar } from "react-native-paper";
+import { Button, Searchbar } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const Item = ({ item, commission }) => (
@@ -48,6 +48,9 @@ const Item = ({ item, commission }) => (
           {parseFloat(item.base_price) * parseFloat(commission) * 0.01}
         </Text>
       </View>
+    </View>
+    <View style={{ alignItems: "center", justifyContent: "center" }}>
+      <Text style={{ fontWeight: "bold", fontSize: 18,color:"#226ccf" }}>View Details</Text>
     </View>
   </View>
 );
