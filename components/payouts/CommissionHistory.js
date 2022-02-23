@@ -38,12 +38,10 @@ const Item = ({ item }) => (
   </View>
 );
 
-const DATA = [];
-
-export default function CommissionHistory() {
+export default function CommissionHistory({ route, navigation }) {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedId, setSelectedId] = React.useState(null);
-  const [orders, setOrders] = useState([]);
+  const { orders } = route.params;
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
@@ -64,10 +62,6 @@ export default function CommissionHistory() {
   const renderItem = ({ item }) => {
     return <Item item={item} key={item.id} />;
   };
-
-  useEffect(() => {
-    setOrders(DATA);
-  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>

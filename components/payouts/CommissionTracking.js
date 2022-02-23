@@ -67,7 +67,7 @@ export default function CommissionTracking({ route, navigation }) {
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Order Amount</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-            $0
+            ${revenue}
           </Text>
         </View>
 
@@ -105,7 +105,11 @@ export default function CommissionTracking({ route, navigation }) {
               -${commission}
             </Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate("commission_history")}
+              onPress={() =>
+                navigation.navigate("commission_history", {
+                  orders: orders,
+                })
+              }
             >
               <Icon name="history" size={14} color="#026020" />
             </TouchableOpacity>
