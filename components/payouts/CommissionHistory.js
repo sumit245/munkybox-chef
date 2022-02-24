@@ -7,53 +7,72 @@ import {
   StatusBar,
   StyleSheet,
 } from "react-native";
-
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
 import { Button, Searchbar } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const Item = ({ item, commission }) => (
-  <View style={styles.card}>
-    <View style={{ justifyContent: "flex-end", alignItems: "flex-end" }}>
-      <Text
-        style={[
-          styles.smallText,
-          { fontWeight: "normal", textTransform: "uppercase" },
-        ]}
-      >
-        {item.status}
-      </Text>
-    </View>
-    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-      <View>
-        <Text style={styles.bigText}>#{item.order_id}</Text>
-        <Text style={styles.bigText}>Plan Name</Text>
-        <Text style={styles.bigText}>Base Price</Text>
-        <Text style={styles.bigText}>Discount</Text>
-        <Text style={styles.bigText}>Commission({commission}%)</Text>
-      </View>
-      <View>
-        <Text></Text>
-        <Text style={styles.smallText}>
-          {item.plan === "twoPlan"
-            ? "2 Days"
-            : item.plan === "fifteenPlan"
-            ? "15 Days"
-            : "30 Days"}
-        </Text>
-        <Text style={styles.smallText}>${item.base_price}</Text>
-        <Text style={styles.smallText}>${item.discount}</Text>
-        <Text style={styles.smallText}>
-         ${parseFloat(item.base_price) * parseFloat(commission) * 0.01}
+const Item = ({ item, commission, navigation }) => {
+  const fetchOrderById = async (id) => {
+    const res = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/orders/getOrderbyID/" + id
+    );
+    const { data } = res;
+    if (data !== null) {
+      navigation.navigate("orderDetails", {
+        order: data,
+      });
+    } else {
+      alert("No Matching Order Found!!!");
+    }
+  };
+  return (
+    <View style={styles.card}>
+      <View style={{ justifyContent: "flex-end", alignItems: "flex-end" }}>
+        <Text
+          style={[
+            styles.smallText,
+            { fontWeight: "normal", textTransform: "uppercase" },
+          ]}
+        >
+          {item.status}
         </Text>
       </View>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View>
+          <Text style={styles.bigText}>#{item.order_id}</Text>
+          <Text style={styles.bigText}>Plan Name</Text>
+          <Text style={styles.bigText}>Base Price</Text>
+          <Text style={styles.bigText}>Discount</Text>
+          <Text style={styles.bigText}>Commission({commission}%)</Text>
+        </View>
+        <View>
+          <Text></Text>
+          <Text style={styles.smallText}>
+            {item.plan === "twoPlan"
+              ? "2 Days"
+              : item.plan === "fifteenPlan"
+              ? "15 Days"
+              : "30 Days"}
+          </Text>
+          <Text style={styles.smallText}>${item.base_price}</Text>
+          <Text style={styles.smallText}>${item.discount}</Text>
+          <Text style={styles.smallText}>
+            ${parseFloat(item.base_price) * parseFloat(commission) * 0.01}
+          </Text>
+        </View>
+      </View>
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <TouchableOpacity onPress={() => fetchOrderById(item.order_id)}>
+          <Text style={{ fontWeight: "bold", fontSize: 18, color: "#226ccf" }}>
+            View Details
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
-    <View style={{ alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ fontWeight: "bold", fontSize: 18,color:"#226ccf" }}>View Details</Text>
-    </View>
-  </View>
-);
+  );
+};
 
 export default function CommissionHistory({ route, navigation }) {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -82,7 +101,14 @@ export default function CommissionHistory({ route, navigation }) {
   );
 
   const renderItem = ({ item }) => {
-    return <Item item={item} key={item.id} commission={commission} />;
+    return (
+      <Item
+        item={item}
+        key={item.id}
+        commission={commission}
+        navigation={navigation}
+      />
+    );
   };
 
   return (
