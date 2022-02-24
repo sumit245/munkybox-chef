@@ -41,7 +41,7 @@ export default function TrackCampaign({ route, navigation }) {
     );
     const { dashboard } = response.data;
     const {banners}=dashboard
-    let banner = data.filter((item) => item.status === "Inactive");
+    let banner = banners.filter((item) => item.status === "Inactive");
     setBanner(banner);
   };
 
