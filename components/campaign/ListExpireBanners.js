@@ -9,7 +9,6 @@ export default function ListExpireBanners({
   banners,
   restaurant,
   address,
-  active,
   loaded,
   status,
   title,
