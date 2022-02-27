@@ -69,7 +69,7 @@ const PayoutHome = ({ route, navigation }) => {
         return (
           <CurrentPayout
             current_cycle="23rd Feb - 25th Feb"
-            payout_date="27th Mar"
+            payout_date="27th Feb"
             revenue={revenue}
             orders={orders}
             discount={discount}
