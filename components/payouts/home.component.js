@@ -16,7 +16,7 @@ const PayoutHome = ({ route, navigation }) => {
   const [addOns, setTotalAddOns] = useState(0);
   const [addOnReveneue, setTotalAddOnRevenue] = useState(0);
   const [revenue, setRevenue] = useState(0);
-  const [totalOrderRevenue,setOrderRevenue]=useState(0)
+  const [totalOrderRevenue, setOrderRevenue] = useState(0);
   const [orders, setOrders] = useState([]);
   const [discount, setDiscount] = useState(0);
   const [numOrders, setNumOrders] = useState(0);
@@ -40,10 +40,12 @@ const PayoutHome = ({ route, navigation }) => {
     let amt = parseFloat(totalBaseIncome) + parseFloat(addOnReveneue);
     let adminCommission = parseFloat(tbre) + parseFloat(tbc);
     setNetCommission(adminCommission);
-    setRevenue(parseFloat(amt) - parseFloat(adminCommission));
+    setRevenue(
+      parseFloat(amt) - parseFloat(adminCommission) - parseFloat(totalDiscount)
+    );
     setNumOrders(numOrders);
     setDiscount(totalDiscount);
-    setOrderRevenue(totalBaseIncome)
+    setOrderRevenue(totalBaseIncome);
     setOrders(orders);
   };
 
