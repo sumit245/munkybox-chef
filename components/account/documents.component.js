@@ -12,7 +12,7 @@ import {
   StatusBar,
   TouchableOpacity,
 } from "react-native";
-import  Icon  from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/Ionicons";
 import { useSelector, useDispatch } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
@@ -42,58 +42,75 @@ export const VerificationDocs = ({ navigation }) => {
     );
   } else {
     return (
-      <SafeAreaView style={{flex:1,marginTop:StatusBar.currentHeight||0}} >
-        <TouchableOpacity style={{position:"absolute",left:10,top:60,backgroundColor:"#fff",zIndex:1,width:30,height:30,borderRadius:15,justifyContent:"center"}}
- onPress={()=>navigation.goBack()}>
-   <Icon name="chevron-back" size={26} color="#226ccf"/>
-   </TouchableOpacity>
-   <FlatList
-        contentContainerStyle={{ marginHorizontal: 4 }}
-        ItemSeparatorComponent={() => <View style={{ width: 0.1 * width }} />}
-        data={papers}
-        ListEmptyComponent={() => (
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Text style={{ textAlign: "center", marginHorizontal: 8 }}>
-              This Restaurant does not have any specific document
-            </Text>
-          </View>
-        )}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "column",
-              margin: 1,
-            }}
-          >
-            <Image style={styles.imageThumbnail} source={{ uri: item.image }} resizeMode="contain" />
-            <Text
+      <SafeAreaView
+        style={{ flex: 1, marginTop: StatusBar.currentHeight || 0 }}
+      >
+        <TouchableOpacity
+          style={{
+            position: "absolute",
+            left: 10,
+            top: 60,
+            backgroundColor: "#fff",
+            zIndex: 1,
+            width: 30,
+            height: 30,
+            borderRadius: 15,
+            justifyContent: "center",
+          }}
+          onPress={() => navigation.goBack()}
+        >
+          <Icon name="chevron-back" size={26} color="#226ccf" />
+        </TouchableOpacity>
+        <FlatList
+          contentContainerStyle={{ marginHorizontal: 4 }}
+          ItemSeparatorComponent={() => <View style={{ width: 0.1 * width }} />}
+          data={papers}
+          ListEmptyComponent={() => (
+            <View
               style={{
-                textAlign: "center",
-                position: "absolute",
-                bottom: 20,
-                left: "40%",
-                fontWeight: "bold",
-                fontSize: 16,
-                color: "#000",
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              {item.image_name}
-            </Text>
-          </View>
-        )}
-        horizontal
-        keyExtractor={(item, index) => index}
-        showsHorizontalScrollIndicator={false}
-      />
+              <Text style={{ textAlign: "center", marginHorizontal: 8 }}>
+                This Restaurant does not have any specific document
+              </Text>
+            </View>
+          )}
+          renderItem={({ item }) => (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "column",
+                margin: 1,
+              }}
+            >
+              <Image
+                style={styles.imageThumbnail}
+                source={{ uri: item.image }}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  textAlign: "center",
+                  position: "absolute",
+                  bottom: 20,
+                  left: "40%",
+                  fontWeight: "bold",
+                  fontSize: 16,
+                  color: "#000",
+                }}
+              >
+                {item.image_name}
+              </Text>
+            </View>
+          )}
+          horizontal
+          keyExtractor={(item, index) => index}
+          showsHorizontalScrollIndicator={false}
+        />
       </SafeAreaView>
-      
     );
   }
 };

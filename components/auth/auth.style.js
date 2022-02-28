@@ -3,7 +3,7 @@ import { screenWidth, screenHeight } from "../../Dimens";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: "rgba(25,25,25,0.45)",
     width: screenWidth,
     alignItems: "center",
@@ -27,7 +27,6 @@ export const styles = StyleSheet.create({
     color: "#FFF",
     marginTop: 20,
     fontWeight: "bold",
-    bottom:-120,
     fontSize: 16,
     textDecorationLine: "underline",
   },

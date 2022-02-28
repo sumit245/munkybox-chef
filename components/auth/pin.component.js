@@ -28,7 +28,7 @@ const PinPage = ({ route, navigation, entry }) => {
     try {
       const response = await AsyncStorage.getItem("credential");
       const { pin } = JSON.parse(response);
-      
+
       if (pin === enteredPin) {
         const rest = await AsyncStorage.getItem("restaurant");
         const { _id } = JSON.parse(rest);
@@ -160,9 +160,15 @@ const PinPage = ({ route, navigation, entry }) => {
             ) : null
           }
         />
-        <Text style={styles.forgot_button} onPress={() => navigation.pop()}>
-          Login with OTP
-        </Text>
+        {/* </View> */}
+        <View style={{justifyContent:"center",alignItems:"center"}}>
+          <Text style={styles.forgot_button} onPress={() => navigation.pop()}>
+            Login with OTP
+          </Text>
+          <Text style={styles.forgot_button} onPress={() => navigation.pop()}>
+            Forgot Pin? Reset Here
+          </Text>
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
