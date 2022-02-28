@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
   forgot_button: {
     color: "#FFF",
     marginTop: 20,
+    bottom: -120,
     fontWeight: "bold",
     fontSize: 16,
     textDecorationLine: "underline",
