@@ -76,6 +76,11 @@ const PinPage = ({ route, navigation, entry }) => {
     }
   };
 
+  const resetPin = () => {
+    AsyncStorage.clear();
+    navigation.pop();
+  };
+
   useEffect(() => {
     enteredPin.length > 0
       ? setShowRemoveButton(true)
@@ -161,11 +166,11 @@ const PinPage = ({ route, navigation, entry }) => {
           }
         />
         {/* </View> */}
-        <View style={{justifyContent:"center",alignItems:"center"}}>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
           <Text style={styles.forgot_button} onPress={() => navigation.pop()}>
             Login with OTP
           </Text>
-          <Text style={styles.forgot_button} onPress={() => navigation.pop()}>
+          <Text style={styles.forgot_button} onPress={resetPin}>
             Forgot Pin? Reset Here
           </Text>
         </View>

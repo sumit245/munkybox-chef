@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { screenWidth, screenHeight } from "../../Dimens";
 
 export const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: "rgba(25,25,25,0.45)",
     width: screenWidth,
     alignItems: "center",
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
   forgot_button: {
     color: "#FFF",
     marginTop: 20,
-    bottom: -120,
+    bottom: Platform.OS === "ios" ? -120 : 0,
     fontWeight: "bold",
     fontSize: 16,
     textDecorationLine: "underline",
