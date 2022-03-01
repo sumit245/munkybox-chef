@@ -23,7 +23,7 @@ const Item = ({ item, navigation }) => (
       <View>
         <Text style={styles.smallText}>{item.payout_cycle}</Text>
         <Text style={[styles.bigText, { fontSize: 24, color: "#205000" }]}>
-          $ {item.revenue}
+          $ {item.totalBaseIncome}
         </Text>
       </View>
       <View style={{ alignItems: "flex-end" }}>
