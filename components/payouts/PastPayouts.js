@@ -19,7 +19,8 @@ const Item = ({ item, commission, navigation }) => {
     let tbre = parseFloat(item.totalBaseIncome) * 0.01 * parseFloat(commission);
     let tbc =
       parseFloat(item.totalAddOnRevenue) * 0.01 * parseFloat(commission);
-    let amt = parseFloat(totalBaseIncome) + parseFloat(totalAddOnReveneue);
+    let amt =
+      parseFloat(item.totalBaseIncome) + parseFloat(item.totalAddOnRevenue);
     let adminCommission = parseFloat(tbre) + parseFloat(tbc);
     setNetCommission(adminCommission);
     setRevenue(
