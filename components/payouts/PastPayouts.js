@@ -9,6 +9,7 @@ import {
 import React, { useState, useEffect } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Item = ({ item, navigation }) => (
   <View style={styles.card}>
@@ -107,26 +108,17 @@ const DATA = [
 
 export default function PastPayouts({ navigation }) {
   const [payouts, setPayouts] = useState([]);
+  const restaurant = useSelector((state) => state.restaurant);
+  const { restaurant_id } = restaurant;
   const fetchPastPayouts = async (id) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getpastpayout/" +
         id
     );
     setPayouts(response.data);
-    // const {
-    //   totalBaseIncome,
-    //   totalDiscount,
-    //   orders,
-    //   numOrders,
-    //   due,
-    //   payout_start_date,
-    //   payout_end_date,
-    //   totalAddOns,
-    //   totalAddOnRevenue,
-    // } = response.data;
   };
   useEffect(() => {
-    setPayouts(DATA);
+    fetchPastPayouts(restaurant_id);
   }, []);
   const ListEmptyContent = () => (
     <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
