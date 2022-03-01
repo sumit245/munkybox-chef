@@ -6,7 +6,7 @@ import { SecondaryLightColor, DARKGRAY } from "../../Colors";
 import { styles } from "./campaign.styles";
 import axios from "axios";
 
-function TrackCampaignContent({ banners, loaded }) {
+function TrackCampaignContent({ banners, loaded, index }) {
   const [discount, setDiscount] = useState(0);
   const [orders, setOrder] = useState(0);
   const [revenue, setRevenue] = useState(0);
@@ -24,10 +24,10 @@ function TrackCampaignContent({ banners, loaded }) {
     setDiscount(discount);
     setOrder(totalOrders);
   };
-  
+
   useEffect(() => {
     fetchStat(banners.promo_id);
-  }, []);
+  }, [banners.promo_id]);
 
   if (loaded && typeof banners !== "undefined") {
     let remaining = moment(banners.end_date).diff(

@@ -25,29 +25,30 @@ export default function TrackCampaign({ route, navigation }) {
   const { title } = route.params;
   let address = locality + ", " + city + ", " + state;
 
-  const fetchMyBanner = async (restaurant) => {
+  const fetchMyBanner = async (restaurant_id) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant
+      "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant_id
     );
     const { data } = response;
     let banners = data.filter((item) => item.status === "active");
     setBanner(banners);
+    console.log("Active Banner is", banners);
     setLoaded(true);
   };
 
   const fetchMyExpiredBanner = async (restaurant_id) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant_id
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_id
     );
-    // const { dashboard } = response.data;
-    const { data } = response;
-    let banner = data.filter((item) => item.status === "Inactive");
-    setBanner(banner);
+    const { dashboard } = response.data;
+    const { banners } = dashboard;
+    console.log("Inactive Bannners are", banners);
+    setBanner(banners);
   };
 
   useEffect(() => {
     fetchMyBanner(restaurant_id);
-  }, [restaurant_id]);
+  }, [restaurant_id, index]);
 
   const fetchData = () => {
     if (index == 0) {
@@ -83,6 +84,7 @@ export default function TrackCampaign({ route, navigation }) {
       case "first":
         return (
           <ListExpireBanners
+            index={index}
             loaded={loaded}
             restaurant={restaurant_name}
             address={address}
@@ -98,6 +100,7 @@ export default function TrackCampaign({ route, navigation }) {
       case "second":
         return (
           <ListExpireBanners
+            index={index}
             loaded={loaded}
             restaurant={restaurant_name}
             address={address}

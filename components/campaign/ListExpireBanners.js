@@ -6,6 +6,7 @@ import { styles } from "./campaign.styles";
 import moment from "moment";
 import TrackCampaignContent from "./TrackCampaignContent";
 export default function ListExpireBanners({
+  index,
   banners,
   restaurant,
   address,
@@ -28,6 +29,7 @@ export default function ListExpireBanners({
       orders={orders}
       users={users}
       status={status}
+      index={index}
       title={title}
       loaded={loaded}
     />
