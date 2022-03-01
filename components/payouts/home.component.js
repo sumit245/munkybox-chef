@@ -20,6 +20,7 @@ const PayoutHome = ({ route, navigation }) => {
   const [orders, setOrders] = useState([]);
   const [discount, setDiscount] = useState(0);
   const [numOrders, setNumOrders] = useState(0);
+  const [due, setDue] = useState(0);
   const [netCommission, setNetCommission] = useState(0);
   const [routes] = React.useState([
     { key: "first", title: "Current Payout" },
@@ -34,19 +35,25 @@ const PayoutHome = ({ route, navigation }) => {
       "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getchefpayout/" +
         id
     );
-    const { totalBaseIncome, totalDiscount, orders, numOrders } = response.data;
+    const { totalBaseIncome, totalDiscount, orders, numOrders, due } =
+      response.data;
     let tbre = parseFloat(totalBaseIncome) * 0.01 * parseFloat(commission);
     let tbc = parseFloat(addOnReveneue) * 0.01 * parseFloat(commission);
     let amt = parseFloat(totalBaseIncome) + parseFloat(addOnReveneue);
     let adminCommission = parseFloat(tbre) + parseFloat(tbc);
     setNetCommission(adminCommission);
     setRevenue(
-      parseFloat(amt) - parseFloat(adminCommission) - parseFloat(totalDiscount)
+      parseFloat(amt) -
+        parseFloat(adminCommission) -
+        parseFloat(totalDiscount) -
+        parseFloat(due)
     );
     setNumOrders(numOrders);
     setDiscount(totalDiscount);
     setOrderRevenue(totalBaseIncome);
     setOrders(orders);
+    console.log(due);
+    setDue(due);
   };
 
   useEffect(() => {
@@ -75,6 +82,7 @@ const PayoutHome = ({ route, navigation }) => {
             discount={discount}
             numOrders={numOrders}
             totalAddOns={addOns}
+            due={due}
             commission={commi}
             totalOrderRevenue={totalOrderRevenue}
             totalAddOnReveneue={addOnReveneue}

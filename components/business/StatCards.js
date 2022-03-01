@@ -25,7 +25,7 @@ export default function StatCards({
   const [salesCommission, setSalesCommission] = useState(0);
   const calculateCommissionAddOns = () => {
     let x = (parseFloat(addOnRevenue) * parseFloat(commission)) / 100;
-    let y = (parseFloat(dashboard.grossRevenue) * parseFloat(commission)) / 100;
+    let y = (parseFloat(dashboard.totalRevenue) * parseFloat(commission)) / 100;
     setAddCommission(x);
     setSalesCommission(y);
     setTotalCommission(x + y);

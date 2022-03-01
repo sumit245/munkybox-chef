@@ -19,6 +19,7 @@ export default function CurrentPayout({
   totalOrderRevenue,
   totalAddOnReveneue,
   netCommission,
+  due,
   navigation,
 }) {
   return (
@@ -72,11 +73,12 @@ export default function CurrentPayout({
             orders: orders,
             numOrders: numOrders,
             totalAddOns: totalAddOns,
-            totalOrderRevenue:totalOrderRevenue,
+            totalOrderRevenue: totalOrderRevenue,
             totalAddOnReveneue: totalAddOnReveneue,
             totalDiscount: discount,
             commission: commission,
             netCommission: netCommission,
+            due: due,
             navigation: navigation,
           })
         }

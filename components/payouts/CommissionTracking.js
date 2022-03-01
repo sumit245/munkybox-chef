@@ -21,6 +21,7 @@ export default function CommissionTracking({ route, navigation }) {
     totalDiscount,
     commission,
     netCommission,
+    due,
   } = route.params;
 
   return (
@@ -72,6 +73,18 @@ export default function CommissionTracking({ route, navigation }) {
         </View>
 
         <View style={styles.cardRow}>
+          <Text style={styles.smallText}>
+            Total Order Commission ({commission}%)
+          </Text>
+          <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
+            -$
+            {parseFloat(
+              (parseFloat(totalOrderRevenue) * parseFloat(commission)) / 100
+            ).toFixed(2)}
+          </Text>
+        </View>
+
+        <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Add-ons Amount ($)</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
             ${totalAddOnReveneue}
@@ -79,16 +92,28 @@ export default function CommissionTracking({ route, navigation }) {
         </View>
 
         <View style={styles.cardRow}>
+          <Text style={styles.smallText}>
+            Total Add-ons Commission ({commission}%)
+          </Text>
+          <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
+            -$
+            {parseFloat(
+              (parseFloat(totalAddOnReveneue) * parseFloat(commission)) / 100
+            ).toFixed(2)}
+          </Text>
+        </View>
+
+        <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Discount ($)</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
-            -${totalDiscount}
+            -${parseFloat(totalDiscount).toFixed(2)}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Campaign due ($)</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
-            -$0
+            -${parseFloat(due).toFixed(2)}
           </Text>
         </View>
 
