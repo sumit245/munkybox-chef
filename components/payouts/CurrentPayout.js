@@ -71,8 +71,7 @@ export default function CurrentPayout({
         }}
         onPress={() =>
           navigation.navigate("commission_tracking", {
-            current_cycle: current_cycle,
-            payout_date: payout_date,
+            
             revenue: revenue,
             orders: orders,
             numOrders: numOrders,

@@ -12,8 +12,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import moment from "moment";
 
-const Item = ({ item, navigation }) => {
-  
+const Item = ({ item, commission, navigation }) => {
   return (
     <View style={styles.card}>
       <View
@@ -41,16 +40,16 @@ const Item = ({ item, navigation }) => {
                 item.status_code === 1
                   ? "checkmark-circle"
                   : item.status_code === 2
-                    ? "information-circle"
-                    : "information-circle"
+                  ? "information-circle"
+                  : "information-circle"
               }
               size={18}
               color={
                 item.status_code === 1
                   ? "green"
                   : item.status_code === 2
-                    ? "orange"
-                    : "red"
+                  ? "orange"
+                  : "red"
               }
             />
             {item.status || "Paid"}
@@ -79,7 +78,7 @@ const Item = ({ item, navigation }) => {
             totalOrderRevenue: item.totalBaseIncome,
             totalAddOnReveneue: item.totalAddOnReveneue,
             totalDiscount: item.totalDiscount,
-            commission: item.commission,
+            commission: commission,
             netCommission: item.netCommission,
             due: item.due,
             navigation: navigation,
@@ -91,10 +90,10 @@ const Item = ({ item, navigation }) => {
         </Text>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
-export default function PastPayouts({ navigation }) {
+export default function PastPayouts({ navigation, commission }) {
   const [payouts, setPayouts] = useState([]);
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_id } = restaurant;
@@ -114,7 +113,14 @@ export default function PastPayouts({ navigation }) {
     </View>
   );
   const renderItem = ({ item }) => {
-    return <Item item={item} key={item.id} navigation={navigation} />;
+    return (
+      <Item
+        item={item}
+        key={item.id}
+        navigation={navigation}
+        commission={commission}
+      />
+    );
   };
   return (
     <View>

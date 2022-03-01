@@ -111,7 +111,7 @@ const PayoutHome = ({ route, navigation }) => {
           />
         );
       case "second":
-        return <PastPayouts navigation={navigation} />;
+        return <PastPayouts navigation={navigation} commission={commi} />;
 
       default:
         break;
