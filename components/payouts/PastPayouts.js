@@ -13,6 +13,22 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 
 const Item = ({ item, commission, navigation }) => {
+  const [netcommission, setNetCommission] = useState(0);
+  const [revenue, setRevenue] = useState(0);
+  useEffect(() => {
+    let tbre = parseFloat(item.totalBaseIncome) * 0.01 * parseFloat(commission);
+    let tbc =
+      parseFloat(item.totalAddOnRevenue) * 0.01 * parseFloat(commission);
+    let amt = parseFloat(totalBaseIncome) + parseFloat(totalAddOnReveneue);
+    let adminCommission = parseFloat(tbre) + parseFloat(tbc);
+    setNetCommission(adminCommission);
+    setRevenue(
+      parseFloat(amt) -
+        parseFloat(adminCommission) -
+        parseFloat(item.totalDiscount) -
+        parseFloat(item.due)
+    );
+  }, [commission]);
   return (
     <View style={styles.card}>
       <View
@@ -71,7 +87,7 @@ const Item = ({ item, commission, navigation }) => {
         }}
         onPress={() =>
           navigation.navigate("commission_tracking", {
-            revenue: item.revenue,
+            revenue: revenue,
             orders: item.orders,
             numOrders: item.numOrders,
             totalAddOns: item.totalAddOns,
@@ -79,7 +95,7 @@ const Item = ({ item, commission, navigation }) => {
             totalAddOnReveneue: item.totalAddOnRevenue,
             totalDiscount: item.totalDiscount,
             commission: commission,
-            netCommission: item.netCommission,
+            netCommission: netCommission,
             due: item.due,
             navigation: navigation,
           })
