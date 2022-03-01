@@ -47,7 +47,7 @@ export default function CommissionTracking({ route, navigation }) {
               color: "#000",
             }}
           >
-            ${revenue}
+            ${parseFloat(revenue).toFixed(2)}
           </Text>
         </View>
 
@@ -66,15 +66,15 @@ export default function CommissionTracking({ route, navigation }) {
         </View>
 
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Order Amount ($)</Text>
+          <Text style={styles.smallText}>Total Base Order Amt ($)</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-            ${totalOrderRevenue}
+            ${parseFloat(totalOrderRevenue).toFixed(2)}
           </Text>
         </View>
 
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>
-            Total Order Commission ({commission}%)
+            Total Base Order Commission ({commission}%)
           </Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#f00" }]}>
             -$
@@ -87,7 +87,7 @@ export default function CommissionTracking({ route, navigation }) {
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Add-ons Amount ($)</Text>
           <Text style={[styles.smallText, { marginRight: 18, color: "#000" }]}>
-            ${totalAddOnReveneue}
+            ${parseFloat(totalAddOnReveneue).toFixed(2)}
           </Text>
         </View>
 
@@ -128,8 +128,8 @@ export default function CommissionTracking({ route, navigation }) {
               alignItems: "center",
             }}
           >
-            <Text style={[styles.smallText, { marginRight: 4, color: "#f00" }]}>
-              -${netCommission}
+            <Text style={[styles.smallText, { marginRight: 4, color: "#777" }]}>
+              -${parseFloat(netCommission).toFixed(2)}
             </Text>
             <TouchableOpacity
               onPress={() =>

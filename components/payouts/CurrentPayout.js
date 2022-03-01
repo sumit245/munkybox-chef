@@ -45,7 +45,11 @@ export default function CurrentPayout({
         <Text
           style={[
             styles.bigText,
-            { color: "#008000", fontSize: 22, marginBottom: 8 },
+            {
+              color: revenue > 0 ? "#008000" : "#f90000",
+              fontSize: 22,
+              marginBottom: 8,
+            },
           ]}
         >
           ${revenue}

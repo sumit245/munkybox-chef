@@ -7,9 +7,10 @@ import CurrentPayout from "./CurrentPayout";
 import PastPayouts from "./PastPayouts";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import moment from "moment";
 
 const PayoutHome = ({ route, navigation }) => {
-  const { commission, totalAddOns, totalAddOnRevenue } = route.params;
+  const { commission } = route.params;
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
   const [commi, setCommission] = useState(0);
@@ -21,12 +22,14 @@ const PayoutHome = ({ route, navigation }) => {
   const [discount, setDiscount] = useState(0);
   const [numOrders, setNumOrders] = useState(0);
   const [due, setDue] = useState(0);
+  const [payDuration, setPayDuration] = useState("");
   const [netCommission, setNetCommission] = useState(0);
   const [routes] = React.useState([
     { key: "first", title: "Current Payout" },
     { key: "second", title: "Past Payout" },
   ]);
   const [payhistory, setPayHistory] = React.useState([]);
+  const [payDate, setPayDate] = useState("");
 
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_id } = restaurant;
@@ -35,8 +38,17 @@ const PayoutHome = ({ route, navigation }) => {
       "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getchefpayout/" +
         id
     );
-    const { totalBaseIncome, totalDiscount, orders, numOrders, due } =
-      response.data;
+    const {
+      totalBaseIncome,
+      totalDiscount,
+      orders,
+      numOrders,
+      due,
+      payout_start_date,
+      payout_end_date,
+      totalAddOns,
+      totalAddOnRevenue,
+    } = response.data;
     let tbre = parseFloat(totalBaseIncome) * 0.01 * parseFloat(commission);
     let tbc = parseFloat(addOnReveneue) * 0.01 * parseFloat(commission);
     let amt = parseFloat(totalBaseIncome) + parseFloat(addOnReveneue);
@@ -52,14 +64,22 @@ const PayoutHome = ({ route, navigation }) => {
     setDiscount(totalDiscount);
     setOrderRevenue(totalBaseIncome);
     setOrders(orders);
-    console.log(due);
     setDue(due);
+    setTotalAddOns(totalAddOns);
+    setTotalAddOnRevenue(totalAddOnRevenue);
+    let sd = moment(payout_start_date).format("Do MMM").toString();
+    let nd = moment(payout_end_date).format("Do MMM").toString();
+    let payDuration = sd + " - " + nd;
+    setPayDuration(payDuration);
+    let paydate = moment(payout_end_date)
+      .add(2, "days")
+      .format("Do MMM")
+      .toString();
+    setPayDate(paydate);
   };
 
   useEffect(() => {
     setCommission(commission);
-    setTotalAddOns(totalAddOns);
-    setTotalAddOnRevenue(totalAddOnRevenue);
     chefPayouts(restaurant_id);
   }, [revenue]);
 
@@ -75,8 +95,8 @@ const PayoutHome = ({ route, navigation }) => {
       case "first":
         return (
           <CurrentPayout
-            current_cycle="26th Feb - 28th Feb"
-            payout_date="02nd Mar"
+            current_cycle={payDuration}
+            payout_date={payDate}
             revenue={revenue}
             orders={orders}
             discount={discount}
