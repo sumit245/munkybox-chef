@@ -41,6 +41,7 @@ export default function Dashboard({ navigation }) {
   const [index, setIndex] = React.useState(0);
   const [totalAddOnRevenue, setTotalAddOnRevenue] = useState(0);
   const [totalAddOns, setTotalAddOns] = useState(0);
+  const [campaignDue, setCampaignDue] = useState(0);
   const [routes] = React.useState([
     { key: "first", title: "Weekly" },
     { key: "second", title: "Monthly" },
@@ -49,45 +50,6 @@ export default function Dashboard({ navigation }) {
   const [newUser, setnewUser] = useState(0);
   const [repeatedUser, setrepeatedUser] = useState(0);
 
-  const renderTabBar = (props) => (
-    <TabBar
-      {...props}
-      style={{ backgroundColor: PrimaryDark, marginHorizontal: 4 }}
-      indicatorStyle={{ backgroundColor: SecondaryColor }}
-    />
-  );
-
-  const renderScene = ({ route }) => {
-    switch (route.key) {
-      case "first":
-        return (
-          <StatCards
-            active={activecount}
-            complete={completecount}
-            cancel={cancelledcount}
-            notstarted={notstarted}
-            menuvisits={menuvisits}
-            commission={commission}
-            rejected={rejected}
-            newUser={newUser}
-            dashboard={dashboard}
-            repeatedUser={repeatedUser}
-            cartconversion={cartconversion}
-            visits={visits}
-            addOnCounts={totalAddOns}
-            addOnRevenue={totalAddOnRevenue}
-          />
-        );
-
-      case "second":
-        return <View style={{ backgroundColor: "blue" }} />;
-      case "third":
-        return <View style={{ backgroundColor: "green" }} />;
-
-      default:
-        break;
-    }
-  };
 
   function add(accumulator, a) {
     return parseFloat(accumulator) + parseFloat(a);
@@ -174,11 +136,12 @@ export default function Dashboard({ navigation }) {
       setrepeatedUser(repeatedUsers);
     }
   };
+
   const fetchVisit = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant
     );
-    const { totalOrders, orders, accptanceRate, rectanceRate, dashboard } =
+    const { totalOrders, orders, accptanceRate, rectanceRate, dashboard, due } =
       response.data;
     const { menuvisits, cartVisit } = dashboard;
     if (
@@ -192,8 +155,10 @@ export default function Dashboard({ navigation }) {
       setvisits(cartVisit);
       setAcceptanceRate(accptanceRate);
       setRejectedRate(rectanceRate);
+      setCampaignDue(due);
     }
   };
+
   const getAddOnCounts = async (id) => {
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/"
@@ -323,14 +288,6 @@ export default function Dashboard({ navigation }) {
           </Text>
         </View>
 
-        {/* <TabView
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          style={{ minHeight: 480 }}
-          onIndexChange={setIndex}
-          renderTabBar={renderTabBar}
-          initialLayout={{ width: layout.width }}
-        /> */}
         <View style={{ height: 60 }} />
         <StatCards
           active={activecount}
@@ -345,6 +302,7 @@ export default function Dashboard({ navigation }) {
           repeatedUser={repeatedUser}
           cartconversion={cartconversion}
           visits={visits}
+          campaignDue={campaignDue}
           addOnCounts={totalAddOns}
           addOnRevenue={totalAddOnRevenue}
         />

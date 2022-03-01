@@ -5,6 +5,7 @@ import { width } from "../../Dimens";
 
 export default function StatCards({
   active,
+  campaignDue,
   cancel,
   complete,
   notstarted,
@@ -24,14 +25,14 @@ export default function StatCards({
   const [salesCommission, setSalesCommission] = useState(0);
   const calculateCommissionAddOns = () => {
     let x = (parseFloat(addOnRevenue) * parseFloat(commission)) / 100;
-    let y = (parseFloat(dashboard.grossRevenue) * parseFloat(commission)) / 100
+    let y = (parseFloat(dashboard.grossRevenue) * parseFloat(commission)) / 100;
     setAddCommission(x);
     setSalesCommission(y);
     setTotalCommission(x + y);
   };
   useEffect(() => {
     calculateCommissionAddOns();
-  }, [commission,dashboard]);
+  }, [commission, dashboard]);
   return (
     <ScrollView horizontal>
       <View>
@@ -159,7 +160,9 @@ export default function StatCards({
                 ({commission}%)
               </Text>
             </View>
-            <Text style={styles.stat_value}>${parseFloat(totalCommission).toFixed(2)}</Text>
+            <Text style={styles.stat_value}>
+              ${parseFloat(totalCommission).toFixed(2)}
+            </Text>
             <View style={{ marginVertical: 4, paddingVertical: 4 }} />
             <Text style={styles.stat_label}>
               Sales: ${parseFloat(salesCommission).toFixed(2)}
@@ -277,7 +280,9 @@ export default function StatCards({
         <View style={{ flexDirection: "row" }}>
           <View style={[styles.stat_card, { width: 3.1 }]}>
             <Text style={styles.stat_head}>Ads Campaign</Text>
-            <Text style={styles.stat_value}>Due: $15.0</Text>
+            <Text style={styles.stat_value}>
+              Due: ${parseFloat(campaignDue).toFixed(2)}
+            </Text>
             <Text style={styles.stat_label}>Paid: $0</Text>
           </View>
           <View style={[styles.stat_card, { width: 3.1 }]}>
