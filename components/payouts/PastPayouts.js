@@ -10,6 +10,7 @@ import React, { useState, useEffect } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import moment from "moment";
 
 const Item = ({ item, navigation }) => (
   <View style={styles.card}>
@@ -21,7 +22,11 @@ const Item = ({ item, navigation }) => (
       }}
     >
       <View>
-        <Text style={styles.smallText}>{item.payout_cycle}</Text>
+        <Text style={styles.smallText}>
+          {moment(item.payout_start_date).format("Do MMM").toString() +
+            " - " +
+            moment(item.payout_end_date).format("Do MMM").toString()}
+        </Text>
         <Text style={[styles.bigText, { fontSize: 24, color: "#205000" }]}>
           $ {item.totalBaseIncome}
         </Text>
@@ -46,7 +51,7 @@ const Item = ({ item, navigation }) => (
                 : "red"
             }
           />
-          {item.status}
+          {item.status || "Paid"}
         </Text>
         <Text style={styles.smallText}>{item.status_details}</Text>
       </View>
