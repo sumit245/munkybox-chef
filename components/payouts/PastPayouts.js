@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
+import axios from "axios";
 
 const Item = ({ item, navigation }) => (
   <View style={styles.card}>
@@ -106,6 +107,24 @@ const DATA = [
 
 export default function PastPayouts({ navigation }) {
   const [payouts, setPayouts] = useState([]);
+  const fetchPastPayouts = async (id) => {
+    const response = await axios.get(
+      "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getpastpayout/" +
+        id
+    );
+    setPayouts(response.data);
+    // const {
+    //   totalBaseIncome,
+    //   totalDiscount,
+    //   orders,
+    //   numOrders,
+    //   due,
+    //   payout_start_date,
+    //   payout_end_date,
+    //   totalAddOns,
+    //   totalAddOnRevenue,
+    // } = response.data;
+  };
   useEffect(() => {
     setPayouts(DATA);
   }, []);

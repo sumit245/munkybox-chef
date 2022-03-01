@@ -24,11 +24,11 @@ const PayoutHome = ({ route, navigation }) => {
   const [due, setDue] = useState(0);
   const [payDuration, setPayDuration] = useState("");
   const [netCommission, setNetCommission] = useState(0);
+
   const [routes] = React.useState([
     { key: "first", title: "Current Payout" },
     { key: "second", title: "Past Payout" },
   ]);
-  const [payhistory, setPayHistory] = React.useState([]);
   const [payDate, setPayDate] = useState("");
 
   const restaurant = useSelector((state) => state.restaurant);
@@ -111,7 +111,7 @@ const PayoutHome = ({ route, navigation }) => {
           />
         );
       case "second":
-        return <PastPayouts payouts={payhistory} navigation={navigation} />;
+        return <PastPayouts navigation={navigation} />;
 
       default:
         break;
