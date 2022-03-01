@@ -96,7 +96,7 @@ const Item = ({ item, commission, navigation }) => {
             totalAddOnReveneue: item.totalAddOnRevenue,
             totalDiscount: item.totalDiscount,
             commission: commission,
-            netCommission: netCommission,
+            netCommission: netcommission,
             due: item.due,
             navigation: navigation,
           })
