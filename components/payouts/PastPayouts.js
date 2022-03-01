@@ -12,104 +12,87 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import moment from "moment";
 
-const Item = ({ item, navigation }) => (
-  <View style={styles.card}>
-    <View
-      style={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginBottom: 12,
-      }}
-    >
-      <View>
-        <Text style={styles.smallText}>
-          {moment(item.payout_start_date).format("Do MMM").toString() +
-            " - " +
-            moment(item.payout_end_date).format("Do MMM").toString()}
-        </Text>
-        <Text style={[styles.bigText, { fontSize: 24, color: "#205000" }]}>
-          $ {item.totalBaseIncome}
-        </Text>
+const Item = ({ item, navigation }) => {
+  
+  return (
+    <View style={styles.card}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginBottom: 12,
+        }}
+      >
+        <View>
+          <Text style={styles.smallText}>
+            {moment(item.payout_start_date).format("Do MMM").toString() +
+              " - " +
+              moment(item.payout_end_date).format("Do MMM").toString()}
+          </Text>
+          <Text style={[styles.bigText, { fontSize: 24, color: "#205000" }]}>
+            $ {item.totalBaseIncome}
+          </Text>
+        </View>
+        <View style={{ alignItems: "flex-end" }}>
+          <Text style={styles.smallText}>
+            {" "}
+            <Icon
+              name={
+                item.status_code === 1
+                  ? "checkmark-circle"
+                  : item.status_code === 2
+                    ? "information-circle"
+                    : "information-circle"
+              }
+              size={18}
+              color={
+                item.status_code === 1
+                  ? "green"
+                  : item.status_code === 2
+                    ? "orange"
+                    : "red"
+              }
+            />
+            {item.status || "Paid"}
+          </Text>
+          <Text style={styles.smallText}>{item.status_details}</Text>
+        </View>
       </View>
-      <View style={{ alignItems: "flex-end" }}>
-        <Text style={styles.smallText}>
-          {" "}
-          <Icon
-            name={
-              item.status_code === 1
-                ? "checkmark-circle"
-                : item.status_code === 2
-                ? "information-circle"
-                : "information-circle"
-            }
-            size={18}
-            color={
-              item.status_code === 1
-                ? "green"
-                : item.status_code === 2
-                ? "orange"
-                : "red"
-            }
-          />
-          {item.status || "Paid"}
+      <TouchableOpacity
+        style={{
+          width: 200,
+          alignSelf: "center",
+          borderRadius: 6,
+          borderWidth: 0.2,
+          paddingVertical: 4,
+          height: 28,
+          backgroundColor: "#2962ff",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        onPress={() =>
+          navigation.navigate("commission_tracking", {
+            revenue: item.revenue,
+            orders: item.orders,
+            numOrders: item.numOrders,
+            totalAddOns: item.totalAddOns,
+            totalOrderRevenue: item.totalOrderRevenue,
+            totalAddOnReveneue: item.totalAddOnReveneue,
+            totalDiscount: item.discount,
+            commission: item.commission,
+            netCommission: item.netCommission,
+            due: item.due,
+            navigation: navigation,
+          })
+        }
+      >
+        <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
+          View Payout
         </Text>
-        <Text style={styles.smallText}>{item.status_details}</Text>
-      </View>
+      </TouchableOpacity>
     </View>
-    <TouchableOpacity
-      style={{
-        width: 200,
-        alignSelf: "center",
-        borderRadius: 6,
-        borderWidth: 0.2,
-        paddingVertical: 4,
-        height: 28,
-        backgroundColor: "#2962ff",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-      onPress={() =>
-        navigation.navigate("commission_tracking", {
-          current_cycle: item.payout_cycle,
-          payout_date: item.payout_date,
-          revenue: item.revenue,
-          navigation: navigation,
-        })
-      }
-    >
-      <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
-        View Payout
-      </Text>
-    </TouchableOpacity>
-  </View>
-);
-
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    payout_cycle: "1st Jan 22 - 15th Jan 22",
-    revenue: "0.00",
-    status: "Paid",
-    status_details: "",
-    status_code: 1,
-  },
-  {
-    id: "bd7acbea-c1b1-46c4-aed5-3ad53abb28ba",
-    payout_cycle: "15th Jan 22 - 31st Jan 22",
-    revenue: "0.00",
-    status: "On Hold",
-    status_details: "Bank Details Incorrect",
-    status_code: 3,
-  },
-  {
-    id: "bd7acbea-c1b1-36c4-aed5-3ad53abb28ba",
-    payout_cycle: "1st Feb 22 - 15th Feb 22",
-    revenue: "0.00",
-    status: "Pending",
-    status_details: "",
-    status_code: 2,
-  },
-];
+  )
+}
 
 export default function PastPayouts({ navigation }) {
   const [payouts, setPayouts] = useState([]);
