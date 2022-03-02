@@ -6,10 +6,7 @@ import { styles } from "../../styles/headerstyle";
 export default function HeaderwithBack(props) {
   return (
     <View
-      style={[
-        styles.header,
-        { backgroundColor: "#fff", flexDirection: "row", flex: 1 },
-      ]}
+      style={[styles.header, { backgroundColor: "#fff", flexDirection: "row" }]}
     >
       <Icon name="chevron-back" size={28} color="#226ccf" />
       <Text
@@ -18,7 +15,6 @@ export default function HeaderwithBack(props) {
           {
             color: "#226ccf",
             textAlign: "center",
-            textAlignVertical: "center",
           },
         ]}
       >
