@@ -69,7 +69,7 @@ export default function AuthRoutes({ navigation }) {
       <Stack.Screen
         name="payouts"
         component={PayoutHome}
-        options={{ title: "About", headerShown: true }}
+        options={{ title: "About", headerShown: true, headerTitle: "About" }}
       />
       <Stack.Screen name="commission_tracking" component={CommissionTracking} />
       <Stack.Screen name="commission_history" component={CommissionHistory} />
