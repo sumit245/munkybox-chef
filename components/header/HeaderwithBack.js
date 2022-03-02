@@ -21,10 +21,10 @@ export default function HeaderwithBack(props) {
         style={[
           styles.title,
           {
-            color: "#226ccf",
+            color: "#000",
             textAlign: "center",
             fontSize: 20,
-            marginLeft: "40%",
+            marginLeft: "34%",
           },
         ]}
       >
