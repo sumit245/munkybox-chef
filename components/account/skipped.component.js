@@ -12,7 +12,7 @@ export default function Skipped({ navigation }) {
       >
         <View>
           <Text style={{ fontSize: 18, color: "#444", margin: 8 }}>
-            <Icon name="swap-vertical" color="#444" size={20} /> Skipped Meals
+            <Icon name="md-document-text-outline" color="#444" size={20} /> About us
           </Text>
         </View>
       </TouchableOpacity>

@@ -24,7 +24,7 @@ export default function AccountSettings({ navigation }) {
           <BankAccount navigation={navigation} />
           <Plans />
           <Addmeals navigation={navigation} />
-          {/* <Skipped navigation={navigation} /> */}
+          <Skipped navigation={navigation} />
           <AddDocument navigation={navigation} />
           <ContactUs navigation={navigation} />
         </View>
