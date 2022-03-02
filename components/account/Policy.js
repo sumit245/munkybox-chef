@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, SafeAreaView } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
+import Header from "../header/Header";
+import HeaderwithBack from "../header/HeaderwithBack";
 
 export default function Policy() {
   const [index, setIndex] = useState(0);
@@ -61,6 +63,7 @@ export default function Policy() {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <HeaderwithBack title="About" />
       <TabView
         lazy
         swipeEnabled
