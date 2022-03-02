@@ -8,6 +8,7 @@ import Logout from "../components/account/logout.component";
 import Addmeals from "../components/account/Addmeals";
 import Skipped from "../components/account/skipped.component";
 import AddDocument from "../components/account/adddocument.component";
+import NotificationRow from "../components/account/NotificationRow";
 
 export default function AccountSettings({ navigation }) {
   return (
@@ -24,8 +25,9 @@ export default function AccountSettings({ navigation }) {
           <BankAccount navigation={navigation} />
           <Plans />
           <Addmeals navigation={navigation} />
-          <Skipped navigation={navigation} />
           <AddDocument navigation={navigation} />
+          <Skipped navigation={navigation} />
+          <NotificationRow navigation={navigation} />
           <ContactUs navigation={navigation} />
         </View>
 
