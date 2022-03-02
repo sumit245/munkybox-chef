@@ -8,11 +8,11 @@ export default function Skipped({ navigation }) {
     <>
       <TouchableOpacity
         style={styles.row}
-        onPress={() => navigation.navigate("Signup")}
+        onPress={() => navigation.navigate("policies")}
       >
         <View>
           <Text style={{ fontSize: 18, color: "#444", margin: 8 }}>
-            <Icon name="md-document-text-outline" color="#444" size={20} /> About us
+            <Icon name="help-circle-outline" color="#444" size={20} /> About us
           </Text>
         </View>
       </TouchableOpacity>
