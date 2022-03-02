@@ -16,7 +16,7 @@ export default function Notifications({ navigation }) {
   const onToggleSwitch = () => setIsSwitchOn(true);
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderwithBack title="Notification Settings" navigation={navigation} />
+      <HeaderwithBack title="Notification" navigation={navigation} />
 
       <ScrollView style={styles.scrollView}>
         <Card style={styles.notifCard}>
