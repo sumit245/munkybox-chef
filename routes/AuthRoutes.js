@@ -66,7 +66,7 @@ export default function AuthRoutes({ navigation }) {
       <Stack.Screen name="trackcampaign" component={TrackCampaign} />
       <Stack.Screen name="contacts" component={Contacts} />
       <Stack.Screen name="policies" component={Policy}/>
-      <Stack.Screen name="payouts" component={PayoutHome} />
+      <Stack.Screen name="payouts" component={PayoutHome} options={{title:"About"}} />
       <Stack.Screen name="commission_tracking" component={CommissionTracking} />
       <Stack.Screen name="commission_history" component={CommissionHistory} />
       <Stack.Screen name="documents" component={VerificationDocs} />
