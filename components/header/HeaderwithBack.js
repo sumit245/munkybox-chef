@@ -26,7 +26,7 @@ export default function HeaderwithBack(props) {
             color: "#000",
             textAlign: "center",
             fontSize: 20,
-            marginLeft: "34%",
+            marginLeft: "28%",
           },
         ]}
       >
