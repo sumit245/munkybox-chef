@@ -13,7 +13,7 @@ import HeaderwithBack from "../header/HeaderwithBack";
 
 export default function Notifications({ navigation }) {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
-  onToggleSwitch = () => setIsSwitchOn(true);
+  const onToggleSwitch = () => setIsSwitchOn(true);
   return (
     <SafeAreaView style={styles.container}>
       <HeaderwithBack title="Notification Settings" navigation={navigation} />
