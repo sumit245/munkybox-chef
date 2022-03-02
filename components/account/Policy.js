@@ -4,7 +4,7 @@ import { TabView, TabBar } from "react-native-tab-view";
 import Header from "../header/Header";
 import HeaderwithBack from "../header/HeaderwithBack";
 
-export default function Policy() {
+export default function Policy({ navigation }) {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     {
@@ -63,7 +63,7 @@ export default function Policy() {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <HeaderwithBack title="About" />
+      <HeaderwithBack title="About" navigation={navigation} />
       <TabView
         lazy
         swipeEnabled
