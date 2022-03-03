@@ -13,9 +13,9 @@ export const styles = StyleSheet.create({
   header: {
     height: 54,
     paddingBottom: 2,
-    borderBottomColor: DARKGRAY,
+    borderBottomColor: "#fdfdfd",
     borderBottomWidth: 0.5,
-    backgroundColor: PrimaryDark,
+    backgroundColor: "#A71D4F",
     justifyContent: "flex-start",
   },
   title: {

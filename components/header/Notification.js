@@ -29,8 +29,8 @@ export default function Notification({ navigation }) {
       onPress={() => navigation.navigate("newOrders", { order: order })}
     >
       <Icon
-        name="ios-notifications-outline"
-        color={SecondaryLightColor}
+        name="ios-notifications"
+        color={"#F96122"}
         size={22}
       />
       <View>
@@ -40,7 +40,7 @@ export default function Notification({ navigation }) {
           style={{
             marginTop: -10,
             marginLeft: -10,
-            backgroundColor: SecondaryLightColor,
+            backgroundColor: "#F96122",
             color: WHITE,
             fontWeight: "bold",
             fontSize: 12,

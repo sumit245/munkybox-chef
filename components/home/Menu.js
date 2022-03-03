@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     color: DARKGRAY,
   },
   headerMenu: {
-    backgroundColor: SecondaryLightColor,
+    backgroundColor: "#F96122",
     padding: 6,
     marginTop: -8,
     flexDirection: "row",

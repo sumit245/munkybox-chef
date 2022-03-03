@@ -23,7 +23,7 @@ export default class CalTab extends Component {
   render() {
     const { activeDay } = this.state;
     return (
-      <View style={{ backgroundColor: PrimaryDark }}>
+      <View style={{ backgroundColor: "#A71D4F" }}>
         <View style={styles.calenderTab}>
           {days.map((day, index) => (
             <TouchableOpacity
@@ -50,7 +50,7 @@ export default class CalTab extends Component {
         <Icon
           name="caret-up-sharp"
           size={20}
-          color={SecondaryLightColor}
+          color="#F96122"
           style={{
             marginTop: -14,
             marginLeft:
@@ -70,17 +70,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 6,
-    backgroundColor: PrimaryDark,
+    backgroundColor: "#A71D4F",
     flexDirection: "row",
   },
   dateTab: {
     flex: 1,
     alignItems: "center",
-    borderRightColor: DARKGRAY,
+    borderRightColor: "#fdfdfd",
     // borderRightWidth: 0.5,
   },
   dateHeader: {
     fontSize: 18,
-    color: DARKGRAY,
+    color: "#fdfdfd",
   },
 });
