@@ -80,7 +80,7 @@ export default function Review({ item, index, navigation }) {
         }}
       >
         <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          Order #{item.order_id} (Bill total: ${item.base_price})
+          #{item.order_id} (Bill total: ${item.base_price})
         </Text>
         <Text
           style={{

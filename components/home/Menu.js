@@ -54,7 +54,7 @@ export default function Menu({
 
   const [isCollapse, setCollapse] = useState(true);
 
-  const RenderAddon = ({ add_on, add_on_name, add_on_count, partAdds }) => {
+  const RenderAddon = ({ add_on, partAdds }) => {
     return (
       <View style={{ backgroundColor: WHITE, padding: 6 }}>
         {add_on &&
@@ -196,8 +196,8 @@ export default function Menu({
           <RenderHeader title={"Add ons"} />
           <RenderAddon
             add_on={add_on}
-            add_on_count={add_on_count}
-            add_on_name={add_on_name}
+            // add_on_count={add_on_count}
+            // add_on_name={add_on_name}
             partAdds={partAdds}
           />
         </Collapsible>
