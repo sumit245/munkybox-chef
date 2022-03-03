@@ -94,16 +94,17 @@ export default function Orders() {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
     );
-    const { activeorders, count } = response.data;
+    const { activeorders } = response.data;
     const today = moment();
     let todayOrders = activeorders.filter(
       (item) =>
         today.isBetween(
           moment(item.start_date).subtract(1, "day"),
-          item.end_date
+          moment(item.end_date).add(2, "days")
         ) && item.time === currentTab
     );
     setOrders(todayOrders);
+    console.log(todayOrders);
     const currentOrderResponse = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/getcurrentorder/"
     );
