@@ -158,21 +158,6 @@ export default function Review({ item, index, navigation }) {
                 key={i}
               />
             ))}
-
-            {/* <View
-              style={{
-                borderRadius: 2,
-                backgroundColor: "orange",
-                flexDirection: "row",
-                alignItems: "center",
-                padding: 2,
-              }}
-            >
-              <Icon name="star" color="#fff" size={12} />
-              <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 12 }}>
-                {item.rating}
-              </Text>
-            </View> */}
           </View>
           {Array.isArray(item.likes) && (
             <View

@@ -104,7 +104,6 @@ export default function Orders() {
         ) && item.time === currentTab
     );
     setOrders(todayOrders);
-    console.log(todayOrders);
     const currentOrderResponse = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/getcurrentorder/"
     );
