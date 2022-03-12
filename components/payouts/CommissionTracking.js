@@ -131,10 +131,11 @@ export default function CommissionTracking({ route, navigation }) {
             <Text style={[styles.smallText, { marginRight: 4, color: "#777" }]}>
               -$
               {parseFloat(
-                parseFloat(totalOrderRevenue) +
-                  (parseFloat(totalAddOnReveneue) * parseFloat(commission)) /
-                    100
-              ).toFixed(2)}
+                ((parseFloat(totalOrderRevenue) +
+                  parseFloat(totalAddOnReveneue)) *
+                  parseFloat(commission)) /
+                  100
+              )}
             </Text>
             <TouchableOpacity
               onPress={() =>
