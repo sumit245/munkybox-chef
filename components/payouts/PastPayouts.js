@@ -123,7 +123,7 @@ export default function PastPayouts({ navigation, commission }) {
   };
   useEffect(() => {
     fetchPastPayouts(restaurant_id);
-  }, []);
+  }, [payouts]);
   const ListEmptyContent = () => (
     <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
       <Text>No orders to display</Text>
@@ -140,15 +140,13 @@ export default function PastPayouts({ navigation, commission }) {
     );
   };
   return (
-    <View>
-      <FlatList
-        data={payouts}
-        renderItem={renderItem}
-        extraData={navigation}
-        keyExtractor={(item) => item.id}
-        ListEmptyComponent={ListEmptyContent}
-      />
-    </View>
+    <FlatList
+      data={payouts}
+      renderItem={renderItem}
+      extraData={navigation}
+      keyExtractor={(item) => item.id}
+      ListEmptyComponent={ListEmptyContent}
+    />
   );
 }
 const styles = StyleSheet.create({

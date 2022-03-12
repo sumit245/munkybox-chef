@@ -119,7 +119,7 @@ const PayoutHome = ({ route, navigation }) => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1}}>
       <Header title="Payouts & Finance" />
       {/* <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}> */}
       <TabView
