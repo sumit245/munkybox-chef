@@ -121,7 +121,7 @@ export default function CommissionTracking({ route, navigation }) {
           <Text style={styles.smallText}>
             Total Admin Commission ({commission}%)
           </Text>
-          <view
+          <View
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
@@ -147,7 +147,7 @@ export default function CommissionTracking({ route, navigation }) {
             >
               <Icon name="history" size={14} color="#026020" />
             </TouchableOpacity>
-          </view>
+          </View>
         </View>
       </View>
     </SafeAreaView>
