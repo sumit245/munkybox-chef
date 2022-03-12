@@ -121,7 +121,7 @@ export default function CommissionTracking({ route, navigation }) {
           <Text style={styles.smallText}>
             Total Admin Commission ({commission}%)
           </Text>
-          <View
+          <view
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
@@ -129,7 +129,12 @@ export default function CommissionTracking({ route, navigation }) {
             }}
           >
             <Text style={[styles.smallText, { marginRight: 4, color: "#777" }]}>
-              -${parseFloat(netCommission).toFixed(2)}
+              -$
+              {parseFloat(
+                parseFloat(netCommission) +
+                  (parseFloat(totalAddOnReveneue) * parseFloat(commission)) /
+                    100
+              ).toFixed(2)}
             </Text>
             <TouchableOpacity
               onPress={() =>
@@ -142,7 +147,7 @@ export default function CommissionTracking({ route, navigation }) {
             >
               <Icon name="history" size={14} color="#026020" />
             </TouchableOpacity>
-          </View>
+          </view>
         </View>
       </View>
     </SafeAreaView>
