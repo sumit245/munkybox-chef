@@ -36,7 +36,7 @@ export default function HeaderTabSwitch({
   }, [selected]);
 
   return (
-    <View style={{ backgroundColor: PrimaryDark }}>
+    <View style={{ backgroundColor: "#ff9900" }}>
       <View style={styles.tabcontainer}>
         <ScrollView
           horizontal={true}
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   tabcontainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: PrimaryDark,
+    backgroundColor: "#ff9900",
   },
   tablabel: {
     width: width / 3,

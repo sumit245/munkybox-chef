@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native";
 // import LinearGradient  from "react-native-linear-gradient";
 import Header from "../header/Header";
 import PromoCard from "./PromoCard";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Growth({ navigation }) {
   const trackAds = () => {
@@ -28,7 +29,7 @@ export default function Growth({ navigation }) {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* <LinearGradient colors={["#ff0000", "#ff2200"]}> */}
+      <LinearGradient colors={["#ff9900", "#ff6600"]} style={{flex:1}}  end={{x:0.1,y:0.9}}  > 
         <Header title={"Growth"} />
         <PromoCard
           index={0}
@@ -52,7 +53,7 @@ export default function Growth({ navigation }) {
           cancelHandler={trackCoupon}
           okHandler={setCoupon}
         />
-      {/* </LinearGradient> */}
+    </LinearGradient> 
     </SafeAreaView>
   );
 }

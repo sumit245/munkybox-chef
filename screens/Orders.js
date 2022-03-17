@@ -11,6 +11,7 @@ import axios from "axios";
 import Loader from "../helpers/Loader";
 import moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
+import { LinearGradient } from "expo-linear-gradient";
 
 const ListEmptyComponent = () => (
   <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -154,6 +155,7 @@ export default function Orders() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <LinearGradient colors={["#ff9900", "#ff6600"]} style={{flex:1}}  end={{x:0.1,y:0.9}}  > 
       <Header title={restaurant_name + ", " + restaurant_id}>
         <View style={styles.switch}>
           <ToggleLunchDinner handleToggle={handleToggle} />
@@ -178,6 +180,7 @@ export default function Orders() {
       ) : (
         <Loader />
       )}
+      </LinearGradient>
     </SafeAreaView>
   );
 }
