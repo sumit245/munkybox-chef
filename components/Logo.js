@@ -5,10 +5,7 @@ export default function Logo() {
   return (
     <>
       <Text style={{ color: "#fff", fontSize: 34, fontWeight: "bold" }}>
-        Munky
-      </Text>
-      <Text style={{ color: "#fff", fontSize: 34, fontWeight: "bold" }}>
-        Box
+        Feasti
       </Text>
     </>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView } from "react-native";
-import { PrimaryDark } from "../../Colors";
+// import LinearGradient  from "react-native-linear-gradient";
 import Header from "../header/Header";
 import PromoCard from "./PromoCard";
 
@@ -27,31 +27,32 @@ export default function Growth({ navigation }) {
     navigation.navigate("select_banner");
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: PrimaryDark }}>
-      <Header title={"Growth"} />
-
-      <PromoCard
-        index={0}
-        title="Advertise your brands"
-        icon="megaphone-outline"
-        head="Ads"
-        subhead="High visibility driven business growth"
-        ok="VIEW PACKS"
-        cancel="TRACK PERFORMANCE"
-        cancelHandler={trackAds}
-        okHandler={setBanner}
-      />
-      <PromoCard
-        index={0}
-        title="Give offers to customers "
-        icon="ios-cash-outline"
-        head="Promo Discount"
-        subhead="Increase orders, average order values & target specific customer segments"
-        cancel="TRACK PERFORMANCE"
-        ok="VIEW PACKS"
-        cancelHandler={trackCoupon}
-        okHandler={setCoupon}
-      />
+    <SafeAreaView style={{ flex: 1 }}>
+      {/* <LinearGradient colors={["#ff0000", "#ff2200"]}> */}
+        <Header title={"Growth"} />
+        <PromoCard
+          index={0}
+          title="Advertise your brands"
+          icon="megaphone-outline"
+          head="Ads"
+          subhead="High visibility driven business growth"
+          ok="VIEW PACKS"
+          cancel="TRACK PERFORMANCE"
+          cancelHandler={trackAds}
+          okHandler={setBanner}
+        />
+        <PromoCard
+          index={0}
+          title="Give offers to customers "
+          icon="ios-cash-outline"
+          head="Promo Discount"
+          subhead="Increase orders, average order values & target specific customer segments"
+          cancel="TRACK PERFORMANCE"
+          ok="VIEW PACKS"
+          cancelHandler={trackCoupon}
+          okHandler={setCoupon}
+        />
+      {/* </LinearGradient> */}
     </SafeAreaView>
   );
 }
