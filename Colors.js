@@ -1,8 +1,8 @@
-export const SecondaryColor = "#ff6f00";
+export const SecondaryColor = "#000";
 export const SecondaryDarkColor = "#c43e00";
 export const SecondaryLightColor = "#ffa040";
 export const PrimaryColor = "#1a237e";
-export const PrimaryDark = "#000031";
+export const PrimaryDark = "#D32323";
 export const PrimaryLight = "#534bae";
 export const SelectedColor = "#d7385e";
 export const WHITE = "#ffffff";
