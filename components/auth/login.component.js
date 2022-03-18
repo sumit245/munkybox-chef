@@ -15,7 +15,6 @@ import PhoneInput from "react-native-phone-number-input";
 import { styles } from "./auth.style";
 import Logo from "../Logo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { LinearGradient } from "expo-linear-gradient";
 
 const firebaseConfig = firebase.apps.length
   ? firebase.app().options
@@ -78,52 +77,51 @@ export default function Login({ navigation }) {
           firebaseConfig={firebaseConfig}
           attemptInvisibleVerification={true}
         />
-        {/* <LinearGradient colors={["red", "orange"]}> */}
-          <View style={styles.image}>
-            <Logo />
-          </View>
 
-          <PhoneInput
-            defaultCode="CA"
-            layout="first"
-            textInputProps={{
-              returnKeyType: "done",
-              returnKeyLabel: "Done",
-              keyboardType: "number-pad",
-            }}
-            textContainerStyle={{
-              borderColor: "#fff",
-              height: 48,
-              textAlignVertical: "top",
-              borderRadius: 5,
-            }}
-            codeTextStyle={{ marginTop: -6 }}
-            textInputStyle={{ fontSize: 18, marginTop: -6 }}
-            onChangeFormattedText={(text) => {
-              setPhone(text);
-            }}
-            containerStyle={styles.phoneContainer}
-            withShadow
-            autoFocus
-          />
+        <View style={styles.image}>
+          <Logo />
+        </View>
 
-          <TouchableOpacity onPress={sendVerification} style={styles.loginBtn}>
-            <Text style={styles.btnText}>Send OTP</Text>
-          </TouchableOpacity>
+        <PhoneInput
+          defaultCode="CA"
+          layout="first"
+          textInputProps={{
+            returnKeyType: "done",
+            returnKeyLabel: "Done",
+            keyboardType: "number-pad",
+          }}
+          textContainerStyle={{
+            borderColor: "#fff",
+            height: 48,
+            textAlignVertical: "top",
+            borderRadius: 5,
+          }}
+          codeTextStyle={{ marginTop: -6 }}
+          textInputStyle={{ fontSize: 18, marginTop: -6 }}
+          onChangeFormattedText={(text) => {
+            setPhone(text);
+          }}
+          containerStyle={styles.phoneContainer}
+          withShadow
+          autoFocus
+        />
 
-          <Text
-            style={styles.forgot_button}
-            onPress={() => navigation.navigate("Pin", { entry: false })}
-          >
-            Login With PIN
-          </Text>
-          <Text
-            style={styles.forgot_button}
-            onPress={() => navigation.navigate("Signup")}
-          >
-            Become our Partner{" "}
-          </Text>
-        {/* </LinearGradient> */}
+        <TouchableOpacity onPress={sendVerification} style={styles.loginBtn}>
+          <Text style={styles.btnText}>Send OTP</Text>
+        </TouchableOpacity>
+
+        <Text
+          style={styles.forgot_button}
+          onPress={() => navigation.navigate("Pin", { entry: false })}
+        >
+          Login With PIN
+        </Text>
+        <Text
+          style={styles.forgot_button}
+          onPress={() => navigation.navigate("Signup")}
+        >
+          Become our Partner{" "}
+        </Text>
       </SafeAreaView>
     </ImageBackground>
   );

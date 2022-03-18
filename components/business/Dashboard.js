@@ -21,6 +21,7 @@ import Ants from "react-native-vector-icons/FontAwesome5";
 import { TabView, TabBar } from "react-native-tab-view";
 import StatCards from "./StatCards";
 import axios from "axios";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Dashboard({ navigation }) {
   const layout = useWindowDimensions();
@@ -211,6 +212,7 @@ export default function Dashboard({ navigation }) {
         backgroundColor: PrimaryDark,
       }}
     >
+      <LinearGradient colors={["#ffae00","#ff0000"]} >
       <StatusBar />
       <Header title={restaurant_name + ", " + city} />
       <ScrollView>
@@ -367,6 +369,7 @@ export default function Dashboard({ navigation }) {
           </View>
         </View>
       </ScrollView>
+      </LinearGradient>
     </SafeAreaView>
   );
 }
