@@ -56,8 +56,8 @@ export default function HeaderTabSwitch({
                 style={[
                   styles.label,
                   currentIndex === index
-                    ? { fontWeight: "bold", color: WHITE }
-                    : { color: WHITE },
+                    ? { fontWeight: "bold", color: "#000" }
+                    : { color: "#000" },
                 ]}
               >
                 {item}
@@ -69,7 +69,7 @@ export default function HeaderTabSwitch({
                     margin: 4,
                     fontSize: 12,
                     backgroundColor: "red",
-                    color: WHITE,
+                    color: "#fff",
                   }}
                   size={14}
                 >
@@ -87,7 +87,9 @@ const styles = StyleSheet.create({
   tabcontainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ff9900",
+    backgroundColor: "#fff",
+    borderBottomWidth:0.5,
+    borderBottomColor:DARKGRAY
   },
   tablabel: {
     width: width / 3,
