@@ -17,6 +17,7 @@ import {
 import axios from "axios";
 import { avatarify } from "../helpers/truncate_string";
 import Loader from "../helpers/Loader";
+import { LinearGradient } from "expo-linear-gradient";
 
 const CollapsedContent = ({ item, setcounterdecrease }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -102,7 +103,8 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
 
   if (!loading) {
     return (
-      <View style={styles.orderCard}>
+      
+        <LinearGradient colors={["#ff9900", "#ff6600"]} style={styles.orderCard}  end={{x:0.1,y:0.9}}  > 
         <View
           style={{
             flexDirection: "row",
@@ -116,7 +118,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
                 height: 60,
                 width: 60,
                 borderRadius: 60,
-                backgroundColor: "purple",
+                backgroundColor: "#ff9900",
                 justifyContent: "center",
                 alignItems: "center",
                 marginRight: 8,
@@ -130,12 +132,12 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
               <Text
                 style={[
                   styles.title,
-                  { color: "#000", fontSize: 18, marginVertical: 4 },
+                  { color: "#fff", fontSize: 18, marginVertical: 4 },
                 ]}
               >
                 {item.order_id}
               </Text>
-              <Text style={[styles.title, { fontWeight: "bold" }]}>
+              <Text style={[styles.title, { fontWeight: "bold",color:"#fff" }]}>
                 {item.user_name}
               </Text>
             </View>
@@ -156,27 +158,27 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
             justifyContent: "space-between",
             marginTop: 8,
             paddingTop: 8,
-            borderTopColor: "#ccc",
-            borderTopWidth: 0.2,
+            borderTopColor: "#ececec",
+            borderTopWidth: 1,
           }}
         >
           <TouchableOpacity
             style={[styles.link, { marginLeft: "20%" }]}
             onPress={() => openInMap(item.address)}
           >
-            <Icon name="location-outline" size={24} color={PrimaryLight} />
+            <Icon name="location" size={24} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.link}
             onPress={() => makeCall(item.phone)}
           >
-            <Icon name="call-sharp" size={24} color="green" />
+            <Icon name="call-sharp" size={24} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setPulled(!pulled)}>
             <Icon
-              name={pulled ? "chevron-up-sharp" : "chevron-down-sharp"}
+              name={pulled ? "chevron-up" : "chevron-down"}
               size={24}
-              color="#000"
+              color="#ededed"
             />
           </TouchableOpacity>
         </View>
@@ -280,7 +282,8 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
             </View>
           </View>
         )}
-      </View>
+    </LinearGradient>
+      
     );
   } else {
     return <Loader />;
@@ -293,7 +296,6 @@ export default function OrderItem({ item, index, meal, decrement }) {
 
 const styles = StyleSheet.create({
   orderCard: {
-    backgroundColor: "#f9ffff",
     padding: 12,
     margin: 1,
     marginVertical: 4,

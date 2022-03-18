@@ -154,12 +154,13 @@ export default function Orders() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <LinearGradient colors={["#ff9900", "#ff6600"]} style={{flex:1}}  end={{x:0.1,y:0.9}}  > 
+    <SafeAreaView style={{ flex: 1,backgroundColor:"#fff" }}>
+      
       <Header title={restaurant_name + ", " + restaurant_id}>
-        <View style={styles.switch}>
+        {/* <View style={styles.switch}>
           <ToggleLunchDinner handleToggle={handleToggle} />
-        </View>
+          </View>
+         */}
       </Header>
       <HeaderTabSwitch
         items={slot === "Lunch" ? lunch : dinner}
@@ -180,7 +181,7 @@ export default function Orders() {
       ) : (
         <Loader />
       )}
-      </LinearGradient>
+      
     </SafeAreaView>
   );
 }
