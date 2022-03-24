@@ -191,7 +191,7 @@ export default function PreviewCoupon({ navigation, route }) {
           >
             <Text style={[styles.btnText, { color: "#000" }]}>EDIT</Text>
           </TouchableOpacity>
-          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{ flex: 1 }} end={{ x: 0.1, y: 0.9 }} style={styles.actionButton}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={styles.actionButton}>
             <TouchableOpacity
               onPress={() => submit()}
               disabled={!checked}
