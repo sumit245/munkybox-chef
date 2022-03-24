@@ -7,19 +7,19 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import { width } from "../../Dimens";
 import { DARKGRAY } from "../../Colors";
 import Icon from "react-native-vector-icons/Ionicons";
 import { IconButton, Provider } from "react-native-paper";
 import { useSelector } from "react-redux";
-import CustomDialog from "../../helpers/CustomDialog";
 import axios from "axios";
-import CustomAlert from "../../helpers/CustomAlert";
+
 
 export default function Contacts({ navigation }) {
   const [info, setInfo] = useState({
-    receipient: "support@munkybox.com",
+    receipient: "support@feasti.com",
     subject: "",
     restaurant_name: "",
     restaurant_id: "",
@@ -27,8 +27,6 @@ export default function Contacts({ navigation }) {
     phone: "",
     body: "",
   });
-  const [discard, setDiscard] = useState(false);
-  const [visible, setVisible] = useState(true);
   const restaurant = useSelector((state) => state.restaurant);
 
   useEffect(() => {
@@ -53,13 +51,29 @@ export default function Contacts({ navigation }) {
     );
     const { status } = await response.data;
     if (status === 200) {
-      setDiscard(true);
+      Alert.alert(
+        "Delivered!!!",
+        "Your message has been sent to the admin. They will contact you soon!!",
+        [
+          { text: "OK", onPress: () => navigation.goBack() }
+        ])
     }
   };
 
-  const cancelHandler = () => {
-    setDiscard(false);
+  const deleteMsg = () => {
+    Alert.alert(
+      "Are you Sure?",
+      "Your message will be discarded",
+      [{
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => navigation.goBack() }
+      ])
   };
+
+
 
   return (
     <Provider>
@@ -88,7 +102,7 @@ export default function Contacts({ navigation }) {
             }}
           >
             <IconButton icon="send" color="#126e72" onPress={sendEmail} />
-            <IconButton icon="delete" color="#ef2145" onPress={setDiscard} />
+            <IconButton icon="delete" color="#ef2145" onPress={deleteMsg} />
           </View>
           {/* buttons */}
         </View>
@@ -154,7 +168,7 @@ export default function Contacts({ navigation }) {
                     borderColor: "#777",
                     borderWidth: 0.5,
                     borderRadius: 2,
-                    height: 250,
+                    height: 350,
                     padding: 4,
                   },
                 ]}
@@ -166,15 +180,7 @@ export default function Contacts({ navigation }) {
           </View>
         </ScrollView>
       </SafeAreaView>
-      {discard && (
-        <CustomAlert
-          title="Are you Sure?"
-          visible={discard}
-          text="Your message will be discarded"
-          cancelHandler={cancelHandler}
-          okHandler={() => navigation.goBack()}
-        />
-      )}
+      
     </Provider>
   );
 }
