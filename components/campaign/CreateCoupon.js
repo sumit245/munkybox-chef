@@ -17,7 +17,7 @@ import HeaderTwo from "../header/HeaderTwo";
 import { onDateChange } from "../../helpers/commons";
 import moment from "moment";
 import { LinearGradient } from "expo-linear-gradient";
-import { grey50 } from "react-native-paper/lib/typescript/styles/colors";
+
 export default function CreateCoupon({ route, navigation }) {
   const { type } = route.params;
   const [plan, setPlan] = useState(2);
