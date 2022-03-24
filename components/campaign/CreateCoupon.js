@@ -17,6 +17,7 @@ import HeaderTwo from "../header/HeaderTwo";
 import { onDateChange } from "../../helpers/commons";
 import moment from "moment";
 import { LinearGradient } from "expo-linear-gradient";
+import { grey50 } from "react-native-paper/lib/typescript/styles/colors";
 export default function CreateCoupon({ route, navigation }) {
   const { type } = route.params;
   const [plan, setPlan] = useState(2);
@@ -314,7 +315,7 @@ export default function CreateCoupon({ route, navigation }) {
             <Text style={[styles.btnText, { color: PrimaryLight }]}>RESET</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.actionButton, { backgroundColor: PrimaryLight }]}
+            style={[styles.actionButton, { backgroundColor: grey50 }]}
             onPress={onPreview}
           >
             <Text style={[styles.btnText, { color: WHITE }]}>PREVIEW</Text>
