@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, SafeAreaView } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
-import AboutUs from "../Components/about/AboutUs";
-import Terms from "../Components/about/Terms";
+import AboutUs from "../components/about/AboutUs";
+import Terms from "../components/about/Terms";
+// import Terms from "../compo"
 
 
 export default function Policy({navigation}) {
