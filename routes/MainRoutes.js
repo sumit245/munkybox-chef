@@ -1,8 +1,8 @@
 import React from "react";
+import { Text } from 'react-native'
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Icon from "react-native-vector-icons/Ionicons";
 import TopPage from "../components/home/TopPage";
-import PastOrders from "../screens/PastOrders";
 import Orders from "../screens/Orders";
 import { PrimaryColor, SecondaryLightColor } from "../Colors";
 import AccountSettings from "../screens/AccountSettings";
@@ -23,12 +23,14 @@ export default function MainRoutes({
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      activeColor={PrimaryColor}
-      inactiveColor={SecondaryLightColor}
+      activeColor="#ff6600"
+      inactiveColor="#ff9900"
       barStyle={{
         backgroundColor: "white",
-        justifyContent: "center",
+        justifyContent: "flex-start",
+        fontWeight: "bold",
       }}
+      tabBarOptions={{ labelStyle: { fontWeight: "bold" } }}
     >
       <Tab.Screen
         name="Home"
@@ -37,6 +39,9 @@ export default function MainRoutes({
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="home-outline" color={color} size={24} />
+          ),
+          tabBarLabel: (
+            <Text style={{ fontWeight: "bold", color: "#ff6600" }}>Home</Text>
           ),
         }}
       />
@@ -47,6 +52,9 @@ export default function MainRoutes({
           tabBarIcon: ({ color }) => (
             <Icon name="stats-chart-outline" color={color} size={24} />
           ),
+          tabBarLabel: (
+            <Text style={{ fontWeight: "bold", color: "#ff6600" }}>Business</Text>
+          ),
         }}
       />
       <Tab.Screen
@@ -56,6 +64,9 @@ export default function MainRoutes({
           tabBarIcon: ({ color }) => (
             <Icon name="fast-food-outline" color={color} size={24} />
           ),
+          tabBarLabel: (
+            <Text style={{ fontWeight: "bold", color: "#ff6600" }}>Orders</Text>
+          ),
         }}
       />
       <Tab.Screen
@@ -64,6 +75,9 @@ export default function MainRoutes({
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="easel-outline" color={color} size={24} />
+          ),
+          tabBarLabel: (
+            <Text style={{ fontWeight: "bold", color: "#ff6600" }}>Growth</Text>
           ),
         }}
       />
@@ -75,6 +89,9 @@ export default function MainRoutes({
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="cog-outline" color={color} size={24} />
+          ),
+          tabBarLabel: (
+            <Text style={{ fontWeight: "bold", color: "#ff6600" }}>Setting</Text>
           ),
         }}
       />
