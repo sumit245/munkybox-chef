@@ -4,15 +4,11 @@ import {
   PrimaryDark,
   PrimaryLight,
   WHITE,
-  PrimaryColor,
-  SecondaryColor,
   SecondaryDarkColor,
-  SecondaryLightColor,
 } from "../../Colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: PrimaryDark,
     marginTop:StatusBar.currentHeight||0
   },
   card: {
