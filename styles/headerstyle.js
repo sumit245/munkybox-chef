@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
   header: {
     height: 54,
     paddingBottom: 2,
-    borderBottomColor:DARKGRAY,
-   borderBottomWidth: 0.5,
+    borderBottomColor: DARKGRAY,
+    borderBottomWidth: 0.5,
     backgroundColor: "#fff",
     justifyContent: "flex-start",
   },

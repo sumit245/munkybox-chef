@@ -29,7 +29,7 @@ export default function Growth({ navigation }) {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <LinearGradient colors={["#ff9900", "#ff6600"]} style={{flex:1}}  end={{x:0.1,y:0.9}}  > 
+      <LinearGradient colors={["#ff8800", "#ff6600"]} style={{flex:1}}  end={{x:0.1,y:0.9}}  > 
         <Header title={"Growth"} />
         <PromoCard
           index={0}
