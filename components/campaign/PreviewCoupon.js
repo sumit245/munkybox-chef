@@ -1,14 +1,12 @@
 import React from "react";
-import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, Text, TouchableOpacity, Alert } from "react-native";
 import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
 import { useSelector } from "react-redux";
 import Loader from "../../helpers/Loader";
 import axios from "axios";
 import { Checkbox, Divider } from "react-native-paper";
-import { SecondaryColor, SecondaryLightColor } from "../../Colors";
 import { useState } from "react";
-import CustomDialog from "../../helpers/CustomDialog";
 import moment from "moment";
 import { LinearGradient } from "expo-linear-gradient";
 export default function PreviewCoupon({ navigation, route }) {
@@ -29,7 +27,7 @@ export default function PreviewCoupon({ navigation, route }) {
   const { promo } = restaurant;
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [pop, showDelete] = useState(false);
+
 
   const submit = async () => {
     if (promo.length !== 0) {
@@ -77,6 +75,12 @@ export default function PreviewCoupon({ navigation, route }) {
       });
     }
   };
+
+  const showDelete = () => {
+    Alert.alert("Are you sure?", "Discarding a coupon will remove all saved details", [
+      { text: "OK", onPress: () => navigation.navigate("growth") }
+    ])
+  }
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>
@@ -84,7 +88,7 @@ export default function PreviewCoupon({ navigation, route }) {
         <HeaderTwo title="Preview" navigation={navigation}>
           <TouchableOpacity
             style={{ paddingHorizontal: 4 }}
-            onPress={() => showDelete(true)}
+            onPress={() => showDelete()}
           >
             <Text style={{ color: "#ff6600", fontWeight: "bold" }}>
               Discard
@@ -201,15 +205,6 @@ export default function PreviewCoupon({ navigation, route }) {
           </LinearGradient>
 
         </View>
-        {pop && (
-          <CustomDialog
-            navigation={navigation}
-            page="Growth"
-            title="Are you sure?"
-            text="Discarding a coupon will remove all saved details"
-          />
-        )}
-
       </SafeAreaView>
     );
   } else {
