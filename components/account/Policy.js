@@ -47,7 +47,7 @@ export default function Policy({ navigation }) {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <HeaderwithBack title="Back" navigation={navigation}/>
+      <HeaderwithBack title="About" navigation={navigation}/>
       <TabView
         lazy
         navigationState={{ index, routes }}
