@@ -315,7 +315,7 @@ export default function CreateCoupon({ route, navigation }) {
             <Text style={[styles.btnText, { color: "#000" }]}>RESET</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.actionButton, { backgroundColor: "#ededed" }]}
+            style={[styles.actionButton, { backgroundColor: "#adadad" }]}
             onPress={onPreview}
           >
             <Text style={[styles.btnText, { color: "#000" }]}>PREVIEW</Text>
