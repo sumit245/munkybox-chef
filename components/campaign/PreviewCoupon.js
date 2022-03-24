@@ -80,134 +80,136 @@ export default function PreviewCoupon({ navigation, route }) {
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>
-        <LinearGradient colors={["#ff9900", "#ff6600"]} style={{ flex: 1 }} end={{ x: 0.1, y: 0.9 }}>
-          <HeaderTwo title="Preview" navigation={navigation}>
-            <TouchableOpacity
-              style={{ paddingHorizontal: 4 }}
-              onPress={() => showDelete(true)}
-            >
-              <Text style={{ color: "#ff6600", fontWeight: "bold" }}>
-                Discard
+
+        <HeaderTwo title="Preview" navigation={navigation}>
+          <TouchableOpacity
+            style={{ paddingHorizontal: 4 }}
+            onPress={() => showDelete(true)}
+          >
+            <Text style={{ color: "#ff6600", fontWeight: "bold" }}>
+              Discard
+            </Text>
+          </TouchableOpacity>
+        </HeaderTwo>
+        <View style={{ flex: 1, backgroundColor: "#FFF" }}>
+          <View style={styles.card}>
+            <View style={styles.cardBody}>
+              <Text style={[styles.bigText, { fontSize: 18 }]}>
+                {type === "net" ? "$" + discount : discount + "% "} OFF
               </Text>
-            </TouchableOpacity>
-          </HeaderTwo>
-          <View style={{ flex: 1, backgroundColor: "#FFF" }}>
-            <View style={styles.card}>
-              <View style={styles.cardBody}>
-                <Text style={[styles.bigText, { fontSize: 18 }]}>
-                  {type === "net" ? "$" + discount : discount + "% "} OFF
-                </Text>
-              </View>
+            </View>
 
-              <View style={styles.cardBody}>
-                <Text
-                  style={[
-                    styles.bigText,
-                    { color: "#000", fontSize: 14, marginVertical: 10 },
-                  ]}
-                >
-                  Applicable on:{" "}
-                  <Text style={styles.smallText}>{plan} Meals</Text>
+            <View style={styles.cardBody}>
+              <Text
+                style={[
+                  styles.bigText,
+                  { color: "#000", fontSize: 14, marginVertical: 10 },
+                ]}
+              >
+                Applicable on:{" "}
+                <Text style={styles.smallText}>{plan} Meals</Text>
+              </Text>
+              <Divider />
+              <Text
+                style={[
+                  styles.bigText,
+                  { color: "#000", fontSize: 14, marginVertical: 10 },
+                ]}
+              >
+                Applicable on:{" "}
+                <Text style={styles.smallText}>
+                  {lunch} {dinner}
                 </Text>
-                <Divider />
-                <Text
-                  style={[
-                    styles.bigText,
-                    { color: "#000", fontSize: 14, marginVertical: 10 },
-                  ]}
-                >
-                  Applicable on:{" "}
-                  <Text style={styles.smallText}>
-                    {lunch} {dinner}
-                  </Text>
+              </Text>
+              <Divider />
+            </View>
+            <View style={styles.cardBody}>
+              <Text
+                style={[
+                  styles.bigText,
+                  { color: "#000", fontSize: 14, marginVertical: 10 },
+                ]}
+              >
+                Valid from:
+                <Text style={styles.smallText}>
+                  {" "}
+                  {start_date} to {end_date}
                 </Text>
-                <Divider />
-              </View>
-              <View style={styles.cardBody}>
-                <Text
-                  style={[
-                    styles.bigText,
-                    { color: "#000", fontSize: 14, marginVertical: 10 },
-                  ]}
-                >
-                  Valid from:
-                  <Text style={styles.smallText}>
-                    {" "}
-                    {start_date} to {end_date}
-                  </Text>
+              </Text>
+              <Divider />
+              <Text
+                style={[
+                  styles.bigText,
+                  { color: "#000", fontSize: 14, marginVertical: 10 },
+                ]}
+              >
+                Valid for:
+                <Text style={styles.smallText}> {diff} Days</Text>
+              </Text>
+              <Divider />
+            </View>
+            <View style={styles.cardBody}>
+              <Text style={[styles.bigText, { color: "#000", fontSize: 14 }]}>
+                PROMO CODE:{" "}
+                <Text style={[styles.bigText, { color: "#000", fontSize: 16 }]}>
+                  {code}
                 </Text>
-                <Divider />
-                <Text
-                  style={[
-                    styles.bigText,
-                    { color: "#000", fontSize: 14, marginVertical: 10 },
-                  ]}
-                >
-                  Valid for:
-                  <Text style={styles.smallText}> {diff} Days</Text>
-                </Text>
-                <Divider />
-              </View>
-              <View style={styles.cardBody}>
-                <Text style={[styles.bigText, { color: "#000", fontSize: 14 }]}>
-                  PROMO CODE:{" "}
-                  <Text style={[styles.bigText, { color: "#000", fontSize: 16 }]}>
-                    {code}
-                  </Text>
-                </Text>
-                {/* <Divider /> */}
-              </View>
+              </Text>
+              {/* <Divider /> */}
+            </View>
 
-              <View style={styles.cardBody}>
-                <View style={{ flexDirection: "row" }}>
-                  <Checkbox.Android
-                    status={checked ? "checked" : "unchecked"}
-                    onPress={() => {
-                      setChecked(!checked);
+            <View style={styles.cardBody}>
+              <View style={{ flexDirection: "row" }}>
+                <Checkbox.Android
+                  status={checked ? "checked" : "unchecked"}
+                  onPress={() => {
+                    setChecked(!checked);
+                  }}
+                  color="#ff6600"
+                />
+                <Text>
+                  By clicking "CONFIRM".I undertake that I have read and
+                  understood the{" "}
+                  <Text
+                    style={{
+                      color: "#226ccf",
+                      textDecorationLine: "underline",
                     }}
-                    color="#ff6600"
-                  />
-                  <Text>
-                    By clicking "CONFIRM".I undertake that I have read and
-                    understood the{" "}
-                    <Text
-                      style={{
-                        color: "#226ccf",
-                        textDecorationLine: "underline",
-                      }}
-                    >
-                      terms and conditions
-                    </Text>{" "}
-                  </Text>
-                </View>
+                  >
+                    terms and conditions
+                  </Text>{" "}
+                </Text>
               </View>
             </View>
           </View>
+        </View>
 
-          <View style={styles.bottomButtonGroup}>
+        <View style={styles.bottomButtonGroup}>
+          <TouchableOpacity
+            style={[styles.actionButton, { backgroundColor: "#FFF" }]}
+            onPress={() => navigation.goBack()}
+          >
+            <Text style={[styles.btnText, { color: "#000" }]}>EDIT</Text>
+          </TouchableOpacity>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{ flex: 1 }} end={{ x: 0.1, y: 0.9 }} style={styles.actionButton}>
             <TouchableOpacity
-              style={[styles.actionButton, { backgroundColor: "#FFF" }]}
-              onPress={() => navigation.goBack()}
-            >
-              <Text style={[styles.btnText, { color: "#226ccf" }]}>EDIT</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.actionButton, { backgroundColor: "#226ccf" }]}
               onPress={() => submit()}
               disabled={!checked}
             >
               <Text style={[styles.btnText, { color: "#FFF" }]}>Confirm</Text>
             </TouchableOpacity>
-          </View>
-          {pop && (
-            <CustomDialog
-              navigation={navigation}
-              page="Growth"
-              title="Are you sure?"
-              text="Discarding a coupon will remove all saved details"
-            />
-          )}
-        </LinearGradient>
+          </LinearGradient>
+
+        </View>
+        {pop && (
+          <CustomDialog
+            navigation={navigation}
+            page="Growth"
+            title="Are you sure?"
+            text="Discarding a coupon will remove all saved details"
+          />
+        )}
+
       </SafeAreaView>
     );
   } else {
