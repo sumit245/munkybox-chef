@@ -165,7 +165,7 @@ export default function PreviewCoupon({ navigation, route }) {
                     onPress={() => {
                       setChecked(!checked);
                     }}
-                    color="#226ccf"
+                    color="#ff6600"
                   />
                   <Text>
                     By clicking "CONFIRM".I undertake that I have read and
