@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import AboutUs from "../about/AboutUs"
 import Terms from "../about/Terms"
+import HeaderwithBack from "../header/HeaderwithBack";
 // import Terms from "../compo"
 
 
@@ -46,6 +47,7 @@ export default function Policy({ navigation }) {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <HeaderwithBack title="Back" navigation={navigation}/>
       <TabView
         lazy
         navigationState={{ index, routes }}
