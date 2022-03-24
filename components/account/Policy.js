@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, SafeAreaView } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
-import AboutUs from "../components/about/AboutUs";
-import Terms from "../components/about/Terms";
+import AboutUs from "../about/AboutUs"
+import Terms from "../about/Terms"
 // import Terms from "../compo"
 
 
-export default function Policy({navigation}) {
+export default function Policy({ navigation }) {
   const [index, setIndex] = useState(0);
 
   const [routes] = useState([
