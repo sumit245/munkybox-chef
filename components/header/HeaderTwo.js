@@ -8,7 +8,7 @@ import { styles } from "../../styles/headerstyle";
 export default function HeaderTwo({ title, navigation, children }) {
   return (
     <View
-      style={styles.header}
+      style={[styles.header,{alignItems:"center",marginHorizontal:4}]}
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
 
@@ -30,7 +30,7 @@ export default function HeaderTwo({ title, navigation, children }) {
         <Text
           style={{
             marginLeft: 6,
-            color: WHITE,
+            color: "#000",
             fontWeight: "bold",
             fontSize: 16,
           }}
