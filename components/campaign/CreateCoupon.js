@@ -146,6 +146,7 @@ export default function CreateCoupon({ route, navigation }) {
               <View style={styles.card}>
                 <TextInput
                   style={styles.input}
+                  selectionColor="#ff6600"
                   placeholder={"Discount" + (type === "net" ? " $" : " %")}
                   keyboardType="numeric"
                   returnKeyLabel="Done"
@@ -241,8 +242,8 @@ export default function CreateCoupon({ route, navigation }) {
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <Icon
-                          name="ios-calendar-outline"
-                          color="#226ccf"
+                          name="ios-calendar"
+                          color="#ff6600"
                           size={22}
                         />
                       </TouchableOpacity>
