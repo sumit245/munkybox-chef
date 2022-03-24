@@ -31,7 +31,7 @@ export default function PromoCard({
           style={{ flexDirection: "row", padding: 16, alignItems: "center" }}
         >
           {icon === "shopping-sale" ? (
-            <Percentage name="shopping-sale" size={30} color={SecondaryColor} />
+            <Percentage name="shopping-sale" size={30} color="#ff6600" />
           ) : (
             <Icon name={icon} size={30} color="#ff6600" />
           )}
