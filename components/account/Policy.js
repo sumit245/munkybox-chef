@@ -1,61 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, SafeAreaView } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
-import Header from "../header/Header";
-import HeaderwithBack from "../header/HeaderwithBack";
+import AboutUs from "../Components/about/AboutUs";
+import Terms from "../Components/about/Terms";
 
-export default function Policy({ navigation }) {
+
+export default function Policy({navigation}) {
   const [index, setIndex] = useState(0);
+
   const [routes] = useState([
     {
       key: "tnc",
-      title: "T&C",
-      content:
-        'The following terms and conditions, together with any referenced documents (collectively, "Terms of Use") form a legal agreement between you and your employer, employees, agents, contractors and any other entity on whose behalf you accept these terms (collectively, “you” and “your”), and ServiceNow, Inc. (“ServiceNow,” “we,” “us” and “our”).',
+      title: "Terms & Conditions",
     },
     {
       key: "privacy",
       title: "Privacy",
-      content:
-        "A Privacy Policy agreement is the agreement where you specify if you collect personal data from your users, what kind of personal data you collect and what you do with that data.",
-    },
-    {
-      key: "return",
-      title: "Return Policy",
-      content:
-        "Our Return & Refund Policy template lets you get started with a Return and Refund Policy agreement. This template is free to download and use.According to TrueShip study, over 60% of customers review a Return/Refund Policy before they make a purchasing decision.",
     },
   ]);
   const renderTabBar = (props) => (
     <TabBar
       {...props}
-      scrollEnabled
       style={{
         marginBottom: 8,
+        backgroundColor: "transparent",
       }}
-      tabStyle={{ backgroundColor: "#000" }}
-      indicatorStyle={{ backgroundColor: "#dddd44" }}
+      activeColor="#ff6600"
+      labelStyle={{ fontWeight: "bold" }}
+      inactiveColor="#272727"
+      indicatorStyle={{ backgroundColor: "#ff9900", marginHorizontal: 12 }}
     />
   );
   const renderScene = ({ route }) => {
     switch (route.key) {
       case "tnc":
-        return (
-          <View style={{ marginHorizontal: 4 }}>
-            <Text style={{ textAlign: "justify" }}>{route.content}</Text>
-          </View>
-        );
+        return <Terms />
       case "privacy":
         return (
-          <View style={{ marginHorizontal: 4 }}>
-            <Text style={{ textAlign: "justify" }}>{route.content}</Text>
-          </View>
-        );
-      case "return":
-        return (
-          <View style={{ marginHorizontal: 4 }}>
-            <Text style={{ textAlign: "justify" }}>{route.content}</Text>
-          </View>
+          <AboutUs />
         );
       default:
         break;
@@ -63,10 +45,8 @@ export default function Policy({ navigation }) {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <HeaderwithBack title="About" navigation={navigation} />
       <TabView
         lazy
-        swipeEnabled
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
