@@ -10,7 +10,7 @@ export default function HeaderTwo({ title, navigation, children }) {
     <View
       style={styles.header}
     >
-      <View style={{ flexDirection: "row", alignItems: "center",marginTop:"2%" }}>
+      <View style={{ flexDirection: "row", alignItems: "center", marginTop: "4%" }}>
 
         <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
           height: 28,
@@ -21,7 +21,7 @@ export default function HeaderTwo({ title, navigation, children }) {
           <TouchableOpacity
 
             onPress={() => {
-              Actions.pop();
+              navigation.goBack()
             }}
           >
             <Icon name="chevron-back-sharp" size={28} color="#ffffff" />
