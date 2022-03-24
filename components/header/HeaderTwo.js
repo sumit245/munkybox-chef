@@ -10,7 +10,7 @@ export default function HeaderTwo({ title, navigation, children }) {
     <View
       style={styles.header}
     >
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <View style={{ flexDirection: "row", alignItems: "center",marginTop:"2%" }}>
 
         <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
           height: 28,
