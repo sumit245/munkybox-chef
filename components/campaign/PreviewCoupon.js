@@ -80,7 +80,7 @@ export default function PreviewCoupon({ navigation, route }) {
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>
-        <LinearGradient colors={["#ff9900", "#ff6600"]} end={{ x: 0.1, y: 0.9 }}>
+        <LinearGradient colors={["#ff9900", "#ff6600"]} style={{ flex: 1 }} end={{ x: 0.1, y: 0.9 }}>
           <HeaderTwo title="Preview" navigation={navigation}>
             <TouchableOpacity
               style={{ paddingHorizontal: 4 }}
