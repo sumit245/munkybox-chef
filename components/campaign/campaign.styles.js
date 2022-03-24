@@ -106,7 +106,7 @@ export const styles = StyleSheet.create({
     width: "48%",
     alignItems: "center",
     borderRadius: 4,
-    borderColor: PrimaryLight,
+    borderColor: "#000",
   },
   btnText: {
     fontSize: 18,
