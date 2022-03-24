@@ -105,7 +105,7 @@ export default function CreateCoupon({ route, navigation }) {
                   value={plan}
                 >
                   <View style={styles.btnGroup}>
-                    <RadioButton.Android value={2} color="#226ccf" />
+                    <RadioButton.Android value={2} color="#ff6600" />
                     <Text style={styles.bigText}>2 Meals</Text>
                   </View>
                   <View
@@ -117,7 +117,7 @@ export default function CreateCoupon({ route, navigation }) {
                     }}
                   />
                   <View style={styles.btnGroup}>
-                    <RadioButton.Android value={15} color="#226ccf" />
+                    <RadioButton.Android value={15} color="#ff6600" />
                     <Text style={styles.bigText}>15 Meals</Text>
                   </View>
                   <View
@@ -129,7 +129,7 @@ export default function CreateCoupon({ route, navigation }) {
                     }}
                   />
                   <View style={styles.btnGroup}>
-                    <RadioButton.Android value={30} color="#226ccf" />
+                    <RadioButton.Android value={30} color="#ff6600" />
                     <Text style={styles.bigText}>30 Meals</Text>
                   </View>
                 </RadioButton.Group>
@@ -166,7 +166,7 @@ export default function CreateCoupon({ route, navigation }) {
                   value={duration}
                 >
                   <View style={styles.btnGroup}>
-                    <RadioButton.Android value={7} color="#226ccf" />
+                    <RadioButton.Android value={7} color="#ff6600" />
                     <View>
                       <Text style={styles.bigText}>7 Days</Text>
                       <Text style={styles.smallText}>
@@ -185,7 +185,7 @@ export default function CreateCoupon({ route, navigation }) {
                     }}
                   />
                   <View style={styles.btnGroup}>
-                    <RadioButton.Android value={15} color="#226ccf" />
+                    <RadioButton.Android value={15} color="#ff6600" />
                     <View>
                       <Text style={styles.bigText}>15 Days</Text>
                       <Text style={styles.smallText}>
@@ -203,7 +203,7 @@ export default function CreateCoupon({ route, navigation }) {
                     }}
                   />
                   <View style={styles.btnGroup}>
-                    <RadioButton.Android value={0} color="#226ccf" />
+                    <RadioButton.Android value={0} color="#ff6600" />
                     <View>
                       <Text style={styles.bigText}>Custom duration</Text>
                       <Text style={styles.smallText}>
@@ -265,7 +265,7 @@ export default function CreateCoupon({ route, navigation }) {
                     onPress={() => {
                       setLunch(!lunch);
                     }}
-                    color="#226ccf"
+                    color="#ff6600"
                   />
                   <Text>Lunch (10AM -2PM)</Text>
                 </View>
@@ -283,7 +283,7 @@ export default function CreateCoupon({ route, navigation }) {
                     onPress={() => {
                       setDinner(!dinner);
                     }}
-                    color="#226ccf"
+                    color="#ff6600"
                   />
                   <Text>Dinner (7pm -10pm)</Text>
                 </View>
@@ -293,6 +293,7 @@ export default function CreateCoupon({ route, navigation }) {
               <Text style={styles.bigText}>Type Promo Code</Text>
               <View style={styles.card}>
                 <TextInput
+                  selectionColor="#ff6600"
                   style={styles.input}
                   placeholder="META2020"
                   maxLength={8}
