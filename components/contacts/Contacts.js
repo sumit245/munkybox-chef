@@ -145,6 +145,7 @@ export default function Contacts({ navigation }) {
               </View>
               <TextInput
                 value={info.subject}
+                selectionColor="#ff6600"
                 style={styles.inputContainer}
                 onChangeText={(text) => setInfo({ ...info, subject: text })}
               />
@@ -159,6 +160,7 @@ export default function Contacts({ navigation }) {
                 value={info.body}
                 placeholder="Write a description in maximum 250 characters"
                 placeholderTextColor="#777"
+                selectionColor="#ff6600"
                 multiline
                 textAlignVertical="top"
                 style={[
