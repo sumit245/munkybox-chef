@@ -122,7 +122,7 @@ export default function Orders() {
     let unDeliveredOrders = filtered_array.filter(
       (item) => item.delivered === false
     );
-    console.log("Filtered", filtered_array);
+    
     setCount(unDeliveredOrders.length);
   };
 

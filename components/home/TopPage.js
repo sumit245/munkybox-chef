@@ -30,6 +30,7 @@ export default function TopPage({ navigation }) {
   const [index, setIndex] = useState(0);
   const [partAddOn, setPartCounts] = useState([]);
   const { restaurant_name, city, restaurant_id, meals } = restaurant;
+  const [isToday,setisToday]=useState(false)
 
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
   const arrayColumn = (arr, n) =>
@@ -73,27 +74,32 @@ export default function TopPage({ navigation }) {
     let addons = {};
     try {
       const addOns = orders.map((el) => el.add_on);
-      let todayExtras = addOns.map((extras) =>
-        extras.filter(
-          (item) => item.order_date === moment().format("dd-MMM-YYYY")
+      let todayExtras = addOns.map((extras) =>{
+        
+        return extras.filter(
+          (item) => item.order_date === moment().format("DD-MMM-YYYY")
         )
+      }
       );
       if (todayExtras.length > 0) {
         let quantities = todayExtras.map((extras) =>
-          extras.map((item) => item.qty)
+        extras.map((item) => item.qty)
         );
+        
         let addonssubtotal = [];
-        for (let index = 0; index < quantities.length; index++) {
+        for (let index = 0; index <= quantities.length; index++) {
           addonssubtotal.push(arrayColumn(quantities, index));
         }
-
+        
         let subtotal = quantities.map((item) => item.reduce(add, 0));
         let totalCount = subtotal.reduce(add, 0);
         if (index === 0) {
           let mytotal = addonssubtotal.map((item) => item.reduce(add, 0));
+          console.log(mytotal);
           setPartCounts(mytotal);
           setAddOn(totalCount);
           setQty(totalCount);
+          
         }
       } else {
         let mytotal = addonssubtotal.map((item) => 0);
@@ -123,6 +129,7 @@ export default function TopPage({ navigation }) {
       );
       setMealCount(todayOrders.length);
       setIndex(0);
+      setisToday(true)
     } else if (day === "Tomorrow") {
       let tomorrow = moment().add(1, "days");
       let todayOrders = orders.filter((item) =>
@@ -131,6 +138,7 @@ export default function TopPage({ navigation }) {
       setMealCount(todayOrders.length);
       mealSelector(days[new Date().getDay() + 1]);
       setIndex(1);
+      setisToday(false)
     } else {
       let dayafter = moment().add(2, "days");
       let todayOrders = orders.filter((item) =>
@@ -139,6 +147,7 @@ export default function TopPage({ navigation }) {
       setMealCount(todayOrders.length);
       mealSelector(days[new Date().getDay() + 2]);
       setIndex(2);
+      setisToday(false)
     }
   };
 
@@ -159,6 +168,7 @@ export default function TopPage({ navigation }) {
         add_on_name={addOn}
         partAdds={partAddOn}
         add_on_count={qty}
+        isToday={isToday}
       />
     </SafeAreaView>
   );

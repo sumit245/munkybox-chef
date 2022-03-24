@@ -16,6 +16,7 @@ export default function Menu({
   add_on_name,
   add_on_count,
   partAdds,
+  isToday
 }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [meal_time, setMealTime] = useState("");
@@ -50,6 +51,7 @@ export default function Menu({
 
   useEffect(() => {
     fetchSlotTime();
+    console.log(partAdds);
   }, []);
 
   const [isCollapse, setCollapse] = useState(true);
@@ -72,7 +74,7 @@ export default function Menu({
             >
               <Text style={styles.mealTitle}>{add_on.add_on}</Text>
               <Text style={styles.mealTitle}>
-                X {slot === meal_time ? partAdds[key] : 0}
+                X {(slot === meal_time && isToday===true )? partAdds[key] : 0}
               </Text>
             </View>
           ))}
@@ -179,7 +181,7 @@ export default function Menu({
                 {slot === meal_time ? count : 0} Meals
               </Text>
               <Text style={styles.headerCount}>
-                {slot === meal_time ? add_on_count : 0} Add ons
+                {slot === meal_time && isToday ? add_on_count : 0} Add ons
               </Text>
             </View>
             <Icon
