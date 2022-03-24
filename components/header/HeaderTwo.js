@@ -3,16 +3,12 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { WHITE } from "../../Colors";
+import { styles } from "../../styles/headerstyle";
 
 export default function HeaderTwo({ title, navigation, children }) {
   return (
     <View
-      style={{
-        flexDirection: "row",
-        alignItems: "flex-start",
-        paddingVertical: 8,
-        justifyContent: "space-between",
-      }}
+      style={styles.header}
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
 
