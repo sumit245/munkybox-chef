@@ -8,7 +8,7 @@ import { styles } from "../../styles/headerstyle";
 export default function HeaderTwo({ title, navigation, children }) {
   return (
     <View
-      style={[styles.header,{alignItems:"center",marginHorizontal:4}]}
+      style={styles.header}
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
 
