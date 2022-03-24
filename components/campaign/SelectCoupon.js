@@ -4,13 +4,15 @@ import { PrimaryDark, WHITE } from "../../Colors";
 import PromoCard from "./PromoCard";
 import Icon from "react-native-vector-icons/Ionicons";
 import HeaderTwo from "../header/HeaderTwo";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function SelectCoupon({ navigation }) {
   const onTypeSelected = (type) => {
     navigation.navigate("create_coupon", { title: "% Discount", type: type });
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: PrimaryDark }}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <LinearGradient colors={["#ff8800", "#ff6600"]} style={{flex:1}}  end={{x:0.1,y:0.9}}>
       <HeaderTwo title="Select Promotion" navigation={navigation} />
       <PromoCard
         title="What type of promotion is it?"
@@ -26,7 +28,8 @@ export default function SelectCoupon({ navigation }) {
         subhead="Increasing order volumes, Increasing average order value"
         ok="SELECT"
         okHandler={() => onTypeSelected("net")}
-      />
+        />
+        </LinearGradient>
     </SafeAreaView>
   );
 }
