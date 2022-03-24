@@ -157,10 +157,10 @@ export default function Orders() {
     <SafeAreaView style={{ flex: 1,backgroundColor:"#fff" }}>
       
       <Header title={restaurant_name + ", " + restaurant_id}>
-        {/* <View style={styles.switch}>
+        <View style={styles.switch}>
           <ToggleLunchDinner handleToggle={handleToggle} />
           </View>
-         */}
+        
       </Header>
       <HeaderTabSwitch
         items={slot === "Lunch" ? lunch : dinner}

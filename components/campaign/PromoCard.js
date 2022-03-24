@@ -33,7 +33,7 @@ export default function PromoCard({
           {icon === "shopping-sale" ? (
             <Percentage name="shopping-sale" size={30} color={SecondaryColor} />
           ) : (
-            <Icon name={icon} size={30} color={SecondaryColor} />
+            <Icon name={icon} size={30} color="#ff6600" />
           )}
           <View style={{ marginLeft: 8, marginBottom: 12, flexShrink: 1 }}>
             <Text style={{ fontWeight: "bold", fontSize: 16, padding: 2 }}>
