@@ -45,20 +45,19 @@ export default function HeaderTabSwitch({
       >
         {items.map((item, index) => (
           <TouchableOpacity
-            style={[
-              styles.tablabel,
-              index !== items.length - 1 ? { borderRightWidth: 0.5 } : null,
-            ]}
+            style={{
+              borderRightWidth: index !== items.length - 1 ? 0.5 : null
+            }}
             onPress={() => onItemSelected(item, index)}
             key={index}
           >
-            <LinearGradient colors={["#ff9900", "#ff6600"]}>
+            <LinearGradient colors={["#ff9900", "#ff6600"]} style={styles.tablabel}>
               <Text
                 style={[
                   styles.label,
                   currentIndex === index
-                    ? { fontWeight: "bold", color: "#000" }
-                    : { color: "#000" },
+                    ? { fontWeight: "bold", color: "#fff" }
+                    : { color: "#fff" },
                 ]}
               >
                 {item}
@@ -69,8 +68,8 @@ export default function HeaderTabSwitch({
                   style={{
                     margin: 4,
                     fontSize: 12,
-                    backgroundColor: "red",
-                    color: "#fff",
+                    backgroundColor: "fff",
+                    color: "#ff6600",
                   }}
                   size={14}
                 >
