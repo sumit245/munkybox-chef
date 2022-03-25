@@ -110,7 +110,7 @@ export default function PreviewBanner({ route, navigation }) {
                 <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Restaurant
                 </Text>
-                <Text style={styles.text}>
+                <Text style={[styles.text,{color:"#000"}]}>
                   {restaurant.restaurant_name}
                   {"\n"}
                   {restaurant.city +
@@ -133,7 +133,7 @@ export default function PreviewBanner({ route, navigation }) {
                 <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   CPC AD CAMPAIGN SELECTED
                 </Text>
-                <Text style={styles.text}>
+                <Text style={[styles.text,{color:"#000"}]}>
                   ${rpc}/click ( {title} )
                 </Text>
               </View>
@@ -150,7 +150,7 @@ export default function PreviewBanner({ route, navigation }) {
                 <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Duration
                 </Text>
-                <Text style={styles.text}>{duration} days </Text>
+                <Text style={[styles.text,{color:"#000"}]}>{duration} days </Text>
               </View>
             </View>
 
@@ -165,7 +165,7 @@ export default function PreviewBanner({ route, navigation }) {
                 <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Starts On
                 </Text>
-                <Text style={styles.text}>
+                <Text style={[styles.text,{color:"#000"}]}>
                   {start}
                   {"\n"}
                   Ends by {end}
@@ -184,7 +184,7 @@ export default function PreviewBanner({ route, navigation }) {
                 <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Promo Code
                 </Text>
-                <Text style={styles.text}>{code}</Text>
+                <Text style={[styles.text,{color:"#000"}]}>{code}</Text>
               </View>
             </View>
 
@@ -199,7 +199,7 @@ export default function PreviewBanner({ route, navigation }) {
                 <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Discount
                 </Text>
-                <Text style={styles.text}>${discount}</Text>
+                <Text style={[styles.text,{color:"#000"}]}>${discount}</Text>
               </View>
             </View>
             <View style={[styles.textContainer, { marginBottom: -4 }]}>
@@ -213,7 +213,7 @@ export default function PreviewBanner({ route, navigation }) {
                 <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Applicable on
                 </Text>
-                <Text style={styles.text}>{plan}</Text>
+                <Text style={[styles.text,{color:"#000"}]}>{plan}</Text>
               </View>
             </View>
           </View>
