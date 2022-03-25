@@ -153,6 +153,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
                 alignItems: "center",
                 borderBottomColor: "#999",
                 borderBottomWidth: 0.2,
+                borderLeftWidth:0
               },
             ]}
           >
