@@ -133,7 +133,7 @@ export const styles = StyleSheet.create({
     marginLeft: 20,
     alignItems: "baseline",
     borderLeftColor: "#ff6600",
-    minHeight:100,
+    minHeight:80,
     borderLeftWidth: 1,
   },
   checkContainer: {
