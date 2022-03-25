@@ -58,7 +58,7 @@ export default function Plans() {
         >
           <Icon
             name={isCollapsed ? "chevron-down-sharp" : "chevron-up-sharp"}
-            color="#777"
+            color="#ff6600"
             size={30}
           />
         </TouchableOpacity>
