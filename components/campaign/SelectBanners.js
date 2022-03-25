@@ -31,7 +31,7 @@ export default function SelectBanners({ navigation }) {
     });
   };
   const ListHeader = () => (
-    <View style={styles.trackOutlet}>
+    <View style={[styles.trackOutlet,{backgroundColor:"#fff"}]}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <Shop name="shop" size={24} color="#ff6600" />
         <View>
