@@ -309,16 +309,12 @@ export default function CreateCoupon({ route, navigation }) {
 
       <View style={styles.bottomButtonGroup}>
         <LinearGradient colors={["#ffffff", "#fefefe",]} style={styles.actionButton} >
-          <TouchableOpacity
-            onPress={() => resetAll()}
-          >
+          <TouchableOpacity onPress={() => resetAll()}>
             <Text style={[styles.btnText, { color: "#000" }]}>RESET</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={["#ff9900", "#ff6600"]} style={[styles.actionButton, { borderColor: "#ff6600" }]}>
-          <TouchableOpacity
-            onPress={onPreview}
-          >
+          <TouchableOpacity onPress={onPreview}>
             <Text style={[styles.btnText, { color: "#fff" }]}>PREVIEW</Text>
           </TouchableOpacity>
         </LinearGradient>
