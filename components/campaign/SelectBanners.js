@@ -34,20 +34,19 @@ export default function SelectBanners({ navigation }) {
         marginHorizontal: 2,
         marginTop: 16,
         padding: 8,
-        backgroundColor: PrimaryLight,
       }}
     >
       <Text
         style={{
-          color: "#fff",
+          color: "#000",
           fontWeight: "bold",
           textTransform: "uppercase",
           marginBottom: 12,
         }}
       >
-        <Shop name="shop" size={18} color="#fff" /> {restaurant.restaurant_name}
+        <Shop name="shop" size={18} color="#ff6600" /> {restaurant.restaurant_name}
       </Text>
-      <Text style={{ color: "#fff" }}>
+      <Text style={{ color: "#000" }}>
         {restaurant.restaurant_id}{" | "}
         {restaurant.locality +
           ", " +
@@ -62,7 +61,7 @@ export default function SelectBanners({ navigation }) {
       <HeaderTwo title="Pack List" navigation={navigation} />
       <Text
         style={{
-          color: "#FFF",
+          color: "#000",
           fontWeight: "bold",
           fontSize: 16,
           marginHorizontal: 8,
@@ -72,7 +71,7 @@ export default function SelectBanners({ navigation }) {
       </Text>
       <Text
         style={{
-          color: "#ddd",
+          color: "#444",
           fontWeight: "bold",
           fontSize: 12,
           marginHorizontal: 8,
