@@ -12,7 +12,6 @@ import Icon from "react-native-vector-icons/Ionicons";
 import Percentage from "react-native-vector-icons/Fontisto";
 
 export default function PromoCard({
-  index,
   title,
   icon,
   head,
@@ -56,7 +55,7 @@ export default function PromoCard({
                 <Text
                   style={{
                     fontWeight: "bold",
-                    color: DARKGRAY,
+                    color: "#ff6600",
                     fontSize: 12,
                     textAlign: "right",
                     marginLeft: "50%",
