@@ -80,7 +80,7 @@ export default function TrackPerformance({ route, navigation }) {
       activeColor="#ff6600"
       labelStyle={{ fontWeight: "bold" }}
       inactiveColor="#272727"
-      indicatorStyle={{ backgroundColor: "#ff9900", marginHorizontal: 2 }}
+      indicatorStyle={{ backgroundColor: "#ff9900", marginHorizontal: 12 }}
     />
   );
 

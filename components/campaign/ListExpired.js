@@ -42,7 +42,7 @@ export default function ListExpired({
               <Text
                 style={[
                   styles.heading,
-                  { marginBottom: 0, marginHorizontal: 12,color:"#ff6600" },
+                  { marginBottom: 0, marginHorizontal: 12, color: "#000" },
                 ]}
               >
                 {restaurant}
@@ -50,7 +50,7 @@ export default function ListExpired({
               <Text
                 style={[
                   styles.smallText,
-                  { color: "#Ff6600", marginHorizontal: 12, marginTop: 0 },
+                  { color: "#000", marginHorizontal: 12, marginTop: 0, fontWeight: "normal" },
                 ]}
               >
                 {address}
@@ -58,9 +58,9 @@ export default function ListExpired({
             </View>
           </View>
         </View>
-        <View style={{ padding: 4, }}>
-          <Text style={[styles.listing,{color:"#ff6600"}]}>{title}</Text>
-        </View>
+        {/* <View style={{ padding: 4, }}>
+          <Text style={[styles.listing, { color: "#000" }]}>{title}</Text>
+        </View> */}
       </>
     );
   };
