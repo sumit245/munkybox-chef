@@ -219,7 +219,7 @@ export default function PreviewBanner({ route, navigation }) {
             </View>
           </View>
 
-          <View style={styles.checkContainer}>
+          <View style={[styles.checkContainer,{bottom:8}]}>
             <Checkbox.Android
               color="#FF6600"
               status={checked ? "checked" : "unchecked"}
