@@ -129,7 +129,7 @@ export default function Dashboard({ navigation }) {
   const getuserByType = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/getusertypesbyrestaurant/" +
-        restaurant
+      restaurant
     );
     const { newusers, repeatedUsers } = response.data;
     if (newusers !== null && repeatedUsers !== null) {
@@ -218,35 +218,37 @@ export default function Dashboard({ navigation }) {
             flexDirection: "row",
             justifyContent: "space-between",
             padding: 8,
+            backgroundColor: "#fff"
           }}
         >
-          <View style={{ alignItems: "center" }}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 60,
+            width: 60,
+            borderRadius: 15,
+            backgroundColor: "#226ccf",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
             <TouchableOpacity
-              style={{
-                height: 60,
-                width: 60,
-                borderRadius: 15,
-                backgroundColor: "#226ccf",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+
               onPress={() => navigation.navigate("review_order")}
             >
-              <Ants name="star" size={34} color={SecondaryLightColor} />
+              <Ants name="star" size={34} color="#FFF" />
             </TouchableOpacity>
             <Text style={styles.smallText}>Customer Rating</Text>
-          </View>
+          </LinearGradient>
 
-          <View style={{ alignItems: "center" }}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 60,
+            width: 60,
+            borderRadius: 15,
+            backgroundColor: "#226ccfcc",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          >
             <TouchableOpacity
-              style={{
-                height: 60,
-                width: 60,
-                borderRadius: 15,
-                backgroundColor: "#226ccfcc",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+
               onPress={() =>
                 navigation.navigate("payouts", {
                   commission: commission,
@@ -258,24 +260,24 @@ export default function Dashboard({ navigation }) {
               <Ants name="wallet" size={34} color={SecondaryLightColor} />
             </TouchableOpacity>
             <Text style={styles.smallText}>Payouts & Finance</Text>
-          </View>
+          </LinearGradient>
 
-          <View style={{ alignItems: "center" }}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 60,
+            width: 60,
+            borderRadius: 15,
+            backgroundColor: "#226ccf",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
             <TouchableOpacity
-              style={{
-                height: 60,
-                width: 60,
-                borderRadius: 15,
-                backgroundColor: "#226ccf",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+
               onPress={() => navigation.navigate("myOrders")}
             >
               <Ants name="history" size={34} color={SecondaryLightColor} />
             </TouchableOpacity>
             <Text style={styles.smallText}>Past Orders</Text>
-          </View>
+          </LinearGradient>
         </View>
 
         <View style={{ marginHorizontal: 4, padding: 4, marginVertical: 4 }}>
@@ -309,10 +311,11 @@ export default function Dashboard({ navigation }) {
         <View
           style={{
             backgroundColor: WHITE,
-            marginVertical: 4,
+            marginVertical: 8,
             borderRadius: 4,
             marginHorizontal: 2,
             padding: 2,
+
           }}
         >
           <Text
