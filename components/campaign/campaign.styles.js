@@ -143,7 +143,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   trackOutlet: {
-    backgroundColor: PrimaryDark,
     padding: 8,
   },
   trackHead: {

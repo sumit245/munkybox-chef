@@ -37,12 +37,12 @@ export default function ListExpired({
       <>
         <View style={styles.trackOutlet}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Shop name="shop" size={24} color={SecondaryLightColor} />
+            <Shop name="shop" size={24} color="#ff6600" />
             <View>
               <Text
                 style={[
                   styles.heading,
-                  { marginBottom: 0, marginHorizontal: 12 },
+                  { marginBottom: 0, marginHorizontal: 12,color:"#ff6600" },
                 ]}
               >
                 {restaurant}
@@ -50,7 +50,7 @@ export default function ListExpired({
               <Text
                 style={[
                   styles.smallText,
-                  { color: "#FFF", marginHorizontal: 12, marginTop: 0 },
+                  { color: "#Ff6600", marginHorizontal: 12, marginTop: 0 },
                 ]}
               >
                 {address}
@@ -58,8 +58,8 @@ export default function ListExpired({
             </View>
           </View>
         </View>
-        <View style={{ padding: 4, backgroundColor: "#fff" }}>
-          <Text style={[styles.listing]}>{title}</Text>
+        <View style={{ padding: 4, }}>
+          <Text style={[styles.listing,{color:"#ff6600"}]}>{title}</Text>
         </View>
       </>
     );
