@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   ScrollView,
-  StatusBar,
 } from "react-native";
 import Header from "../header/Header";
 import { useSelector } from "react-redux";

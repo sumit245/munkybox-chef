@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   TouchableOpacity,
   FlatList,
-  StatusBar,
   StyleSheet,
 } from "react-native";
 import axios from "axios";
@@ -150,7 +149,6 @@ export default function CommissionHistory({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
   },
   item: {
     padding: 20,

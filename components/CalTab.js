@@ -23,7 +23,7 @@ export default class CalTab extends Component {
   render() {
     const { activeDay } = this.state;
     return (
-      <View style={{ backgroundColor: "#A71D4F" }}>
+      <View>
         <View style={styles.calenderTab}>
           {days.map((day, index) => (
             <TouchableOpacity
@@ -38,8 +38,8 @@ export default class CalTab extends Component {
                 style={[
                   styles.dateHeader,
                   activeDay === day
-                    ? { fontWeight: "bold", color: WHITE }
-                    : null,
+                    ? { fontWeight: "bold", color: "#ff6600" }
+                    : { color: "#000" },
                 ]}
               >
                 {day}
@@ -57,8 +57,8 @@ export default class CalTab extends Component {
               activeDay === "Today"
                 ? "15%"
                 : activeDay === "Tomorrow"
-                ? "45%"
-                : "80%",
+                  ? "45%"
+                  : "80%",
           }}
         />
       </View>

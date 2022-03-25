@@ -1,10 +1,8 @@
-import { StatusBar, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import {
   DARKGRAY,
   PrimaryDark,
-  PrimaryLight,
   WHITE,
-  SecondaryDarkColor,
 } from "../../Colors";
 export const styles = StyleSheet.create({
   container: {

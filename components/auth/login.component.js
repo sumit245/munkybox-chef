@@ -3,7 +3,6 @@ import {
   Text,
   View,
   TouchableOpacity,
-  StatusBar,
   SafeAreaView,
   ImageBackground,
 } from "react-native";
@@ -71,7 +70,6 @@ export default function Login({ navigation }) {
       style={styles.imageBackground}
     >
       <SafeAreaView style={styles.container}>
-        <StatusBar style="auto" />
         <FirebaseRecaptchaVerifierModal
           ref={reCaptchaVerifier}
           firebaseConfig={firebaseConfig}

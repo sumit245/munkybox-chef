@@ -9,7 +9,6 @@ import {
   Text,
   ActivityIndicator,
   SafeAreaView,
-  StatusBar,
   TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -43,7 +42,7 @@ export const VerificationDocs = ({ navigation }) => {
   } else {
     return (
       <SafeAreaView
-        style={{ flex: 1, marginTop: StatusBar.currentHeight || 0 }}
+        style={{ flex: 1 }}
       >
         <TouchableOpacity
           style={{

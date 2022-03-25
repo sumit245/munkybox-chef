@@ -3,7 +3,6 @@ import {
   Text,
   FlatList,
   StyleSheet,
-  StatusBar,
   TouchableOpacity,
 } from "react-native";
 import React, { useState, useEffect } from "react";
@@ -152,7 +151,6 @@ export default function PastPayouts({ navigation, commission }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
   },
   item: {
     padding: 20,
