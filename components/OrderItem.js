@@ -124,7 +124,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
                 marginRight: 8,
               }}
             >
-              <Text style={{ fontWeight: "bold", fontSize: 20, color: "#FFF" }}>
+              <Text style={{ fontWeight: "bold", fontSize: 20, color: "#000" }}>
                 {avatarify(item.user_name)}
               </Text>
             </View>
@@ -137,7 +137,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
               >
                 {item.order_id}
               </Text>
-              <Text style={[styles.title, { fontWeight: "bold", color: "#fff" }]}>
+              <Text style={[styles.title, { fontWeight: "bold", color: "#000" }]}>
                 {item.user_name}
               </Text>
             </View>
@@ -300,6 +300,7 @@ const styles = StyleSheet.create({
     margin: 1,
     marginVertical: 4,
     borderRadius: 6,
+    backgroundColor:"#fff"
   },
   topRow: {
     flexDirection: "row",
