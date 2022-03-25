@@ -58,7 +58,7 @@ export default function SelectBanners({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <HeaderTwo title="Pack List" navigation={navigation} />
-      <View style={{ height: 40, padding: 10 }}>
+      <View style={{ height: 48, padding: 10,marginBottom:4 }}>
         <Text
           style={{
             color: "#000",
