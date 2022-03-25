@@ -132,7 +132,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 12,
     marginLeft: 20,
     alignItems: "baseline",
-    borderLeftColor: "#fff",
+    borderLeftColor: "#ff6600",
     borderLeftWidth: 1,
   },
   checkContainer: {

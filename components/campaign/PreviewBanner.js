@@ -83,19 +83,19 @@ export default function PreviewBanner({ route, navigation }) {
               <Icon
                 name="checkmark-circle"
                 size={22}
-                color="#FFF"
+                color="#ff6600"
                 style={{ marginLeft: -10, marginTop: -4 }}
               />
               <View>
                 <Text
                   style={[
                     styles.heading,
-                    { textTransform: "uppercase", marginTop: -22 },
+                    { textTransform: "uppercase", marginTop: -22,color:"#000" },
                   ]}
                 >
                   Growth Style
                 </Text>
-                <Text style={styles.text}>Ads</Text>
+                <Text style={[styles.text,{color:"#000"}]}>Ads</Text>
               </View>
             </View>
 
@@ -103,11 +103,11 @@ export default function PreviewBanner({ route, navigation }) {
               <Icon
                 name="checkmark-circle"
                 size={22}
-                color="#FFF"
+                color="#FF6600"
                 style={{ marginLeft: -10 }}
               />
               <View>
-                <Text style={[styles.heading, { textTransform: "uppercase" }]}>
+                <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Restaurant
                 </Text>
                 <Text style={styles.text}>
@@ -126,11 +126,11 @@ export default function PreviewBanner({ route, navigation }) {
               <Icon
                 name="checkmark-circle"
                 size={22}
-                color="#FFF"
+                color="#FF6600"
                 style={{ marginLeft: -10 }}
               />
               <View>
-                <Text style={[styles.heading, { textTransform: "uppercase" }]}>
+                <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   CPC AD CAMPAIGN SELECTED
                 </Text>
                 <Text style={styles.text}>
@@ -143,11 +143,11 @@ export default function PreviewBanner({ route, navigation }) {
               <Icon
                 name="checkmark-circle"
                 size={22}
-                color="#FFF"
+                color="#FF6600"
                 style={{ marginLeft: -10 }}
               />
               <View>
-                <Text style={[styles.heading, { textTransform: "uppercase" }]}>
+                <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Duration
                 </Text>
                 <Text style={styles.text}>{duration} days </Text>
@@ -158,11 +158,11 @@ export default function PreviewBanner({ route, navigation }) {
               <Icon
                 name="checkmark-circle"
                 size={22}
-                color="#FFF"
+                color="#FF6600"
                 style={{ marginLeft: -10 }}
               />
               <View>
-                <Text style={[styles.heading, { textTransform: "uppercase" }]}>
+                <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Starts On
                 </Text>
                 <Text style={styles.text}>
@@ -177,11 +177,11 @@ export default function PreviewBanner({ route, navigation }) {
               <Icon
                 name="checkmark-circle"
                 size={22}
-                color="#FFF"
+                color="#FF6600"
                 style={{ marginLeft: -10 }}
               />
               <View>
-                <Text style={[styles.heading, { textTransform: "uppercase" }]}>
+                <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Promo Code
                 </Text>
                 <Text style={styles.text}>{code}</Text>
@@ -192,11 +192,11 @@ export default function PreviewBanner({ route, navigation }) {
               <Icon
                 name="checkmark-circle"
                 size={22}
-                color="#FFF"
+                color="#FF6600"
                 style={{ marginLeft: -10, marginTop: 4 }}
               />
               <View>
-                <Text style={[styles.heading, { textTransform: "uppercase" }]}>
+                <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Discount
                 </Text>
                 <Text style={styles.text}>${discount}</Text>
@@ -206,11 +206,11 @@ export default function PreviewBanner({ route, navigation }) {
               <Icon
                 name="checkmark-circle"
                 size={22}
-                color="#FFF"
+                color="#FF6600"
                 style={{ marginLeft: -10, marginTop: 4 }}
               />
               <View>
-                <Text style={[styles.heading, { textTransform: "uppercase" }]}>
+                <Text style={[styles.heading, { textTransform: "uppercase",color:"#000" }]}>
                   Applicable on
                 </Text>
                 <Text style={styles.text}>{plan}</Text>
@@ -220,7 +220,7 @@ export default function PreviewBanner({ route, navigation }) {
 
           <View style={styles.checkContainer}>
             <Checkbox.Android
-              color="#FFF"
+              color="#FF6600"
               uncheckedColor="#22c6cf"
               status={checked ? "checked" : "unchecked"}
               onPress={() => {
