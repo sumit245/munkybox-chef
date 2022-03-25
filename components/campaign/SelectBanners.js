@@ -61,7 +61,7 @@ export default function SelectBanners({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <HeaderTwo title="Pack List" navigation={navigation} />
-      <View style={{height:40,padding:10}}>
+      <View style={{height:60,padding:10}}>
       <Text
         style={{
           color: "#000",
@@ -84,7 +84,7 @@ export default function SelectBanners({ navigation }) {
       </Text>
       </View>
 
-      <LinearGradient colors={["#ff9900", "#ff6600"]} style={{ flex: 1 }}>
+      
         <FlatList
           data={data}
           keyExtractor={(item) => item._id}
@@ -96,12 +96,12 @@ export default function SelectBanners({ navigation }) {
               head={item.pack_name}
               content={item.rpc}
               subhead={item.duration}
-              ok="SET UP NOW"
+              ok="SELECT"
               okHandler={() => okHandler(item, restaurant)}
             />
           )}
         />
-      </LinearGradient>
+      
     </SafeAreaView>
   );
 }
