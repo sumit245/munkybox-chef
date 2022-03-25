@@ -293,7 +293,7 @@ export default function Dashboard({ navigation }) {
           </Text>
         </View>
 
-        <View style={{ height: 20 }} />
+        <View style={{ height: 10 }} />
         <StatCards
           active={activecount}
           complete={completecount}

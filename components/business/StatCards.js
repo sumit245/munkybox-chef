@@ -142,7 +142,7 @@ export default function StatCards({
           </View>
         </View>
         {/* Sales */}
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row",marginVertical:8 }}>
           <View style={[styles.stat_card, { width: width / 3 }]}>
             <Text style={styles.stat_head}>Adons Revenue</Text>
             <Text style={styles.stat_value}>
