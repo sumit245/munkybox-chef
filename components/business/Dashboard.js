@@ -209,11 +209,8 @@ export default function Dashboard({ navigation }) {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: PrimaryDark,
       }}
     >
-      <LinearGradient colors={["#ffae00","#ff0000"]} >
-      <StatusBar />
       <Header title={restaurant_name + ", " + city} />
       <ScrollView>
         <View
@@ -282,15 +279,15 @@ export default function Dashboard({ navigation }) {
         </View>
 
         <View style={{ marginHorizontal: 4, padding: 4, marginVertical: 4 }}>
-          <Text style={{ color: WHITE, fontWeight: "bold" }}>
+          <Text style={{ color: "#000", fontWeight: "bold" }}>
             Business Overview
           </Text>
-          <Text style={{ color: WHITE, fontSize: 12 }}>
+          <Text style={{ color: "#000", fontSize: 12 }}>
             Aggregated view of your business across all orders{" "}
           </Text>
         </View>
 
-        <View style={{ height: 60 }} />
+        <View style={{ height: 20 }} />
         <StatCards
           active={activecount}
           complete={completecount}
