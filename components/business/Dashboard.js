@@ -315,7 +315,7 @@ export default function Dashboard({ navigation }) {
         <View
           style={{
             backgroundColor: WHITE,
-            marginVertical: 8,
+            marginVertical: 4,
             borderRadius: 4,
             marginHorizontal: 2,
             padding: 2,
