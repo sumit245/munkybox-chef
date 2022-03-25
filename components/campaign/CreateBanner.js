@@ -170,6 +170,7 @@ export default function CreateBanner({ route, navigation }) {
           <Text style={styles.bigText}>Add promo code</Text>
           <View style={styles.cardBody}>
             <TextInput
+              selectionColor="#ff6600"
               style={styles.input}
               placeholder="PROMO CODE"
               onChangeText={setCode}
