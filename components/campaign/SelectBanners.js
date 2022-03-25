@@ -31,7 +31,7 @@ export default function SelectBanners({ navigation }) {
     });
   };
   const ListHeader = () => (
-    <View style={[styles.trackOutlet,{backgroundColor:"#fff"}]}>
+    <View style={[styles.trackOutlet, { backgroundColor: "#fff" }]}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <Shop name="shop" size={24} color="#ff6600" />
         <View>
@@ -58,7 +58,7 @@ export default function SelectBanners({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <HeaderTwo title="Pack List" navigation={navigation} />
-      <View style={{ height: 48, padding: 10,marginBottom:4 }}>
+      <View style={{ height: 48, padding: 10, marginBottom: 4 }}>
         <Text
           style={{
             color: "#000",
@@ -80,24 +80,24 @@ export default function SelectBanners({ navigation }) {
           High visibility driven business growth
         </Text>
       </View>
-
-
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item._id}
-        ListHeaderComponent={ListHeader}
-        extraData={restaurant}
-        renderItem={({ item }) => (
-          <PromoCard
-            index={item.advert_id}
-            head={item.pack_name}
-            content={item.rpc}
-            subhead={item.duration}
-            ok="SELECT"
-            okHandler={() => okHandler(item, restaurant)}
-          />
-        )}
-      />
+      <View style={{ marginHorizontal: 2 }}>
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item._id}
+          ListHeaderComponent={ListHeader}
+          extraData={restaurant}
+          renderItem={({ item }) => (
+            <PromoCard
+              index={item.advert_id}
+              head={item.pack_name}
+              content={item.rpc}
+              subhead={item.duration}
+              ok="SELECT"
+              okHandler={() => okHandler(item, restaurant)}
+            />
+          )}
+        />
+      </View>
 
     </SafeAreaView>
   );

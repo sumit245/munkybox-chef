@@ -3,9 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Divider } from "react-native-paper";
 import {
   DARKGRAY,
-  PrimaryColor,
-  PrimaryDark,
-  SecondaryColor,
   WHITE,
 } from "../../Colors";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -125,7 +122,7 @@ const styles = StyleSheet.create({
   },
   promoaction: {
     textAlign: "right",
-    color: "#ff6600",
+    color: "#000",
     fontWeight: "bold",
     padding: 4,
   },
