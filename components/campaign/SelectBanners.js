@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { PrimaryLight } from "../../Colors";
 import Shop from "react-native-vector-icons/Entypo";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function SelectBanners({ navigation }) {
   const [data, setData] = useState([]);
@@ -19,13 +20,13 @@ export default function SelectBanners({ navigation }) {
   useEffect(() => {
     fetchPlans();
   }, []);
-  const okHandler = (item,restaurant) => {
+  const okHandler = (item, restaurant) => {
     navigation.navigate("create_banner", {
       title: item.pack_name,
       duration: item.duration,
       advert_id: item.advert_id,
       rpc: item.rpc,
-      restaurant:restaurant
+      restaurant: restaurant
     });
   };
   const ListHeader = () => (
@@ -79,23 +80,24 @@ export default function SelectBanners({ navigation }) {
       >
         High visibility driven business growth
       </Text>
-
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item._id}
-        ListHeaderComponent={ListHeader}
-        extraData={restaurant}
-        renderItem={({ item }) => (
-          <PromoCard
-            index={item.advert_id}
-            head={item.pack_name}
-            content={item.rpc}
-            subhead={item.duration}
-            ok="SET UP NOW"
-            okHandler={() => okHandler(item,restaurant)}
-          />
-        )}
-      />
+      <LinearGradient colors={["#ff9900", "#ff6600"]} style={{ flex: 1 }}>
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item._id}
+          ListHeaderComponent={ListHeader}
+          extraData={restaurant}
+          renderItem={({ item }) => (
+            <PromoCard
+              index={item.advert_id}
+              head={item.pack_name}
+              content={item.rpc}
+              subhead={item.duration}
+              ok="SET UP NOW"
+              okHandler={() => okHandler(item, restaurant)}
+            />
+          )}
+        />
+      </LinearGradient>
     </SafeAreaView>
   );
 }
