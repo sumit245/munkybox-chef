@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   promoaction: {
     textAlign: "right",
-    color: SecondaryColor,
+    color: "#ff6600",
     fontWeight: "bold",
     padding: 4,
   },
