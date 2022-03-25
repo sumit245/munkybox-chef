@@ -221,17 +221,16 @@ export default function PreviewBanner({ route, navigation }) {
           <View style={styles.checkContainer}>
             <Checkbox.Android
               color="#FF6600"
-              uncheckedColor="#22c6cf"
               status={checked ? "checked" : "unchecked"}
               onPress={() => {
                 setChecked(!checked);
               }}
             />
-            <Text style={styles.text}>
+            <Text style={[styles.text,{color:'#000'}]}>
               I agree with the{" "}
               <Text
                 style={{
-                  color: "#26c6cf",
+                  color: "#226ccf",
                   fontWeight: "bold",
                   textDecorationLine: "underline",
                 }}
