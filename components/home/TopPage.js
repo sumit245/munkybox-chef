@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, StatusBar, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import CalTab from "../CalTab";
 import ToggleLunchDinner from "../header/ToggleLunchDinner";
 import Header from "../header/Header";
@@ -153,7 +153,6 @@ export default function TopPage({ navigation }) {
 
   return (
     <SafeAreaView style={styles.mainPage}>
-      <StatusBar />
       <Header title={restaurant_name + ", " + restaurant_id}>
         <View style={styles.switch}>
           <ToggleLunchDinner handleToggle={(e) => setSlot(e)} />

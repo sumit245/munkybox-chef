@@ -70,14 +70,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 6,
-    backgroundColor: "#A71D4F",
     flexDirection: "row",
   },
   dateTab: {
     flex: 1,
     alignItems: "center",
     borderRightColor: "#fdfdfd",
-    // borderRightWidth: 0.5,
   },
   dateHeader: {
     fontSize: 18,
