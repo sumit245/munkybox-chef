@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: WHITE,
     padding: 8,
-    marginVertical: 16,
+    marginVertical: 10,
   },
   cardBody: {
     marginTop: 8,
@@ -105,7 +105,6 @@ export const styles = StyleSheet.create({
     width: "48%",
     alignItems: "center",
     borderRadius: 4,
-    borderColor: "#000",
   },
   btnText: {
     fontSize: 18,

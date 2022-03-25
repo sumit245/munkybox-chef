@@ -308,18 +308,18 @@ export default function CreateCoupon({ route, navigation }) {
       </KeyboardAvoidingView>
 
       <View style={styles.bottomButtonGroup}>
-        <TouchableOpacity
-          style={[styles.actionButton, { backgroundColor: WHITE }]}
-          onPress={() => resetAll()}
-        >
-          <Text style={[styles.btnText, { color: "#000" }]}>RESET</Text>
-        </TouchableOpacity>
-        <LinearGradient colors={["#ff8800", "#ff6600"]} style={styles.actionButton} end={{ x: 0.1, y: 0.9 }}>
+        <LinearGradient colors={["#fff", "transparent"]} style={styles.actionButton} end={{ x: 0.1, y: 0.9 }}>
           <TouchableOpacity
-
+            onPress={() => resetAll()}
+          >
+            <Text style={[styles.btnText, { color: "#000" }]}>RESET</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+        <LinearGradient colors={["#ff9900", "#ff6600"]} style={[styles.actionButton,{borderColor:"#ff6600"}]} end={{ x: 0.1, y: 0.9 }}>
+          <TouchableOpacity
             onPress={onPreview}
           >
-            <Text style={[styles.btnText, { color: "#000" }]}>PREVIEW</Text>
+            <Text style={[styles.btnText, { color: "#fff" }]}>PREVIEW</Text>
           </TouchableOpacity>
         </LinearGradient>
       </View>
