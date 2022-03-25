@@ -75,8 +75,7 @@ const styles = StyleSheet.create({
   dateTab: {
     flex: 1,
     alignItems: "center",
-    borderRightColor: "#fdfdfd",
-    borderWidth:0.5
+    borderRightColor: "#dfdfdf",
   },
   dateHeader: {
     fontSize: 18,
