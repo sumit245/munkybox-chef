@@ -308,7 +308,7 @@ export default function CreateCoupon({ route, navigation }) {
       </KeyboardAvoidingView>
 
       <View style={styles.bottomButtonGroup}>
-        <LinearGradient colors={["#ffffff", "#efefef","#eeeeee","transparent"]} style={styles.actionButton} >
+        <LinearGradient colors={["#ffffff", "#fefefe",]} style={styles.actionButton} >
           <TouchableOpacity
             onPress={() => resetAll()}
           >
