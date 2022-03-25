@@ -24,7 +24,7 @@ export default function PromoCard({
   cancelHandler,
 }) {
   return (
-    <View style={styles.promocontainer}>
+    <>
       <Text style={styles.promotitle}>{title}</Text>
       <View style={styles.promocard}>
         <View
@@ -102,7 +102,7 @@ export default function PromoCard({
           </Text>
         </View>
       </View>
-    </View>
+    </>
   );
 }
 const styles = StyleSheet.create({
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   promotitle: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#FFF",
+    color: "#000",
     textAlign: "left",
     marginHorizontal: 4,
     marginVertical: 10,
