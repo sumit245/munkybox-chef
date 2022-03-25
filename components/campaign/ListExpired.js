@@ -58,9 +58,6 @@ export default function ListExpired({
             </View>
           </View>
         </View>
-        {/* <View style={{ padding: 4, }}>
-          <Text style={[styles.listing, { color: "#000" }]}>{title}</Text>
-        </View> */}
       </>
     );
   };
@@ -75,7 +72,7 @@ export default function ListExpired({
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
-            <Text style={styles.text}>
+            <Text style={[styles.text,{textAlign:"center"}]}>
               Sorry you dont have any coupons. Create a new to generate more
               revenue
             </Text>
@@ -85,7 +82,7 @@ export default function ListExpired({
         renderItem={renderItem}
         keyExtractor={(item, index) => item.index}
       />
-      <Text style={[styles.listing, { textAlign: "center" }]}>
+      <Text style={[styles.listing, { textAlign: "center", }]}>
         Last Updated: {timesnow}
       </Text>
 
