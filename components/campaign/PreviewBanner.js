@@ -236,7 +236,7 @@ export default function PreviewBanner({ route, navigation }) {
                   textDecorationLine: "underline",
                 }}
                 onPress={() => {
-                  navigation.navigate("terms", { type: "banner" });
+                  navigation.navigate("policies");
                 }}
               >
                 terms and conditions
