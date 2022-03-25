@@ -44,15 +44,15 @@ export default function HeaderTabSwitch({
         showsHorizontalScrollIndicator={false}
       >
         {items.map((item, index) => (
-          <LinearGradient colors={["#ff9900", "#ff6600"]} style={[
-            styles.tablabel,
-            index !== items.length - 1 ? { borderRightWidth: 0.5 } : null,
-          ]}>
-            <TouchableOpacity
-
-              onPress={() => onItemSelected(item, index)}
-              key={index}
-            >
+          <TouchableOpacity
+            style={[
+              styles.tablabel,
+              index !== items.length - 1 ? { borderRightWidth: 0.5 } : null,
+            ]}
+            onPress={() => onItemSelected(item, index)}
+            key={index}
+          >
+            <LinearGradient colors={["#ff9900", "#ff6600"]}>
               <Text
                 style={[
                   styles.label,
@@ -77,8 +77,8 @@ export default function HeaderTabSwitch({
                   {mealCount}
                 </Badge>
               ) : null}
-            </TouchableOpacity>
-          </LinearGradient>
+            </LinearGradient>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>
