@@ -84,7 +84,7 @@ export default function CreateBanner({ route, navigation }) {
               { color: "#000", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={16} color="#000" /> Appears for most
+            <Icon name="checkmark" size={16} color="#ff6600" /> Appears for most
             relevant customers
           </Text>
           <Text
@@ -93,7 +93,7 @@ export default function CreateBanner({ route, navigation }) {
               { color: "#000", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={16} color="#000" /> Pay only when
+            <Icon name="checkmark" size={16} color="#ff6600" /> Pay only when
             customers click on the ad
           </Text>
           <Text
@@ -102,7 +102,7 @@ export default function CreateBanner({ route, navigation }) {
               { color: "#000", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={16} color="#000" /> Get upto 2.5X ROI
+            <Icon name="checkmark" size={16} color="#ff6600" /> Get upto 2.5X ROI
           </Text>
           <Text
             style={[
@@ -110,7 +110,7 @@ export default function CreateBanner({ route, navigation }) {
               { color: "#000", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={16} color="#000" /> Witness 50% growth
+            <Icon name="checkmark" size={16} color="#ff6600" /> Witness 50% growth
             in new customers
           </Text>
         </View>
@@ -126,7 +126,7 @@ export default function CreateBanner({ route, navigation }) {
             ]}
           >
             <Text style={styles.bigText}>{duration} days</Text>
-            <Text style={styles.bigText}>
+            <Text style={[styles.bigText,{color:"#ff6600"}]}>
               <Icon name="pricetag" size={14} color="#ff6600" />$
               {rpc}
               /click
