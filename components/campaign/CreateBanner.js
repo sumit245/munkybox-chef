@@ -15,6 +15,7 @@ import CalendarPicker from "react-native-calendar-picker";
 import { onDateChange } from "../../helpers/commons";
 import { RadioButton } from "react-native-paper";
 import moment from "moment";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function CreateBanner({ route, navigation }) {
   const { title, duration, rpc, advert_id, restaurant, restaurant_id } =
@@ -41,7 +42,7 @@ export default function CreateBanner({ route, navigation }) {
   };
   useEffect(() => {
     setSelectedStartDate(minDate)
-    let endDate=moment(minDate).add(duration-1,"days")
+    let endDate = moment(minDate).add(duration - 1, "days")
     setSelecteEndDate(endDate)
 
   }, []);
@@ -53,7 +54,7 @@ export default function CreateBanner({ route, navigation }) {
       duration,
       rpc,
       advert_id,
-      start_date:moment().toString(),
+      start_date: moment().toString(),
       end_date,
       code,
       discount_type,
@@ -126,7 +127,7 @@ export default function CreateBanner({ route, navigation }) {
           >
             <Text style={styles.bigText}>{duration} days</Text>
             <Text style={styles.bigText}>
-              <Icon name="pricetag" size={14} color={SecondaryDarkColor} />$
+              <Icon name="pricetag" size={14} color="#ff6600" />$
               {rpc}
               /click
             </Text>
@@ -151,7 +152,7 @@ export default function CreateBanner({ route, navigation }) {
             minDate={minDate}
             allowRangeSelection
             todayBackgroundColor="#e6ffe6"
-            selectedDayColor="#ccc"
+            selectedDayColor="#ff6600"
             selectedDayTextColor="#FFFFFF"
             previousComponent={
               <Icon name="chevron-back" size={18} color="#000" />
@@ -224,7 +225,7 @@ export default function CreateBanner({ route, navigation }) {
               <TouchableOpacity
                 onPress={() => toggleSelector(!expand)}
                 style={{
-                  borderColor: "#777",
+                  borderColor: "#ff6600",
                   borderLeftWidth: 0,
                   borderTopLeftRadius: 0,
                   borderBottomLeftRadius: 0,
@@ -233,13 +234,14 @@ export default function CreateBanner({ route, navigation }) {
                   borderRadius: 1,
                 }}
               >
-                <Icon name="chevron-down" size={22} color="#666" />
+                <Icon name="chevron-down" size={22} color="#ff6600" />
               </TouchableOpacity>
             </View>
           </View>
           <View style={styles.cardBody}>
             <TextInput
               style={styles.input}
+              selectionColor="#ff6600"
               placeholder="$5"
               onChangeText={setDiscount}
             />
@@ -256,7 +258,7 @@ export default function CreateBanner({ route, navigation }) {
               value={plan}
             >
               <View style={styles.btnGroup}>
-                <RadioButton.Android value="2 Meals" color="#226ccf" />
+                <RadioButton.Android value="2 Meals" color="#ff6600" />
                 <Text style={styles.bigText}>2 Meals</Text>
               </View>
               <View
@@ -268,7 +270,7 @@ export default function CreateBanner({ route, navigation }) {
                 }}
               />
               <View style={styles.btnGroup}>
-                <RadioButton.Android value="15 Meals" color="#226ccf" />
+                <RadioButton.Android value="15 Meals" color="#ff6600" />
                 <Text style={styles.bigText}>15 Meals</Text>
               </View>
               <View
@@ -280,7 +282,7 @@ export default function CreateBanner({ route, navigation }) {
                 }}
               />
               <View style={styles.btnGroup}>
-                <RadioButton.Android value="30 Meals" color="#226ccf" />
+                <RadioButton.Android value="30 Meals" color="#ff6600" />
                 <Text style={styles.bigText}>30 Meals</Text>
               </View>
             </RadioButton.Group>
@@ -288,17 +290,16 @@ export default function CreateBanner({ route, navigation }) {
         </View>
       </ScrollView>
       <View style={styles.bottomButtonGroup}>
-        <TouchableOpacity
-          style={[
-            styles.actionButton,
-            { width: "100%", backgroundColor: "#226ccf" },
-          ]}
-          onPress={submitBanner}
-        >
-          <Text style={[styles.btnText, { color: "#FFF" }]}>
-            REVIEW CPC AD CAMPAIGN
-          </Text>
-        </TouchableOpacity>
+        <LinearGradient colors={["#ff9900", "#ff6600"]} style={[
+          styles.actionButton,
+          { width: "100%" },
+        ]}>
+          <TouchableOpacity onPress={submitBanner}>
+            <Text style={[styles.btnText, { color: "#FFF" }]}>
+              REVIEW CPC AD CAMPAIGN
+            </Text>
+          </TouchableOpacity>
+        </LinearGradient>
       </View>
     </SafeAreaView>
   );
