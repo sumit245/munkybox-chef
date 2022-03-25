@@ -210,13 +210,13 @@ export default function CreateBanner({ route, navigation }) {
                 <View
                   style={{
                     padding: 4,
-                    borderColor: "#777",
+                    borderColor: "#ff6600",
                     borderWidth: 0.2,
                     borderRadius: 1,
                     borderBottomRightRadius: 0,
                   }}
                 >
-                  <Text style={{ fontSize: 14, fontWeight: "bold" }}>
+                  <Text style={{ fontSize: 14, fontWeight: "bold",color:"#ff6600" }}>
                     {discount_type}
                   </Text>
                 </View>
