@@ -134,23 +134,24 @@ function TrackPerfContent({
           </Text>
           <Text style={styles.bannerHeadTexts}>ID:{banner.promo_id}</Text>
         </View>
-      </LinearGradient>
-      <View style={styles.progressCounter}>
-        <Text
-          style={[
-            styles.bannerHeadTexts,
-            { marginTop: 36, marginBottom: 4 },
-          ]}
-        >
-          {banner.duration}
-        </Text>
-        <View style={styles.progressDonught}>
-          <Text style={{ fontWeight: "bold", fontSize: 14 }}>
-            {remaining}
+
+        <View style={styles.progressCounter}>
+          <Text
+            style={[
+              styles.bannerHeadTexts,
+              { marginTop: 36, marginBottom: 4 },
+            ]}
+          >
+            {banner.duration}
           </Text>
+          <View style={styles.progressDonught}>
+            <Text style={{ fontWeight: "bold", fontSize: 14 }}>
+              {remaining}
+            </Text>
+          </View>
+          <Text style={styles.smallText}>Days Left</Text>
         </View>
-        <Text style={styles.smallText}>Days Left</Text>
-      </View>
+      </LinearGradient>
 
 
       {/* bannercard top area */}
