@@ -32,7 +32,7 @@ function TrackPerfContent({
   });
 
   const restaurant = useSelector((state) => state.restaurant);
-  const { _id, restaurant_name, promo,restaurant_id } = restaurant;
+  const { _id, restaurant_name, promo, restaurant_id } = restaurant;
 
   const [loaded, setLoaded] = useState(false);
   const [cancel, setCancel] = useState(false);
@@ -74,21 +74,21 @@ function TrackPerfContent({
     );
 
     const dashboardResponse = await axios.get(
-        "http://munkybox-admin.herokuapp.com/api/chefdashboard/"+restaurant_id
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_id
     );
 
     const { dashboard } = await dashboardResponse.data;
     const { coupons } = dashboard
     let prevCoupons = [...coupons];
-      prevCoupons.push(myCoupon);
-      const updateDashboard = await axios.put(
-        "http://munkybox-admin.herokuapp.com/api/chefdashboard/" +
-          restaurant_name +
-          "/" +
-          dashboard._id,
-        { coupons: prevCoupons }
-      );
-    
+    prevCoupons.push(myCoupon);
+    const updateDashboard = await axios.put(
+      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" +
+      restaurant_name +
+      "/" +
+      dashboard._id,
+      { coupons: prevCoupons }
+    );
+
     const { status } = updateDashboard;
     if (status === 200) {
       setCancel(false);
@@ -113,9 +113,10 @@ function TrackPerfContent({
   };
 
 
-    return (
-      <View style={styles.bannerCard}>
-        <LinearGradient colors={["#ff9900","#ff6600"]} style={styles.trackHead}>
+  return (
+    <View style={styles.bannerCard}>
+      <LinearGradient colors={["#ff9900", "#ff6600"]} style={styles.trackHead}>
+        <View>
           <View>
             <Text style={[styles.bannerHeadTexts, { fontSize: 16 }]}>
               {banner.promo_code} (
@@ -134,7 +135,7 @@ function TrackPerfContent({
             <Text style={styles.bannerHeadTexts}>ID:{banner.promo_id}</Text>
           </View>
 
-          <View style={[styles.progressCounter,{zIndex:1000}]}>
+          <View style={[styles.progressCounter, { zIndex: 1000 }]}>
             <Text
               style={[
                 styles.bannerHeadTexts,
@@ -144,108 +145,109 @@ function TrackPerfContent({
               {banner.duration}
             </Text>
             <View style={styles.progressDonught}>
-              <Text style={{ fontWeight: "bold", fontSize: 14 }}>
+              <Text style={{ fontWeight: "bold", fontSize: 14, color: "#ff6600" }}>
                 {remaining}
               </Text>
             </View>
             <Text style={styles.smallText}>Days Left</Text>
           </View>
-        </LinearGradient>
-        {/* bannercard top area */}
+        </View>
+      </LinearGradient>
+      {/* bannercard top area */}
 
-        {!active && (
-          <View style={{ alignItems: "flex-start", marginVertical: 16 }}>
-            <Button
-              mode="text"
-              style={{ backgroundColor: "#fff" }}
-              color="#22ccff"
-              onPress={() => pullToView(banner._id)}
-            >
-              View
-            </Button>
+      {!active && (
+        <View style={{ alignItems: "flex-start", marginVertical: 16 }}>
+          <Button
+            mode="text"
+            style={{ backgroundColor: "#fff" }}
+            color="#22ccff"
+            onPress={() => pullToView(banner._id)}
+          >
+            View
+          </Button>
+        </View>
+      )}
+
+      {active || pulled ? (
+        <View>
+
+          <View style={{ alignItems: "flex-start", marginTop: 16 }}>
+            {!pulled ? (
+              <Button
+                mode="text"
+                style={{ backgroundColor: "#fff" }}
+                color="#f00"
+                onPress={() => updateCoupon()}
+              >
+                CANCEL
+              </Button>
+            ) : (
+              <Button
+                mode="text"
+                style={{ backgroundColor: "#fff" }}
+                color="#f00"
+                onPress={() => setPulled(false)}
+              >
+                Close
+              </Button>
+            )}
           </View>
-        )}
 
-        {active || pulled ? (
-          <View>
-            
-            <View style={{ alignItems: "flex-start", marginTop: 16 }}>
-              {!pulled ? (
-                <Button
-                  mode="text"
-                  style={{ backgroundColor: "#fff" }}
-                  color="#f00"
-                  onPress={() => updateCoupon()}
-                >
-                  CANCEL
-                </Button>
-              ) : (
-                <Button
-                  mode="text"
-                  style={{ backgroundColor: "#fff" }}
-                  color="#f00"
-                  onPress={() => setPulled(false)}
-                >
-                  Close
-                </Button>
-              )}
-            </View>
-
-            <View style={styles.bannerRow}>
-              <Icon name="cart-outline" size={24} color={DARKGRAY} />
-              <View style={{ marginLeft: 8 }}>
-                <Text style={styles.bigText}>{promotedOrders}</Text>
-                <Text style={styles.smallText}> Total Orders</Text>
-              </View>
-            </View>
-
-            <View style={styles.bannerRow}>
-              <Icon name="cash-outline" size={24} color={DARKGRAY} />
-              <View style={{ marginLeft: 8 }}>
-                <Text style={styles.bigText}> ${parseFloat(revenue)-parseFloat(discount)}</Text>
-                <Text style={styles.smallText}> Total Net Income</Text>
-              </View>
-            </View>
-
-
-            <View style={styles.bannerRow}>
-              <Icon name="cash-outline" size={24} color={DARKGRAY} />
-              <View style={{ marginLeft: 8 }}>
-                <Text style={styles.bigText}> ${revenue}</Text>
-                <Text style={styles.smallText}> Total Base Income</Text>
-              </View>
-            </View>
-
-            <View style={styles.bannerRow}>
-              <Icon name="analytics-outline" size={24} color={DARKGRAY} />
-              <View style={{ marginLeft: 8 }}>
-                <Text style={styles.bigText}> ${discount}</Text>
-                <Text style={styles.smallText}> Total Discount Paid</Text>
-              </View>
-            </View>
-
-            <View style={[styles.bannerRow, { borderBottomWidth: 0 }]}>
-              <Icon name="person-outline" size={24} color={DARKGRAY} />
-              <View style={{ marginLeft: 8 }}>
-                <Text style={styles.bigText}>
-                  {Array.isArray(unique) ? unique.length : unique}
-                </Text>
-                <Text style={styles.smallText}> Total Users</Text>
-              </View>
+          <View style={styles.bannerRow}>
+            <Icon name="cart-outline" size={24} color={DARKGRAY} />
+            <View style={{ marginLeft: 8 }}>
+              <Text style={styles.bigText}>{promotedOrders}</Text>
+              <Text style={styles.smallText}> Total Orders</Text>
             </View>
           </View>
-        ) : null}
-        {cancel &&(
-          <CustomAlert
+
+          <View style={styles.bannerRow}>
+            <Icon name="cash-outline" size={24} color={DARKGRAY} />
+            <View style={{ marginLeft: 8 }}>
+              <Text style={styles.bigText}> ${parseFloat(revenue) - parseFloat(discount)}</Text>
+              <Text style={styles.smallText}> Total Net Income</Text>
+            </View>
+          </View>
+
+
+          <View style={styles.bannerRow}>
+            <Icon name="cash-outline" size={24} color={DARKGRAY} />
+            <View style={{ marginLeft: 8 }}>
+              <Text style={styles.bigText}> ${revenue}</Text>
+              <Text style={styles.smallText}> Total Base Income</Text>
+            </View>
+          </View>
+
+          <View style={styles.bannerRow}>
+            <Icon name="analytics-outline" size={24} color={DARKGRAY} />
+            <View style={{ marginLeft: 8 }}>
+              <Text style={styles.bigText}> ${discount}</Text>
+              <Text style={styles.smallText}> Total Discount Paid</Text>
+            </View>
+          </View>
+
+          <View style={[styles.bannerRow, { borderBottomWidth: 0 }]}>
+            <Icon name="person-outline" size={24} color={DARKGRAY} />
+            <View style={{ marginLeft: 8 }}>
+              <Text style={styles.bigText}>
+                {Array.isArray(unique) ? unique.length : unique}
+              </Text>
+              <Text style={styles.smallText}> Total Users</Text>
+            </View>
+          </View>
+        </View>
+      ) : null}
+      {cancel && (
+        <CustomAlert
           title="Are you sure?"
           text="Your active coupon will be set to inactive. Inactive coupons are not visible by users"
           okHandler={() => setInactive(banner._id)}
           cancelHandler={cancelHandler}
           visible={cancel}
         />
-        )}
-      </View>
-    );
-  
+      )}
+    </View>
+  );
+
 }
 export default React.memo(TrackPerfContent);
