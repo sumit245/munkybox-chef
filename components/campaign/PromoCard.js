@@ -107,7 +107,7 @@ export default function PromoCard({
 }
 const styles = StyleSheet.create({
   promocontainer: {
-    marginTop: 24,
+    marginTop: 12,
   },
   promotitle: {
     fontSize: 18,
