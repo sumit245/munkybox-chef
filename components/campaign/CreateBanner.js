@@ -74,42 +74,42 @@ export default function CreateBanner({ route, navigation }) {
       <HeaderTwo title={title} navigation={navigation} />
       <ScrollView>
         <View>
-          <Text style={[styles.bigText, { color: "#fff", padding: 8 }]}>
+          <Text style={[styles.bigText, { color: "#000", padding: 8 }]}>
             Campaign details
           </Text>
           <Text
             style={[
               styles.smallText,
-              { color: "#fff", paddingHorizontal: 8, paddingVertical: 2 },
+              { color: "#000", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={16} color="#FFF" /> Appears for most
+            <Icon name="checkmark" size={16} color="#000" /> Appears for most
             relevant customers
           </Text>
           <Text
             style={[
               styles.smallText,
-              { color: "#fff", paddingHorizontal: 8, paddingVertical: 2 },
+              { color: "#000", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={16} color="#FFF" /> Pay only when
+            <Icon name="checkmark" size={16} color="#000" /> Pay only when
             customers click on the ad
           </Text>
           <Text
             style={[
               styles.smallText,
-              { color: "#fff", paddingHorizontal: 8, paddingVertical: 2 },
+              { color: "#000", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={16} color="#FFF" /> Get upto 2.5X ROI
+            <Icon name="checkmark" size={16} color="#000" /> Get upto 2.5X ROI
           </Text>
           <Text
             style={[
               styles.smallText,
-              { color: "#fff", paddingHorizontal: 8, paddingVertical: 2 },
+              { color: "#000", paddingHorizontal: 8, paddingVertical: 2 },
             ]}
           >
-            <Icon name="checkmark" size={16} color="#FFF" /> Witness 50% growth
+            <Icon name="checkmark" size={16} color="#000" /> Witness 50% growth
             in new customers
           </Text>
         </View>
