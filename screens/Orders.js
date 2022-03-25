@@ -170,6 +170,7 @@ export default function Orders() {
       />
       {loaded ? (
         <FlatList
+          contentContainerStyle={{marginTop:4}}
           data={orders}
           ListEmptyComponent={ListEmptyComponent}
           showsVerticalScrollIndicator={false}
