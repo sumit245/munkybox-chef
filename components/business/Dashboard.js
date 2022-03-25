@@ -366,7 +366,6 @@ export default function Dashboard({ navigation }) {
           </View>
         </View>
       </ScrollView>
-      </LinearGradient>
     </SafeAreaView>
   );
 }
