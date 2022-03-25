@@ -11,7 +11,6 @@ import {
 import { Checkbox, RadioButton, Modal, Button } from "react-native-paper";
 import CalendarPicker from "react-native-calendar-picker";
 import Icon from "react-native-vector-icons/Ionicons";
-import { PrimaryLight, WHITE } from "../../Colors";
 import { styles } from "./campaign.styles";
 import HeaderTwo from "../header/HeaderTwo";
 import { onDateChange } from "../../helpers/commons";
