@@ -299,6 +299,7 @@ const styles = StyleSheet.create({
     padding: 12,
     margin: 1,
     marginVertical: 4,
+    marginHorizontal:4,
     borderRadius: 6,
     backgroundColor:"#fff"
   },
