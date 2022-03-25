@@ -292,7 +292,7 @@ export default function CreateBanner({ route, navigation }) {
       <View style={styles.bottomButtonGroup}>
         <LinearGradient colors={["#ff9900", "#ff6600"]} style={[
           styles.actionButton,
-          { width: "100%" },
+          { width: "100%",borderColor:"#ff6600" },
         ]}>
           <TouchableOpacity onPress={submitBanner}>
             <Text style={[styles.btnText, { color: "#FFF" }]}>
