@@ -71,11 +71,12 @@ export default function TrackCampaign({ route, navigation }) {
     <TabBar
       {...props}
       style={{
-        backgroundColor: PrimaryDark,
-        marginHorizontal: 2,
-        marginBottom: 8,
+        backgroundColor: "transparent",
       }}
-      indicatorStyle={{ backgroundColor: SecondaryColor }}
+      activeColor="#ff6600"
+      labelStyle={{ fontWeight: "bold" }}
+      inactiveColor="#272727"
+      indicatorStyle={{ backgroundColor: "#ff9900", marginHorizontal: 12 }}
     />
   );
 
@@ -109,7 +110,6 @@ export default function TrackCampaign({ route, navigation }) {
             discount={discount}
             orders={orders}
             revenue={revenue}
-            discount={discount}
             users={users}
           />
         );

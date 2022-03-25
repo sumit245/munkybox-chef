@@ -1,3 +1,4 @@
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect } from "react";
 import {
   SafeAreaView,
@@ -12,7 +13,7 @@ export default function PromoSubmit({ route, navigation }) {
   const { promo } = route.params;
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: "space-between" }}>
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: "center",marginTop:"20%" }}>
         <Image
           source={require("../../assets/thanku.svg")}
           style={{ resizeMode: "cover", height: 120, width: 120 }}
@@ -22,17 +23,19 @@ export default function PromoSubmit({ route, navigation }) {
           {promo.plan_name} during all day will start from {promo.start_date}
         </Text>
       </View>
-      <TouchableOpacity
-        style={{
-          borderRadius: 2,
-          borderWidth: 0.5,
-          borderColor: "#226ccf",
-          padding: 10,
-        }}
-        onPress={()=>navigation.navigate('Growth')}
-      >
-        <Text style={{color: "#226ccf",fontWeight:"bold",fontSize:18,textAlign:'center'}}>DONE</Text>
-      </TouchableOpacity>
+      <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+        borderRadius: 6,
+        borderWidth: 0.5,
+        padding: 10,
+        marginHorizontal: "2%",
+        marginBottom:10
+      }}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Growth')}
+        >
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18, textAlign: 'center' }}>DONE</Text>
+        </TouchableOpacity>
+      </LinearGradient>
     </SafeAreaView>
   );
 }

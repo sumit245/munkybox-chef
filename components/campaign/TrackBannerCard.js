@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./campaign.styles";
 import { DARKGRAY } from "../../Colors";
 import { Button } from "react-native-paper";
+import { LinearGradient } from "expo-linear-gradient";
 export default function TrackBannerCard({
   banner,
   promotedOrders,
@@ -39,18 +40,7 @@ export default function TrackBannerCard({
         marginBottom: "20%",
       }}
     >
-      {/* <TrackPerfHead
-        promo_id={promo_id}
-        category={category}
-        promo_code={promo_code}
-        plan_name={plan_name}
-        discount={discount}
-        discount_type={discount_type}
-        start_date={start_date}
-        end_date={end_date}
-        duration={duration}
-      /> */}
-      <View style={styles.trackHead}>
+      <LinearGradient colors={["#ff9900","#ff6600"]} style={styles.trackHead}>
         <View>
           <Text
             style={[
@@ -112,7 +102,7 @@ export default function TrackBannerCard({
           </View>
           <Text style={styles.smallText}>Days Left</Text>
         </View>
-      </View>
+      </LinearGradient>
 
       {status === "Active" ? (
         <>

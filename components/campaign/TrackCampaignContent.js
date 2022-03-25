@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { SecondaryLightColor, DARKGRAY } from "../../Colors";
 import { styles } from "./campaign.styles";
 import axios from "axios";
+import { LinearGradient } from "expo-linear-gradient";
 
 function TrackCampaignContent({ banners, loaded, index }) {
   const [discount, setDiscount] = useState(0);
@@ -15,7 +16,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
   const fetchStat = async (id) => {
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/chefdashboard/getchefbyidandrevenue/" +
-        id
+      id
     );
     const { data } = res;
     const { revenue, users, discount, totalOrders } = data;
@@ -50,7 +51,8 @@ function TrackCampaignContent({ banners, loaded, index }) {
             borderRadius: 2,
           }}
         >
-          <View style={[styles.trackHead, { height: 100 }]}>
+          
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={[styles.trackHead, { height: 100 }]}>
             <View>
               <Text
                 style={[
@@ -132,7 +134,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
               </View>
               <Text style={styles.smallText}>Days Left</Text>
             </View>
-          </View>
+          </LinearGradient>
           {/* Header Part */}
 
           <View style={{ marginVertical: 16, marginHorizontal: 22 }}>

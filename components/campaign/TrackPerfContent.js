@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { DARKGRAY, SecondaryLightColor } from "../../Colors";
 import { Button } from "react-native-paper";
@@ -40,7 +40,12 @@ function TrackPerfContent({
   let remaining = moment(banner.end_date).diff(moment(), "Days");
 
   const updateCoupon = () => {
-    setCancel(true);
+    Alert.alert("Are you sure?", "Your active coupon will be set to inactive. Inactive coupons are not visible by users", [
+      {
+        text: "Cancel", onPress: () => console.log("Cancelld")
+      },
+      { text: "Ok", onPress: () => setInactive(banner._id) }
+    ])
   };
 
   const setInactive = async (id) => {
@@ -93,10 +98,6 @@ function TrackPerfContent({
     if (status === 200) {
       setCancel(false);
     }
-  };
-
-  const cancelHandler = () => {
-    setCancel(false);
   };
 
   useEffect(() => {
@@ -237,15 +238,7 @@ function TrackPerfContent({
           </View>
         </View>
       ) : null}
-      {cancel && (
-        <CustomAlert
-          title="Are you sure?"
-          text="Your active coupon will be set to inactive. Inactive coupons are not visible by users"
-          okHandler={() => setInactive(banner._id)}
-          cancelHandler={cancelHandler}
-          visible={cancel}
-        />
-      )}
+
     </View>
   );
 

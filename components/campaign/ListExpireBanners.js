@@ -40,12 +40,12 @@ export default function ListExpireBanners({
       <>
         <View style={styles.trackOutlet}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Shop name="shop" size={24} color={SecondaryLightColor} />
+            <Shop name="shop" size={24} color="#ff6600" />
             <View>
               <Text
                 style={[
                   styles.heading,
-                  { marginBottom: 0, marginHorizontal: 12 },
+                  { marginBottom: 0, marginHorizontal: 12, color: "#000" },
                 ]}
               >
                 {restaurant}
@@ -53,7 +53,7 @@ export default function ListExpireBanners({
               <Text
                 style={[
                   styles.smallText,
-                  { color: "#FFF", marginHorizontal: 12, marginTop: 0 },
+                  { color: "#000", marginHorizontal: 12, marginTop: 0, fontWeight: "normal" },
                 ]}
               >
                 {address}
