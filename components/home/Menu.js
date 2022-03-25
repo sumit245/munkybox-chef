@@ -8,6 +8,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { useSelector } from "react-redux";
 import Collapsible from "react-native-collapsible";
 import axios from "axios";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Menu({
   meal,
@@ -160,7 +161,7 @@ export default function Menu({
     const { meal_name, image, add_on, description, type } = meal;
     return (
       <View>
-        <View style={styles.headerMenu}>
+        <LinearGradient colors={["#ff9900","#ff6600"]} style={styles.headerMenu}>
           <View>
             <Text style={styles.headerText}>{slot}</Text>
             <Text
@@ -190,7 +191,7 @@ export default function Menu({
               color={WHITE}
             />
           </TouchableOpacity>
-        </View>
+        </LinearGradient>
         <Collapsible collapsed={isCollapse}>
           <RenderHeader title={"Meals"} />
           <RenderContent meal_name={meal_name} type={type} />
@@ -250,7 +251,6 @@ const styles = StyleSheet.create({
     color: DARKGRAY,
   },
   headerMenu: {
-    backgroundColor: "#F96122",
     padding: 6,
     marginTop: -8,
     flexDirection: "row",
