@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     borderRightColor: "#fdfdfd",
+    borderWidth:0.5
   },
   dateHeader: {
     fontSize: 18,
