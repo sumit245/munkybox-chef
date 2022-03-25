@@ -134,7 +134,7 @@ function TrackPerfContent({
             <Text style={styles.bannerHeadTexts}>ID:{banner.promo_id}</Text>
           </View>
 
-          <View style={styles.progressCounter}>
+          <View style={[styles.progressCounter,{zIndex:1000}]}>
             <Text
               style={[
                 styles.bannerHeadTexts,
