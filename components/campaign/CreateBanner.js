@@ -27,7 +27,7 @@ export default function CreateBanner({ route, navigation }) {
   const [code, setCode] = useState("");
   const [expand, setExpand] = useState(false);
   const [discount, setDiscount] = useState("");
-  const [discTypes, setdiscTypes] = useState(["%", "$"]);
+  const [discTypes, setdiscTypes] = useState(["$", "%"]);
   const [discount_type, setDiscountType] = useState("%");
   const [plan, setPlan] = useState("");
 
@@ -155,10 +155,10 @@ export default function CreateBanner({ route, navigation }) {
             selectedDayColor="#ff6600"
             selectedDayTextColor="#FFFFFF"
             previousComponent={
-              <Icon name="chevron-back" size={18} color="#000" />
+              <Icon name="chevron-back" size={18} color="#ff6600" />
             }
             nextComponent={
-              <Icon name="chevron-forward" size={18} color="#000" />
+              <Icon name="chevron-forward" size={18} color="#ff6600" />
             }
             selectedEndDate={selectedEndDate}
             selectedStartDate={selectedStartDate}
@@ -191,7 +191,7 @@ export default function CreateBanner({ route, navigation }) {
                 <View
                   style={{
                     padding: 4,
-                    borderColor: "#777",
+                    borderColor: "#ff6600",
                     borderWidth: 0.2,
                     borderRadius: 1,
                   }}
@@ -199,7 +199,7 @@ export default function CreateBanner({ route, navigation }) {
                   {discTypes.map((data, key) => (
                     <Text
                       key={key}
-                      style={{ fontSize: 16, fontWeight: "bold" }}
+                      style={{ fontSize: 16, fontWeight: "bold",color:"#ff6600" }}
                       onPress={() => selectDiscount(data)}
                     >
                       {data}
