@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: WHITE,
     padding: 8,
-    marginVertical: 10,
+    marginVertical: 8,
   },
   cardBody: {
     marginTop: 8,
