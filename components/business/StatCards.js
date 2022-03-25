@@ -179,7 +179,7 @@ export default function StatCards({
             >
               <Text style={styles.stat_head}>Orders</Text>
               <View>
-                <Badge>
+                <Badge style={{ backgroundColor: "#ff6600", color: "#fff", fontWeight: "bold" }}>
                   {parseInt(complete) +
                     parseInt(active) +
                     parseInt(cancel) +
