@@ -138,7 +138,7 @@ function TrackPerfContent({
             <Text
               style={[
                 styles.bannerHeadTexts,
-                { marginTop: 36, marginBottom: 4,color:"#ff6600" },
+                { marginTop: 36, marginBottom: 4 },
               ]}
             >
               {banner.duration}
