@@ -68,7 +68,7 @@ export default function HeaderTabSwitch({
                   style={{
                     margin: 4,
                     fontSize: 12,
-                    backgroundColor: "fff",
+                    backgroundColor: "#fff",
                     color: "#ff6600",
                   }}
                   size={14}
