@@ -146,8 +146,6 @@ export const styles = StyleSheet.create({
     padding: 8,
   },
   trackHead: {
-    borderColor: PrimaryDark,
-    backgroundColor: PrimaryDark,
     padding: 8,
     height: 90,
     justifyContent: "space-between",
