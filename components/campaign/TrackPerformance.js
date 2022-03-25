@@ -75,12 +75,12 @@ export default function TrackPerformance({ route, navigation }) {
     <TabBar
       {...props}
       style={{
-        backgroundColor: transparent,
-        marginHorizontal: 2,
-        marginBottom: 8,
+        backgroundColor: "transparent",
       }}
-      labelStyle={{color:"#ff6600"}}
-      indicatorStyle={{ backgroundColor: "#ff6600",marginHorizontal:6 }}
+      activeColor="#ff6600"
+      labelStyle={{ fontWeight: "bold" }}
+      inactiveColor="#272727"
+      indicatorStyle={{ backgroundColor: "#ff9900", marginHorizontal: 2 }}
     />
   );
 
