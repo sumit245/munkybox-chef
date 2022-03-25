@@ -221,63 +221,67 @@ export default function Dashboard({ navigation }) {
             backgroundColor: "#fff"
           }}
         >
-          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-            height: 60,
-            width: 60,
-            borderRadius: 15,
-            backgroundColor: "#226ccf",
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
-            <TouchableOpacity
+          <View style={{ alignItems: "center" }}>
+            <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+              height: 60,
+              width: 60,
+              borderRadius: 15,
+              backgroundColor: "#226ccf",
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
+              <TouchableOpacity
 
-              onPress={() => navigation.navigate("review_order")}
-            >
-              <Ants name="star" size={34} color="#FFF" />
-            </TouchableOpacity>
+                onPress={() => navigation.navigate("review_order")}
+              >
+                <Ants name="star" size={34} color="#FFF" />
+              </TouchableOpacity>
+            </LinearGradient>
             <Text style={styles.smallText}>Customer Rating</Text>
-          </LinearGradient>
-
-          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-            height: 60,
-            width: 60,
-            borderRadius: 15,
-            backgroundColor: "#226ccfcc",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          >
-            <TouchableOpacity
-
-              onPress={() =>
-                navigation.navigate("payouts", {
-                  commission: commission,
-                  totalAddOns: totalAddOns,
-                  totalAddOnRevenue: totalAddOnRevenue,
-                })
-              }
+          </View>
+          <View style={{ alignItems: "center" }}>
+            <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+              height: 60,
+              width: 60,
+              borderRadius: 15,
+              backgroundColor: "#226ccfcc",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
             >
-              <Ants name="wallet" size={34} color={SecondaryLightColor} />
-            </TouchableOpacity>
+              <TouchableOpacity
+
+                onPress={() =>
+                  navigation.navigate("payouts", {
+                    commission: commission,
+                    totalAddOns: totalAddOns,
+                    totalAddOnRevenue: totalAddOnRevenue,
+                  })
+                }
+              >
+                <Ants name="wallet" size={28} color="#fff" />
+              </TouchableOpacity>
+            </LinearGradient>
             <Text style={styles.smallText}>Payouts & Finance</Text>
-          </LinearGradient>
-
-          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-            height: 60,
-            width: 60,
-            borderRadius: 15,
-            backgroundColor: "#226ccf",
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
-            <TouchableOpacity
-
-              onPress={() => navigation.navigate("myOrders")}
-            >
-              <Ants name="history" size={34} color={SecondaryLightColor} />
-            </TouchableOpacity>
+          </View>
+          <View style={{ alignItems: "center" }}>
+            <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+              height: 60,
+              width: 60,
+              borderRadius: 15,
+              backgroundColor: "#226ccf",
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("myOrders")}
+              >
+                <Ants name="history" size={28} color="#fff" />
+              </TouchableOpacity>
+            </LinearGradient>
             <Text style={styles.smallText}>Past Orders</Text>
-          </LinearGradient>
+          </View>
+
         </View>
 
         <View style={{ marginHorizontal: 4, padding: 4, marginVertical: 4 }}>
