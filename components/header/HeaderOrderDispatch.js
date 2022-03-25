@@ -66,7 +66,7 @@ export default function HeaderTabSwitch({
               {currentIndex === index ? (
                 <Badge
                   style={{
-                    margin: 4,
+                    marginHorizontal: 4,
                     fontSize: 12,
                     backgroundColor: "#fff",
                     color: "#ff6600",
