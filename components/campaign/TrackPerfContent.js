@@ -115,8 +115,8 @@ function TrackPerfContent({
 
   return (
     <View style={styles.bannerCard}>
-      <LinearGradient colors={["#ff9900", "#ff6600"]} style={styles.trackHead}>
-        <View>
+      <LinearGradient colors={["#ff9900", "#ff6600"]} >
+        <View style={styles.trackHead}>
           <View>
             <Text style={[styles.bannerHeadTexts, { fontSize: 16 }]}>
               {banner.promo_code} (
