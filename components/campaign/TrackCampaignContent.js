@@ -169,6 +169,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
               {
                 alignItems: "center",
                 borderBottomColor: "#999",
+                borderLeftWidth:0,
                 borderBottomWidth: 0.2,
                 marginVertical: "4%",
               },
@@ -189,6 +190,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
                 borderBottomColor: "#999",
                 borderBottomWidth: 0.2,
                 marginVertical: "4%",
+                borderLeftWidth:0,
               },
             ]}
           >
@@ -206,6 +208,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
                 borderBottomColor: "#999",
                 borderBottomWidth: 0.2,
                 marginVertical: "4%",
+                borderLeftWidth:0,
               },
             ]}
           >
@@ -226,6 +229,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
                 borderBottomColor: "#999",
                 borderBottomWidth: 0.2,
                 marginVertical: "4%",
+                borderLeftWidth:0,
               },
             ]}
           >
@@ -242,6 +246,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
               {
                 alignItems: "center",
                 marginVertical: "4%",
+                borderLeftWidth:0,
               },
             ]}
           >
