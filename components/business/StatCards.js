@@ -58,7 +58,7 @@ export default function StatCards({
               </Text>
             </View>
             <View>
-              <Badge>
+              <Badge style={{ backgroundColor: "#ff6600", color: "#fff", fontWeight: "bold" }} >
                 {" "}
                 {parseInt(complete) +
                   parseInt(active) +
@@ -142,7 +142,7 @@ export default function StatCards({
           </View>
         </View>
         {/* Sales */}
-        <View style={{ flexDirection: "row",marginVertical:8 }}>
+        <View style={{ flexDirection: "row", marginVertical: 8 }}>
           <View style={[styles.stat_card, { width: width / 3 }]}>
             <Text style={styles.stat_head}>Adons Revenue</Text>
             <Text style={styles.stat_value}>
