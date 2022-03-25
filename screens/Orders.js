@@ -152,7 +152,7 @@ export default function Orders() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1,backgroundColor:"#fff" }}>
+    <SafeAreaView style={{ flex: 1}}>
       
       <Header title={restaurant_name + ", " + restaurant_id}>
         <View style={styles.switch}>

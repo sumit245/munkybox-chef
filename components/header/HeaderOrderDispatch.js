@@ -1,3 +1,4 @@
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -36,19 +37,19 @@ export default function HeaderTabSwitch({
   }, [selected]);
 
   return (
-    <View style={{ backgroundColor: "#ff9900" }}>
-      <View style={styles.tabcontainer}>
-        <ScrollView
-          horizontal={true}
-          pagingEnabled={true}
-          showsHorizontalScrollIndicator={false}
-        >
-          {items.map((item, index) => (
+    <View style={styles.tabcontainer}>
+      <ScrollView
+        horizontal={true}
+        pagingEnabled={true}
+        showsHorizontalScrollIndicator={false}
+      >
+        {items.map((item, index) => (
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={[
+            styles.tablabel,
+            index !== items.length - 1 ? { borderRightWidth: 0.5 } : null,
+          ]}>
             <TouchableOpacity
-              style={[
-                styles.tablabel,
-                index !== items.length - 1 ? { borderRightWidth: 0.5 } : null,
-              ]}
+
               onPress={() => onItemSelected(item, index)}
               key={index}
             >
@@ -77,10 +78,11 @@ export default function HeaderTabSwitch({
                 </Badge>
               ) : null}
             </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
+          </LinearGradient>
+        ))}
+      </ScrollView>
     </View>
+
   );
 }
 const styles = StyleSheet.create({
@@ -88,8 +90,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
-    borderBottomWidth:0.5,
-    borderBottomColor:DARKGRAY
+    borderBottomWidth: 0.5,
+    borderBottomColor: DARKGRAY
   },
   tablabel: {
     width: width / 3,
