@@ -53,7 +53,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
   const getCurrentOrderDetails = async () => {
     const res = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/getcurrentorder/getOrderDetails/" +
-        item.order_id
+      item.order_id
     );
     if (res.data !== null) {
       let { delivered, add_on } = res.data;
@@ -66,7 +66,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
     setLoading(true);
     const res = await axios.put(
       "http://munkybox-admin.herokuapp.com/api/getcurrentorder/getandupdateorderstatus/" +
-        item.order_id,
+      item.order_id,
       {
         delivered: true,
       }
@@ -103,8 +103,8 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
 
   if (!loading) {
     return (
-      
-        <LinearGradient colors={["#ff9900", "#ff6600"]} style={styles.orderCard}  end={{x:0.1,y:0.9}}  > 
+
+      <View style={styles.orderCard} >
         <View
           style={{
             flexDirection: "row",
@@ -118,7 +118,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
                 height: 60,
                 width: 60,
                 borderRadius: 60,
-                backgroundColor: "#ff9900",
+                backgroundColor: "purple",
                 justifyContent: "center",
                 alignItems: "center",
                 marginRight: 8,
@@ -137,7 +137,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
               >
                 {item.order_id}
               </Text>
-              <Text style={[styles.title, { fontWeight: "bold",color:"#fff" }]}>
+              <Text style={[styles.title, { fontWeight: "bold", color: "#fff" }]}>
                 {item.user_name}
               </Text>
             </View>
@@ -166,19 +166,19 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
             style={[styles.link, { marginLeft: "20%" }]}
             onPress={() => openInMap(item.address)}
           >
-            <Icon name="location" size={24} color="#fff" />
+            <Icon name="location" size={24} color="#226ccf" />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.link}
             onPress={() => makeCall(item.phone)}
           >
-            <Icon name="call-sharp" size={24} color="#fff" />
+            <Icon name="call-sharp" size={24} color="green" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setPulled(!pulled)}>
             <Icon
               name={pulled ? "chevron-up" : "chevron-down"}
               size={24}
-              color="#ededed"
+              color="#ff6600"
             />
           </TouchableOpacity>
         </View>
@@ -282,8 +282,8 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
             </View>
           </View>
         )}
-    </LinearGradient>
-      
+      </View>
+
     );
   } else {
     return <Loader />;

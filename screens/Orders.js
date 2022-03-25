@@ -89,8 +89,6 @@ export default function Orders() {
     setLoaded(true);
   };
 
-  const isSameOrder = (a, b) => a.order_id == b.order_id;
-
   const fetchOrders = async (restaurant) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
@@ -169,7 +167,7 @@ export default function Orders() {
         setTabHandler={(data) => setCurrentPage(data)}
         returnCurrentIndex={(page) => selectedPage(page)}
         mealCount={count}
-      ></HeaderTabSwitch>
+      />
       {loaded ? (
         <FlatList
           data={orders}
