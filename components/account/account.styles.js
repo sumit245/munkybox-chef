@@ -3,14 +3,14 @@ import { DARKGRAY } from "../../Colors";
 import { width, height } from "../../Dimens";
 export const styles = StyleSheet.create({
   row: {
-    width: "90%",
-    marginHorizontal: "1%",
-    marginLeft:"8%",
-    borderBottomWidth: 0.5,
+    width: "96%",
+    marginHorizontal: "2%",
     flexDirection: "row",
+    borderBottomWidth: 0.5,
     borderBottomColor: "#ccc",
+    borderBottomStartRadius:100,
     backgroundColor: "#FFF",
-    padding: 2,
+    padding: 4,
     justifyContent: "space-between",
     
   },
