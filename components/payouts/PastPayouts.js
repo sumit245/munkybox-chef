@@ -77,10 +77,7 @@ const Item = ({ item, commission, navigation }) => {
       <TouchableOpacity
         style={{
           alignSelf: "center",
-          borderRadius: 6,
-          borderWidth: 0.2,
           paddingVertical: 4,
-          height: 36,
           justifyContent: "center",
           alignItems: "center",
         }}
