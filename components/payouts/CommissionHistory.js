@@ -32,7 +32,7 @@ const Item = ({ item, commission, navigation }) => {
         <Text
           style={[
             styles.smallText,
-            { fontWeight: "normal", textTransform: "uppercase", color: item.status === "accepted" ? "#5ca85c" : item.status === "started" ? "ffc300" : "#ff4300" },
+            { fontWeight: "normal", textTransform: "uppercase", color: item.status === "accepted" ? "#5ca85c" : item.status === "started" ? "#ffc300" : "#ff4300" },
           ]}
         >
           {item.status}
