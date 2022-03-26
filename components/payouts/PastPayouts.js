@@ -74,39 +74,37 @@ const Item = ({ item, commission, navigation }) => {
           <Text style={styles.smallText}>{item.status_details}</Text>
         </View>
       </View>
-      <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-        width: 140,
-        alignSelf: "center",
-        borderRadius: 6,
-        borderWidth: 0.2,
-        paddingVertical: 4,
-        height: 36,
-        justifyContent: "center",
-        alignItems: "center",
-      }}>
-        <TouchableOpacity
+      <TouchableOpacity
+        style={{
+          alignSelf: "center",
+          borderRadius: 6,
+          borderWidth: 0.2,
+          paddingVertical: 4,
+          height: 36,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        onPress={() =>
+          navigation.navigate("commission_tracking", {
+            revenue: revenue,
+            orders: item.orders,
+            numOrders: item.numOrders,
+            totalAddOns: item.totalAddOns,
+            totalOrderRevenue: item.totalBaseIncome,
+            totalAddOnReveneue: item.totalAddOnRevenue,
+            totalDiscount: item.totalDiscount,
+            commission: commission,
+            netCommission: netcommission,
+            due: item.due,
+            navigation: navigation,
+          })
+        }
+      >
+        <Text style={[styles.btnText, { color: "#ff6600", textAlign: "center", fontWeight: "bold" }]}>
+          View
+        </Text>
+      </TouchableOpacity>
 
-          onPress={() =>
-            navigation.navigate("commission_tracking", {
-              revenue: revenue,
-              orders: item.orders,
-              numOrders: item.numOrders,
-              totalAddOns: item.totalAddOns,
-              totalOrderRevenue: item.totalBaseIncome,
-              totalAddOnReveneue: item.totalAddOnRevenue,
-              totalDiscount: item.totalDiscount,
-              commission: commission,
-              netCommission: netcommission,
-              due: item.due,
-              navigation: navigation,
-            })
-          }
-        >
-          <Text style={[styles.btnText, { color: "#fff", textAlign: "center", fontWeight: "bold" }]}>
-            View
-          </Text>
-        </TouchableOpacity>
-      </LinearGradient>
 
     </View>
   );
@@ -143,7 +141,7 @@ export default function PastPayouts({ navigation, commission }) {
   };
   return (
     <FlatList
-      contentContainerStyle={{marginTop:4}}
+      contentContainerStyle={{ marginTop: 4 }}
       data={payouts}
       renderItem={renderItem}
       extraData={navigation}
