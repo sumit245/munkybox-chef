@@ -3,8 +3,9 @@ import { DARKGRAY } from "../../Colors";
 import { width, height } from "../../Dimens";
 export const styles = StyleSheet.create({
   row: {
-    width: "98%",
+    width: "90%",
     marginHorizontal: "1%",
+    marginLeft:"8%",
     borderBottomWidth: 0.5,
     flexDirection: "row",
     borderBottomColor: "#ccc",
