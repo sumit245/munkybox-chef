@@ -9,9 +9,9 @@ import {
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
-import { Button, Searchbar } from "react-native-paper";
+import { Searchbar } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
-
+import { LinearGradient } from "expo-linear-gradient";
 const Item = ({ item, commission, navigation }) => {
   const fetchOrderById = async (id) => {
     const res = await axios.get(
@@ -52,8 +52,8 @@ const Item = ({ item, commission, navigation }) => {
             {item.plan === "twoPlan"
               ? "2 Days"
               : item.plan === "fifteenPlan"
-              ? "15 Days"
-              : "30 Days"}
+                ? "15 Days"
+                : "30 Days"}
           </Text>
           <Text style={styles.smallText}>${item.base_price}</Text>
           <Text style={styles.smallText}>${item.discount}</Text>
@@ -64,8 +64,8 @@ const Item = ({ item, commission, navigation }) => {
       </View>
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <TouchableOpacity onPress={() => fetchOrderById(item.order_id)}>
-          <Text style={{ fontWeight: "bold", fontSize: 18, color: "#226ccf" }}>
-            View Details
+          <Text style={{ fontWeight: "bold", fontSize: 16, color: "#226ccf" }}>
+            View
           </Text>
         </TouchableOpacity>
       </View>
@@ -112,7 +112,26 @@ export default function CommissionHistory({ route, navigation }) {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-      <Header title="Commission History" />
+      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 28,
+            width: 28,
+            marginHorizontal: 4,
+            borderRadius: 14,
+          }}>
+            <TouchableOpacity
+              style={{ alignItems: "center", justifyContent: "center" }}
+              onPress={() => navigation.goBack()}
+            >
+              <Icon name="chevron-back" size={24} color="#ffffff" />
+            </TouchableOpacity>
+          </LinearGradient>
+          <Header
+            title="Commission History"
+          />
+        </View>
+      </View>
       <View
         style={{
           flexDirection: "row",
@@ -126,14 +145,15 @@ export default function CommissionHistory({ route, navigation }) {
           placeholder="Search"
           onChangeText={onChangeSearch}
           value={searchQuery}
+          iconColor="#000"
           style={{ width: "90%", height: 28, marginRight: 8 }}
         />
         <TouchableOpacity style={{ width: "8%", marginLeft: 4 }}>
-          <Icon name="calendar" size={20} color="#205000" />
+          <Icon name="calendar" size={20} color="#ff66000" />
         </TouchableOpacity>
       </View>
       <Text style={{ textAlign: "center", fontWeight: "bold", padding: 6 }}>
-        Total Commission Amount: $ {netCommission}
+        Total Commission Amount: ${parseFloat(netCommission).toFixed(2)}
       </Text>
       <FlatList
         data={orders}
