@@ -18,7 +18,7 @@ export default function ContactUs({ navigation }) {
             styles.label,
             { fontSize: 12, color: "#777", marginLeft: 34, marginTop: -10 },
           ]}
-        >  Help & Support
+        >   Help & Support
         </Text>
       </View>
     </TouchableOpacity>
