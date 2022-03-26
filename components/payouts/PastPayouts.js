@@ -75,12 +75,12 @@ const Item = ({ item, commission, navigation }) => {
         </View>
       </View>
       <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-        width: 160,
+        width: 140,
         alignSelf: "center",
         borderRadius: 6,
         borderWidth: 0.2,
         paddingVertical: 4,
-        height: 40,
+        height: 36,
         justifyContent: "center",
         alignItems: "center",
       }}>
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   },
   item: {
     padding: 20,
-    marginVertical: 8,
+    marginVertical: 12,
     marginHorizontal: 16,
   },
   title: {
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   btnText: {
-    fontSize: 18,
+    fontSize: 16,
     textTransform: "uppercase",
     padding: 6,
     fontWeight: "bold",
