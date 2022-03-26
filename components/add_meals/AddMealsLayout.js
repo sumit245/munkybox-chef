@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import ViewMeals from "./ViewMeals";
 import Header from "../header/Header";
 import { TabView, TabBar } from "react-native-tab-view";
-import ToggleLunchDinner from "../header/ToggleLunchDinner";
 import { Divider } from "react-native-paper";
-import { PrimaryDark, SecondaryColor } from "../../Colors";
 import { useSelector } from "react-redux";
-import { SafeAreaView, View } from "react-native";
-import { FAB } from "react-native-paper";
-import { styles } from "../../styles/headerstyle";
+import { SafeAreaView, View,TouchableOpacity } from "react-native";
 import { width } from "../../Dimens";
+import Icon from "react-native-vector-icons/Ionicons"
+import { LinearGradient } from "expo-linear-gradient";
 import AddEditMeals from "./AddEditMeals";
 import axios from "axios";
 
@@ -49,11 +47,12 @@ export default function AddMealsLayout({ navigation }) {
       tabStyle={{ width: width / 3 }}
       scrollEnabled
       style={{
-        backgroundColor: PrimaryDark,
-        marginHorizontal: 2,
-        marginBottom: 8,
+        backgroundColor: "transparent",
       }}
-      indicatorStyle={{ backgroundColor: SecondaryColor }}
+      activeColor="#ff6600"
+      labelStyle={{ fontWeight: "bold" }}
+      inactiveColor="#272727"
+      indicatorStyle={{ backgroundColor: "#ff9900", marginHorizontal: 2 }}
     />
   );
   useEffect(() => {
@@ -260,11 +259,26 @@ export default function AddMealsLayout({ navigation }) {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Header title={"Add Meal"}>
-        {/* <View style={styles.switch}>
-          <ToggleLunchDinner handleToggle={handleToggle} />
-        </View> */}
-      </Header>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 28,
+            width: 28,
+            marginHorizontal: 4,
+            borderRadius: 14,
+          }}>
+            <TouchableOpacity
+              style={{ alignItems: "center", justifyContent: "center" }}
+              onPress={() => navigation.goBack()}
+            >
+              <Icon name="chevron-back" size={24} color="#ffffff" />
+            </TouchableOpacity>
+          </LinearGradient>
+          <Header
+            title="Meals"
+          />
+        </View>
+      </View>
       <Divider />
       <TabView
         lazy
