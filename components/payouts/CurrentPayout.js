@@ -6,6 +6,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "../campaign/campaign.styles";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function CurrentPayout({
   current_cycle,
@@ -57,39 +58,40 @@ export default function CurrentPayout({
         <Text style={styles.smallText}>{numOrders} Orders</Text>
         <Text style={styles.smallText}>{totalAddOns} Add-ons</Text>
       </View>
-      <TouchableOpacity
-        style={{
-          width: 200,
-          alignSelf: "center",
-          borderRadius: 6,
-          borderWidth: 0.2,
-          paddingVertical: 4,
-          height: 44,
-          backgroundColor: "#2962ff",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onPress={() =>
-          navigation.navigate("commission_tracking", {
-            
-            revenue: revenue,
-            orders: orders,
-            numOrders: numOrders,
-            totalAddOns: totalAddOns,
-            totalOrderRevenue: totalOrderRevenue,
-            totalAddOnReveneue: totalAddOnReveneue,
-            totalDiscount: discount,
-            commission: commission,
-            netCommission: netCommission,
-            due: due,
-            navigation: navigation,
-          })
-        }
-      >
-        <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
-          View Payout
-        </Text>
-      </TouchableOpacity>
+      <LinearGradient colors={["ff9900", "#ff6600"]} style={{
+        width: 200,
+        alignSelf: "center",
+        borderRadius: 6,
+        borderWidth: 0.2,
+        paddingVertical: 4,
+        height: 44,
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
+        <TouchableOpacity
+
+          onPress={() =>
+            navigation.navigate("commission_tracking", {
+
+              revenue: revenue,
+              orders: orders,
+              numOrders: numOrders,
+              totalAddOns: totalAddOns,
+              totalOrderRevenue: totalOrderRevenue,
+              totalAddOnReveneue: totalAddOnReveneue,
+              totalDiscount: discount,
+              commission: commission,
+              netCommission: netCommission,
+              due: due,
+              navigation: navigation,
+            })
+          }
+        >
+          <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
+            View Payout
+          </Text>
+        </TouchableOpacity>
+      </LinearGradient>
     </View>
   );
 }
