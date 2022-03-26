@@ -97,7 +97,7 @@ const Item = ({ item, commission, navigation }) => {
           })
         }
       >
-        <Text style={[styles.btnText, { color: "#ff6600", textAlign: "center", fontWeight: "bold" }]}>
+        <Text style={[styles.btnText, { color: "#ff6600", textAlign: "center", fontWeight: "bold", fontSize: 14, textTransform: "capitalize" }]}>
           View
         </Text>
       </TouchableOpacity>
