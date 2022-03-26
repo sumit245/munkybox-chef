@@ -127,7 +127,7 @@ export default function Reviews({ navigation }) {
       >
         <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
           <View style={{ marginRight: 12 }}>
-            <Text style={{ color: "#ff6600" }}>FROM</Text>
+            <Text style={{ color: "#000" }}>FROM</Text>
             <Text
               style={{
                 fontSize: 20,
@@ -147,7 +147,7 @@ export default function Reviews({ navigation }) {
         </View>
         <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
           <View style={{ marginRight: 12 }}>
-            <Text style={{ color: "#ff6600" }}>TO</Text>
+            <Text style={{ color: "#000" }}>TO</Text>
             <Text
               style={{
                 fontSize: 20,
@@ -192,7 +192,7 @@ export default function Reviews({ navigation }) {
           }}
         >
           {stars.map((star, index) => (
-            <LinearGradient colors={star === selectedStar ? ["#ff9900", "#ff6600"] : ["#ffffff", "transparent"]} style={{
+            <LinearGradient colors={star === selectedStar ? ["#ff9900", "#ff6600"] : ["#ffffff", "#ffffff"]} style={{
               width: 60,
               borderColor: "#ddd",
               borderRadius: 2,
@@ -214,7 +214,7 @@ export default function Reviews({ navigation }) {
                   style={{
                     fontSize: 18,
                     fontWeight: "bold",
-                    color: star === selectedStar ? "#fff" : "#ff6600",
+                    color: star === selectedStar ? "#fff" : "#000",
                   }}
                   key={index}
                 >
