@@ -28,7 +28,9 @@ export default function OtpComponent({ route, navigation }) {
       style={styles.imageBackground}
     >
       <SafeAreaView style={styles.container}>
+
         <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+          alignSelf:"flex-start",
           height: 28,
           width: 28,
           marginHorizontal: 4,
