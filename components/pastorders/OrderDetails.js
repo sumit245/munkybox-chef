@@ -137,7 +137,7 @@ export default function OrderDetails({ route, navigation }) {
           </View>
         </View>
 
-        <View style={styles.row}>
+        <View style={[styles.row,{backgroundColor:"#fff"}]}>
           <Text
             style={{
               fontStyle: "italic",
