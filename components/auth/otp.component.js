@@ -28,12 +28,22 @@ export default function OtpComponent({ route, navigation }) {
       style={styles.imageBackground}
     >
       <SafeAreaView style={styles.container}>
-        <TouchableOpacity
-          style={{ alignSelf: "flex-start", paddingTop: 20 }}
-          onPress={() => navigation.pop()}
-        >
-          <Icon name="chevron-back" size={34} color="#FFF" />
-        </TouchableOpacity>
+        <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+          height: 28,
+          width: 28,
+          marginHorizontal: 4,
+          borderRadius: 14,
+        }}>
+          <TouchableOpacity
+
+            onPress={() => {
+              navigation.goBack()
+            }}
+          >
+            <Icon name="chevron-back-sharp" size={28} color="#ffffff" />
+          </TouchableOpacity>
+        </LinearGradient>
+        
         <View style={styles.mobin}>
           <Text style={styles.instructions}>
             {message || ""} {phoneNumber || ""}
@@ -84,14 +94,14 @@ export default function OtpComponent({ route, navigation }) {
               style={[styles.loginBtn, { width: "46%", height: 40, marginRight: "1%", backgroundColor: "#ffffff" }]}
               onPress={() => otpInput.current.clear()}
             >
-              <Text style={[styles.btnText, { color: "#f00", fontWeight: "bold" }]}>Clear</Text>
+              <Text style={[styles.btnText, { color: "#f00", fontWeight: "bold", textTransform: "capitalize" }]}>Clear</Text>
             </TouchableOpacity>
-            <LinearGradient colors={["#ff9900", "#ff6600"]} style={[styles.loginBtn, { width: "46%", marginLeft: "1%", height: 40 }]}>
+            <LinearGradient colors={["#ff9900", "#ff6600"]} style={[styles.loginBtn, { width: "46%", marginLeft: "1%", height: 40, }]}>
               <TouchableOpacity
 
                 onPress={() => confirmCode(verificationCode, verificationId)}
               >
-                <Text style={styles.btnText}>Submit</Text>
+                <Text style={[styles.btnText, { textTransform: "capitalize" }]}>Submit</Text>
               </TouchableOpacity>
             </LinearGradient>
           </View>
