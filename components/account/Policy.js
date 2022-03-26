@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import React, { useState } from "react";
+import { View, SafeAreaView, TouchableOpacity } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import AboutUs from "../about/AboutUs"
 import Terms from "../about/Terms"
-import HeaderwithBack from "../header/HeaderwithBack";
-// import Terms from "../compo"
+import { LinearGradient } from "expo-linear-gradient";
+import Header from "../header/Header";
+import Icon from "react-native-vector-icons/Ionicons";
 
 
 export default function Policy({ navigation }) {
@@ -47,7 +48,27 @@ export default function Policy({ navigation }) {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <HeaderwithBack title="About" navigation={navigation}/>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 28,
+            width: 28,
+            marginHorizontal: 4,
+            borderRadius: 14,
+          }}>
+            <TouchableOpacity
+              style={{ alignItems: "center", justifyContent: "center" }}
+              onPress={() => navigation.goBack()}
+            >
+              <Icon name="chevron-back" size={24} color="#ffffff" />
+            </TouchableOpacity>
+          </LinearGradient>
+          <Header
+            title="About" navigation={navigation}
+          />
+        </View>
+      </View>
+
       <TabView
         lazy
         navigationState={{ index, routes }}
