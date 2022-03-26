@@ -135,12 +135,11 @@ const Item = ({ item, index, navigation }) => {
             <Text
               style={{
                 color: "#227cfc",
-                textTransform: "uppercase",
                 textAlign: "center",
                 fontWeight: "bold",
               }}
             >
-              View Details
+              View
             </Text>
           </TouchableOpacity>
         </View>
