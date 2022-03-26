@@ -59,12 +59,12 @@ export default function CurrentPayout({
         <Text style={styles.smallText}>{totalAddOns} Add-ons</Text>
       </View>
       <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-        width: 200,
+        width: 180,
         alignSelf: "center",
         borderRadius: 6,
         borderWidth: 0.2,
         paddingVertical: 4,
-        height: 44,
+        height: 40,
         justifyContent: "center",
         alignItems: "center",
       }}>

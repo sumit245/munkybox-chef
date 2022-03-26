@@ -10,6 +10,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { LinearGradient } from "expo-linear-gradient";
 
 const Item = ({ item, commission, navigation }) => {
   const [netcommission, setNetCommission] = useState(0);
@@ -24,9 +25,9 @@ const Item = ({ item, commission, navigation }) => {
     setNetCommission(adminCommission);
     setRevenue(
       parseFloat(amt) -
-        parseFloat(adminCommission) -
-        parseFloat(item.totalDiscount) -
-        parseFloat(item.due)
+      parseFloat(adminCommission) -
+      parseFloat(item.totalDiscount) -
+      parseFloat(item.due)
     );
   }, [commission]);
   return (
@@ -56,16 +57,16 @@ const Item = ({ item, commission, navigation }) => {
                 item.status_code === 1
                   ? "checkmark-circle"
                   : item.status_code === 2
-                  ? "information-circle"
-                  : "information-circle"
+                    ? "information-circle"
+                    : "information-circle"
               }
               size={18}
               color={
                 item.status_code === 1
                   ? "green"
                   : item.status_code === 2
-                  ? "orange"
-                  : "red"
+                    ? "orange"
+                    : "red"
               }
             />
             {item.status || "Paid"}
@@ -73,38 +74,40 @@ const Item = ({ item, commission, navigation }) => {
           <Text style={styles.smallText}>{item.status_details}</Text>
         </View>
       </View>
-      <TouchableOpacity
-        style={{
-          width: 200,
-          alignSelf: "center",
-          borderRadius: 6,
-          borderWidth: 0.2,
-          paddingVertical: 4,
-          height: 28,
-          backgroundColor: "#2962ff",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onPress={() =>
-          navigation.navigate("commission_tracking", {
-            revenue: revenue,
-            orders: item.orders,
-            numOrders: item.numOrders,
-            totalAddOns: item.totalAddOns,
-            totalOrderRevenue: item.totalBaseIncome,
-            totalAddOnReveneue: item.totalAddOnRevenue,
-            totalDiscount: item.totalDiscount,
-            commission: commission,
-            netCommission: netcommission,
-            due: item.due,
-            navigation: navigation,
-          })
-        }
-      >
-        <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
-          View Payout
-        </Text>
-      </TouchableOpacity>
+      <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+        width: 200,
+        alignSelf: "center",
+        borderRadius: 6,
+        borderWidth: 0.2,
+        paddingVertical: 4,
+        height: 28,
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
+        <TouchableOpacity
+
+          onPress={() =>
+            navigation.navigate("commission_tracking", {
+              revenue: revenue,
+              orders: item.orders,
+              numOrders: item.numOrders,
+              totalAddOns: item.totalAddOns,
+              totalOrderRevenue: item.totalBaseIncome,
+              totalAddOnReveneue: item.totalAddOnRevenue,
+              totalDiscount: item.totalDiscount,
+              commission: commission,
+              netCommission: netcommission,
+              due: item.due,
+              navigation: navigation,
+            })
+          }
+        >
+          <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
+            View Payout
+          </Text>
+        </TouchableOpacity>
+      </LinearGradient>
+
     </View>
   );
 };
@@ -116,7 +119,7 @@ export default function PastPayouts({ navigation, commission }) {
   const fetchPastPayouts = async (id) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getpastpayout/" +
-        id
+      id
     );
     setPayouts(response.data);
   };
