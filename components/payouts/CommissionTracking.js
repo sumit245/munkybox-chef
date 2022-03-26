@@ -1,7 +1,6 @@
 import {
   View,
   Text,
-  TouchableOpacityBase,
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
@@ -9,6 +8,8 @@ import React, { useEffect } from "react";
 import { styles } from "../campaign/campaign.styles";
 import Header from "../header/Header";
 import Icon from "react-native-vector-icons/Fontisto";
+import Ionicon from "react-native-vector-icons/Ionicons"
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function CommissionTracking({ route, navigation }) {
   const {
@@ -26,7 +27,26 @@ export default function CommissionTracking({ route, navigation }) {
 
   return (
     <SafeAreaView>
-      <Header title="Commission Tracking" />
+      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 28,
+            width: 28,
+            marginHorizontal: 4,
+            borderRadius: 14,
+          }}>
+            <TouchableOpacity
+              style={{ alignItems: "center", justifyContent: "center" }}
+              onPress={() => navigation.goBack()}
+            >
+              <Ionicon name="chevron-back" size={24} color="#ffffff" />
+            </TouchableOpacity>
+          </LinearGradient>
+          <Header
+            title="Payouts & Finance"
+          />
+        </View>
+      </View>
       <View style={styles.card}>
         <View style={{ padding: 6, marginVertical: 8 }}>
           <Text
@@ -34,7 +54,7 @@ export default function CommissionTracking({ route, navigation }) {
               textAlign: "center",
               fontSize: 18,
               fontWeight: "bold",
-              color: "#f00",
+              color: "#ff6600",
             }}
           >
             Total Received Amount
