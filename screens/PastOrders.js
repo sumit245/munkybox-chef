@@ -12,6 +12,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import Item from "../components/pastorders/Item";
 import Icon from "react-native-vector-icons/Ionicons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function PastOrders({ navigation }) {
   const [orders, setOrders] = useState([]);
@@ -36,17 +37,19 @@ export default function PastOrders({ navigation }) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-        <TouchableOpacity
-          style={{
-            alignSelf: "flex-start",
-            marginHorizontal: 8,
-            marginVertical: 4,
-          }}
-          onPress={() => navigation.goBack()}
-        >
-          <Icon name="chevron-back" size={24} color="#2277fc" />
-        </TouchableOpacity>
+      <View style={{ flexDirection: "row", justifyContent: "flex-start", backgroundColor: "#fff", width: "100%" }}>
+        <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+          alignSelf: "flex-start",
+          marginHorizontal: 8,
+          marginVertical: 4,
+        }}>
+          <TouchableOpacity
+            style={{ alignItems: "center", justifyContent: "center" }}
+            onPress={() => navigation.goBack()}
+          >
+            <Icon name="chevron-back" size={24} color="#ffffff" />
+          </TouchableOpacity>
+        </LinearGradient>
         <Header
           title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
         />
