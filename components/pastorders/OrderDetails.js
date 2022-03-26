@@ -28,24 +28,26 @@ export default function OrderDetails({ route, navigation }) {
   let price = subtotals.reduce(add, 0);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ flexDirection: "row", justifyContent: "flex-start", backgroundColor: "#fff", width: "100%", alignItems: "center" }}>
-        <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-          height: 28,
-          width: 28,
-          marginHorizontal: 4,
-          borderRadius: 14,
-        }}>
-          <TouchableOpacity
-            style={{ alignItems: "center", justifyContent: "center" }}
-            onPress={() => navigation.goBack()}
-          >
-            <Icon name="chevron-back" size={24} color="#ffffff" />
-          </TouchableOpacity>
-        </LinearGradient>
-        <Header
-          title={restaurant_name + ", " + restaurant_id}
-        />
-          <Download/>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", alignItems: "center" }}>
+        <View style={{ flexDirection: "row" }}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 28,
+            width: 28,
+            marginHorizontal: 4,
+            borderRadius: 14,
+          }}>
+            <TouchableOpacity
+              style={{ alignItems: "center", justifyContent: "center" }}
+              onPress={() => navigation.goBack()}
+            >
+              <Icon name="chevron-back" size={24} color="#ffffff" />
+            </TouchableOpacity>
+          </LinearGradient>
+          <Header
+            title={restaurant_name + ", " + restaurant_id}
+          />
+        </View>
+        <Download />
       </View>
 
       <ScrollView
@@ -111,8 +113,8 @@ export default function OrderDetails({ route, navigation }) {
                 {order.plan === "twoPlan"
                   ? "2 Days"
                   : order.plan === "fifteenPlan"
-                  ? "15 Days"
-                  : "30 Days"}
+                    ? "15 Days"
+                    : "30 Days"}
               </Text>
               <Text>{order.start_date}</Text>
               <Text>{order.end_date}</Text>
@@ -147,7 +149,7 @@ export default function OrderDetails({ route, navigation }) {
             Notes: {order.notes}
           </Text>
         </View>
-     
+
         <View style={styles.table}>
           <View style={[styles.tableHead, { justifyContent: "flex-end" }]}>
             <Text>Total: ${parseFloat(price).toFixed(2)}</Text>
@@ -174,7 +176,7 @@ export default function OrderDetails({ route, navigation }) {
                     ${parseFloat(extra.rate).toFixed(2) + " x " + extra.qty}
                   </Text>
                 </View>
-                
+
                 <Text style={{ padding: 4 }}>{extra.order_date}</Text>
                 <Text style={{ padding: 4 }}>
                   ${parseFloat(extra.subtotal).toFixed(2)}
@@ -182,7 +184,7 @@ export default function OrderDetails({ route, navigation }) {
               </View>
             ))}
         </View>
-     
+
       </ScrollView>
     </SafeAreaView>
   );
