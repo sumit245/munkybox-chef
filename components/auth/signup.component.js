@@ -260,7 +260,7 @@ export default function Signup({ navigation }) {
                   I agree to the{" "}
                   <Text
                     style={{
-                      color: "rgb(33, 151, 186)",
+                      color: "#226ccf",
                       textAlign: "left",
                       fontSize: 14,
                       textDecorationLine: "underline",
@@ -271,7 +271,7 @@ export default function Signup({ navigation }) {
                   and{" "}
                   <Text
                     style={{
-                      color: "rgb(33, 151, 186)",
+                      color: "#226ccf",
                       textAlign: "left",
                       fontSize: 14,
                       textDecorationLine: "underline",
@@ -315,7 +315,7 @@ export default function Signup({ navigation }) {
             <View>
               <Text
                 style={{
-                  color: "rgb(33, 151, 186)",
+                  color: "#000",
                   fontSize: 16,
                   fontWeight: "bold",
                   textDecorationLine: "underline",

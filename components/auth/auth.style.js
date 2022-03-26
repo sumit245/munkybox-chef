@@ -50,7 +50,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginVertical: 6,
-    backgroundColor: "rgb(0,175,239)",
   },
   btnText: {
     color: "#ffffff",
