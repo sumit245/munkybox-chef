@@ -15,6 +15,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector, useDispatch } from "react-redux";
 import Header from "../header/Header";
+import HeaderTwo from "../header/HeaderTwo";
 
 const { width, height } = Dimensions.get("window");
 export const VerificationDocs = ({ navigation }) => {
@@ -47,7 +48,8 @@ export const VerificationDocs = ({ navigation }) => {
         style={{ flex: 1 }}
       >
 
-        <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+        <HeaderTwo title="Documents"/>
+        {/* <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
               height: 28,
@@ -67,6 +69,7 @@ export const VerificationDocs = ({ navigation }) => {
             />
           </View>
         </View>
+         */}
         <FlatList
           contentContainerStyle={{ marginHorizontal: 4 }}
           ItemSeparatorComponent={() => <View style={{ width: 0.1 * width }} />}

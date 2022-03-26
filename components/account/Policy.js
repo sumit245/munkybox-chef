@@ -6,6 +6,7 @@ import Terms from "../about/Terms"
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "../header/Header";
 import Icon from "react-native-vector-icons/Ionicons";
+import HeaderTwo from "../header/HeaderTwo";
 
 
 export default function Policy({ navigation }) {
@@ -48,7 +49,8 @@ export default function Policy({ navigation }) {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+      <HeaderTwo title="About us"/>
+      {/* <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
             height: 28,
@@ -67,7 +69,7 @@ export default function Policy({ navigation }) {
             title="About" navigation={navigation}
           />
         </View>
-      </View>
+      </View> */}
 
       <TabView
         lazy
