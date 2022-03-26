@@ -217,7 +217,7 @@ export default function Dashboard({ navigation }) {
             flexDirection: "row",
             justifyContent: "space-between",
             padding: 8,
-            backgroundColor: "#fff"
+            backgroundColor: "#fff", marginTop: 8
           }}
         >
           <View style={{ alignItems: "center" }}>
