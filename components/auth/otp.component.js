@@ -81,12 +81,12 @@ export default function OtpComponent({ route, navigation }) {
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <TouchableOpacity
-              style={[styles.loginBtn, { width: "46%", marginRight: "1%",backgroundColor:"#ffffff" }]}
+              style={[styles.loginBtn, { width: "46%", height: 40, marginRight: "1%", backgroundColor: "#ffffff" }]}
               onPress={() => otpInput.current.clear()}
             >
-              <Text style={[styles.btnText, { color: "#f00",fontWeight:"bold" }]}>Clear</Text>
+              <Text style={[styles.btnText, { color: "#f00", fontWeight: "bold" }]}>Clear</Text>
             </TouchableOpacity>
-            <LinearGradient colors={["#ff9900", "#ff6600"]} style={[styles.loginBtn, { width: "46%", marginLeft: "1%" }]}>
+            <LinearGradient colors={["#ff9900", "#ff6600"]} style={[styles.loginBtn, { width: "46%", marginLeft: "1%", height: 40 }]}>
               <TouchableOpacity
 
                 onPress={() => confirmCode(verificationCode, verificationId)}
