@@ -244,7 +244,7 @@ export default function Reviews({ navigation }) {
   );
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <HeaderTwo title="User Feedback" />
+      <HeaderTwo title="User Feedback" navigation={navigation} />
       {/* Header done */}
 
       {!loading ? (
