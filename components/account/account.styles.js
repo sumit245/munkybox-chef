@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: "#ccc",
     borderBottomStartRadius: 100,
-    borderBottomEndRadius:100,
+    borderBottomEndRadius:90,
     backgroundColor: "#FFF",
     padding: 4,
     justifyContent: "space-between",
