@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import { LinearGradient } from "expo-linear-gradient";
 import { useSelector, useDispatch } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
@@ -44,22 +45,26 @@ export const VerificationDocs = ({ navigation }) => {
       <SafeAreaView
         style={{ flex: 1 }}
       >
-        <TouchableOpacity
-          style={{
-            position: "absolute",
-            left: 10,
-            top: 60,
-            backgroundColor: "#fff",
-            zIndex: 1,
-            width: 30,
-            height: 30,
-            borderRadius: 15,
-            justifyContent: "center",
-          }}
-          onPress={() => navigation.goBack()}
-        >
-          <Icon name="chevron-back" size={26} color="#226ccf" />
-        </TouchableOpacity>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+              height: 28,
+              width: 28,
+              marginHorizontal: 4,
+              borderRadius: 14,
+            }}>
+              <TouchableOpacity
+                style={{ alignItems: "center", justifyContent: "center" }}
+                onPress={() => navigation.goBack()}
+              >
+                <Icon name="chevron-back" size={24} color="#ffffff" />
+              </TouchableOpacity>
+            </LinearGradient>
+            <Header
+              title="Documents"
+            />
+          </View>
+        </View>
         <FlatList
           contentContainerStyle={{ marginHorizontal: 4 }}
           ItemSeparatorComponent={() => <View style={{ width: 0.1 * width }} />}
