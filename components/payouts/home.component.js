@@ -1,4 +1,4 @@
-import { SafeAreaView, useWindowDimensions } from "react-native";
+import { SafeAreaView, useWindowDimensions,TouchableOpacity,View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
 import { TabView, TabBar } from "react-native-tab-view";
@@ -8,6 +8,8 @@ import PastPayouts from "./PastPayouts";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { LinearGradient } from "expo-linear-gradient";
+import Icon from "react-native-vector-icons/Ionicons"
 
 const PayoutHome = ({ route, navigation }) => {
   const { commission } = route.params;
@@ -36,7 +38,7 @@ const PayoutHome = ({ route, navigation }) => {
   const chefPayouts = async (id) => {
     const response = await axios.get(
       "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getchefpayout/" +
-        id
+      id
     );
     const {
       totalBaseIncome,
@@ -56,9 +58,9 @@ const PayoutHome = ({ route, navigation }) => {
     setNetCommission(adminCommission);
     setRevenue(
       parseFloat(amt) -
-        parseFloat(adminCommission) -
-        parseFloat(totalDiscount) -
-        parseFloat(due)
+      parseFloat(adminCommission) -
+      parseFloat(totalDiscount) -
+      parseFloat(due)
     );
     setNumOrders(numOrders);
     setDiscount(totalDiscount);
@@ -119,9 +121,29 @@ const PayoutHome = ({ route, navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{flex:1}}>
-      <Header title="Payouts & Finance" />
-      {/* <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}> */}
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 28,
+            width: 28,
+            marginHorizontal: 4,
+            borderRadius: 14,
+          }}>
+            <TouchableOpacity
+              style={{ alignItems: "center", justifyContent: "center" }}
+              onPress={() => navigation.goBack()}
+            >
+              <Icon name="chevron-back" size={24} color="#ffffff" />
+            </TouchableOpacity>
+          </LinearGradient>
+          <Header
+            title="Payouts & Finance"
+          />
+        </View>
+        <Download />
+      </View>
+
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
@@ -130,7 +152,7 @@ const PayoutHome = ({ route, navigation }) => {
         renderTabBar={renderTabBar}
         initialLayout={{ width: layout.width }}
       />
-      {/* </View> */}
+
     </SafeAreaView>
   );
 };
