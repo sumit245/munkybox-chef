@@ -149,7 +149,7 @@ export default function CommissionHistory({ route, navigation }) {
           style={{ width: "90%", height: 28, marginRight: 8 }}
         />
         <TouchableOpacity style={{ width: "8%", marginLeft: 4 }}>
-          <Icon name="calendar" size={20} color="#ff66000" />
+          <Icon name="calendar" size={20} color="#ff6600" />
         </TouchableOpacity>
       </View>
       <Text style={{ textAlign: "center", fontWeight: "bold", padding: 6 }}>
