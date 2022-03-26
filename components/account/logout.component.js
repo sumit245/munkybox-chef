@@ -14,6 +14,8 @@ export default function Logout({ navigation }) {
       borderRadius: 20,
       justifyContent: 'center',
       alignItems: 'center',
+      marginVertical: 12,
+      marginHorizontal:"36%"
     }}>
       <TouchableOpacity
         onPress={logout}
