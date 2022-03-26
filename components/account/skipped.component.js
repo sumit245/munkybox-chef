@@ -11,8 +11,8 @@ export default function Skipped({ navigation }) {
         onPress={() => navigation.navigate("policies")}
       >
         <View>
-          <Text style={{ fontSize: 18, color: "#444", margin: 8,paddingVertical:2 }}>
-            <Icon name="information-circle-outline" color="#444" size={24} style={{paddingVertical:2}} />  About us
+          <Text style={{ fontSize: 18, color: "#444", margin: 8, paddingVertical: 2, textAlignVertical: "center" }}>
+            <Icon name="information-circle-outline" color="#444" size={24} style={{ paddingVertical: 2 }} />  About us
           </Text>
         </View>
       </TouchableOpacity>
