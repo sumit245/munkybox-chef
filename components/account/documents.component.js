@@ -14,6 +14,7 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector, useDispatch } from "react-redux";
+import Header from "../header/Header";
 
 const { width, height } = Dimensions.get("window");
 export const VerificationDocs = ({ navigation }) => {
@@ -45,6 +46,7 @@ export const VerificationDocs = ({ navigation }) => {
       <SafeAreaView
         style={{ flex: 1 }}
       >
+
         <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
