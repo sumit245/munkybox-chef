@@ -181,4 +181,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginVertical: 2,
   },
+  btnText: {
+    fontSize: 18,
+    textTransform: "uppercase",
+    padding: 6,
+    fontWeight: "bold",
+    letterSpacing: 1.1,
+  },
 });
