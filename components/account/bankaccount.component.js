@@ -64,7 +64,7 @@ export default function BankAccount({ navigation }) {
   return (
     <>
       <View style={styles.row}>
-        <Text style={{ fontSize: 18, color: "#444", margin: 8,paddingVertical:2 }}>
+        <Text style={{ fontSize: 18, color: "#444", margin: 8, paddingVertical: 2 }}>
           <Icon name="card-sharp" color="#444" size={24} />  Bank Information
         </Text>
         <TouchableOpacity
@@ -87,7 +87,7 @@ export default function BankAccount({ navigation }) {
             style={{ alignSelf: "flex-end" }}
             onPress={() => onSubmit()}
           >
-            <FontAwesome name={editable ? "save" : "pencil"} size={20} />
+            <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable ? "#ff6600" : "#000"} />
           </TouchableOpacity>
           <>
             <View style={styles.labelContainer}>
@@ -97,6 +97,7 @@ export default function BankAccount({ navigation }) {
             <TextInput
               defaultValue={account_name}
               style={styles.inputContainer}
+              selectionColor="#ff6600"
               onChangeText={(text) => onChangeText("account_name", text)}
               placeholder="Account Name"
               editable={editable}
@@ -112,6 +113,7 @@ export default function BankAccount({ navigation }) {
               defaultValue={account_number}
               style={styles.inputContainer}
               keyboardType="numeric"
+              selectionColor="#ff6600"
               onChangeText={(text) => onChangeText("account_number", text)}
               placeholder="Account Number"
               editable={editable}
@@ -126,6 +128,7 @@ export default function BankAccount({ navigation }) {
               <TextInput
                 style={styles.inputContainer}
                 keyboardType="numeric"
+                selectionColor="#ff6600"
                 onChangeText={(text) => onChangeText("confirmNumber", text)}
                 editable={editable}
               />
@@ -140,6 +143,7 @@ export default function BankAccount({ navigation }) {
             <TextInput
               defaultValue={bank_name}
               placeholder="Bank Name"
+              selectionColor="#ff6600"
               style={styles.inputContainer}
               onChangeText={(text) => onChangeText("bank_name", text)}
               editable={editable}
@@ -154,6 +158,7 @@ export default function BankAccount({ navigation }) {
             <TextInput
               defaultValue={branch_number}
               placeholder="Branch #"
+              selectionColor="#ff6600"
               placeholderTextColor="#777"
               style={styles.inputContainer}
               onChangeText={(text) => onChangeText("branch_number", text)}
@@ -169,6 +174,7 @@ export default function BankAccount({ navigation }) {
               placeholder="Institution #"
               defaultValue={institution_number}
               placeholderTextColor="#777"
+              selectionColor="#ff6600"
               style={styles.inputContainer}
               onChangeText={(text) => onChangeText("institution_number", text)}
               editable={editable}

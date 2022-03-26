@@ -75,7 +75,7 @@ export default function PersonalDetails() {
             style={{ alignSelf: "flex-end" }}
             onPress={() => onSubmit()}
           >
-            <FontAwesome name={editable ? "save" : "pencil"} size={20} />
+            <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable?"#ff6600":"#0000"} />
           </TouchableOpacity>
           <View style={{ marginVertical: 4 }}>
             <View style={styles.labelContainer}>
@@ -84,6 +84,7 @@ export default function PersonalDetails() {
             </View>
             <TextInput
               value={info.ownerName}
+              selectionColor="#ff6600"
               style={styles.inputContainer}
               onChangeText={(text) => setInfo({ ...info, ownerName: text })}
               editable={editable}
@@ -97,6 +98,7 @@ export default function PersonalDetails() {
             </View>
             <TextInput
               value={info.phoneNumber}
+              selectionColor="#ff6600"
               style={styles.inputContainer}
               keyboardType="phone-pad"
               onChangeText={(text) => setInfo({ ...info, phoneNumber: text })}
@@ -111,6 +113,7 @@ export default function PersonalDetails() {
             </View>
             <TextInput
               value={info.emailId}
+              selectionColor="#ff6600"
               style={styles.inputContainer}
               onChangeText={(text) => setInfo({ ...info, emailId: text })}
               editable={false}
@@ -129,6 +132,7 @@ export default function PersonalDetails() {
               multiline
               style={[styles.inputContainer, { textAlignVertical: "bottom" }]}
               numberOfLines={3}
+              selectionColor="#ff6600"
               onChangeText={(text) => setInfo({ ...info, aboutInfo: text })}
               editable={editable}
             />
