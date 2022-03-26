@@ -28,8 +28,8 @@ export default function OrderDetails({ route, navigation }) {
   let price = subtotals.reduce(add, 0);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", alignItems: "center" }}>
-        <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
             height: 28,
             width: 28,
