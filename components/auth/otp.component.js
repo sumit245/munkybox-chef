@@ -12,6 +12,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./auth.style";
 import { useNavigationState } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
+import { width } from "../../Dimens";
 
 export default function OtpComponent({ route, navigation }) {
   const { phoneNumber, confirmCode, verificationId } = route.params;
@@ -30,7 +31,7 @@ export default function OtpComponent({ route, navigation }) {
       <SafeAreaView style={styles.container}>
 
         <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-          alignSelf:"flex-start",
+          alignSelf: "flex-start",
           height: 28,
           width: 28,
           marginHorizontal: 4,
@@ -45,7 +46,7 @@ export default function OtpComponent({ route, navigation }) {
             <Icon name="chevron-back-sharp" size={28} color="#ffffff" />
           </TouchableOpacity>
         </LinearGradient>
-        
+
         <View style={styles.mobin}>
           <Text style={styles.instructions}>
             {message || ""} {phoneNumber || ""}
@@ -93,12 +94,12 @@ export default function OtpComponent({ route, navigation }) {
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <TouchableOpacity
-              style={[styles.loginBtn, { width: "46%", height: 40, marginRight: "1%", backgroundColor: "#ffffff" }]}
+              style={[styles.loginBtn, { width: width / 3, height: 40, marginRight: "1%", backgroundColor: "#ffffff" }]}
               onPress={() => otpInput.current.clear()}
             >
               <Text style={[styles.btnText, { color: "#f00", fontWeight: "bold", textTransform: "capitalize" }]}>Clear</Text>
             </TouchableOpacity>
-            <LinearGradient colors={["#ff9900", "#ff6600"]} style={[styles.loginBtn, { width: "46%", marginLeft: "1%", height: 40, }]}>
+            <LinearGradient colors={["#ff9900", "#ff6600"]} style={[styles.loginBtn, { width: width / 3, marginLeft: "1%", height: 40, }]}>
               <TouchableOpacity
 
                 onPress={() => confirmCode(verificationCode, verificationId)}
