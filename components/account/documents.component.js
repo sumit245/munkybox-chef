@@ -48,7 +48,7 @@ export const VerificationDocs = ({ navigation }) => {
         style={{ flex: 1 }}
       >
 
-        <HeaderTwo title="Documents"/>
+        <HeaderTwo title="Documents" navigation={navigation} />
         {/* <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
