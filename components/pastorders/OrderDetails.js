@@ -49,6 +49,7 @@ export default function OrderDetails({ route, navigation }) {
         </View>
         <Download />
       </View>
+      {/* Header */}
 
       <ScrollView
         contentContainerStyle={{ justifyContent: "flex-start", flex: 1,marginTop:8,backgroundColor:"#fff" }}
@@ -66,7 +67,7 @@ export default function OrderDetails({ route, navigation }) {
               <Text>
                 {moment(order.order_time).format("DD-MMM-YYYY HH:mm a")}
               </Text>
-              <Text style={{ textTransform: "uppercase" }}>{order.status}</Text>
+              <Text style={{ textTransform: "uppercase",color:order.status==="accepted"?"#5ca85c":order.status==="started"?"#ffc300":"#ff4300" }}>{order.status}</Text>
             </View>
           </View>
           <View style={styles.row}>
