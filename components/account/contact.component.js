@@ -9,16 +9,16 @@ export default function ContactUs({ navigation }) {
       style={styles.row}
       onPress={() => navigation.navigate("contacts")}
     >
-      <View style={{ alignItems: "center", flexDirection: "row" }}>
+      <View style={{ alignItems: "center", flexDirection: "row", margin: 8, }}>
         <Icon name="mail-sharp" color="#444" size={24} style={{ paddingVertical: 2 }} />
         <View>
-          <Text style={{ fontSize: 18, color: "#444", margin: 8, paddingVertical: 2, textAlignVertical: "top" }}>
+          <Text style={{ fontSize: 18, color: "#444", paddingVertical: 2, textAlignVertical: "top" }}>
             Contact Us
           </Text>
           <Text
             style={[
               styles.label,
-              { fontSize: 12, color: "#777", marginLeft: 34, marginTop: -10 },
+              { fontSize: 12, color: "#777", marginTop: -10 },
             ]}
           >   Help & Support
           </Text>
