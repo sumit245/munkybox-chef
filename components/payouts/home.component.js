@@ -1,4 +1,4 @@
-import { SafeAreaView, useWindowDimensions,TouchableOpacity,View } from "react-native";
+import { SafeAreaView, useWindowDimensions, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
 import { TabView, TabBar } from "react-native-tab-view";
@@ -88,8 +88,14 @@ const PayoutHome = ({ route, navigation }) => {
   const renderTabBar = (props) => (
     <TabBar
       {...props}
-      style={{ backgroundColor: PrimaryDark }}
-      indicatorStyle={{ backgroundColor: SecondaryColor }}
+      indicatorStyle={{ backgroundColor: "#ff9900", marginHorizontal: 60, width: 100, }}
+      style={{
+        backgroundColor: "transparent",
+        height: 40,
+      }}
+      activeColor="#ff6600"
+      labelStyle={{ fontWeight: "bold" }}
+      inactiveColor="#272727"
     />
   );
   const renderScene = ({ route }) => {
@@ -141,7 +147,6 @@ const PayoutHome = ({ route, navigation }) => {
             title="Payouts & Finance"
           />
         </View>
-        <Download />
       </View>
 
       <TabView
