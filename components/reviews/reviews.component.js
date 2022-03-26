@@ -21,6 +21,8 @@ import {
   SecondaryDarkColor,
   SecondaryLightColor,
 } from "../../Colors";
+import HeaderTwo from "../header/HeaderTwo";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Reviews({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -125,7 +127,7 @@ export default function Reviews({ navigation }) {
       >
         <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
           <View style={{ marginRight: 12 }}>
-            <Text>FROM</Text>
+            <Text style={{ color: "#ff6600" }}>FROM</Text>
             <Text
               style={{
                 fontSize: 20,
@@ -140,12 +142,12 @@ export default function Reviews({ navigation }) {
             </Text>
           </View>
           <TouchableOpacity onPress={selectStartDate}>
-            <Icon name="ios-calendar" size={20} color="#666" />
+            <Icon name="ios-calendar" size={20} color="#ff6600" />
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
           <View style={{ marginRight: 12 }}>
-            <Text>TO</Text>
+            <Text style={{ color: "#ff6600" }}>TO</Text>
             <Text
               style={{
                 fontSize: 20,
@@ -160,7 +162,7 @@ export default function Reviews({ navigation }) {
             </Text>
           </View>
           <TouchableOpacity onPress={selectEndDate}>
-            <Icon name="ios-calendar" size={20} color="#666" />
+            <Icon name="ios-calendar" size={20} color="#ff6600" />
           </TouchableOpacity>
         </View>
       </View>
@@ -190,39 +192,37 @@ export default function Reviews({ navigation }) {
           }}
         >
           {stars.map((star, index) => (
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                padding: 4,
-                width: 60,
-                borderColor: "#ddd",
-                borderRadius: 2,
-                borderWidth: 0.8,
-                marginHorizontal: 4,
-                justifyContent: "center",
-                backgroundColor:
-                  star === selectedStar ? SecondaryLightColor : "#fff",
-              }}
-              onPress={() => filterStar(star)}
-            >
-              <Icon
-                name="star"
-                size={16}
-                color={star === selectedStar ? "#fff" : "#666"}
-              />
-              <Text
-                style={{
-                  fontSize: 18,
-                  fontWeight: "bold",
-                  color: star === selectedStar ? "#fff" : "#666",
-                }}
-                key={index}
+            <LinearGradient colors={star === selectedStar ? ["#ff9900", "#ff6600"] : ["#ffffff", "transparent"]} style={{
+              width: 60,
+              borderColor: "#ddd",
+              borderRadius: 2,
+              borderWidth: 0.8,
+              marginHorizontal: 4,
+              justifyContent: "center",
+
+            }}>
+              <TouchableOpacity
+                onPress={() => filterStar(star)}
+                style={{ flexDirection: "row", alignItems: "center", padding: 4,justifyContent:"center" }}
               >
-                {" "}
-                {star}
-              </Text>
-            </TouchableOpacity>
+                <Icon
+                  name="star"
+                  size={16}
+                  color={star === selectedStar ? "#fff" : "#ff6600"}
+                />
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: "bold",
+                    color: star === selectedStar ? "#fff" : "#ff6600",
+                  }}
+                  key={index}
+                >
+                  {" "}
+                  {star}
+                </Text>
+              </TouchableOpacity>
+            </LinearGradient>
           ))}
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -244,23 +244,7 @@ export default function Reviews({ navigation }) {
   );
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          backgroundColor: "#fff",
-          padding: 4,
-          borderBottomColor: "#ddd",
-          borderBottomWidth: 0.5,
-        }}
-      >
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back" size={28} color="#223fdc" />
-        </TouchableOpacity>
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>User feedback</Text>
-        <View />
-      </View>
+      <HeaderTwo title="User Feedback" />
       {/* Header done */}
 
       {!loading ? (

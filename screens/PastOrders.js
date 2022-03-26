@@ -36,11 +36,14 @@ export default function PastOrders({ navigation }) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Header
-        title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
-      >
-        
-      </Header>
+      <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
+
+        <Header
+          title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
+        />
+      </View>
+
+
       <TouchableOpacity
         style={{
           alignSelf: "flex-start",

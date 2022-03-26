@@ -84,7 +84,7 @@ export default function Review({ item, index, navigation }) {
         </Text>
         <Text
           style={{
-            color: "orange",
+            color: "#ff6600",
             fontWeight: "bold",
             textTransform: "uppercase",
             textAlign: "right",
@@ -152,7 +152,7 @@ export default function Review({ item, index, navigation }) {
             {star.map((x, i) => (
               <Icon
                 name="star"
-                color="orange"
+                color="#ff6600"
                 size={14}
                 style={{ padding: 2 }}
                 key={i}
@@ -170,7 +170,7 @@ export default function Review({ item, index, navigation }) {
                   style={{
                     paddingHorizontal: 4,
                     padding: 2,
-                    backgroundColor: "#0064b7",
+                    backgroundColor: "#ff9900",
                     borderRadius: 2,
                     marginHorizontal: 2,
                     marginVertical: 2,
@@ -266,17 +266,18 @@ export default function Review({ item, index, navigation }) {
             }}
             onChangeText={onChangeText}
             multiline={true}
+            selectionColor="#ff6600"
             maxLength={450}
             placeholder="Type a message"
           />
           <TouchableOpacity onPress={submitReply}>
-            <Icon name="ios-send-outline" size={24} color="#3646ee" />
+            <Icon name="ios-send-sharp" size={24} color="#ff6600" />
           </TouchableOpacity>
         </View>
       ) : (
         <Text
           style={{
-            color: "#226cff",
+            color: "#ff6600",
             fontWeight: "bold",
             textTransform: "uppercase",
             textAlign: "right",
