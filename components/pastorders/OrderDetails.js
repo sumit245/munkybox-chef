@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   View,
   Text,
-  StyleSheet,
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
@@ -13,6 +12,7 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 import Download from "../header/Download";
 import Icon from "react-native-vector-icons/Ionicons";
+import { LinearGradient } from "expo-linear-gradient";
 export default function OrderDetails({ route, navigation }) {
   const { order } = route.params;
   const { address_type, city, flat_num, locality, postal_code } = order.address;
@@ -43,7 +43,7 @@ export default function OrderDetails({ route, navigation }) {
           </TouchableOpacity>
         </LinearGradient>
         <Header
-          title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
+          title={restaurant_name + ", " + restaurant_id}
         >
           <Download/>
           </Header>
