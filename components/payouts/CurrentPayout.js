@@ -58,7 +58,7 @@ export default function CurrentPayout({
         <Text style={styles.smallText}>{numOrders} Orders</Text>
         <Text style={styles.smallText}>{totalAddOns} Add-ons</Text>
       </View>
-      <LinearGradient colors={["ff9900", "#ff6600"]} style={{
+      <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
         width: 200,
         alignSelf: "center",
         borderRadius: 6,
@@ -69,10 +69,8 @@ export default function CurrentPayout({
         alignItems: "center",
       }}>
         <TouchableOpacity
-
           onPress={() =>
             navigation.navigate("commission_tracking", {
-
               revenue: revenue,
               orders: orders,
               numOrders: numOrders,
