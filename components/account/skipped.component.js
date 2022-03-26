@@ -12,7 +12,7 @@ export default function Skipped({ navigation }) {
       >
         <View>
           <Text style={{ fontSize: 18, color: "#444", margin: 8,paddingVertical:2 }}>
-            <Icon name="help-circle-outline" color="#444" size={24} />  About us
+            <Icon name="information-circle-outline" color="#444" size={24} />  About us
           </Text>
         </View>
       </TouchableOpacity>
