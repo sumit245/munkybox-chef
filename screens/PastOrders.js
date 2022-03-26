@@ -39,9 +39,10 @@ export default function PastOrders({ navigation }) {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flexDirection: "row", justifyContent: "flex-start", backgroundColor: "#fff", width: "100%" }}>
         <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-          alignSelf: "flex-start",
-          marginHorizontal: 8,
-          marginVertical: 4,
+          height: 28,
+          width: 28,
+          marginHorizontal: 4,
+          borderRadius: 14,
         }}>
           <TouchableOpacity
             style={{ alignItems: "center", justifyContent: "center" }}
