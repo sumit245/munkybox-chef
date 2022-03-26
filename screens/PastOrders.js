@@ -55,6 +55,7 @@ export default function PastOrders({ navigation }) {
           title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
         />
       </View>
+      {/* Header other style */}
 
       <FlatList
         data={orders}

@@ -28,11 +28,26 @@ export default function OrderDetails({ route, navigation }) {
   let price = subtotals.reduce(add, 0);
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={restaurant_name + ", " + restaurant_id}>
-        <View style={styles.switch}>
-          <Download />
-        </View>
-      </Header>
+      <View style={{ flexDirection: "row", justifyContent: "flex-start", backgroundColor: "#fff", width: "100%", alignItems: "center" }}>
+        <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+          height: 28,
+          width: 28,
+          marginHorizontal: 4,
+          borderRadius: 14,
+        }}>
+          <TouchableOpacity
+            style={{ alignItems: "center", justifyContent: "center" }}
+            onPress={() => navigation.goBack()}
+          >
+            <Icon name="chevron-back" size={24} color="#ffffff" />
+          </TouchableOpacity>
+        </LinearGradient>
+        <Header
+          title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
+        >
+          <Download/>
+          </Header>
+      </View>
 
       <TouchableOpacity
         style={{

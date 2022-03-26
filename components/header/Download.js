@@ -23,7 +23,7 @@ export default function Download({ navigation }) {
   };
   return (
     <TouchableOpacity style={{ flexDirection: "row" }} onPress={onShare}>
-      <Icon name="export" size={26} color={SecondaryColor} />
+      <Icon name="export" size={26} color="#ff6600" />
     </TouchableOpacity>
   );
 }
