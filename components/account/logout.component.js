@@ -9,14 +9,11 @@ export default function Logout({ navigation }) {
   };
   return (
     <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-      position: "absolute",
       width: 40,
       height: 40,
       borderRadius: 20,
       justifyContent: 'center',
       alignItems: 'center',
-      bottom: 10,
-      left: "45%",
     }}>
       <TouchableOpacity
         onPress={logout}
