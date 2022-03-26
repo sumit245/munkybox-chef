@@ -16,9 +16,10 @@ import axios from "axios";
 import { screenWidth } from "../../Dimens";
 import CustomDialog from "../../helpers/CustomDialog";
 import Loader from "../../helpers/Loader";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Signup({ navigation }) {
- 
+
   const [checked, setChecked] = useState(false);
   const [logged, setLogged] = useState(false);
   const [msg, setMsg] = useState("");
@@ -75,7 +76,7 @@ export default function Signup({ navigation }) {
       setLoaded(false);
       return;
     }
-  
+
     if (!email) {
       alert("Email is required");
       emailInput.current.focus();
@@ -141,6 +142,8 @@ export default function Signup({ navigation }) {
                   style={[styles.TextInput, { width: "49%" }]}
                   label="First Name"
                   mode="outlined"
+                  selectionColor="#ff6600"
+                  activeOutlineColor="#ff6600"
                   placeholderTextColor="#003f5c"
                   onChangeText={(data) => setFirstName(data)}
                   ref={firstNameInput}
@@ -153,6 +156,8 @@ export default function Signup({ navigation }) {
                   style={[styles.TextInput, { width: "49%" }]}
                   label="Last Name"
                   mode="outlined"
+                  selectionColor="#ff6600"
+                  activeOutlineColor="#ff6600"
                   onChangeText={(data) => setLastName(data)}
                   ref={lastNameInput}
                   theme={{
@@ -172,6 +177,8 @@ export default function Signup({ navigation }) {
                   label="Postal Code"
                   type="number"
                   mode="outlined"
+                  selectionColor="#ff6600"
+                  activeOutlineColor="#ff6600"
                   placeholder="110011"
                   ref={postalInput}
                   onChangeText={(data) => setPostalCode(data)}
@@ -187,6 +194,8 @@ export default function Signup({ navigation }) {
                   style={[styles.TextInput, { width: "49%" }]}
                   label="Phone"
                   type="number"
+                  selectionColor="#ff6600"
+                  activeOutlineColor="#ff6600"
                   keyboardType="phone-pad"
                   mode="outlined"
                   returnKeyType="done"
@@ -207,6 +216,8 @@ export default function Signup({ navigation }) {
                 keyboardType="email-address"
                 type="email"
                 mode="outlined"
+                selectionColor="#ff6600"
+                activeOutlineColor="#ff6600"
                 ref={emailInput}
                 theme={{
                   colors: { text: "black", primary: "rgb(33, 151, 186)" },
@@ -219,6 +230,8 @@ export default function Signup({ navigation }) {
                 placeholder="Kristen Delicates"
                 type="text"
                 mode="outlined"
+                selectionColor="#ff6600"
+                activeOutlineColor="#ff6600"
                 ref={restaurantInput}
                 theme={{
                   colors: { text: "black", primary: "rgb(33, 151, 186)" },
@@ -233,9 +246,9 @@ export default function Signup({ navigation }) {
                 }}
               >
                 <Checkbox.Android
-                  color="rgb(80, 151, 226)"
+                  color="#ff6600"
                   status={checked ? "checked" : "unchecked"}
-                  uncheckedColor="rgb(33, 151, 186)"
+                  uncheckedColor="#000"
                   onPress={() => setChecked(!checked)}
                 />
                 <Text
@@ -269,32 +282,35 @@ export default function Signup({ navigation }) {
                 </Text>
               </View>
 
-              <TouchableOpacity
-                style={{
-                  backgroundColor: "rgb(33, 151, 186)",
-                  borderRadius: 12,
-                  width: "50%",
-                  marginVertical: 20,
-                  paddingHorizontal: 10,
-                  paddingVertical: 8,
-                  alignSelf: "center",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                disabled={!checked}
-                onPress={submitRequest}
-              >
-                <Text
-                  style={{
-                    color: "#FFF",
-                    fontSize: 18,
-                    textTransform: "uppercase",
-                    fontWeight: "bold",
-                  }}
+              <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+                backgroundColor: "rgb(33, 151, 186)",
+                borderRadius: 12,
+                width: "50%",
+                marginVertical: 20,
+                paddingHorizontal: 10,
+                paddingVertical: 8,
+                alignSelf: "center",
+                justifyContent: "center",
+                alignItems: "center",
+              }}>
+                <TouchableOpacity
+
+                  disabled={!checked}
+                  onPress={submitRequest}
                 >
-                  Submit
-                </Text>
-              </TouchableOpacity>
+                  <Text
+                    style={{
+                      color: "#FFF",
+                      fontSize: 18,
+                      textTransform: "uppercase",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Submit
+                  </Text>
+                </TouchableOpacity>
+              </LinearGradient>
+
             </View>
             <View>
               <Text
