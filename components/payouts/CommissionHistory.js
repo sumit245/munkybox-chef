@@ -147,6 +147,7 @@ export default function CommissionHistory({ route, navigation }) {
           value={searchQuery}
           iconColor="#000"
           style={{ width: "90%", height: 28, marginRight: 8 }}
+          selectionColor="#ff6600"
         />
         <TouchableOpacity style={{ width: "8%", marginLeft: 4 }}>
           <Icon name="calendar" size={20} color="#ff6600" />
