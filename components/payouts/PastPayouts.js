@@ -75,12 +75,12 @@ const Item = ({ item, commission, navigation }) => {
         </View>
       </View>
       <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-        width: 200,
+        width: 140,
         alignSelf: "center",
         borderRadius: 6,
         borderWidth: 0.2,
         paddingVertical: 4,
-        height: 28,
+        height: 36,
         justifyContent: "center",
         alignItems: "center",
       }}>
@@ -102,7 +102,7 @@ const Item = ({ item, commission, navigation }) => {
             })
           }
         >
-          <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
+          <Text style={[styles.btnText, { color: "#fff", textAlign: "center", fontWeight: "bold" }]}>
             View Payout
           </Text>
         </TouchableOpacity>
