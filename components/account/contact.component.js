@@ -12,15 +12,14 @@ export default function ContactUs({ navigation }) {
       <View style={{ alignItems: "center", flexDirection: "row", margin: 8, }}>
         <Icon name="mail-sharp" color="#444" size={24} style={{ paddingVertical: 2 }} />
         <View>
-          <Text style={{ fontSize: 18, color: "#444", paddingVertical: 2, textAlignVertical: "top" }}>
-            Contact Us
+          <Text style={{ fontSize: 18, color: "#444", paddingVertical: 2, textAlignVertical: "top" }}> Contact Us
           </Text>
           <Text
             style={[
               styles.label,
-              { fontSize: 12, color: "#777", marginTop: -10 },
+              { fontSize: 12, color: "#777",marginTop:-2 },
             ]}
-          >   Help & Support
+          >  Help & Support
           </Text>
         </View>
       </View>
