@@ -51,8 +51,8 @@ export default function PersonalDetails() {
   return (
     <>
       <View style={styles.row}>
-        <Text style={{ fontSize: 18, color: "#444", margin: 8 }}>
-          <Icon name="person-sharp" color="#444" size={20} /> Personal Details
+        <Text style={{ fontSize: 18, color: "#444", margin: 8,paddingVertical:2 }}>
+          <Icon name="person-sharp" color="#444" size={24} />  Personal Details
         </Text>
 
         <TouchableOpacity
@@ -77,7 +77,7 @@ export default function PersonalDetails() {
           >
             <FontAwesome name={editable ? "save" : "pencil"} size={20} />
           </TouchableOpacity>
-          <View style={{marginVertical:4}}>
+          <View style={{ marginVertical: 4 }}>
             <View style={styles.labelContainer}>
               <Icon name="person-outline" size={18} color="#777" />
               <Text style={styles.label}> Name</Text>
@@ -90,7 +90,7 @@ export default function PersonalDetails() {
             />
           </View>
 
-          <View style={{marginVertical:4}}>
+          <View style={{ marginVertical: 4 }}>
             <View style={styles.labelContainer}>
               <Icon name="call-outline" size={18} color="#777" />
               <Text style={styles.label}> Contact Number</Text>
@@ -104,7 +104,7 @@ export default function PersonalDetails() {
             />
           </View>
 
-          <View style={{marginVertical:4}}>
+          <View style={{ marginVertical: 4 }}>
             <View style={styles.labelContainer}>
               <Icon name="mail-outline" size={18} color="#777" />
               <Text style={styles.label}> Email ID</Text>
@@ -117,7 +117,7 @@ export default function PersonalDetails() {
             />
           </View>
 
-          <View style={{marginVertical:4}}>
+          <View style={{ marginVertical: 4 }}>
             <View style={styles.labelContainer}>
               <Icon name="document-text-outline" size={18} color="#777" />
               <Text style={styles.label}> About</Text>

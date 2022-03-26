@@ -47,8 +47,8 @@ export default function Plans() {
   return (
     <>
       <View style={styles.row}>
-        <Text style={{ fontSize: 18, color: "#444", margin: 8 }}>
-          <Icon name="calendar-sharp" color="#444" size={20} /> Subscription
+        <Text style={{ fontSize: 18, color: "#444", margin: 8,paddingVertical:2 }}>
+          <Icon name="calendar-sharp" color="#444" size={24} />  Subscription
           Plan
         </Text>
 

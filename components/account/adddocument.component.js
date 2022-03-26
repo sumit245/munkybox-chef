@@ -11,8 +11,8 @@ const AddDocument = ({ navigation }) => {
         onPress={() => navigation.navigate("documents")}
       >
         <View>
-          <Text style={{ fontSize: 18, color: "#444", margin: 8 }}>
-            <Icon name="document-text-outline" color="#444" size={20} /> Documents
+          <Text style={{ fontSize: 18, color: "#444", margin: 8,paddingVertical:2 }}>
+            <Icon name="document-text-outline" color="#444" size={24} />  Documents
           </Text>
         </View>
       </TouchableOpacity>

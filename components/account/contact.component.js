@@ -10,8 +10,8 @@ export default function ContactUs({ navigation }) {
       onPress={() => navigation.navigate("contacts")}
     >
       <View>
-        <Text style={{ fontSize: 18, color: "#444", margin: 8 }}>
-          <Icon name="mail-sharp" color="#444" size={20} /> Contact Us
+        <Text style={{ fontSize: 18, color: "#444", margin: 8,paddingVertical:2 }}>
+          <Icon name="mail-sharp" color="#444" size={24} />  Contact Us
         </Text>
         <Text
           style={[

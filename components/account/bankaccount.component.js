@@ -64,8 +64,8 @@ export default function BankAccount({ navigation }) {
   return (
     <>
       <View style={styles.row}>
-        <Text style={{ fontSize: 18, color: "#444", margin: 8 }}>
-          <Icon name="card-sharp" color="#444" size={20} /> Bank Information
+        <Text style={{ fontSize: 18, color: "#444", margin: 8,paddingVertical:2 }}>
+          <Icon name="card-sharp" color="#444" size={24} />  Bank Information
         </Text>
         <TouchableOpacity
           onPress={() => setIsCollapsed(!isCollapsed)}
