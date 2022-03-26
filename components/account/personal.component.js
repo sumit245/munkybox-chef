@@ -75,7 +75,7 @@ export default function PersonalDetails() {
             style={{ alignSelf: "flex-end" }}
             onPress={() => onSubmit()}
           >
-            <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable?"#ff6600":"#0000"} />
+            <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable?"#ff6600":"#000"} />
           </TouchableOpacity>
           <View style={{ marginVertical: 4 }}>
             <View style={styles.labelContainer}>
