@@ -87,19 +87,22 @@ export default function Contacts({ navigation }) {
             elevation: 1,
           }}
         >
-          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-            height: 28,
-            width: 28,
-            marginHorizontal: 4,
-            borderRadius: 14,
-          }}>
-            <TouchableOpacity
-              style={{ alignItems: "center", justifyContent: "center" }}
-              onPress={() => navigation.goBack()}
-            >
-              <Icon name="chevron-back" size={24} color="#ffffff" />
-            </TouchableOpacity>
-          </LinearGradient>
+          <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
+            <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+              height: 28,
+              width: 28,
+              marginHorizontal: 4,
+              borderRadius: 14,
+            }}>
+              <TouchableOpacity
+                style={{ alignItems: "center", justifyContent: "center" }}
+                onPress={() => navigation.goBack()}
+              >
+                <Icon name="chevron-back" size={24} color="#ffffff" />
+              </TouchableOpacity>
+            </LinearGradient>
+            <Text style={{ fontWeight: 'bold' }}>Compose</Text>
+          </View>
 
 
 
