@@ -88,7 +88,7 @@ const PayoutHome = ({ route, navigation }) => {
   const renderTabBar = (props) => (
     <TabBar
       {...props}
-      indicatorStyle={{ backgroundColor: "#ff9900", marginHorizontal: 60, width: 100, }}
+      indicatorStyle={{ backgroundColor: "#ff9900", marginHorizontal: 20, width: 100, }}
       style={{
         backgroundColor: "transparent",
         height: 40,
