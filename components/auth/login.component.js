@@ -14,6 +14,7 @@ import PhoneInput from "react-native-phone-number-input";
 import { styles } from "./auth.style";
 import Logo from "../Logo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { LinearGradient } from "expo-linear-gradient";
 
 const firebaseConfig = firebase.apps.length
   ? firebase.app().options
@@ -87,6 +88,7 @@ export default function Login({ navigation }) {
             returnKeyType: "done",
             returnKeyLabel: "Done",
             keyboardType: "number-pad",
+            selectionColor:"#ff6600"
           }}
           textContainerStyle={{
             borderColor: "#fff",
@@ -104,9 +106,11 @@ export default function Login({ navigation }) {
           autoFocus
         />
 
-        <TouchableOpacity onPress={sendVerification} style={styles.loginBtn}>
-          <Text style={styles.btnText}>Send OTP</Text>
-        </TouchableOpacity>
+        <LinearGradient colors={["#ff9900", "#ff6600"]} style={styles.loginBtn}>
+          <TouchableOpacity onPress={sendVerification} >
+            <Text style={styles.btnText}>Send OTP</Text>
+          </TouchableOpacity>
+        </LinearGradient>
 
         <Text
           style={styles.forgot_button}
