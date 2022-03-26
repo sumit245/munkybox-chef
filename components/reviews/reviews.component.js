@@ -226,7 +226,7 @@ export default function Reviews({ navigation }) {
           ))}
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Switch value={comment} onValueChange={filterwithComment} />
+          <Switch value={comment} onValueChange={filterwithComment} color="#ff6600" />
           <Text style={{ fontWeight: "bold", color: "#000", marginLeft: 4 }}>
             {"  "}Show only orders with comments
           </Text>
