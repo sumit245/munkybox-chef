@@ -11,8 +11,8 @@ export default function NotificationRow({ navigation }) {
         onPress={() => navigation.navigate("notifications")}
       >
         <View>
-          <Text style={{ fontSize: 18, color: "#444", margin: 8,paddingVertical:2 }}>
-            <Icon name="notifications-outline" color="#444" size={24} />  Notification
+          <Text style={{ fontSize: 18, color: "#444", margin: 8, paddingVertical: 2 }}>
+            <Icon name="notifications-outline" color="#444" size={24} style={{ paddingVertical: 2 }} />  Notification
           </Text>
         </View>
       </TouchableOpacity>
