@@ -44,21 +44,9 @@ export default function OrderDetails({ route, navigation }) {
         </LinearGradient>
         <Header
           title={restaurant_name + ", " + restaurant_id}
-        >
+        />
           <Download/>
-          </Header>
       </View>
-
-      <TouchableOpacity
-        style={{
-          alignSelf: "flex-start",
-          marginHorizontal: 8,
-          marginVertical: 4,
-        }}
-        onPress={() => navigation.goBack()}
-      >
-        <Icon name="chevron-back" size={24} color="#2277fc" />
-      </TouchableOpacity>
 
       <ScrollView
         contentContainerStyle={{ justifyContent: "flex-start", flex: 1 }}
