@@ -51,7 +51,7 @@ export default function OrderDetails({ route, navigation }) {
       </View>
 
       <ScrollView
-        contentContainerStyle={{ justifyContent: "flex-start", flex: 1,marginTop:8 }}
+        contentContainerStyle={{ justifyContent: "flex-start", flex: 1,marginTop:8,backgroundColor:"#fff" }}
         contentInsetAdjustmentBehavior="automatic"
       >
         <View style={styles.formHeader}>
