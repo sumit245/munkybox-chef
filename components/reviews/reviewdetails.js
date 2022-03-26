@@ -277,7 +277,7 @@ export default function Review({ item, index, navigation }) {
       ) : (
         <Text
           style={{
-            color: "#ff6600",
+            color: "#226ccf",
             fontWeight: "bold",
             textTransform: "uppercase",
             textAlign: "right",

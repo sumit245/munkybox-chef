@@ -208,7 +208,7 @@ export default function Reviews({ navigation }) {
                 <Icon
                   name="star"
                   size={16}
-                  color={star === selectedStar ? "#fff" : "#ff6600"}
+                  color={star === selectedStar ? "#fff" : "#000"}
                 />
                 <Text
                   style={{
@@ -273,7 +273,7 @@ export default function Reviews({ navigation }) {
             <CalendarPicker
               startFromMonday={true}
               todayBackgroundColor="#fff"
-              selectedDayColor="#2300e6"
+              selectedDayColor="#ff6600"
               selectedDayTextColor="#FFFFFF"
               scrollable
               onDateChange={(date) => dateHandler(date)}
