@@ -86,7 +86,7 @@ export default function CurrentPayout({
           }
         >
           <Text style={[styles.btnText, { color: "#fff", textAlign: "center" }]}>
-            View Payout
+            View
           </Text>
         </TouchableOpacity>
       </LinearGradient>

@@ -103,7 +103,7 @@ const Item = ({ item, commission, navigation }) => {
           }
         >
           <Text style={[styles.btnText, { color: "#fff", textAlign: "center", fontWeight: "bold" }]}>
-            View Payout
+            View
           </Text>
         </TouchableOpacity>
       </LinearGradient>
@@ -143,6 +143,7 @@ export default function PastPayouts({ navigation, commission }) {
   };
   return (
     <FlatList
+      contentContainerStyle={{marginTop:4}}
       data={payouts}
       renderItem={renderItem}
       extraData={navigation}
