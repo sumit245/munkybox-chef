@@ -15,6 +15,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { IconButton, Provider } from "react-native-paper";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { LinearGradient } from "expo-linear-gradient"
 
 
 export default function Contacts({ navigation }) {
@@ -86,13 +87,21 @@ export default function Contacts({ navigation }) {
             elevation: 1,
           }}
         >
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={{ flexDirection: "row", alignItems: "center" }}
-          >
-            <Icon name="chevron-back" size={24} />
-            <Text style={{ fontWeight: "bold", fontSize: 18 }}>Compose</Text>
-          </TouchableOpacity>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 28,
+            width: 28,
+            marginHorizontal: 4,
+            borderRadius: 14,
+          }}>
+            <TouchableOpacity
+              style={{ alignItems: "center", justifyContent: "center" }}
+              onPress={() => navigation.goBack()}
+            >
+              <Icon name="chevron-back" size={24} color="#ffffff" />
+            </TouchableOpacity>
+          </LinearGradient>
+
+
 
           <View
             style={{
@@ -162,6 +171,7 @@ export default function Contacts({ navigation }) {
                 placeholderTextColor="#777"
                 selectionColor="#ff6600"
                 multiline
+
                 textAlignVertical="top"
                 style={[
                   styles.inputContainer,
@@ -182,7 +192,7 @@ export default function Contacts({ navigation }) {
           </View>
         </ScrollView>
       </SafeAreaView>
-      
+
     </Provider>
   );
 }
