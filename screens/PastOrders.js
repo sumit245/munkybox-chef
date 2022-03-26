@@ -37,7 +37,7 @@ export default function PastOrders({ navigation }) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flexDirection: "row", justifyContent: "flex-start", backgroundColor: "#fff", width: "100%" }}>
+      <View style={{ flexDirection: "row", justifyContent: "flex-start", backgroundColor: "#fff", width: "100%", alignItems: "center" }}>
         <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
           height: 28,
           width: 28,
