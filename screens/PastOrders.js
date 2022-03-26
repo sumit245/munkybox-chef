@@ -37,23 +37,21 @@ export default function PastOrders({ navigation }) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-
+        <TouchableOpacity
+          style={{
+            alignSelf: "flex-start",
+            marginHorizontal: 8,
+            marginVertical: 4,
+          }}
+          onPress={() => navigation.goBack()}
+        >
+          <Icon name="chevron-back" size={24} color="#2277fc" />
+        </TouchableOpacity>
         <Header
           title={restaurant.restaurant_name + ", " + restaurant.restaurant_id}
         />
       </View>
 
-
-      <TouchableOpacity
-        style={{
-          alignSelf: "flex-start",
-          marginHorizontal: 8,
-          marginVertical: 4,
-        }}
-        onPress={() => navigation.goBack()}
-      >
-        <Icon name="chevron-back" size={24} color="#2277fc" />
-      </TouchableOpacity>
       <FlatList
         data={orders}
         contentContainerStyle={{ paddingBottom: 10 }}
