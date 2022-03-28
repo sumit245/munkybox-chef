@@ -19,7 +19,7 @@ export default function PastOrders({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const getApiData = async () => {
     const response = await axios.get(
-      "http://18.117.221.34:5000//api/orders"
+      "http://18.117.221.34:5000/api/orders"
     );
     const orders = await response.data;
     let myOrders = await orders.filter(

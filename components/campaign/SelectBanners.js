@@ -14,7 +14,7 @@ export default function SelectBanners({ navigation }) {
   let address = locality + ", " + city + ", " + state;
 
   const fetchPlans = async () => {
-    const response = await axios.get("http://18.117.221.34:5000//api/banner");
+    const response = await axios.get("http://18.117.221.34:5000/api/banner");
     const bannerplans = await response.data.data;
     setData(bannerplans.reverse());
   };

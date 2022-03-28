@@ -58,14 +58,14 @@ export default function PreviewCoupon({ navigation, route }) {
         duration: diff + " Days",
       };
       const response = await axios.post(
-        "http://18.117.221.34:5000//api/coupon/",
+        "http://18.117.221.34:5000/api/coupon/",
         promo
       );
       const coupon = await response.data;
       promo.status = await coupon.data.status;
 
       const pushTorestaurant = await axios.put(
-        "http://18.117.221.34:5000//api/newrest/" + _id,
+        "http://18.117.221.34:5000/api/newrest/" + _id,
         { promo }
       );
       const rest = await pushTorestaurant.data;

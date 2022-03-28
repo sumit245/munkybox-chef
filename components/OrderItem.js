@@ -52,7 +52,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
 
   const getCurrentOrderDetails = async () => {
     const res = await axios.get(
-      "http://18.117.221.34:5000//api/getcurrentorder/getOrderDetails/" +
+      "http://18.117.221.34:5000/api/getcurrentorder/getOrderDetails/" +
       item.order_id
     );
     if (res.data !== null) {
@@ -65,7 +65,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
   const setCurrentOrderDetails = async () => {
     setLoading(true);
     const res = await axios.put(
-      "http://18.117.221.34:5000//api/getcurrentorder/getandupdateorderstatus/" +
+      "http://18.117.221.34:5000/api/getcurrentorder/getandupdateorderstatus/" +
       item.order_id,
       {
         delivered: true,

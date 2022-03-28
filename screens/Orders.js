@@ -78,7 +78,7 @@ export default function Orders() {
   const fetchSlots = async () => {
     setLoaded(false);
     const response = await axios.get(
-      "http://18.117.221.34:5000//api/slots"
+      "http://18.117.221.34:5000/api/slots"
     );
     const slots = await response.data;
     const { lunchSlots, dinnerSlots } = slots[0];
@@ -91,7 +91,7 @@ export default function Orders() {
 
   const fetchOrders = async (restaurant) => {
     const response = await axios.get(
-      "http://18.117.221.34:5000//api/orders/active/" + restaurant
+      "http://18.117.221.34:5000/api/orders/active/" + restaurant
     );
     const { activeorders } = response.data;
     const today = moment();
@@ -104,7 +104,7 @@ export default function Orders() {
     );
     setOrders(todayOrders);
     const currentOrderResponse = await axios.get(
-      "http://18.117.221.34:5000//api/getcurrentorder/"
+      "http://18.117.221.34:5000/api/getcurrentorder/"
     );
     const currentOrder = currentOrderResponse.data;
     const filterByReference = (arr1, arr2) => {

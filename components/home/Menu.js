@@ -29,7 +29,7 @@ export default function Menu({
 
   const fetchSlotTime = async () => {
     const slots = await axios.get(
-      "http://18.117.221.34:5000//api/slots"
+      "http://18.117.221.34:5000/api/slots"
     );
     const { lunchSlots, dinnerSlots } = await slots.data[0];
     let first = lunchSlots[0];

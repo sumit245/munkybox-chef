@@ -111,7 +111,7 @@ export default function AddEditMeals({
 
    await setMeals(dataToUpload);
     const respone = await axios.put(
-      "http://18.117.221.34:5000//api/newrest/" + restaurant._id,
+      "http://18.117.221.34:5000/api/newrest/" + restaurant._id,
       {
         meals: meals,
       }

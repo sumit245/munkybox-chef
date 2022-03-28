@@ -39,7 +39,7 @@ export default function Reviews({ navigation }) {
 
   const fetchReviews = async (id) => {
     const response = await axios.get(
-      "http://18.117.221.34:5000//api/review/getmyreview/" + id
+      "http://18.117.221.34:5000/api/review/getmyreview/" + id
     );
     const { data } = response;
     setTempReview(data.reverse());
