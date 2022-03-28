@@ -57,7 +57,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchOrders = async (restaurant) => {
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/active/" + restaurant
+      "http://18.117.221.34:5000//api/orders/active/" + restaurant
     );
     const { count } = res.data;
     if (count !== null) {
@@ -67,7 +67,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchcompletedorders = async (restaurant) => {
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/completed/" + restaurant
+      "http://18.117.221.34:5000//api/orders/completed/" + restaurant
     );
     const { count } = res.data;
     if (count !== null) {
@@ -77,7 +77,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchcancelledcount = async (restaurant) => {
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/cancelled/" + restaurant
+      "http://18.117.221.34:5000//api/orders/cancelled/" + restaurant
     );
     const { count } = res.data;
     if (count !== null) {
@@ -87,7 +87,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchStats = async (restaurant) => {
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/dashboard/" + restaurant
+      "http://18.117.221.34:5000//api/orders/dashboard/" + restaurant
     );
     const dashboard = res.data;
     if (dashboard !== null) {
@@ -97,7 +97,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchCommission = async () => {
     const resp = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/checkout"
+      "http://18.117.221.34:5000//api/checkout"
     );
     const { commission } = resp.data.data[0];
     if (commission !== null) {
@@ -107,7 +107,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchRejectedcount = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/rejected/" + restaurant
+      "http://18.117.221.34:5000//api/orders/rejected/" + restaurant
     );
     const { count } = response.data;
     if (count !== null) {
@@ -117,7 +117,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchNotStartedcount = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/accepted/" + restaurant
+      "http://18.117.221.34:5000//api/orders/accepted/" + restaurant
     );
     const { count } = response.data;
     if (count !== null) {
@@ -127,7 +127,7 @@ export default function Dashboard({ navigation }) {
 
   const getuserByType = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/chefdashboard/getusertypesbyrestaurant/" +
+      "http://18.117.221.34:5000//api/chefdashboard/getusertypesbyrestaurant/" +
       restaurant
     );
     const { newusers, repeatedUsers } = response.data;
@@ -139,7 +139,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchVisit = async (restaurant) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant
+      "http://18.117.221.34:5000//api/chefdashboard/" + restaurant
     );
     const { totalOrders, orders, accptanceRate, rectanceRate, dashboard, due } =
       response.data;
@@ -161,7 +161,7 @@ export default function Dashboard({ navigation }) {
 
   const getAddOnCounts = async (id) => {
     const res = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/orders/"
+      "http://18.117.221.34:5000//api/orders/"
     );
     let orders = res.data;
     orders = orders.filter(

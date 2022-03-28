@@ -27,7 +27,7 @@ export default function TrackCampaign({ route, navigation }) {
 
   const fetchMyBanner = async (restaurant_id) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/promo/" + restaurant_id
+      "http://18.117.221.34:5000//api/promo/" + restaurant_id
     );
     const { data } = response;
     let banners = data.filter((item) => item.status === "active");
@@ -38,7 +38,7 @@ export default function TrackCampaign({ route, navigation }) {
 
   const fetchMyExpiredBanner = async (restaurant_id) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_id
+      "http://18.117.221.34:5000//api/chefdashboard/" + restaurant_id
     );
     const { dashboard } = response.data;
     const { banners } = dashboard;

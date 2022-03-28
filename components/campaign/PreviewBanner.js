@@ -32,7 +32,7 @@ export default function PreviewBanner({ route, navigation }) {
 
   const submit = async () => {
     const getMyBanner = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/promo/getbannerslength/" +
+      "http://18.117.221.34:5000//api/promo/getbannerslength/" +
       restaurant.restaurant_id
     );
     const myBanner = await getMyBanner.data;
@@ -43,7 +43,7 @@ export default function PreviewBanner({ route, navigation }) {
     } else {
       setLoading(true);
       const response = await axios.get(
-        "http://munkybox-admin.herokuapp.com/api/promo/"
+        "http://18.117.221.34:5000//api/promo/"
       );
       const { data } = response.data;
 
@@ -63,7 +63,7 @@ export default function PreviewBanner({ route, navigation }) {
         status: "active"
       };
       const res = await axios.post(
-        "http://munkybox-admin.herokuapp.com/api/promo/",
+        "http://18.117.221.34:5000//api/promo/",
         banner
       );
       setLoading(false);

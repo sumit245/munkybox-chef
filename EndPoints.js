@@ -1,6 +1,6 @@
 export const PARTNER_REQUEST =
-  "http://munkybox-admin.herokuapp.com/api/partnerrequest/";
-export const RESTAURANT_URL = "http://munkybox-admin.herokuapp.com/api/newrest/";
+  "http://18.117.221.34:5000//api/partnerrequest/";
+export const RESTAURANT_URL = "http://18.117.221.34:5000//api/newrest/";
 export const RESTAURANT_LOGIN =
-  "http://munkybox-admin.herokuapp.com/api/newrest/login/";
-export const ORDERS = "http://munkybox-admin.herokuapp.com/api/orders/";
+  "http://18.117.221.34:5000//api/newrest/login/";
+export const ORDERS = "http://18.117.221.34:5000//api/orders/";

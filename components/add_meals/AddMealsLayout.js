@@ -31,7 +31,7 @@ export default function AddMealsLayout({ navigation }) {
   const { restaurant_id } = restaurant;
   const fetchMeals = async (id) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/newrest/getchefbyId/" + id
+      "http://18.117.221.34:5000//api/newrest/getchefbyId/" + id
     );
     const { data } = response;
     const { meals } = data;

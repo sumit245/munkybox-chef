@@ -69,17 +69,17 @@ function TrackPerfContent({
     };
 
     const couponresponse = await axios.put(
-      "http://munkybox-admin.herokuapp.com/api/coupon/" + id,
+      "http://18.117.221.34:5000//api/coupon/" + id,
       { status: "Inactive" }
     );
 
     const restaurantUpdate = await axios.put(
-      "http://munkybox-admin.herokuapp.com/api/newrest/" + _id,
+      "http://18.117.221.34:5000//api/newrest/" + _id,
       { promo: [] }
     );
 
     const dashboardResponse = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" + restaurant_id
+      "http://18.117.221.34:5000//api/chefdashboard/" + restaurant_id
     );
 
     const { dashboard } = await dashboardResponse.data;
@@ -87,7 +87,7 @@ function TrackPerfContent({
     let prevCoupons = [...coupons];
     prevCoupons.push(myCoupon);
     const updateDashboard = await axios.put(
-      "http://munkybox-admin.herokuapp.com/api/chefdashboard/" +
+      "http://18.117.221.34:5000//api/chefdashboard/" +
       restaurant_name +
       "/" +
       dashboard._id,

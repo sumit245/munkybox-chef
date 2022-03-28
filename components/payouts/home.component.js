@@ -37,7 +37,7 @@ const PayoutHome = ({ route, navigation }) => {
   const { restaurant_id } = restaurant;
   const chefPayouts = async (id) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getchefpayout/" +
+      "http://18.117.221.34:5000//api/admintochefpayments/getchefpayout/" +
       id
     );
     const {

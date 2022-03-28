@@ -113,7 +113,7 @@ export default function PastPayouts({ navigation, commission }) {
   const { restaurant_id } = restaurant;
   const fetchPastPayouts = async (id) => {
     const response = await axios.get(
-      "http://munkybox-admin.herokuapp.com/api/admintochefpayments/getpastpayout/" +
+      "http://18.117.221.34:5000//api/admintochefpayments/getpastpayout/" +
       id
     );
     setPayouts(response.data);
