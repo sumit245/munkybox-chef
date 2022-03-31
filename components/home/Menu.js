@@ -243,8 +243,8 @@ const styles = StyleSheet.create({
   },
   mealTitle: {
     fontSize: 14,
-    flex: 1,
-    flexWrap:'wrap',
+    //flex: 1,
+    //flexWrap:'wrap',
     fontWeight: "bold",
     padding: 4,
   },

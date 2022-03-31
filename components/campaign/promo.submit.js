@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { styles } from "./campaign.styles";
 
-export default function PromoSubmit({ route, navigation }) {
+export default function PromoSubmit({ route, navigation,promo_name }) {
   const { promo } = route.params;
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: "space-between" }}>
@@ -18,7 +18,7 @@ export default function PromoSubmit({ route, navigation }) {
           source={require("../../assets/thanku.svg")}
           style={{ resizeMode: "cover", height: 120, width: 120 }}
         />
-        <Text>Thank you!!! Your ad campaign is activated</Text>
+        <Text>Thank you!!! Your {promo_name} is activated</Text>
         <Text>
           {promo.plan_name} during all day will start from {promo.start_date}
         </Text>

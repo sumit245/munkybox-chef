@@ -52,11 +52,11 @@ export default function AddMealForm({ meal, slot, setEditState, addHandler }) {
                 </Text>
                 <Icon
                   name="stop-circle"
-                  color={meal.type === "veg" ? "green" : "red"}
+                  color={meal.type === "veg" ||meal.type==="Veg"  ? "green" : "red"}
                   size={16}
                 />
               </View>
-              <Text style={{ fontWeight: "bold", fontSize: 14 }}>
+              <Text style={{  fontSize: 14 }}>
                 {meal.description}
               </Text>
             </View>

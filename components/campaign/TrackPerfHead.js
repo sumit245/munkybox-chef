@@ -58,7 +58,7 @@ export default function TrackPerfHead({
           {duration}
         </Text>
         <View style={styles.progressDonught}>
-          <Text style={{ fontWeight: "bold", fontSize: 14 }}>{remaining}</Text>
+          <Text style={{ fontWeight: "bold", fontSize: 14 }}>{remaining>0?parseInt(remaining)+1:0}</Text>
         </View>
         <Text style={styles.smallText}>Days Left</Text>
       </View>

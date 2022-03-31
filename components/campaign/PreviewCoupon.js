@@ -72,6 +72,7 @@ export default function PreviewCoupon({ navigation, route }) {
       setLoading(true);
       navigation.navigate("submit_coupon", {
         promo,
+        promo_name:"promo coupon"
       });
     }
   };
@@ -179,6 +180,7 @@ export default function PreviewCoupon({ navigation, route }) {
                       color: "#226ccf",
                       textDecorationLine: "underline",
                     }}
+                    onPress={()=>navigation.navigate("policies")}
                   >
                     terms and conditions
                   </Text>{" "}

@@ -25,7 +25,7 @@ export default function CreateCoupon({ route, navigation }) {
   const [discount, setDiscount] = useState("");
   const [start_date, setStartDate] = useState("");
   const [end_date, setEndDate] = useState("");
-  const [lunch, setLunch] = useState(false);
+  const [lunch, setLunch] = useState(true);
   const [dinner, setDinner] = useState(false);
   const [duration, setDuration] = useState(7);
 
@@ -262,9 +262,10 @@ export default function CreateCoupon({ route, navigation }) {
             <View style={styles.cardBody}>
               <View style={styles.btnGroup}>
                 <Checkbox.Android
-                  status={lunch ? "checked" : "unchecked"}
+                  status={lunch && !dinner? "checked" : "unchecked"}
                   onPress={() => {
-                    setLunch(!lunch);
+                    setLunch(true);
+                    setDinner(false)
                   }}
                   color="#ff6600"
                 />
@@ -280,9 +281,10 @@ export default function CreateCoupon({ route, navigation }) {
               />
               <View style={styles.btnGroup}>
                 <Checkbox.Android
-                  status={dinner ? "checked" : "unchecked"}
+                  status={dinner &&!lunch ? "checked" : "unchecked"}
                   onPress={() => {
-                    setDinner(!dinner);
+                    setDinner(true)
+                    setLunch(false);
                   }}
                   color="#ff6600"
                 />
