@@ -1,12 +1,13 @@
 import React from "react";
-import { SafeAreaView } from "react-native";
+import { Alert, SafeAreaView } from "react-native";
 import PromoCard from "./PromoCard";
 import HeaderTwo from "../header/HeaderTwo";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function SelectCoupon({ navigation }) {
   const onTypeSelected = (type) => {
-    navigation.navigate("create_coupon", { title: "% Discount", type: type });
+    Alert.alert("Alert", "This promotion category coming soon")
+    // navigation.navigate("create_coupon", { title: "% Discount", type: type });
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
