@@ -228,7 +228,7 @@ export default function CreateCoupon({ route, navigation }) {
                         setStartDate("");
                         setEndDate("");
                       }}
-                      disabled={duration}
+
                       style={{ marginRight: 8 }}
                     >
                       <Text
@@ -241,7 +241,7 @@ export default function CreateCoupon({ route, navigation }) {
                         Clear
                       </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => setModalVisible(true)}>
+                    <TouchableOpacity onPress={() => setModalVisible(true)} disabled={duration} >
                       <Icon
                         name="ios-calendar"
                         color="#ff6600"
@@ -263,7 +263,7 @@ export default function CreateCoupon({ route, navigation }) {
             <View style={styles.cardBody}>
               <View style={styles.btnGroup}>
                 <Checkbox.Android
-                  status={lunch && !dinner? "checked" : "unchecked"}
+                  status={lunch && !dinner ? "checked" : "unchecked"}
                   onPress={() => {
                     setLunch(true);
                     setDinner(false)
@@ -282,7 +282,7 @@ export default function CreateCoupon({ route, navigation }) {
               />
               <View style={styles.btnGroup}>
                 <Checkbox.Android
-                  status={dinner &&!lunch ? "checked" : "unchecked"}
+                  status={dinner && !lunch ? "checked" : "unchecked"}
                   onPress={() => {
                     setDinner(true)
                     setLunch(false);
