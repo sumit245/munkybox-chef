@@ -228,6 +228,7 @@ export default function CreateCoupon({ route, navigation }) {
                         setStartDate("");
                         setEndDate("");
                       }}
+                      disabled={duration}
                       style={{ marginRight: 8 }}
                     >
                       <Text
