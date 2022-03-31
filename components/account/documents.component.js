@@ -26,7 +26,7 @@ export const VerificationDocs = ({ navigation }) => {
 
   const fetchPapers = async (id) => {
     const response = await axios.get(
-      "https://munkybox-admin.herokuapp.com/api/newrest/" + id
+      "http://54.146.133.108:5000/api/newrest/" + id
     );
     const restaurant = await response.data;
     const paper = restaurant.papers;
