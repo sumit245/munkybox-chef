@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Collapsible from "react-native-collapsible";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
+import { width } from "../../Dimens";
 
 export default function Menu({
   meal,
@@ -121,6 +122,7 @@ export default function Menu({
                 flexDirection: "row",
                 alignItems: "center",
                 marginHorizontal: 4,
+                maxWidth: 3 * width / 4
               }}
             >
               <Image
@@ -241,6 +243,8 @@ const styles = StyleSheet.create({
   },
   mealTitle: {
     fontSize: 14,
+    flex: 1,
+    flexWrap:'wrap',
     fontWeight: "bold",
     padding: 4,
   },
