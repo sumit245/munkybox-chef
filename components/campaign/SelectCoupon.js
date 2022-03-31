@@ -6,8 +6,12 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function SelectCoupon({ navigation }) {
   const onTypeSelected = (type) => {
-    Alert.alert("Alert", "This promotion category coming soon")
-    // navigation.navigate("create_coupon", { title: "% Discount", type: type });
+    if (type === "per") {
+      Alert.alert("Alert", "This promotion category coming soon")
+    } else {
+
+      navigation.navigate("create_coupon", { title: "% Discount", type: type });
+    }
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
