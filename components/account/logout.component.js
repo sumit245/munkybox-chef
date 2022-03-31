@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function Logout({ navigation }) {
   const logout = () => {
-    Alert.alert("Are you sure?", "Are you sure you want to logout", [
+    Alert.alert("Sign out?", "Are you sure you want to logout", [
       { text: "No" },
       { text: "Yes", onPress: () => navigation.replace("Login") }
     ])

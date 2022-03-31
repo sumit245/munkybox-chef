@@ -202,29 +202,28 @@ const Item = ({ item }) => {
               REJECT
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              width: "48%",
-              alignItems: "center",
-              justifyContent: "center",
-              borderWidth: 0.2,
-              borderColor: "#777",
-              borderRadius: 2,
-              backgroundColor: SecondaryColor,
-            }}
-            onPress={() => accept(item._id)}
-          >
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 16,
-                color: WHITE,
-                padding: 4,
-              }}
-            >
-              ACCEPT
-            </Text>
-          </TouchableOpacity>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            width: "48%",
+            alignItems: "center",
+            justifyContent: "center",
+            borderWidth: 0.2,
+            borderColor: "#ff6600",
+            borderRadius: 2,
+          }}>
+            <TouchableOpacity onPress={() => accept(item._id)}>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 16,
+                  color: WHITE,
+                  padding: 4,
+                }}
+              >
+                ACCEPT
+              </Text>
+            </TouchableOpacity>
+          </LinearGradient>
+
         </View>
       </View>
     );

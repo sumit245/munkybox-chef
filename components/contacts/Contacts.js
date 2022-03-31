@@ -16,6 +16,7 @@ import { IconButton, Provider } from "react-native-paper";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient"
+import * as MailComposer from "expo-mail-composer"
 
 
 export default function Contacts({ navigation }) {
@@ -46,6 +47,12 @@ export default function Contacts({ navigation }) {
       phone: info.phone,
       label: "restaurant",
     };
+    MailComposer.composeAsync({
+      subject: info.subject,
+      recipients: ["support@feasti.com"],
+      body: info.body
+    })
+
     const response = await axios.post(
       "http://54.146.133.108:5000/api/contacts/",
       mail
