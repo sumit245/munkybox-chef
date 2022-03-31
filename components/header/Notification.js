@@ -7,7 +7,6 @@ import { SecondaryLightColor, WHITE } from "../../Colors";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Notification({ navigation }) {
-  const [count, setcount] = useState(1);
   const [order, setOrder] = useState([]);
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders);
@@ -22,7 +21,7 @@ export default function Notification({ navigation }) {
     return () => {
       componentMounted = false;
     };
-  }, [orders]);
+  }, [orders,dispatch]);
   return (
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center" }}

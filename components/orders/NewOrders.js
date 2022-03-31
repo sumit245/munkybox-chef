@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FlatList,
   View,
@@ -232,6 +232,11 @@ const Item = ({ item }) => {
     return <Loader />;
   }
 };
+const ListEmptyComponent = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text style={{ textAlign: "center", color: "#ff6600", fontWeight: 'bold' }}>Oops!!! No New Orders</Text>
+  </View>
+)
 export default function NewOrders({ route, navigation }) {
   const [orders, setOrders] = useState([])
   const renderItem = ({ item }) => <Item item={item} />;
@@ -265,6 +270,7 @@ export default function NewOrders({ route, navigation }) {
 
       <FlatList
         data={orders}
+        ListEmptyComponent={ListEmptyComponent}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
