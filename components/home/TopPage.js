@@ -63,7 +63,7 @@ export default function TopPage({ navigation }) {
 
   const fetchTotalOrders = async (restaurant) => {
     const response = await axios.get(
-      "http://18.117.221.34:5000/api/orders/forchefhome/" + restaurant
+      "http://54.146.133.108:5000/api/orders/forchefhome/" + restaurant
     );
     const { data } = response;
     const { activeorders, count } = data;

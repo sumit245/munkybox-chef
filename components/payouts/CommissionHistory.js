@@ -15,7 +15,7 @@ import { LinearGradient } from "expo-linear-gradient";
 const Item = ({ item, commission, navigation }) => {
   const fetchOrderById = async (id) => {
     const res = await axios.get(
-      "http://18.117.221.34:5000/api/orders/getOrderbyID/" + id
+      "http://54.146.133.108:5000/api/orders/getOrderbyID/" + id
     );
     const { data } = res;
     if (data !== null) {

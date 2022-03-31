@@ -31,7 +31,7 @@ export default function AddMealsLayout({ navigation }) {
   const { restaurant_id } = restaurant;
   const fetchMeals = async (id) => {
     const response = await axios.get(
-      "http://18.117.221.34:5000/api/newrest/getchefbyId/" + id
+      "http://54.146.133.108:5000/api/newrest/getchefbyId/" + id
     );
     const { data } = response;
     const { meals } = data;

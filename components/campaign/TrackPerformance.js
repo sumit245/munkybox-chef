@@ -28,7 +28,7 @@ export default function TrackPerformance({ route, navigation }) {
   const fetchMyCoupon = async (restaurant, pos) => {
     if (pos == 0) {
       const response = await axios.get(
-        "http://18.117.221.34:5000/api/coupon/getcouponforchef/" +
+        "http://54.146.133.108:5000/api/coupon/getcouponforchef/" +
           restaurant +
           "/Active"
       );
@@ -43,7 +43,7 @@ export default function TrackPerformance({ route, navigation }) {
       setloaded(true);
     } else {
       const dashboardResponse = await axios.get(
-        "http://18.117.221.34:5000/api/chefdashboard/" + restaurant
+        "http://54.146.133.108:5000/api/chefdashboard/" + restaurant
       );
       const dashres = await dashboardResponse.data;
       const { coupons } = dashres.dashboard;

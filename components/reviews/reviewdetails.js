@@ -27,7 +27,7 @@ export default function Review({ item, index, navigation }) {
 
   const fetchOrderById = async (id) => {
     const res = await axios.get(
-      "http://18.117.221.34:5000/api/orders/getOrderbyID/" + id
+      "http://54.146.133.108:5000/api/orders/getOrderbyID/" + id
     );
     const { data } = res;
     if (data !== null) {
@@ -50,7 +50,7 @@ export default function Review({ item, index, navigation }) {
     let myReply = [reply];
     let id = item._id;
     const response = await axios.put(
-      "http://18.117.221.34:5000/api/review/" + id,
+      "http://54.146.133.108:5000/api/review/" + id,
       { comments: myReply }
     );
     const { data } = response;

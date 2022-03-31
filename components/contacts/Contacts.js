@@ -47,7 +47,7 @@ export default function Contacts({ navigation }) {
       label: "restaurant",
     };
     const response = await axios.post(
-      "http://18.117.221.34:5000/api/contacts/",
+      "http://54.146.133.108:5000/api/contacts/",
       mail
     );
     const { status } = await response.data;

@@ -15,7 +15,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
 
   const fetchStat = async (id) => {
     const res = await axios.get(
-      "http://18.117.221.34:5000/api/chefdashboard/getchefbyidandrevenue/" +
+      "http://54.146.133.108:5000/api/chefdashboard/getchefbyidandrevenue/" +
       id
     );
     const { data } = res;
