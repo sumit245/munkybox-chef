@@ -7,7 +7,7 @@ export default function Logout({ navigation }) {
   const logout = () => {
     Alert.alert("Are you sure?", "Are you sure you want to logout", [
       { text: "No" },
-      { text: "Yes", onPress: navigation.replace("Login") }
+      { text: "Yes", onPress: () => navigation.replace("Login") }
     ])
   };
   return (
