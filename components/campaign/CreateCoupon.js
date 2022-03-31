@@ -270,7 +270,7 @@ export default function CreateCoupon({ route, navigation }) {
                   }}
                   color="#ff6600"
                 />
-                <Text>Lunch (10AM -2PM)</Text>
+                <Text>Lunch (11AM -2PM)</Text>
               </View>
               <View
                 style={{
@@ -289,7 +289,7 @@ export default function CreateCoupon({ route, navigation }) {
                   }}
                   color="#ff6600"
                 />
-                <Text>Dinner (7pm -10pm)</Text>
+                <Text>Dinner (5pm -8pm)</Text>
               </View>
             </View>
           </View>
