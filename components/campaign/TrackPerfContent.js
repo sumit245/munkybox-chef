@@ -116,6 +116,7 @@ function TrackPerfContent({
 
   return (
     <View style={styles.bannerCard}>
+      <View>
       <LinearGradient colors={["#ff9900", "#ff6600"]} >
         <View style={styles.trackHead}>
           <View>
@@ -140,20 +141,26 @@ function TrackPerfContent({
             <Text
               style={[
                 styles.bannerHeadTexts,
-                { marginTop: 36, marginBottom: 4 },
+                { marginTop: 32, marginBottom: 4 },
               ]}
             >
               {banner.duration}
             </Text>
-            <View style={styles.progressDonught}>
-              <Text style={{ fontWeight: "bold", fontSize: 14, color: "#ff6600" }}>
-                {remaining}
-              </Text>
-            </View>
-            <Text style={styles.smallText}>Days Left</Text>
+
           </View>
         </View>
       </LinearGradient>
+      <View style={{position:"absolute",top:60,right:8}}>
+      <View style={styles.progressDonught}>
+              <Text style={{ fontWeight: "bold", fontSize: 14, color: "#ff6600" }}>
+                {remaining>0?parseInt(remaining)+1:0}
+              </Text>
+            </View>
+            <Text style={styles.smallText}>Days Left</Text>
+      </View>
+    
+      
+      </View>
       {/* bannercard top area */}
 
       {!active && (

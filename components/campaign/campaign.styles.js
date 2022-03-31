@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
   },
   smallText: {
     fontWeight: "bold",
-    color: DARKGRAY,
+    color: "#000",
     lineHeight: 20,
     fontSize: 14,
     marginVertical: 2,
