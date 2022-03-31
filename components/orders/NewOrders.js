@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import {
   FlatList,
   View,
@@ -14,6 +14,8 @@ import { ORDERS } from "../../EndPoints";
 import Loader from "../../helpers/Loader";
 import Header from "../header/Header";
 import moment from "moment";
+import { LinearGradient } from "expo-linear-gradient";
+import Icon from "react-native-vector-icons/Ionicons"
 const Item = ({ item }) => {
   const { address } = item;
   const [loader, setLoader] = useState(false);
@@ -101,8 +103,8 @@ const Item = ({ item }) => {
             {item.plan === "twoPlan"
               ? "2"
               : item.plan === "fifteenPlan"
-              ? "15"
-              : "30"}{" "}
+                ? "15"
+                : "30"}{" "}
             Meals
           </Text>
         </Text>
@@ -156,14 +158,14 @@ const Item = ({ item }) => {
               fontWeight: "normal",
             }}
           >
-            {((address_type+
-              ", ")||"")  +
+            {((address_type +
+              ", ") || "") +
               ((flat_num +
-                ",")||"") +
-              ((locality||"")) +
+                ",") || "") +
+              ((locality || "")) +
               ((city +
-                ", ")||"") +
-              (postal_code ||"")}
+                ", ") || "") +
+              (postal_code || "")}
           </Text>{" "}
         </Text>
 
@@ -231,21 +233,38 @@ const Item = ({ item }) => {
   }
 };
 export default function NewOrders({ route, navigation }) {
-  const { order } = route.params;
-
+  const [orders, setOrders] = useState([])
   const renderItem = ({ item }) => <Item item={item} />;
+  const { order } = route.params;
+  useEffect(() => {
+    setOrders(order)
+  }, [order])
+
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={"NEW ORDER"} />
+      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+            height: 28,
+            width: 28,
+            marginHorizontal: 4,
+            borderRadius: 14,
+          }}>
+            <TouchableOpacity
+              style={{ alignItems: "center", justifyContent: "center" }}
+              onPress={() => navigation.goBack()}
+            >
+              <Icon name="chevron-back" size={24} color="#ffffff" />
+            </TouchableOpacity>
+          </LinearGradient>
+          <Header
+            title="Meals"
+          />
+        </View>
+      </View>
 
-      <TouchableOpacity
-        style={{ alignSelf: "flex-end", marginHorizontal: 4 }}
-        onPress={() => navigation.navigate("Home")}
-      >
-        <Text style={{ color: "#2277fc", fontWeight: "bold" }}>Done</Text>
-      </TouchableOpacity>
       <FlatList
-        data={order}
+        data={orders}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
