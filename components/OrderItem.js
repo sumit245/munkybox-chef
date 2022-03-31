@@ -190,10 +190,11 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
                 flexDirection: "row",
                 alignItems: "center",
                 marginVertical: 2,
+                
               }}
             >
               <Text style={{ fontWeight: "bold", fontSize: 16 }}>Notes: </Text>
-              <Text style={{ fontSize: 14 }}>{item.notes || "N/A"}</Text>
+              <Text style={{ fontSize: 14,flexWrap:"wrap",flex:1 }}>{item.notes || "N/A"}</Text>
             </View>
             <View
               style={{
