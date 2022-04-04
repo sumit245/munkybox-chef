@@ -52,7 +52,7 @@ export default function OrderDetails({ route, navigation }) {
       {/* Header */}
 
       <ScrollView
-        contentContainerStyle={{ justifyContent: "flex-start", flex: 1,marginTop:8,backgroundColor:"#fff" }}
+        contentContainerStyle={{ justifyContent: "flex-start", flex: 1, marginTop: 8, backgroundColor: "#fff" }}
         contentInsetAdjustmentBehavior="automatic"
       >
         <View style={styles.formHeader}>
@@ -67,7 +67,7 @@ export default function OrderDetails({ route, navigation }) {
               <Text>
                 {moment(order.order_time).format("DD-MMM-YYYY HH:mm a")}
               </Text>
-              <Text style={{ textTransform: "uppercase",color:order.status==="accepted"?"#5ca85c":order.status==="started"?"#ffc300":"#ff4300" }}>{order.status}</Text>
+              <Text style={{ textTransform: "uppercase", color: order.status === "accepted" ? "#5ca85c" : order.status === "started" ? "#ffc300" : "#ff4300" }}>{order.status}</Text>
             </View>
           </View>
           <View style={styles.row}>
@@ -138,7 +138,7 @@ export default function OrderDetails({ route, navigation }) {
           </View>
         </View>
 
-        <View style={[styles.row,{backgroundColor:"#fff"}]}>
+        <View style={[styles.row, { backgroundColor: "#fff" }]}>
           <Text
             style={{
               fontStyle: "italic",
@@ -187,6 +187,7 @@ export default function OrderDetails({ route, navigation }) {
         </View>
 
       </ScrollView>
+      
     </SafeAreaView>
   );
 }
