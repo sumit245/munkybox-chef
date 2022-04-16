@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 const { width, height } = Dimensions.get("window");
 import {
   View,
