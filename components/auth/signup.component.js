@@ -17,6 +17,8 @@ import { screenWidth } from "../../Dimens";
 import CustomDialog from "../../helpers/CustomDialog";
 import Loader from "../../helpers/Loader";
 import { LinearGradient } from "expo-linear-gradient";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { sendPushNotification } from "../../helpers/NotificationServices";
 
 export default function Signup({ navigation }) {
 
@@ -36,6 +38,7 @@ export default function Signup({ navigation }) {
   const phoneInput = useRef(null);
   const emailInput = useRef(null);
   const restaurantInput = useRef(null);
+  const [token, setToken] = useState("")
 
   const submitRequest = async () => {
     setLoaded(true);
@@ -103,8 +106,18 @@ export default function Signup({ navigation }) {
       setLogged(true);
       setLoaded(false);
       setMsg(data.msg);
+      await sendPushNotification(token, "Welcome to Feasti 🍜", "Get your documents ready. Our admin will contact you soon for verification")
     }
   };
+  const fetchNotificationToken = async () => {
+    const token = await AsyncStorage.getItem('notificationToken')
+    console.log(token);
+    setToken(token)
+  }
+  useEffect(() => {
+    fetchNotificationToken()
+  }, [])
+
 
   if (!loaded) {
     return (
