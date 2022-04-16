@@ -33,7 +33,6 @@
     "react-native-countdown-component": "^2.7.1",
     "react-native-css-transformer": "^1.2.4",
     "react-native-fs": "^2.18.0",
-    "react-native-gesture-handler": "^1.10.3",
     "react-native-mail": "^6.1.1",
     "react-native-otp-textinput": "0.0.8",
     "react-native-pager-view": "^5.0.12",

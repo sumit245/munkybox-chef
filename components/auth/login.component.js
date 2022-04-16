@@ -45,6 +45,7 @@ export default function Login({ navigation }) {
       phone,
       reCaptchaVerifier.current
     );
+  
     Promise.resolve(setVerificationId(verificationId))
       .then((res) => {
         navigation.push("OTP", {
