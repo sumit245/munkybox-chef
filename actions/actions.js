@@ -1,6 +1,7 @@
 import { ORDERS, RESTAURANT_LOGIN, RESTAURANT_URL } from "../EndPoints";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { sendPushNotification } from "../helpers/NotificationServices";
 
 export const LOGIN_METHOD = "LOGIN_METHOD";
 export const ENTRY_METHOD = "ENTRY_METHOD";
@@ -46,12 +47,14 @@ export const setRestaurant = () => async (dispatch) => {
 
 export const getOrder = (restaurant) => async (dispatch) => {
   const response = await axios.get(ORDERS);
+  const token=await AsyncStorage.getItem('notificationToken')
   let orders = response.data;
   let neworders = orders.filter(
     (item) => item.status === "pending" && item.restaurant === restaurant
   );
   if (orders !== null) {
     dispatch({ type: GET_ORDER, payload: neworders });
+    sendPushNotification(token,'New Order','You have a new order')
   }
 };
 
