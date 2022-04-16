@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, RefreshControl } from "react-native";
 import CalTab from "../CalTab";
 import ToggleLunchDinner from "../header/ToggleLunchDinner";
 import Header from "../header/Header";
@@ -30,7 +30,8 @@ export default function TopPage({ navigation }) {
   const [index, setIndex] = useState(0);
   const [partAddOn, setPartCounts] = useState([]);
   const { restaurant_name, city, restaurant_id, meals } = restaurant;
-  const [isToday,setisToday]=useState(false)
+  const [isToday, setisToday] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
 
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
   const arrayColumn = (arr, n) =>
@@ -74,8 +75,8 @@ export default function TopPage({ navigation }) {
     let addons = {};
     try {
       const addOns = orders.map((el) => el.add_on);
-      let todayExtras = addOns.map((extras) =>{
-        
+      let todayExtras = addOns.map((extras) => {
+
         return extras.filter(
           (item) => item.order_date === moment().format("DD-MMM-YYYY")
         )
@@ -83,14 +84,14 @@ export default function TopPage({ navigation }) {
       );
       if (todayExtras.length > 0) {
         let quantities = todayExtras.map((extras) =>
-        extras.map((item) => item.qty)
+          extras.map((item) => item.qty)
         );
-        
+
         let addonssubtotal = [];
         for (let index = 0; index <= quantities.length; index++) {
           addonssubtotal.push(arrayColumn(quantities, index));
         }
-        
+
         let subtotal = quantities.map((item) => item.reduce(add, 0));
         let totalCount = subtotal.reduce(add, 0);
         if (index === 0) {
@@ -99,7 +100,7 @@ export default function TopPage({ navigation }) {
           setPartCounts(mytotal);
           setAddOn(totalCount);
           setQty(totalCount);
-          
+
         }
       } else {
         let mytotal = addonssubtotal.map((item) => 0);
@@ -119,6 +120,13 @@ export default function TopPage({ navigation }) {
   useEffect(() => {
     fetchTotalOrders(restaurant_id);
   }, []);
+  const onRefresh = () => {
+    setRefreshing(true)
+    fetchTotalOrders(restaurant_id)
+    getAddOnCounts()
+    setRefreshing(false)
+  }
+
 
   const onDayChanged = (day) => {
     if (day === "Today") {
@@ -153,22 +161,29 @@ export default function TopPage({ navigation }) {
 
   return (
     <SafeAreaView style={styles.mainPage}>
-      <Header title={restaurant_name + ", " + restaurant_id}>
-        <View style={styles.switch}>
-          <ToggleLunchDinner handleToggle={(e) => setSlot(e)} />
-          <Notification navigation={navigation} />
-        </View>
-      </Header>
-      <CalTab onDayChanged={(day) => onDayChanged(day)} />
-      <Menu
-        meal={meal}
-        slot={slot}
-        count={mealcount}
-        add_on_name={addOn}
-        partAdds={partAddOn}
-        add_on_count={qty}
-        isToday={isToday}
-      />
+      <ScrollView refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={["#f00",
+          "#0f0", "#00f"]}
+
+        />
+      } >
+        <Header title={restaurant_name + ", " + restaurant_id}>
+          <View style={styles.switch}>
+            <ToggleLunchDinner handleToggle={(e) => setSlot(e)} />
+            <Notification navigation={navigation} />
+          </View>
+        </Header>
+        <CalTab onDayChanged={(day) => onDayChanged(day)} />
+        <Menu
+          meal={meal}
+          slot={slot}
+          count={mealcount}
+          add_on_name={addOn}
+          partAdds={partAddOn}
+          add_on_count={qty}
+          isToday={isToday}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }
