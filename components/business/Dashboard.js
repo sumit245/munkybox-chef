@@ -6,15 +6,11 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   ScrollView,
+  RefreshControl
 } from "react-native";
 import Header from "../header/Header";
 import { useSelector } from "react-redux";
-import {
-  PrimaryDark,
-  SecondaryLightColor,
-  WHITE,
-  SecondaryColor,
-} from "../../Colors";
+import { WHITE } from "../../Colors";
 import { styles } from "../campaign/campaign.styles";
 import Ants from "react-native-vector-icons/FontAwesome5";
 import { TabView, TabBar } from "react-native-tab-view";
@@ -42,6 +38,7 @@ export default function Dashboard({ navigation }) {
   const [totalAddOnRevenue, setTotalAddOnRevenue] = useState(0);
   const [totalAddOns, setTotalAddOns] = useState(0);
   const [campaignDue, setCampaignDue] = useState(0);
+  const [refreshing, setRefreshing] = useState(false)
   const [routes] = React.useState([
     { key: "first", title: "Weekly" },
     { key: "second", title: "Monthly" },
@@ -177,6 +174,7 @@ export default function Dashboard({ navigation }) {
     let totalPrice = subtotalPrice.reduce(add, 0);
     setTotalAddOnRevenue(totalPrice);
   };
+
   useEffect(() => {
     getAddOnCounts(restaurant_id);
   });
@@ -204,6 +202,21 @@ export default function Dashboard({ navigation }) {
     completecount,
   ]);
 
+  const onRefresh = () => {
+    setRefreshing(true)
+    fetchOrders(restaurant_id);
+    fetchcompletedorders(restaurant_id);
+    fetchcancelledcount(restaurant_id);
+    fetchVisit(restaurant_id);
+    fetchRejectedcount(restaurant_id);
+    fetchNotStartedcount(restaurant_id);
+    fetchStats(restaurant_id);
+    getuserByType(restaurant_name);
+    fetchCommission()
+    getAddOnCounts(restaurant_id)
+    setRefreshing(false)
+  }
+
   return (
     <SafeAreaView
       style={{
@@ -211,7 +224,9 @@ export default function Dashboard({ navigation }) {
       }}
     >
       <Header title={restaurant_name + ", " + city} />
-      <ScrollView>
+      <ScrollView refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={["#f00", "#0f0", "#00f"]} />
+      } >
         <View
           style={{
             flexDirection: "row",
