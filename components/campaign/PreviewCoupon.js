@@ -73,7 +73,7 @@ export default function PreviewCoupon({ navigation, route }) {
       setLoading(true);
       navigation.navigate("submit_coupon", {
         promo,
-        promo_name:"promo coupon"
+        promo_name: "promo coupon"
       });
     }
   };
@@ -113,7 +113,7 @@ export default function PreviewCoupon({ navigation, route }) {
                 ]}
               >
                 Applicable on:{" "}
-                <Text style={styles.smallText}>{plan} Meals</Text>
+                <Text style={[styles.smallText, { color: DARKGRAY }]}>{plan} Meals</Text>
               </Text>
               <Divider />
               <Text
@@ -123,7 +123,7 @@ export default function PreviewCoupon({ navigation, route }) {
                 ]}
               >
                 Applicable on:{" "}
-                <Text style={styles.smallText}>
+                <Text style={[styles.smallText, { color: DARKGRAY }]}>
                   {lunch} {dinner}
                 </Text>
               </Text>
@@ -137,7 +137,7 @@ export default function PreviewCoupon({ navigation, route }) {
                 ]}
               >
                 Valid from:
-                <Text style={styles.smallText}>
+                <Text style={[styles.smallText, { color: DARKGRAY }]}>
                   {" "}
                   {start_date} to {end_date}
                 </Text>
@@ -150,7 +150,7 @@ export default function PreviewCoupon({ navigation, route }) {
                 ]}
               >
                 Valid for:
-                <Text style={styles.smallText}> {diff} Days</Text>
+                <Text style={[styles.smallText, { color: DARKGRAY }]}> {diff} Days</Text>
               </Text>
               <Divider />
             </View>
@@ -181,7 +181,7 @@ export default function PreviewCoupon({ navigation, route }) {
                       color: "#226ccf",
                       textDecorationLine: "underline",
                     }}
-                    onPress={()=>navigation.navigate("policies")}
+                    onPress={() => navigation.navigate("policies")}
                   >
                     terms and conditions
                   </Text>{" "}
