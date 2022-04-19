@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, RefreshControl } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, RefreshControl, Platform, StatusBar } from "react-native";
 import CalTab from "../CalTab";
 import ToggleLunchDinner from "../header/ToggleLunchDinner";
 import Header from "../header/Header";
@@ -8,6 +8,8 @@ import Menu from "./Menu";
 import Notification from "../header/Notification";
 import axios from "axios";
 import moment from "moment";
+import { sendPushNotification } from "../../helpers/NotificationServices";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const days = [
   "Sunday",
@@ -68,8 +70,9 @@ export default function TopPage({ navigation }) {
     );
     const { data } = response;
     const { activeorders, count } = data;
-    console.log(count);
     setOrders(activeorders);
+    const token = await AsyncStorage.getItem('notificationToken')
+    sendPushNotification(token, 'New Order', 'You have a new order')
   };
 
   const getAddOnCounts = () => {
@@ -97,7 +100,6 @@ export default function TopPage({ navigation }) {
         let totalCount = subtotal.reduce(add, 0);
         if (index === 0) {
           let mytotal = addonssubtotal.map((item) => item.reduce(add, 0));
-          console.log(mytotal);
           setPartCounts(mytotal);
           setAddOn(totalCount);
           setQty(totalCount);
@@ -120,7 +122,8 @@ export default function TopPage({ navigation }) {
 
   useEffect(() => {
     fetchTotalOrders(restaurant_id);
-  }, []);
+  }, [count]);
+
   const onRefresh = () => {
     setRefreshing(true)
     fetchTotalOrders(restaurant_id)
@@ -161,7 +164,8 @@ export default function TopPage({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={styles.mainPage}>
+    <SafeAreaView style={styles.mainPage} >
+
       <ScrollView refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={["#f00",
           "#0f0", "#00f"]}
@@ -192,7 +196,7 @@ export default function TopPage({ navigation }) {
 const styles = StyleSheet.create({
   mainPage: {
     flex: 1,
-    //backgroundColor:PrimaryDark
+    marginTop: Platform.OS === "android" && StatusBar.currentHeight
   },
   switch: {
     position: "absolute",

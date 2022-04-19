@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  Platform,
+  StatusBar
 } from "react-native";
 import Header from "../header/Header";
 import { useSelector } from "react-redux";
@@ -221,6 +223,7 @@ export default function Dashboard({ navigation }) {
     <SafeAreaView
       style={{
         flex: 1,
+        marginTop: Platform.OS === "android" && StatusBar.currentHeight
       }}
     >
       <Header title={restaurant_name + ", " + city} />

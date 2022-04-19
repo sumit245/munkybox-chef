@@ -16,12 +16,13 @@ export default function Notification({ navigation }) {
     let componentMounted = true;
     if (componentMounted) {
       dispatch(getOrder(restaurant_name));
-      setOrder(orders);
+      setOrder(orders);  
     }
     return () => {
       componentMounted = false;
     };
-  }, [orders,dispatch]);
+  }, [orders, dispatch]);
+  
   return (
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center" }}
