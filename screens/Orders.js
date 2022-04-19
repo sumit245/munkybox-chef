@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, FlatList, SafeAreaView, Text } from "react-native";
+import { View, StyleSheet, FlatList, SafeAreaView, Text, Platform, StatusBar } from "react-native";
 import Header from "../components/header/Header";
 import OrderItem from "../components/OrderItem";
 import { useSelector, useDispatch } from "react-redux";
@@ -120,7 +120,7 @@ export default function Orders() {
     let unDeliveredOrders = filtered_array.filter(
       (item) => item.delivered === false
     );
-    
+
     setCount(unDeliveredOrders.length);
   };
 
@@ -152,13 +152,13 @@ export default function Orders() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1}}>
-      
+    <SafeAreaView style={{ flex: 1, marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 }}>
+
       <Header title={restaurant_name + ", " + restaurant_id}>
         <View style={styles.switch}>
           <ToggleLunchDinner handleToggle={handleToggle} />
-          </View>
-        
+        </View>
+
       </Header>
       <HeaderTabSwitch
         items={slot === "Lunch" ? lunch : dinner}
@@ -170,7 +170,7 @@ export default function Orders() {
       />
       {loaded ? (
         <FlatList
-          contentContainerStyle={{marginTop:4}}
+          contentContainerStyle={{ marginTop: 4 }}
           data={orders}
           ListEmptyComponent={ListEmptyComponent}
           showsVerticalScrollIndicator={false}
@@ -180,7 +180,7 @@ export default function Orders() {
       ) : (
         <Loader />
       )}
-      
+
     </SafeAreaView>
   );
 }

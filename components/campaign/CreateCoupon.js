@@ -16,6 +16,7 @@ import HeaderTwo from "../header/HeaderTwo";
 import { onDateChange } from "../../helpers/commons";
 import moment from "moment";
 import { LinearGradient } from "expo-linear-gradient";
+import { DARKGRAY } from "../../Colors";
 
 export default function CreateCoupon({ route, navigation }) {
   const { type } = route.params;
@@ -96,7 +97,7 @@ export default function CreateCoupon({ route, navigation }) {
         <ScrollView>
           <View style={styles.card}>
             <Text style={styles.bigText}>Apply discount on</Text>
-            <Text style={styles.smallText}>
+            <Text style={[styles.smallText, { color: DARKGRAY }]}>
               Choose the items valid for this discount{" "}
             </Text>
             <View style={styles.cardBody}>
@@ -139,7 +140,7 @@ export default function CreateCoupon({ route, navigation }) {
             <Text style={styles.bigText}>
               Select the {type === "net" ? "$" : "%"} value of discount
             </Text>
-            <Text style={styles.smallText}>
+            <Text style={[styles.smallText, { color: DARKGRAY }]}>
               This {type === "net" ? "$" : "%"} discount will be offered on
               eligible orders{" "}
             </Text>
@@ -158,7 +159,7 @@ export default function CreateCoupon({ route, navigation }) {
           </View>
           <View style={styles.card}>
             <Text style={styles.bigText}>Select Duration</Text>
-            <Text style={styles.smallText}>
+            <Text style={[styles.smallText, { color: DARKGRAY }]}>
               Choose the duration you want this to run for
             </Text>
             <View style={styles.cardBody}>
@@ -170,7 +171,7 @@ export default function CreateCoupon({ route, navigation }) {
                   <RadioButton.Android value={7} color="#ff6600" />
                   <View>
                     <Text style={styles.bigText}>7 Days</Text>
-                    <Text style={styles.smallText}>
+                    <Text style={[styles.smallText, { color: DARKGRAY }]}>
                       {" "}
                       Starts today till{" "}
                       {moment().add(6, "days").format("DD MMM")}
@@ -189,7 +190,7 @@ export default function CreateCoupon({ route, navigation }) {
                   <RadioButton.Android value={15} color="#ff6600" />
                   <View>
                     <Text style={styles.bigText}>15 Days</Text>
-                    <Text style={styles.smallText}>
+                    <Text style={[styles.smallText, { color: DARKGRAY }]}>
                       Starts today till{" "}
                       {moment().add(14, "days").format("DD MMM")}
                     </Text>
@@ -207,7 +208,7 @@ export default function CreateCoupon({ route, navigation }) {
                   <RadioButton.Android value={0} color="#ff6600" />
                   <View>
                     <Text style={styles.bigText}>Custom duration</Text>
-                    <Text style={styles.smallText}>
+                    <Text style={[styles.smallText, { color: DARKGRAY }]}>
                       Select for custom offer duration
                     </Text>
                   </View>

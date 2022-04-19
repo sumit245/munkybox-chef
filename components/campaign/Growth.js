@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView } from "react-native";
+import { Platform, SafeAreaView, StatusBar } from "react-native";
 // import LinearGradient  from "react-native-linear-gradient";
 import Header from "../header/Header";
 import PromoCard from "./PromoCard";
@@ -28,8 +28,8 @@ export default function Growth({ navigation }) {
     navigation.navigate("select_banner");
   };
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <LinearGradient colors={["#ff8800", "#ff6600"]} style={{flex:1}}  end={{x:0.1,y:0.9}}  > 
+    <SafeAreaView style={{ flex: 1, marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 }}>
+      <LinearGradient colors={["#ff8800", "#ff6600"]} style={{ flex: 1 }} end={{ x: 0.1, y: 0.9 }}  >
         <Header title={"Growth"} />
         <PromoCard
           index={0}
@@ -53,7 +53,7 @@ export default function Growth({ navigation }) {
           cancelHandler={trackCoupon}
           okHandler={setCoupon}
         />
-    </LinearGradient> 
+      </LinearGradient>
     </SafeAreaView>
   );
 }
