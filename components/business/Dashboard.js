@@ -223,7 +223,7 @@ export default function Dashboard({ navigation }) {
     <SafeAreaView
       style={{
         flex: 1,
-        marginTop: Platform.OS === "android" && StatusBar.currentHeight
+        marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
       }}
     >
       <Header title={restaurant_name + ", " + city} />

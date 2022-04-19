@@ -196,7 +196,7 @@ export default function TopPage({ navigation }) {
 const styles = StyleSheet.create({
   mainPage: {
     flex: 1,
-    marginTop: Platform.OS === "android" && StatusBar.currentHeight
+    marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
   switch: {
     position: "absolute",
