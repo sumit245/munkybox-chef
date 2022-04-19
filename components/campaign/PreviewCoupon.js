@@ -9,6 +9,7 @@ import { Checkbox, Divider } from "react-native-paper";
 import { useState } from "react";
 import moment from "moment";
 import { LinearGradient } from "expo-linear-gradient";
+import { DARKGRAY } from "../../Colors";
 export default function PreviewCoupon({ navigation, route }) {
   const {
     type,
@@ -108,7 +109,7 @@ export default function PreviewCoupon({ navigation, route }) {
               <Text
                 style={[
                   styles.bigText,
-                  { color: "#000", fontSize: 14, marginVertical: 10 },
+                  { color: DARKGRAY, fontSize: 14, marginVertical: 10 },
                 ]}
               >
                 Applicable on:{" "}
@@ -118,7 +119,7 @@ export default function PreviewCoupon({ navigation, route }) {
               <Text
                 style={[
                   styles.bigText,
-                  { color: "#000", fontSize: 14, marginVertical: 10 },
+                  { color: DARKGRAY, fontSize: 14, marginVertical: 10 },
                 ]}
               >
                 Applicable on:{" "}
@@ -132,7 +133,7 @@ export default function PreviewCoupon({ navigation, route }) {
               <Text
                 style={[
                   styles.bigText,
-                  { color: "#000", fontSize: 14, marginVertical: 10 },
+                  { color: DARKGRAY, fontSize: 14, marginVertical: 10 },
                 ]}
               >
                 Valid from:
@@ -145,7 +146,7 @@ export default function PreviewCoupon({ navigation, route }) {
               <Text
                 style={[
                   styles.bigText,
-                  { color: "#000", fontSize: 14, marginVertical: 10 },
+                  { color: DARKGRAY, fontSize: 14, marginVertical: 10 },
                 ]}
               >
                 Valid for:
@@ -154,9 +155,9 @@ export default function PreviewCoupon({ navigation, route }) {
               <Divider />
             </View>
             <View style={styles.cardBody}>
-              <Text style={[styles.bigText, { color: "#000", fontSize: 14 }]}>
+              <Text style={[styles.bigText, { color: DARKGRAY, fontSize: 14 }]}>
                 PROMO CODE:{" "}
-                <Text style={[styles.bigText, { color: "#000", fontSize: 16 }]}>
+                <Text style={[styles.bigText, { color: DARKGRAY, fontSize: 16 }]}>
                   {code}
                 </Text>
               </Text>
