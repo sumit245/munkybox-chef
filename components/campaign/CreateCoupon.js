@@ -257,7 +257,7 @@ export default function CreateCoupon({ route, navigation }) {
           </View>
           <View style={styles.card}>
             <Text style={styles.bigText}>Select time slots</Text>
-            <Text style={styles.smallText}>
+            <Text style={[styles.smallText, { color: DARKGRAY }]}>
               The mealtime(s) on which the offer will be available to the
               customers
             </Text>
