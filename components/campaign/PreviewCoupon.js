@@ -80,8 +80,8 @@ export default function PreviewCoupon({ navigation, route }) {
 
   const showDelete = () => {
     Alert.alert("Are you sure?", "Discarding a coupon will remove all saved details", [
-      { text: "OK", onPress: () => navigation.navigate("Growth") }
-    ])
+      { text: "OK", onPress: () => navigation.navigate("Growth") },
+    ], { cancelable: true })
   }
   if (loading) {
     return (
