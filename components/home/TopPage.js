@@ -34,6 +34,7 @@ export default function TopPage({ navigation }) {
   const { restaurant_name, city, restaurant_id, meals } = restaurant;
   const [isToday, setisToday] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
+  const [count, setCount] = useState(0)
 
   const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
   const arrayColumn = (arr, n) =>
@@ -71,6 +72,7 @@ export default function TopPage({ navigation }) {
     const { data } = response;
     const { activeorders, count } = data;
     setOrders(activeorders);
+    setCount(count)
     const token = await AsyncStorage.getItem('notificationToken')
     sendPushNotification(token, 'New Order', 'You have a new order')
   };
