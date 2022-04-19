@@ -68,6 +68,7 @@ export default function TopPage({ navigation }) {
     );
     const { data } = response;
     const { activeorders, count } = data;
+    console.log(count);
     setOrders(activeorders);
   };
 

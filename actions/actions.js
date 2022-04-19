@@ -54,7 +54,7 @@ export const getOrder = (restaurant) => async (dispatch) => {
   );
   if (orders !== null) {
     dispatch({ type: GET_ORDER, payload: neworders });
-    sendPushNotification(token,'New Order','You have a new order')
+    //sendPushNotification(token,'New Order','You have a new order')
   }
 };
 
