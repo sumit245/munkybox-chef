@@ -86,7 +86,6 @@ export default function PreviewCoupon({ navigation, route }) {
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>
-
         <HeaderTwo title="Preview" navigation={navigation}>
           <TouchableOpacity
             style={{ paddingHorizontal: 4 }}
