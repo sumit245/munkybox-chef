@@ -166,7 +166,7 @@ export default function Dashboard({ navigation }) {
     orders = orders.filter(
       (item) => item.restaurant_id === id && item.status !== "rejected"
     );
-    const addOns = orders.map((el) => el.add_on);
+    const addOns = orders.map(item=>item.map((el) => el.add_on));
     let quantities = addOns.map((extras) => extras.map((item) => item.qty));
     let subtotal = quantities.map((item) => item.reduce(add, 0));
     let totalCount = subtotal.reduce(add, 0);
