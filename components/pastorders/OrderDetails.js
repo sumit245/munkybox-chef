@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -24,12 +24,8 @@ export default function OrderDetails({ route, navigation }) {
   }
 
   const subtotals =
-    Array.isArray(order.add_on) && order.add_on.map(item=>(item.map((item) => item.subtotal)));
+    Array.isArray(order.add_on) && order.add_on.map((item) => item.subtotal);
   let price = subtotals.reduce(add, 0);
-  useEffect(() => {
-  console.log(order);  
-  }, [])
-  
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
@@ -165,10 +161,7 @@ export default function OrderDetails({ route, navigation }) {
             <Text style={styles.text}>PRICE</Text>
           </View>
           {Array.isArray(order.add_on) &&
-            order.add_on.map(item=>(
-
-            item.map(
-              (extra, key) => (
+            order.add_on.map((extra, key) => (
               <View
                 style={{
                   flexDirection: "row",
@@ -190,7 +183,6 @@ export default function OrderDetails({ route, navigation }) {
                   ${parseFloat(extra.subtotal).toFixed(2)}
                 </Text>
               </View>
-              ))
             ))}
         </View>
 
