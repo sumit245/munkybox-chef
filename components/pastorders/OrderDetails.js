@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -24,8 +24,9 @@ export default function OrderDetails({ route, navigation }) {
   }
 
   const subtotals =
-    Array.isArray(order.add_on) && order.add_on.map((item) => item.subtotal);
+    Array.isArray(order.add_on) && order.add_on.map(item => (item.map((item) => item.subtotal)));
   let price = subtotals.reduce(add, 0);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
@@ -161,33 +162,37 @@ export default function OrderDetails({ route, navigation }) {
             <Text style={styles.text}>PRICE</Text>
           </View>
           {Array.isArray(order.add_on) &&
-            order.add_on.map((extra, key) => (
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  borderBottomWidth: 0.5,
-                  borderBottomColor: "#777",
-                }}
-                key={key}
-              >
-                <View>
-                  <Text style={{ padding: 4 }}>{extra.item}</Text>
-                  <Text style={{ padding: 4 }}>
-                    ${parseFloat(extra.rate).toFixed(2) + " x " + extra.qty}
-                  </Text>
-                </View>
+            order.add_on
+              .map((item) => (item.map
+                .map((extra, key) => (
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      borderBottomWidth: 0.5,
+                      borderBottomColor: "#777",
+                    }}
+                    key={key}
+                  >
+                    <View>
+                      <Text style={{ padding: 4 }}>{extra.item}</Text>
+                      <Text style={{ padding: 4 }}>
+                        ${parseFloat(extra.rate).toFixed(2) + " x " + extra.qty}
+                      </Text>
+                    </View>
 
-                <Text style={{ padding: 4 }}>{extra.order_date}</Text>
-                <Text style={{ padding: 4 }}>
-                  ${parseFloat(extra.subtotal).toFixed(2)}
-                </Text>
-              </View>
-            ))}
+                    <Text style={{ padding: 4 }}>{extra.order_date}</Text>
+                    <Text style={{ padding: 4 }}>
+                      ${parseFloat(extra.subtotal).toFixed(2)}
+                    </Text>
+                  </View>
+
+                ))
+              ))}
         </View>
 
       </ScrollView>
-      
+
     </SafeAreaView>
   );
 }
