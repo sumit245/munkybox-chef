@@ -163,7 +163,7 @@ export default function OrderDetails({ route, navigation }) {
           </View>
           {Array.isArray(order.add_on) &&
             order.add_on
-              .map((item) => (item.map
+              .map((item) => (item
                 .map((extra, key) => (
                   <View
                     style={{
