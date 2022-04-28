@@ -13,7 +13,7 @@ import HeaderwithBack from "../header/HeaderwithBack";
 
 export default function Notifications({ navigation }) {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
-  const onToggleSwitch = () => setIsSwitchOn(true);
+  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
   return (
     <SafeAreaView style={styles.container}>
       <HeaderwithBack title="Notification" navigation={navigation} />
@@ -26,22 +26,24 @@ export default function Notifications({ navigation }) {
             <Text style={styles.notificationTitle}>Push Notifications</Text>
             <TouchableOpacity
               style={{
-                backgroundColor: "#525",
+                backgroundColor: isSwitchOn?"#ff9900":"#525",
                 marginLeft: 80,
                 padding: 2,
                 alignItems: "center",
                 paddingHorizontal: 6,
                 borderRadius: 4,
               }}
+              onPress={onToggleSwitch}
             >
-              <Text style={{ fontSize: 16, color: "#fff" }}>OFF</Text>
+              <Text style={{ fontSize: 16, color: "#fff" }}>{isSwitchOn?"OFF":"ON"}</Text>
             </TouchableOpacity>
           </View>
           <Text style={styles.notificationSubTitle}>
             Tap to enable notifications
           </Text>
         </Card>
-        <Card style={styles.notifCard}>
+        
+    {/*     <Card style={styles.notifCard}>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
@@ -119,6 +121,7 @@ export default function Notifications({ navigation }) {
             />
           </View>
         </Card>
+     */}
       </ScrollView>
     </SafeAreaView>
   );

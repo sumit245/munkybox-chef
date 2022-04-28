@@ -83,12 +83,12 @@ export default function BankAccount({ navigation }) {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.container}
         >
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{ alignSelf: "flex-end" }}
             onPress={() => onSubmit()}
           >
             <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable ? "#ff6600" : "#000"} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <>
             <View style={styles.labelContainer}>
               <Icon name="person-outline" size={18} color="#777" />
