@@ -49,7 +49,7 @@ export default function Contacts({ navigation }) {
     };
     MailComposer.composeAsync({
       subject: info.subject,
-      recipients: ["support@feasti.com"],
+      recipients: ["support@feasti.com","sumitranjan245@gmail.com"],
       body: info.body
     })
 
