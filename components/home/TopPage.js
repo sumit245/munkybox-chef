@@ -96,11 +96,9 @@ export default function TopPage({ navigation }) {
         
         let addonssubtotal = [];
         for (let index = 0; index <= quantities.length; index++) {
-          addonssubtotal.push(arrayColumn(...quantities, index));
+          addonssubtotal.push(arrayColumn(quantities, index));
         }
-        console.log(quantities);
-        let subtotal = [...quantities].map((item) => item.reduce(add, 0));
-        console.log(subtotal);
+        let subtotal = quantities.map((item) => item.reduce(add, 0));
         let totalCount = subtotal.reduce(add, 0);
         if (index === 0) {
           let mytotal = addonssubtotal.map((item) => item.reduce(add, 0));
