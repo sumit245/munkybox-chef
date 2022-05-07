@@ -51,63 +51,23 @@ function TrackCampaignContent({ banners, loaded, index }) {
             borderRadius: 2,
           }}
         >
-          
-          <LinearGradient colors={["#ff9900", "#ff6600"]} style={[styles.trackHead, { height: 100 }]}>
-            <View>
-              <Text
-                style={[
-                  styles.heading,
-                  { fontSize: 14, marginLeft: 0, lineHeight: 14 },
-                ]}
-              >
-                {banners.plan_name} (
-                {banners.discount_type === "$"
-                  ? "$" + banners.discount
-                  : banners.discount + "%"}
-                OFF )
-              </Text>
 
-              <Text
-                style={[
-                  styles.heading,
-                  {
-                    fontSize: 14,
-                    marginLeft: 0,
-                    lineHeight: 16,
-                  },
-                ]}
-              >
-                {banners.meal_plan}
-              </Text>
-
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
+          <LinearGradient colors={["#ff9900", "#ff6600"]}>
+            <View style={[styles.trackHead, { height: 100 }]}>
+              <View>
                 <Text
                   style={[
-                    styles.smallText,
-                    { color: "#fff", lineHeight: 14, marginVertical: 0 },
+                    styles.heading,
+                    { fontSize: 14, marginLeft: 0, lineHeight: 14 },
                   ]}
                 >
-                  <Text style={{ fontWeight: "bold" }}>Duration:</Text>{" "}
-                  {moment(banners.start_date).format("DD MMM,YYYY")}-
-                  {moment(banners.end_date).format("DD MMM,YYYY")}
+                  {banners.plan_name} (
+                  {banners.discount_type === "$"
+                    ? "$" + banners.discount
+                    : banners.discount + "%"}
+                  OFF )
                 </Text>
-              </View>
 
-              <Text
-                style={[styles.smallText, { color: "#fff", marginVertical: 0 }]}
-              >
-                <Text style={{ fontWeight: "bold" }}>ID:</Text>{" "}
-                {banners.promo_id}{" "}
-              </Text>
-            </View>
-
-            <View style={styles.progressCounter}>
-              <View style={{ marginBottom: 16 }}>
                 <Text
                   style={[
                     styles.heading,
@@ -115,26 +75,70 @@ function TrackCampaignContent({ banners, loaded, index }) {
                       fontSize: 14,
                       marginLeft: 0,
                       lineHeight: 16,
-                      marginVertical: 0,
                     },
                   ]}
                 >
-                  ${banners.rpc}/click
+                  {banners.meal_plan}
+                </Text>
+
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text
+                    style={[
+                      styles.smallText,
+                      { color: "#fff", lineHeight: 14, marginVertical: 0 },
+                    ]}
+                  >
+                    <Text style={{ fontWeight: "bold" }}>Duration:</Text>{" "}
+                    {moment(banners.start_date).format("DD MMM,YYYY")}-
+                    {moment(banners.end_date).format("DD MMM,YYYY")}
+                  </Text>
+                </View>
+
+                <Text
+                  style={[styles.smallText, { color: "#fff", marginVertical: 0 }]}
+                >
+                  <Text style={{ fontWeight: "bold" }}>ID:</Text>{" "}
+                  {banners.promo_id}{" "}
                 </Text>
               </View>
-              <Text
-                style={[styles.smallText, { color: "#fff", lineHeight: 16 }]}
-              >
-                {banners.duration} Days
-              </Text>
-              <View style={styles.progressDonught}>
-                <Text style={{ fontWeight: "bold", fontSize: 14 }}>
-                  {remaining + 1}
+
+              <View style={[styles.progressCounter,{zIndex:1000}]}>
+                <View style={{ marginBottom: 16 }}>
+                  <Text
+                    style={[
+                      styles.heading,
+                      {
+                        fontSize: 14,
+                        marginLeft: 0,
+                        lineHeight: 16,
+                        marginVertical: 0,
+                      },
+                    ]}
+                  >
+                    ${banners.rpc}/click
+                  </Text>
+                </View>
+                <Text
+                  style={[styles.smallText, { color: "#fff", lineHeight: 16 }]}
+                >
+                  {banners.duration} Days
                 </Text>
               </View>
-              <Text style={styles.smallText}>Days Left</Text>
             </View>
           </LinearGradient>
+          <View style={{ position: "absolute", top: 60, right: 8 }}>
+            <View style={styles.progressDonught}>
+              <Text style={{ fontWeight: "bold", fontSize: 14, color: "#ff6600" }}>
+                {remaining > 0 ? parseInt(remaining) + 1 : 0}
+              </Text>
+            </View>
+            <Text style={styles.smallText}>Days Left</Text>
+          </View>
           {/* Header Part */}
 
           <View style={{ marginVertical: 16, marginHorizontal: 22 }}>
@@ -153,14 +157,14 @@ function TrackCampaignContent({ banners, loaded, index }) {
                 alignItems: "center",
                 borderBottomColor: "#999",
                 borderBottomWidth: 0.2,
-                borderLeftWidth:0
+                borderLeftWidth: 0
               },
             ]}
           >
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>{orders}</Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Orders</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Orders</Text>
             </View>
           </View>
 
@@ -170,7 +174,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
               {
                 alignItems: "center",
                 borderBottomColor: "#999",
-                borderLeftWidth:0,
+                borderLeftWidth: 0,
                 borderBottomWidth: 0.2,
                 marginVertical: "4%",
               },
@@ -179,7 +183,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>${revenue}</Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Base Income</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Base Income</Text>
             </View>
           </View>
 
@@ -191,14 +195,14 @@ function TrackCampaignContent({ banners, loaded, index }) {
                 borderBottomColor: "#999",
                 borderBottomWidth: 0.2,
                 marginVertical: "4%",
-                borderLeftWidth:0,
+                borderLeftWidth: 0,
               },
             ]}
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>${discount || 0}</Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Discount Paid</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Discount Paid</Text>
             </View>
           </View>
           <View
@@ -209,7 +213,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
                 borderBottomColor: "#999",
                 borderBottomWidth: 0.2,
                 marginVertical: "4%",
-                borderLeftWidth:0,
+                borderLeftWidth: 0,
               },
             ]}
           >
@@ -218,7 +222,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
               <Text style={styles.bigText}>
                 ${parseFloat(revenue) - parseFloat(discount) || 0}
               </Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Net Income</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Net Income</Text>
             </View>
           </View>
 
@@ -230,14 +234,14 @@ function TrackCampaignContent({ banners, loaded, index }) {
                 borderBottomColor: "#999",
                 borderBottomWidth: 0.2,
                 marginVertical: "4%",
-                borderLeftWidth:0,
+                borderLeftWidth: 0,
               },
             ]}
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>{banners.clicks}</Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Clicks</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Clicks</Text>
             </View>
           </View>
 
@@ -247,14 +251,14 @@ function TrackCampaignContent({ banners, loaded, index }) {
               {
                 alignItems: "center",
                 marginVertical: "4%",
-                borderLeftWidth:0,
+                borderLeftWidth: 0,
               },
             ]}
           >
             <Icon name="person-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>{users}</Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Users</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Users</Text>
             </View>
           </View>
         </View>
