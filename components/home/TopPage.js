@@ -81,24 +81,26 @@ export default function TopPage({ navigation }) {
     let addons = {};
     try {
       const addOns = orders.map((el) => el.add_on);
-      let todayExtras = addOns.map((extras) => {
-
-        return extras.filter(
+      let todayExtras = addOns.map(item=>
+        item.map((extras) => (
+        extras.filter(
           (item) => item.order_date === moment().format("DD-MMM-YYYY")
-        )
-      }
-      );
-      if (todayExtras.length > 0) {
-        let quantities = todayExtras.map((extras) =>
-          extras.map((item) => item.qty)
-        );
+        ))
+      ));
 
+      if (todayExtras.length > 0) {
+        let quantities = todayExtras.map(item=>
+          item.map((extras) =>
+          extras.map((item) => item.qty)
+        ));
+        
         let addonssubtotal = [];
         for (let index = 0; index <= quantities.length; index++) {
-          addonssubtotal.push(arrayColumn(quantities, index));
+          addonssubtotal.push(arrayColumn(...quantities, index));
         }
-
-        let subtotal = quantities.map((item) => item.reduce(add, 0));
+        console.log(quantities);
+        let subtotal = [...quantities].map((item) => item.reduce(add, 0));
+        console.log(subtotal);
         let totalCount = subtotal.reduce(add, 0);
         if (index === 0) {
           let mytotal = addonssubtotal.map((item) => item.reduce(add, 0));

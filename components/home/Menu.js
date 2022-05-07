@@ -26,6 +26,7 @@ export default function Menu({
   const [dinner, setDinner] = useState("");
   useEffect(() => {
     setMealTime(restaurant.category);
+    console.log(add_on_count);
   });
 
   const fetchSlotTime = async () => {
