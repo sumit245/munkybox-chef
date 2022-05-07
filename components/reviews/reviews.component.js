@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   FlatList,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 import { Button, Switch, Modal } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -242,21 +243,25 @@ export default function Reviews({ navigation }) {
       <Text>Start accepting orders to stay on top pick of user</Text>
     </View>
   );
+  
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <HeaderTwo title="User Feedback" navigation={navigation} />
       {/* Header done */}
 
       {!loading ? (
+        <KeyboardAvoidingView behavior="position" enabled style={{flex:1,paddingBottom:4,marginBottom:2}} >
         <FlatList
           data={reviews}
-          style={{ marginBottom: 4 }}
+          //style={{ marginBottom: 4 }}
           ListEmptyComponent={ListEmptyComponent}
           ListHeaderComponent={ListHeaderComponent}
           renderItem={renderItem}
           keyExtractor={(item, index) => index}
-          contentContainerStyle={{ marginBottom: 10 }}
+          //contentContainerStyle={{ marginBottom: 10 }}
         />
+        </KeyboardAvoidingView>
+      
       ) : (
         <Loader />
       )}
