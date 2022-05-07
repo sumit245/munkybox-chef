@@ -53,7 +53,6 @@ export default function Menu({
 
   useEffect(() => {
     fetchSlotTime();
-    console.log(partAdds);
   }, []);
 
   const [isCollapse, setCollapse] = useState(true);
