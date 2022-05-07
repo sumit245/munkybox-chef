@@ -95,11 +95,14 @@ export default function TrackCampaignHead({
         <Text style={[styles.smallText, { color: "#fff", lineHeight: 16 }]}>
           {day} Days
         </Text>
-        <View style={styles.progressDonught}>
-          <Text style={{ fontWeight: "bold", fontSize: 14 }}>{remaining+1}</Text>
+        <View style={{ position: "absolute", top: 60, right: 8 }}>
+          <View style={styles.progressDonught}>
+            <Text style={{ fontWeight: "bold", fontSize: 14 }}>
+              {remaining > 0 ? parseInt(remaining) + 1 : 0}</Text>
+          </View>
+          <Text style={styles.smallText}>Days Left</Text>
         </View>
-        <Text style={styles.smallText}>Days Left</Text>
       </View>
-    </View>
+    </View >
   );
 }
