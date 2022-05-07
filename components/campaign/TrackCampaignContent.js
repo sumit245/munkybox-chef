@@ -160,7 +160,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>{orders}</Text>
-              <Text style={styles.smallText}> Total Orders</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Orders</Text>
             </View>
           </View>
 
@@ -179,7 +179,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>${revenue}</Text>
-              <Text style={styles.smallText}> Total Base Income</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Base Income</Text>
             </View>
           </View>
 
@@ -198,7 +198,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>${discount || 0}</Text>
-              <Text style={styles.smallText}> Total Discount Paid</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Discount Paid</Text>
             </View>
           </View>
           <View
@@ -218,7 +218,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
               <Text style={styles.bigText}>
                 ${parseFloat(revenue) - parseFloat(discount) || 0}
               </Text>
-              <Text style={styles.smallText}> Total Net Income</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Net Income</Text>
             </View>
           </View>
 
@@ -237,7 +237,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>{banners.clicks}</Text>
-              <Text style={styles.smallText}> Total Clicks</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Clicks</Text>
             </View>
           </View>
 
@@ -254,7 +254,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
             <Icon name="person-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>{users}</Text>
-              <Text style={styles.smallText}> Total Users</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Users</Text>
             </View>
           </View>
         </View>

@@ -263,9 +263,12 @@ export default function Review({ item, index, navigation }) {
               borderBottomColor: "black",
               borderBottomWidth: 1,
               minWidth: "88%",
+              flex:1,
+              flexWrap:'wrap'
             }}
             onChangeText={onChangeText}
             multiline={true}
+            numberOfLines={4}
             selectionColor="#ff6600"
             maxLength={450}
             placeholder="Type a message"

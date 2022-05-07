@@ -205,7 +205,7 @@ function TrackPerfContent({
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>{promotedOrders}</Text>
-              <Text style={styles.smallText}> Total Orders</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Orders</Text>
             </View>
           </View>
 
@@ -213,7 +213,7 @@ function TrackPerfContent({
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> ${parseFloat(revenue) - parseFloat(discount)}</Text>
-              <Text style={styles.smallText}> Total Net Income</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Net Income</Text>
             </View>
           </View>
 
@@ -222,7 +222,7 @@ function TrackPerfContent({
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> ${revenue}</Text>
-              <Text style={styles.smallText}> Total Base Income</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Base Income</Text>
             </View>
           </View>
 
@@ -230,7 +230,7 @@ function TrackPerfContent({
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> ${discount}</Text>
-              <Text style={styles.smallText}> Total Discount Paid</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Discount Paid</Text>
             </View>
           </View>
 
@@ -240,7 +240,7 @@ function TrackPerfContent({
               <Text style={styles.bigText}>
                 {Array.isArray(unique) ? unique.length : unique}
               </Text>
-              <Text style={styles.smallText}> Total Users</Text>
+              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Users</Text>
             </View>
           </View>
         </View>

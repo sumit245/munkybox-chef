@@ -64,7 +64,7 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
           <Icon name="cart-outline" size={24} color={DARKGRAY} />
           <View style={{ marginLeft: 8 }}>
             <Text style={styles.bigText}>{totalOrders}</Text>
-            <Text style={styles.smallText}> Total Orders</Text>
+            <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Orders</Text>
           </View>
         </View>
 
@@ -82,7 +82,7 @@ export default function TrackCampaignCard({ banner, status, stat, loaded }) {
           <Icon name="cash-outline" size={24} color={DARKGRAY} />
           <View style={{ marginLeft: 8 }}>
             <Text style={styles.bigText}>${revenue}</Text>
-            <Text style={styles.smallText}> Total Base Income</Text>
+            <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Base Income</Text>
           </View>
         </View>
 
