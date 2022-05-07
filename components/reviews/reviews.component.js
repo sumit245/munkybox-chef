@@ -258,7 +258,7 @@ export default function Reviews({ navigation }) {
           ListHeaderComponent={ListHeaderComponent}
           renderItem={renderItem}
           keyExtractor={(item, index) => index}
-          //contentContainerStyle={{ marginBottom: 10 }}
+          contentContainerStyle={{ paddingBottom: 10 }}
         />
         </KeyboardAvoidingView>
       
