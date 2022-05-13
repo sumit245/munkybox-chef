@@ -128,10 +128,7 @@ export default function Signup({ navigation }) {
         <SafeAreaView style={styles.container}>
           <View style={styles.image}>
             <Text style={{ color: "#fff", fontSize: 34, fontWeight: "bold" }}>
-              Munky
-            </Text>
-            <Text style={{ color: "#fff", fontSize: 34, fontWeight: "bold" }}>
-              Box
+              Feasti
             </Text>
           </View>
           <ScrollView

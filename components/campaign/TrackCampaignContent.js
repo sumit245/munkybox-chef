@@ -32,9 +32,10 @@ function TrackCampaignContent({ banners, loaded, index }) {
 
   if (loaded && typeof banners !== "undefined") {
     let remaining = moment(banners.end_date).diff(
-      moment(banners.start_date),
+      moment(),
       "Days"
     );
+    console.log("Remaining",remaining);
     return (
       <View
         style={{

@@ -25,7 +25,7 @@ export default function OrderDetails({ route, navigation }) {
 
   const subtotals =
     Array.isArray(order.add_on) && order.add_on.map(item => (item.map((item) => item.subtotal)));
-  let price = subtotals.reduce(add, 0);
+  let price = subtotals[0].reduce(add, 0);
 
   return (
     <SafeAreaView style={styles.container}>
