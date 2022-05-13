@@ -55,6 +55,7 @@ const PayoutHome = ({ route, navigation }) => {
     let tbc = parseFloat(addOnReveneue) * 0.01 * parseFloat(commission);
     let amt = parseFloat(totalBaseIncome) + parseFloat(addOnReveneue);
     let adminCommission = parseFloat(tbre) + parseFloat(tbc);
+    console.log(adminCommission);
     setNetCommission(adminCommission);
     setRevenue(
       parseFloat(amt) -

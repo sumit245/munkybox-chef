@@ -80,14 +80,14 @@ export default function TopPage({ navigation }) {
   const getAddOnCounts = () => {
     let addons = {};
     try {
-      const addOns = orders.map((el) => el.add_on);
-      let todayExtras = addOns.map(item=>
-        item.map((extras) => (
-        extras.filter(
+      let addOns = orders.map((el) => el.add_on);
+      addOns=[].concat.apply([],addOns)
+      let todayExtras = addOns[0].map(item=>
+        item.filter(
           (item) => item.order_date === moment().format("DD-MMM-YYYY")
-        ))
-      ));
-
+          ));
+      
+      console.log("Todays Add On",todayExtras);
       if (todayExtras.length > 0) {
         let quantities = todayExtras.map(item=>
           item.map((extras) =>
@@ -100,9 +100,9 @@ export default function TopPage({ navigation }) {
         }
         
         let subtotal = quantities.map(item=>item.map((item) => item.reduce(add, 0)));
-        console.log(subtotal);
+        
         let totalCount =subtotal[0].reduce(add, 0);
-        console.log(totalCount);
+        
         if (index === 0) {
           let mytotal = addonssubtotal.map((item) => item.reduce(add, 0));
           setPartCounts(mytotal);
