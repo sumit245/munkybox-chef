@@ -82,31 +82,20 @@ export default function TopPage({ navigation }) {
     try {
       let addOns = orders.map((el) => el.add_on);
       addOns=[].concat.apply([],addOns)
-      let todayExtras = addOns[0].map(item=>
+      let todayExtras = addOns.map(item=>
         item.filter(
           (item) => item.order_date === moment().format("DD-MMM-YYYY")
-          ));
+          ) 
+          );
       
-      console.log("Todays Add On",todayExtras);
-      if (todayExtras.length > 0) {
-        let quantities = todayExtras.map(item=>
-          item.map((extras) =>
-          extras.map((item) => item.qty)
-        ));
-        
-        let addonssubtotal = [];
-        for (let index = 0; index <= quantities.length; index++) {
-          addonssubtotal.push(arrayColumn(...quantities, index));
-        }
-        
-        let subtotal = quantities.map(item=>item.map((item) => item.reduce(add, 0)));
-        
-        let totalCount =subtotal[0].reduce(add, 0);
-        
+          todayExtras=[].concat.apply([],todayExtras)
+          if (todayExtras.length > 0) {
+            let quantities = todayExtras.map(item=>item.qty);
+            let totalCount=quantities.reduce(add,0)
+            console.log("Todays Add On",totalCount);
         if (index === 0) {
-          let mytotal = addonssubtotal.map((item) => item.reduce(add, 0));
-          setPartCounts(mytotal);
           
+          setPartCounts(quantities);
           setAddOn(totalCount);
           setQty(totalCount);
 
