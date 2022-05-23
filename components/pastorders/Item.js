@@ -109,7 +109,7 @@ const Item = ({ item, index, navigation }) => {
             Total:
             <Text style={styles.field}>
               {" $" +
-                (parseFloat(item.base_price) - parseFloat(item.discount || 0))}
+                (parseFloat(item.base_price) - (item.promo_id!=="PROMOADMIN"?parseFloat(item.discount): 0))}
             </Text>
           </Text>
         </View>

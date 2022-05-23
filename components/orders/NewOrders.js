@@ -86,7 +86,7 @@ const Item = ({ item }) => {
             {item.user_name}
           </Text>
           <Text style={{ color: DARKGRAY, fontWeight: "bold" }}>
-            {"$" + (item.base_price - (item.discount || 0))}
+            {"$" + (item.base_price - ( item.promo_id!=="PROMOADMIN"?item.discount:0))}
           </Text>
         </View>
         <Text

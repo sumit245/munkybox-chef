@@ -130,10 +130,10 @@ export default function OrderDetails({ route, navigation }) {
             </View>
             <View style={styles.headerRows}>
               <Text>{"$" + order.base_price}</Text>
-              <Text>{"$" + order.discount}</Text>
+              <Text>{order.promo_id!=="PROMOADMIN"?("$" + order.discount):0}</Text>
               <Text>
                 {"$" +
-                  (parseFloat(order.base_price) - parseFloat(order.discount))}
+                  (parseFloat(order.base_price) - (order.promo_id!=="PROMOADMIN"?parseFloat(order.discount):0))}
               </Text>
             </View>
           </View>
