@@ -26,7 +26,7 @@ export default function Menu({
   const [dinner, setDinner] = useState("");
   useEffect(() => {
     setMealTime(restaurant.category);
-    console.log(add_on_count);
+    
   });
 
   const fetchSlotTime = async () => {
@@ -76,7 +76,7 @@ export default function Menu({
             >
               <Text style={styles.mealTitle}>{add_on.add_on}</Text>
               <Text style={styles.mealTitle}>
-                X {(slot === meal_time && isToday===true )? partAdds[key] : 0}
+                X {(slot === meal_time && isToday===true )? partAdds : 0}
               </Text>
             </View>
           ))}

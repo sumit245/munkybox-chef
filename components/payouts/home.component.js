@@ -1,4 +1,4 @@
-import { SafeAreaView, useWindowDimensions, TouchableOpacity, View } from "react-native";
+import { SafeAreaView, useWindowDimensions, TouchableOpacity, View, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
 import { TabView, TabBar } from "react-native-tab-view";
@@ -26,6 +26,7 @@ const PayoutHome = ({ route, navigation }) => {
   const [due, setDue] = useState(0);
   const [payDuration, setPayDuration] = useState("");
   const [netCommission, setNetCommission] = useState(0);
+  const [loaded,setLoaded]=useState(false)
 
   const [routes] = React.useState([
     { key: "first", title: "Current Payout" },
@@ -55,9 +56,8 @@ const PayoutHome = ({ route, navigation }) => {
     let tbc = parseFloat(addOnReveneue) * 0.01 * parseFloat(commission);
     let amt = parseFloat(totalBaseIncome) + parseFloat(addOnReveneue);
     let adminCommission = parseFloat(tbre) + parseFloat(tbc);
-    console.log(adminCommission);
     setNetCommission(adminCommission);
-    setRevenue(
+   await setRevenue(
       parseFloat(amt) -
       parseFloat(adminCommission) -
       parseFloat(totalDiscount) -
@@ -79,12 +79,13 @@ const PayoutHome = ({ route, navigation }) => {
       .format("Do MMM")
       .toString();
     setPayDate(paydate);
+    setLoaded(true)
   };
 
   useEffect(() => {
     setCommission(commission);
     chefPayouts(restaurant_id);
-  }, [revenue]);
+  }, [revenue,netCommission,discount,commi,addOnReveneue]);
 
   const renderTabBar = (props) => (
     <TabBar
@@ -126,41 +127,45 @@ const PayoutHome = ({ route, navigation }) => {
         break;
     }
   };
-
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-            height: 28,
-            width: 28,
-            marginHorizontal: 4,
-            borderRadius: 14,
-          }}>
-            <TouchableOpacity
-              style={{ alignItems: "center", justifyContent: "center" }}
-              onPress={() => navigation.goBack()}
-            >
-              <Icon name="chevron-back" size={24} color="#ffffff" />
-            </TouchableOpacity>
-          </LinearGradient>
-          <Header
-            title="Payouts & Finance"
-          />
+  if (loaded) {
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
+              height: 28,
+              width: 28,
+              marginHorizontal: 4,
+              borderRadius: 14,
+            }}>
+              <TouchableOpacity
+                style={{ alignItems: "center", justifyContent: "center" }}
+                onPress={() => navigation.goBack()}
+              >
+                <Icon name="chevron-back" size={24} color="#ffffff" />
+              </TouchableOpacity>
+            </LinearGradient>
+            <Header
+              title="Payouts & Finance"
+            />
+          </View>
         </View>
-      </View>
-
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        style={{ minHeight: 480 }}
-        onIndexChange={setIndex}
-        renderTabBar={renderTabBar}
-        initialLayout={{ width: layout.width }}
-      />
-
-    </SafeAreaView>
-  );
+  
+        <TabView
+          navigationState={{ index, routes }}
+          renderScene={renderScene}
+          style={{ minHeight: 480 }}
+          onIndexChange={setIndex}
+          renderTabBar={renderTabBar}
+          initialLayout={{ width: layout.width }}
+        />
+  
+      </SafeAreaView>
+    );
+  }else{
+    return <ActivityIndicator size="small"/>
+  }
+  
 };
 
 export default PayoutHome;

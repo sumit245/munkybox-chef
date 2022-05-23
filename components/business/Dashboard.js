@@ -168,13 +168,14 @@ export default function Dashboard({ navigation }) {
     );
     let addOns = orders.map((el) => el.add_on);
     addOns = [].concat.apply([], addOns)
+    addOns=addOns.reduce((prev,curr)=>prev.concat(curr))
     console.log('====================================');
-    console.log(...addOns);
+    console.log(addOns);
     console.log('====================================');
-    let quantities = addOns[0].length > 0 ? addOns[0].map(item => item.qty) : [];
+    let quantities = addOns.length > 0 ? addOns.map(item => item.qty) : [];
     let totalCount = quantities.reduce(add, 0);
     setTotalAddOns(totalCount);
-    let prices = addOns[0].length>0? addOns[0].map(item=>item.subtotal):[];
+    let prices = addOns.length>0? addOns.map(item=>item.subtotal):[];
     let totalPrice = prices.reduce(add, 0);
     setTotalAddOnRevenue(totalPrice);
   };
