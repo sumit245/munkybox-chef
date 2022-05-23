@@ -92,10 +92,8 @@ export default function TopPage({ navigation }) {
           if (todayExtras.length > 0) {
             let quantities = todayExtras.map(item=>item.qty);
             let totalCount=quantities.reduce(add,0)
-            console.log("Todays Add On",totalCount);
         if (index === 0) {
-          
-          setPartCounts(quantities);
+          setPartCounts(totalCount);
           setAddOn(totalCount);
           setQty(totalCount);
 
