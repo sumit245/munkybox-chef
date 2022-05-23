@@ -168,7 +168,8 @@ export default function Dashboard({ navigation }) {
     );
     let addOns = orders.map((el) => el.add_on);
     addOns=[].concat.apply([],addOns)
-    let quantities = addOns[0].length>0?addOns[0].map(item=>item.qty):[];
+    let quantities = addOns[0].length > 0 ? addOns[0].map(item => item.qty) : [];
+    console.log(quantities);
     let totalCount = quantities.reduce(add, 0);
     setTotalAddOns(totalCount);
     console.log('====================================');
