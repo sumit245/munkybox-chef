@@ -168,14 +168,12 @@ export default function Dashboard({ navigation }) {
     );
     let addOns = orders.map((el) => el.add_on);
     addOns = [].concat.apply([], addOns)
-    console.log(addOns.length);
+    console.log('====================================');
+    console.log(addOns);
+    console.log('====================================');
     let quantities = addOns[0].length > 0 ? addOns[0].map(item => item.qty) : [];
-    console.log(quantities);
     let totalCount = quantities.reduce(add, 0);
     setTotalAddOns(totalCount);
-    console.log('====================================');
-    console.log("AddOns", totalCount);
-    console.log('====================================');
     let prices = addOns[0].length>0? addOns[0].map(item=>item.subtotal):[];
     let totalPrice = prices.reduce(add, 0);
     setTotalAddOnRevenue(totalPrice);
