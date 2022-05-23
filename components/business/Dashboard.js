@@ -171,6 +171,9 @@ export default function Dashboard({ navigation }) {
     let quantities = addOns[0].length>0?addOns[0].map(item=>item.qty):[];
     let totalCount = quantities.reduce(add, 0);
     setTotalAddOns(totalCount);
+    console.log('====================================');
+    console.log("AddOns", totalCount);
+    console.log('====================================');
     let prices = addOns[0].length>0? addOns[0].map(item=>item.subtotal):[];
     let totalPrice = prices.reduce(add, 0);
     setTotalAddOnRevenue(totalPrice);
