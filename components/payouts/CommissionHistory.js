@@ -32,7 +32,9 @@ const Item = ({ item, commission, navigation }) => {
         <Text
           style={[
             styles.smallText,
-            { fontWeight: "normal", textTransform: "uppercase", color: item.status === "accepted" ? "#5ca85c" : item.status === "started" ? "#ffc300" : "#ff4300" },
+            { fontWeight: "normal", textTransform: "uppercase", 
+            color: item.status === "accepted" ? "#5ca85c" : 
+            item.status === "started" ? "#ffc300" : "#ff4300" },
           ]}
         >
           {item.status}
@@ -56,7 +58,7 @@ const Item = ({ item, commission, navigation }) => {
                 : "30 Days"}
           </Text>
           <Text style={styles.smallText}>${item.base_price}</Text>
-          <Text style={styles.smallText}>${item.discount}</Text>
+          <Text style={styles.smallText}>${item.promo_id!=="PROMOADMIN"?item.discount:0}</Text>
           <Text style={styles.smallText}>
             ${parseFloat(item.base_price) * parseFloat(commission) * 0.01}
           </Text>
