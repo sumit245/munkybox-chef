@@ -21,10 +21,12 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sumitranjan245.munkyboxchef",
+      "bundleIdentifier": "com.feasti.feasti-chef",
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
@@ -32,7 +34,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.sumitranjan245.munkyboxchef",
+      "package": "com.feasti.feasti-chef",
       "googleServicesFile": "./google-services.json"
     },
     "web": {

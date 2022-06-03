@@ -60,6 +60,6 @@
     "@babel/core": "^7.12.9"
   },
   "private": true,
-  "name": "munkybox-chef",
+  "name": "feasti-chef",
   "version": "1.0.0"
 }
