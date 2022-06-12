@@ -2,7 +2,7 @@
   "expo": {
     "name": "Feasti-chef",
     "slug": "Feasti-chef",
-    "version": "1.0.95",
+    "version": "1.0.6",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -21,9 +21,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.feasti.feasti-chef",
