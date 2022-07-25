@@ -1,34 +1,34 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import Login from "../components/auth/login.component";
-import Signup from "../components/auth/signup.component";
-import MainRoutes from "./MainRoutes";
-import PinPage from "../components/auth/pin.component";
-import OtpComponent from "../components/auth/otp.component";
-import PastOrders from "../screens/PastOrders";
-import OrderDetails from "../components/pastorders/OrderDetails";
-import AddMealsLayout from "../components/add_meals/AddMealsLayout";
-import NewOrders from "../components/orders/NewOrders";
-import GenerateCoupon from "../components/coupons/GenerateCoupon";
-import SelectCoupon from "../components/campaign/SelectCoupon";
-import CreateCoupon from "../components/campaign/CreateCoupon";
-import PreviewCoupon from "../components/campaign/PreviewCoupon";
-import PromoSubmit from "../components/campaign/promo.submit";
-import SelectBanners from "../components/campaign/SelectBanners";
-import CreateBanner from "../components/campaign/CreateBanner";
-import PreviewBanner from "../components/campaign/PreviewBanner";
-import TrackPerformance from "../components/campaign/TrackPerformance";
-import TrackCampaign from "../components/campaign/TrackCampaign";
-import AddEditMeals from "../components/add_meals/AddEditMeals";
-import Contacts from "../components/contacts/Contacts";
-import Reviews from "../components/reviews/reviews.component";
-import Documents from "../components/documents/Documents";
-import PayoutHome from "../components/payouts/home.component";
-import CommissionTracking from "../components/payouts/CommissionTracking";
-import CommissionHistory from "../components/payouts/CommissionHistory";
-import { VerificationDocs } from "../components/account/documents.component";
-import Policy from "../components/account/Policy";
-import Notifications from "../components/account/notification.component";
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from '../components/auth/login.component';
+import Signup from '../components/auth/signup.component';
+import MainRoutes from './MainRoutes';
+import PinPage from '../components/auth/pin.component';
+import OtpComponent from '../components/auth/otp.component';
+import PastOrders from '../screens/PastOrders';
+import OrderDetails from '../components/pastorders/OrderDetails';
+import AddMealsLayout from '../components/add_meals/AddMealsLayout';
+import NewOrders from '../components/orders/NewOrders';
+import GenerateCoupon from '../components/coupons/GenerateCoupon';
+import SelectCoupon from '../components/campaign/SelectCoupon';
+import CreateCoupon from '../components/campaign/CreateCoupon';
+import PreviewCoupon from '../components/campaign/PreviewCoupon';
+import PromoSubmit from '../components/campaign/promo.submit';
+import SelectBanners from '../components/campaign/SelectBanners';
+import CreateBanner from '../components/campaign/CreateBanner';
+import PreviewBanner from '../components/campaign/PreviewBanner';
+import TrackPerformance from '../components/campaign/TrackPerformance';
+import TrackCampaign from '../components/campaign/TrackCampaign';
+import AddEditMeals from '../components/add_meals/AddEditMeals';
+import Contacts from '../components/contacts/Contacts';
+import Reviews from '../components/reviews/reviews.component';
+import Documents from '../components/documents/Documents';
+import PayoutHome from '../components/payouts/home.component';
+import CommissionTracking from '../components/payouts/CommissionTracking';
+import CommissionHistory from '../components/payouts/CommissionHistory';
+import { VerificationDocs } from '../components/account/documents.component';
+import Policy from '../components/account/Policy';
+import Notifications from '../components/account/notification.component';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +44,7 @@ export default function AuthRoutes({ navigation }) {
         {(props) => <PinPage {...props} />}
       </Stack.Screen>
       <Stack.Screen name="Login" component={Login} />
+      {/* <Stack.Screen name="OTP" component={OtpComponent} /> */}
       <Stack.Screen name="OTP">
         {(props) => <OtpComponent {...props} />}
       </Stack.Screen>

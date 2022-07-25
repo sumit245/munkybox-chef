@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -8,17 +8,17 @@ import {
   ScrollView,
   RefreshControl,
   Platform,
-  StatusBar
-} from "react-native";
-import Header from "../header/Header";
-import { useSelector } from "react-redux";
-import { WHITE } from "../../Colors";
-import { styles } from "../campaign/campaign.styles";
-import Ants from "react-native-vector-icons/FontAwesome5";
-import { TabView, TabBar } from "react-native-tab-view";
-import StatCards from "./StatCards";
-import axios from "axios";
-import { LinearGradient } from "expo-linear-gradient";
+  StatusBar,
+} from 'react-native';
+import Header from '../header/Header';
+import { useSelector } from 'react-redux';
+import { WHITE } from '../../Colors';
+import { styles } from '../campaign/campaign.styles';
+import Ants from 'react-native-vector-icons/FontAwesome5';
+import { TabView, TabBar } from 'react-native-tab-view';
+import StatCards from './StatCards';
+import axios from 'axios';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Dashboard({ navigation }) {
   const layout = useWindowDimensions();
@@ -28,7 +28,7 @@ export default function Dashboard({ navigation }) {
   const [notstarted, setNotStarted] = useState(0);
   const [rejected, setRejected] = useState(0);
   const [menuvisits, setMenuVisit] = useState(0);
-  const [commission, setCommission] = useState("");
+  const [commission, setCommission] = useState('');
   const [cartconversion, setCartConversion] = useState(0);
   const [visits, setvisits] = useState(0);
   const [acceptanceRate, setAcceptanceRate] = useState(0);
@@ -40,15 +40,14 @@ export default function Dashboard({ navigation }) {
   const [totalAddOnRevenue, setTotalAddOnRevenue] = useState(0);
   const [totalAddOns, setTotalAddOns] = useState(0);
   const [campaignDue, setCampaignDue] = useState(0);
-  const [refreshing, setRefreshing] = useState(false)
+  const [refreshing, setRefreshing] = useState(false);
   const [routes] = React.useState([
-    { key: "first", title: "Weekly" },
-    { key: "second", title: "Monthly" },
-    { key: "third", title: "yearly" },
+    { key: 'first', title: 'Weekly' },
+    { key: 'second', title: 'Monthly' },
+    { key: 'third', title: 'yearly' },
   ]);
   const [newUser, setnewUser] = useState(0);
   const [repeatedUser, setrepeatedUser] = useState(0);
-
 
   function add(accumulator, a) {
     return parseFloat(accumulator) + parseFloat(a);
@@ -56,7 +55,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchOrders = async (restaurant) => {
     const res = await axios.get(
-      "http://54.146.133.108:5000/api/orders/active/" + restaurant
+      'http://54.146.133.108:5000/api/orders/active/' + restaurant
     );
     const { count } = res.data;
     if (count !== null) {
@@ -66,7 +65,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchcompletedorders = async (restaurant) => {
     const res = await axios.get(
-      "http://54.146.133.108:5000/api/orders/completed/" + restaurant
+      'http://54.146.133.108:5000/api/orders/completed/' + restaurant
     );
     const { count } = res.data;
     if (count !== null) {
@@ -76,7 +75,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchcancelledcount = async (restaurant) => {
     const res = await axios.get(
-      "http://54.146.133.108:5000/api/orders/cancelled/" + restaurant
+      'http://54.146.133.108:5000/api/orders/cancelled/' + restaurant
     );
     const { count } = res.data;
     if (count !== null) {
@@ -86,7 +85,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchStats = async (restaurant) => {
     const res = await axios.get(
-      "http://54.146.133.108:5000/api/orders/dashboard/" + restaurant
+      'http://54.146.133.108:5000/api/orders/dashboard/' + restaurant
     );
     const dashboard = res.data;
     if (dashboard !== null) {
@@ -95,9 +94,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const fetchCommission = async () => {
-    const resp = await axios.get(
-      "http://54.146.133.108:5000/api/checkout"
-    );
+    const resp = await axios.get('http://54.146.133.108:5000/api/checkout');
     const { commission } = resp.data.data[0];
     if (commission !== null) {
       setCommission(commission);
@@ -106,7 +103,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchRejectedcount = async (restaurant) => {
     const response = await axios.get(
-      "http://54.146.133.108:5000/api/orders/rejected/" + restaurant
+      'http://54.146.133.108:5000/api/orders/rejected/' + restaurant
     );
     const { count } = response.data;
     if (count !== null) {
@@ -116,7 +113,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchNotStartedcount = async (restaurant) => {
     const response = await axios.get(
-      "http://54.146.133.108:5000/api/orders/accepted/" + restaurant
+      'http://54.146.133.108:5000/api/orders/accepted/' + restaurant
     );
     const { count } = response.data;
     if (count !== null) {
@@ -126,8 +123,8 @@ export default function Dashboard({ navigation }) {
 
   const getuserByType = async (restaurant) => {
     const response = await axios.get(
-      "http://54.146.133.108:5000/api/chefdashboard/getusertypesbyrestaurant/" +
-      restaurant
+      'http://54.146.133.108:5000/api/chefdashboard/getusertypesbyrestaurant/' +
+        restaurant
     );
     const { newusers, repeatedUsers } = response.data;
     if (newusers !== null && repeatedUsers !== null) {
@@ -138,7 +135,7 @@ export default function Dashboard({ navigation }) {
 
   const fetchVisit = async (restaurant) => {
     const response = await axios.get(
-      "http://54.146.133.108:5000/api/chefdashboard/" + restaurant
+      'http://54.146.133.108:5000/api/chefdashboard/' + restaurant
     );
     const { totalOrders, orders, accptanceRate, rectanceRate, dashboard, due } =
       response.data;
@@ -159,25 +156,30 @@ export default function Dashboard({ navigation }) {
   };
 
   const getAddOnCounts = async (id) => {
-    const res = await axios.get(
-      "http://54.146.133.108:5000/api/orders/"
-    );
+    const res = await axios.get('http://54.146.133.108:5000/api/orders/');
     let orders = res.data;
     orders = orders.filter(
-      (item) => item.restaurant_id === id && item.status !== "rejected"
+      (item) => item.restaurant_id === id && item.status !== 'rejected'
     );
     let addOns = orders.map((el) => el.add_on);
-    addOns = [].concat.apply([], addOns)
-    addOns=addOns.reduce((prev,curr)=>prev.concat(curr))
-    console.log('====================================');
-    console.log(addOns);
-    console.log('====================================');
-    let quantities = addOns.length > 0 ? addOns.map(item => item.qty) : [];
-    let totalCount = quantities.reduce(add, 0);
-    setTotalAddOns(totalCount);
-    let prices = addOns.length>0? addOns.map(item=>item.subtotal):[];
-    let totalPrice = prices.reduce(add, 0);
-    setTotalAddOnRevenue(totalPrice);
+    addOns = [].concat.apply([], addOns);
+    const dimensions = [
+      addOns.length,
+      addOns.reduce((x, y) => Math.max(x, y.length), 0),
+    ];
+    let totalCount = 0;
+    if (dimensions[0] !== 0) {
+      addOns = addOns.reduce((prev, curr) => prev.concat(curr));
+      let quantities = addOns.length > 0 ? addOns.map((item) => item.qty) : [];
+      totalCount = quantities.reduce(add, 0);
+      setTotalAddOns(totalCount);
+      let prices = addOns.length > 0 ? addOns.map((item) => item.subtotal) : [];
+      let totalPrice = prices.reduce(add, 0);
+      setTotalAddOnRevenue(totalPrice);
+    } else {
+      setTotalAddOns(0);
+      setTotalAddOnRevenue(0);
+    }
   };
 
   useEffect(() => {
@@ -208,7 +210,7 @@ export default function Dashboard({ navigation }) {
   ]);
 
   const onRefresh = () => {
-    setRefreshing(true)
+    setRefreshing(true);
     fetchOrders(restaurant_id);
     fetchcompletedorders(restaurant_id);
     fetchcancelledcount(restaurant_id);
@@ -217,62 +219,72 @@ export default function Dashboard({ navigation }) {
     fetchNotStartedcount(restaurant_id);
     fetchStats(restaurant_id);
     getuserByType(restaurant_name);
-    fetchCommission()
-    getAddOnCounts(restaurant_id)
-    setRefreshing(false)
-  }
+    fetchCommission();
+    getAddOnCounts(restaurant_id);
+    setRefreshing(false);
+  };
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+        marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
       }}
     >
-      <Header title={restaurant_name + ", " + city} />
-      <ScrollView refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={["#f00", "#0f0", "#00f"]} />
-      } >
+      <Header title={restaurant_name + ', ' + city} />
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={['#f00', '#0f0', '#00f']}
+          />
+        }
+      >
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
+            flexDirection: 'row',
+            justifyContent: 'space-between',
             padding: 8,
-            backgroundColor: "#fff", marginTop: 8
+            backgroundColor: '#fff',
+            marginTop: 8,
           }}
         >
-          <View style={{ alignItems: "center" }}>
-            <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-              height: 60,
-              width: 60,
-              borderRadius: 15,
-              backgroundColor: "#226ccf",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
+          <View style={{ alignItems: 'center' }}>
+            <LinearGradient
+              colors={['#ff9900', '#ff6600']}
+              style={{
+                height: 60,
+                width: 60,
+                borderRadius: 15,
+                backgroundColor: '#226ccf',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
               <TouchableOpacity
-
-                onPress={() => navigation.navigate("review_order")}
+                onPress={() => navigation.navigate('review_order')}
               >
                 <Ants name="star" size={34} color="#FFF" />
               </TouchableOpacity>
             </LinearGradient>
             <Text style={styles.smallText}>Customer Rating</Text>
           </View>
-          <View style={{ alignItems: "center" }}>
-            <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-              height: 60,
-              width: 60,
-              borderRadius: 15,
-              backgroundColor: "#226ccfcc",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+          <View style={{ alignItems: 'center' }}>
+            <LinearGradient
+              colors={['#ff9900', '#ff6600']}
+              style={{
+                height: 60,
+                width: 60,
+                borderRadius: 15,
+                backgroundColor: '#226ccfcc',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
             >
               <TouchableOpacity
-
                 onPress={() =>
-                  navigation.navigate("payouts", {
+                  navigation.navigate('payouts', {
                     commission: commission,
                     totalAddOns: totalAddOns,
                     totalAddOnRevenue: totalAddOnRevenue,
@@ -284,32 +296,32 @@ export default function Dashboard({ navigation }) {
             </LinearGradient>
             <Text style={styles.smallText}>Payouts & Finance</Text>
           </View>
-          <View style={{ alignItems: "center" }}>
-            <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-              height: 60,
-              width: 60,
-              borderRadius: 15,
-              backgroundColor: "#226ccf",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate("myOrders")}
-              >
+          <View style={{ alignItems: 'center' }}>
+            <LinearGradient
+              colors={['#ff9900', '#ff6600']}
+              style={{
+                height: 60,
+                width: 60,
+                borderRadius: 15,
+                backgroundColor: '#226ccf',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <TouchableOpacity onPress={() => navigation.navigate('myOrders')}>
                 <Ants name="history" size={28} color="#fff" />
               </TouchableOpacity>
             </LinearGradient>
             <Text style={styles.smallText}>Past Orders</Text>
           </View>
-
         </View>
 
         <View style={{ marginHorizontal: 4, padding: 4, marginVertical: 4 }}>
-          <Text style={{ color: "#000", fontWeight: "bold" }}>
+          <Text style={{ color: '#000', fontWeight: 'bold' }}>
             Business Overview
           </Text>
-          <Text style={{ color: "#000", fontSize: 12 }}>
-            Aggregated view of your business across all orders{" "}
+          <Text style={{ color: '#000', fontSize: 12 }}>
+            Aggregated view of your business across all orders{' '}
           </Text>
         </View>
 
@@ -339,13 +351,12 @@ export default function Dashboard({ navigation }) {
             borderRadius: 4,
             marginHorizontal: 2,
             padding: 2,
-
           }}
         >
           <Text
             style={{
-              textTransform: "uppercase",
-              fontWeight: "bold",
+              textTransform: 'uppercase',
+              fontWeight: 'bold',
               fontSize: 16,
               padding: 6,
             }}
@@ -354,39 +365,39 @@ export default function Dashboard({ navigation }) {
           </Text>
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: 'row',
               flex: 1,
-              justifyContent: "space-between",
+              justifyContent: 'space-between',
               backgroundColor: WHITE,
               padding: 2,
             }}
           >
-            <View style={{ backgroundColor: "#fff", paddingHorizontal: 20 }}>
+            <View style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}>
               <Text
                 style={{
-                  textTransform: "uppercase",
-                  fontWeight: "bold",
+                  textTransform: 'uppercase',
+                  fontWeight: 'bold',
                   fontSize: 22,
-                  textAlign: "center",
+                  textAlign: 'center',
                 }}
               >
                 {acceptanceRate.toFixed(2) || 0}%
               </Text>
-              <Text style={{ fontWeight: "bold", fontSize: 14 }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 14 }}>
                 accept rate
               </Text>
             </View>
-            <View style={{ backgroundColor: "#fff", paddingHorizontal: 20 }}>
+            <View style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}>
               <Text
                 style={{
-                  fontWeight: "bold",
+                  fontWeight: 'bold',
                   fontSize: 22,
-                  textAlign: "center",
+                  textAlign: 'center',
                 }}
               >
                 {rejectedRate.toFixed(2) || 0}%
               </Text>
-              <Text style={{ fontWeight: "bold", fontSize: 14 }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 14 }}>
                 reject rate
               </Text>
             </View>

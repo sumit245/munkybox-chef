@@ -1,15 +1,21 @@
-import { SafeAreaView, useWindowDimensions, TouchableOpacity, View, ActivityIndicator } from "react-native";
-import React, { useEffect, useState } from "react";
-import Header from "../header/Header";
-import { TabView, TabBar } from "react-native-tab-view";
-import { SecondaryColor, PrimaryDark } from "../../Colors";
-import CurrentPayout from "./CurrentPayout";
-import PastPayouts from "./PastPayouts";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import moment from "moment";
-import { LinearGradient } from "expo-linear-gradient";
-import Icon from "react-native-vector-icons/Ionicons"
+import {
+  SafeAreaView,
+  useWindowDimensions,
+  TouchableOpacity,
+  View,
+  ActivityIndicator,
+  StatusBar,
+} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import Header from '../header/Header';
+import { TabView, TabBar } from 'react-native-tab-view';
+import CurrentPayout from './CurrentPayout';
+import PastPayouts from './PastPayouts';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
+import { LinearGradient } from 'expo-linear-gradient';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const PayoutHome = ({ route, navigation }) => {
   const { commission } = route.params;
@@ -24,22 +30,21 @@ const PayoutHome = ({ route, navigation }) => {
   const [discount, setDiscount] = useState(0);
   const [numOrders, setNumOrders] = useState(0);
   const [due, setDue] = useState(0);
-  const [payDuration, setPayDuration] = useState("");
+  const [payDuration, setPayDuration] = useState('');
   const [netCommission, setNetCommission] = useState(0);
-  const [loaded,setLoaded]=useState(false)
+  const [loaded, setLoaded] = useState(false);
 
   const [routes] = React.useState([
-    { key: "first", title: "Current Payout" },
-    { key: "second", title: "Past Payout" },
+    { key: 'first', title: 'Current Payout' },
+    { key: 'second', title: 'Past Payout' },
   ]);
-  const [payDate, setPayDate] = useState("");
+  const [payDate, setPayDate] = useState('');
 
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_id } = restaurant;
   const chefPayouts = async (id) => {
     const response = await axios.get(
-      "http://54.146.133.108:5000/api/admintochefpayments/getchefpayout/" +
-      id
+      'http://54.146.133.108:5000/api/admintochefpayments/getchefpayout/' + id
     );
     const {
       totalBaseIncome,
@@ -57,11 +62,11 @@ const PayoutHome = ({ route, navigation }) => {
     let amt = parseFloat(totalBaseIncome) + parseFloat(addOnReveneue);
     let adminCommission = parseFloat(tbre) + parseFloat(tbc);
     setNetCommission(adminCommission);
-   await setRevenue(
+    await setRevenue(
       parseFloat(amt) -
-      parseFloat(adminCommission) -
-      parseFloat(totalDiscount) -
-      parseFloat(due)
+        parseFloat(adminCommission) -
+        parseFloat(totalDiscount) -
+        parseFloat(due)
     );
     setNumOrders(numOrders);
     setDiscount(totalDiscount);
@@ -70,39 +75,43 @@ const PayoutHome = ({ route, navigation }) => {
     setDue(due);
     setTotalAddOns(totalAddOns);
     setTotalAddOnRevenue(totalAddOnRevenue);
-    let sd = moment(payout_start_date).format("Do MMM").toString();
-    let nd = moment(payout_end_date).format("Do MMM").toString();
-    let payDuration = sd + " - " + nd;
+    let sd = moment(payout_start_date).format('Do MMM').toString();
+    let nd = moment(payout_end_date).format('Do MMM').toString();
+    let payDuration = sd + ' - ' + nd;
     setPayDuration(payDuration);
     let paydate = moment(payout_end_date)
-      .add(2, "days")
-      .format("Do MMM")
+      .add(2, 'days')
+      .format('Do MMM')
       .toString();
     setPayDate(paydate);
-    setLoaded(true)
+    setLoaded(true);
   };
 
   useEffect(() => {
     setCommission(commission);
     chefPayouts(restaurant_id);
-  }, [revenue,netCommission,discount,commi,addOnReveneue]);
+  }, [revenue, netCommission, discount, commi, addOnReveneue]);
 
   const renderTabBar = (props) => (
     <TabBar
       {...props}
-      indicatorStyle={{ backgroundColor: "#ff9900", marginHorizontal: 20, width: 160, }}
+      indicatorStyle={{
+        backgroundColor: '#ff9900',
+        marginHorizontal: 20,
+        width: 160,
+      }}
       style={{
-        backgroundColor: "transparent",
+        backgroundColor: 'transparent',
         height: 40,
       }}
       activeColor="#ff6600"
-      labelStyle={{ fontWeight: "bold" }}
+      labelStyle={{ fontWeight: 'bold' }}
       inactiveColor="#272727"
     />
   );
   const renderScene = ({ route }) => {
     switch (route.key) {
-      case "first":
+      case 'first':
         return (
           <CurrentPayout
             current_cycle={payDuration}
@@ -120,7 +129,7 @@ const PayoutHome = ({ route, navigation }) => {
             navigation={navigation}
           />
         );
-      case "second":
+      case 'second':
         return <PastPayouts navigation={navigation} commission={commi} />;
 
       default:
@@ -129,28 +138,38 @@ const PayoutHome = ({ route, navigation }) => {
   };
   if (loaded) {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <LinearGradient colors={["#ff9900", "#ff6600"]} style={{
-              height: 28,
-              width: 28,
-              marginHorizontal: 4,
-              borderRadius: 14,
-            }}>
+      <SafeAreaView style={{ flex: 1,marginTop:StatusBar.currentHeight||0 }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            backgroundColor: '#fff',
+            width: '100%',
+            paddingHorizontal: 4,
+            alignItems: 'center',
+          }}
+        >
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <LinearGradient
+              colors={['#ff9900', '#ff6600']}
+              style={{
+                height: 28,
+                width: 28,
+                marginHorizontal: 4,
+                borderRadius: 14,
+              }}
+            >
               <TouchableOpacity
-                style={{ alignItems: "center", justifyContent: "center" }}
+                style={{ alignItems: 'center', justifyContent: 'center' }}
                 onPress={() => navigation.goBack()}
               >
                 <Icon name="chevron-back" size={24} color="#ffffff" />
               </TouchableOpacity>
             </LinearGradient>
-            <Header
-              title="Payouts & Finance"
-            />
+            <Header title="Payouts & Finance" />
           </View>
         </View>
-  
+
         <TabView
           navigationState={{ index, routes }}
           renderScene={renderScene}
@@ -159,13 +178,11 @@ const PayoutHome = ({ route, navigation }) => {
           renderTabBar={renderTabBar}
           initialLayout={{ width: layout.width }}
         />
-  
       </SafeAreaView>
     );
-  }else{
-    return <ActivityIndicator size="small"/>
+  } else {
+    return <ActivityIndicator size="small" />;
   }
-  
 };
 
 export default PayoutHome;

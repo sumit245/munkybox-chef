@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,24 +6,25 @@ import {
   FlatList,
   TouchableOpacity,
   KeyboardAvoidingView,
-} from "react-native";
-import { Button, Switch, Modal } from "react-native-paper";
-import Icon from "react-native-vector-icons/Ionicons";
-import Review from "./reviewdetails";
-import { styles } from "../campaign/campaign.styles";
-import { useSelector } from "react-redux";
-import axios from "axios";
-import { width } from "../../Dimens";
-import Loader from "../../helpers/Loader";
-import CalendarPicker from "react-native-calendar-picker";
-import moment from "moment";
+  StatusBar,
+} from 'react-native';
+import { Button, Switch, Modal } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Review from './reviewdetails';
+import { styles } from '../campaign/campaign.styles';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { width } from '../../Dimens';
+import Loader from '../../helpers/Loader';
+import CalendarPicker from 'react-native-calendar-picker';
+import moment from 'moment';
 import {
   SecondaryColor,
   SecondaryDarkColor,
   SecondaryLightColor,
-} from "../../Colors";
-import HeaderTwo from "../header/HeaderTwo";
-import { LinearGradient } from "expo-linear-gradient";
+} from '../../Colors';
+import HeaderTwo from '../header/HeaderTwo';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Reviews({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -40,7 +41,7 @@ export default function Reviews({ navigation }) {
 
   const fetchReviews = async (id) => {
     const response = await axios.get(
-      "http://54.146.133.108:5000/api/review/getmyreview/" + id
+      'http://54.146.133.108:5000/api/review/getmyreview/' + id
     );
     const { data } = response;
     setTempReview(data.reverse());
@@ -65,7 +66,7 @@ export default function Reviews({ navigation }) {
     let review = tempreview.filter(
       (item) =>
         moment(item.review_at) >= moment(start) &&
-        moment(item.review_at) <= moment(end).add(1, "day")
+        moment(item.review_at) <= moment(end).add(1, 'day')
     );
     setReviews(review);
   };
@@ -94,7 +95,7 @@ export default function Reviews({ navigation }) {
     setSelectedStar(0);
     console.log(comment);
     let allreview = [...tempreview];
-    let filteredReview = allreview.filter((item) => item.details !== "");
+    let filteredReview = allreview.filter((item) => item.details !== '');
 
     if (!comment) {
       setReviews(filteredReview);
@@ -102,7 +103,7 @@ export default function Reviews({ navigation }) {
       setReviews(tempreview);
     }
   };
-  const stars = ["5", "4", "3", "2", "1"];
+  const stars = ['5', '4', '3', '2', '1'];
 
   const renderItem = ({ item }) => (
     <Review item={item} index={item._id} navigation={navigation} />
@@ -112,54 +113,54 @@ export default function Reviews({ navigation }) {
     <>
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
           padding: 4,
           height: 80,
-          borderColor: "#ddd",
+          borderColor: '#ddd',
           borderWidth: 0.5,
           borderRadius: 2,
-          backgroundColor: "#fff",
+          backgroundColor: '#fff',
           margin: 2,
           marginBottom: 8,
-          paddingHorizontal: "4%",
+          paddingHorizontal: '4%',
         }}
       >
-        <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
+        <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
           <View style={{ marginRight: 12 }}>
-            <Text style={{ color: "#000" }}>FROM</Text>
+            <Text style={{ color: '#000' }}>FROM</Text>
             <Text
               style={{
                 fontSize: 20,
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 minWidth: width / 3,
-                borderBottomColor: "#000",
+                borderBottomColor: '#000',
                 borderBottomWidth: 1,
                 marginVertical: 2,
               }}
             >
-              {moment(start).format("DD-MMM-YYYY")}
+              {moment(start).format('DD-MMM-YYYY')}
             </Text>
           </View>
           <TouchableOpacity onPress={selectStartDate}>
             <Icon name="ios-calendar" size={20} color="#ff6600" />
           </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
+        <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
           <View style={{ marginRight: 12 }}>
-            <Text style={{ color: "#000" }}>TO</Text>
+            <Text style={{ color: '#000' }}>TO</Text>
             <Text
               style={{
                 fontSize: 20,
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 minWidth: width / 3,
-                borderBottomColor: "#000",
+                borderBottomColor: '#000',
                 borderBottomWidth: 1,
                 marginVertical: 2,
               }}
             >
-              {moment(end).format("DD-MMM-YYYY")}
+              {moment(end).format('DD-MMM-YYYY')}
             </Text>
           </View>
           <TouchableOpacity onPress={selectEndDate}>
@@ -172,96 +173,114 @@ export default function Reviews({ navigation }) {
       <View
         style={{
           padding: 4,
-          borderColor: "#ddd",
+          borderColor: '#ddd',
           borderWidth: 0.5,
-          backgroundColor: "#fff",
+          backgroundColor: '#fff',
           borderRadius: 2,
           margin: 2,
-          paddingHorizontal: "4%",
+          paddingHorizontal: '4%',
           marginVertical: 8,
         }}
       >
-        <Text style={{ fontWeight: "bold", fontSize: 14, marginVertical: 8 }}>
-          {" "}
+        <Text style={{ fontWeight: 'bold', fontSize: 14, marginVertical: 8 }}>
+          {' '}
           {reviews.length} USER REVIEW
         </Text>
         <View
           style={{
-            flexDirection: "row",
-            alignItems: "flex-end",
+            flexDirection: 'row',
+            alignItems: 'flex-end',
             marginVertical: 20,
           }}
         >
           {stars.map((star, index) => (
-            <LinearGradient colors={star === selectedStar ? ["#ff9900", "#ff6600"] : ["#ffffff", "#ffffff"]} style={{
-              width: 60,
-              borderColor: "#ddd",
-              borderRadius: 2,
-              borderWidth: 0.8,
-              marginHorizontal: 4,
-              justifyContent: "center",
-
-            }}>
+            <LinearGradient
+              colors={
+                star === selectedStar
+                  ? ['#ff9900', '#ff6600']
+                  : ['#ffffff', '#ffffff']
+              }
+              style={{
+                width: 60,
+                borderColor: '#ddd',
+                borderRadius: 2,
+                borderWidth: 0.8,
+                marginHorizontal: 4,
+                justifyContent: 'center',
+              }}
+            >
               <TouchableOpacity
                 onPress={() => filterStar(star)}
-                style={{ flexDirection: "row", alignItems: "center", padding: 4,justifyContent:"center" }}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  padding: 4,
+                  justifyContent: 'center',
+                }}
               >
                 <Icon
                   name="star"
                   size={16}
-                  color={star === selectedStar ? "#fff" : "#000"}
+                  color={star === selectedStar ? '#fff' : '#000'}
                 />
                 <Text
                   style={{
                     fontSize: 18,
-                    fontWeight: "bold",
-                    color: star === selectedStar ? "#fff" : "#000",
+                    fontWeight: 'bold',
+                    color: star === selectedStar ? '#fff' : '#000',
                   }}
                   key={index}
                 >
-                  {" "}
+                  {' '}
                   {star}
                 </Text>
               </TouchableOpacity>
             </LinearGradient>
           ))}
         </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Switch value={comment} onValueChange={filterwithComment} color="#ff6600" />
-          <Text style={{ fontWeight: "bold", color: "#000", marginLeft: 4 }}>
-            {"  "}Show only orders with comments
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Switch
+            value={comment}
+            onValueChange={filterwithComment}
+            color="#ff6600"
+          />
+          <Text style={{ fontWeight: 'bold', color: '#000', marginLeft: 4 }}>
+            {'  '}Show only orders with comments
           </Text>
         </View>
       </View>
     </>
   );
   const ListEmptyComponent = () => (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
         You don't have any reviews yet!!!
       </Text>
       <Text>Start accepting orders to stay on top pick of user</Text>
     </View>
   );
-  
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, marginTop: StatusBar.currentHeight || 0 }}>
       <HeaderTwo title="User Feedback" navigation={navigation} />
       {/* Header done */}
 
       {!loading ? (
-        <KeyboardAvoidingView behavior="position" enabled style={{flex:1,paddingBottom:4,marginBottom:2}} >
-        <FlatList
-          data={reviews}
-          //style={{ marginBottom: 4 }}
-          ListEmptyComponent={ListEmptyComponent}
-          ListHeaderComponent={ListHeaderComponent}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => index}
-          contentContainerStyle={{ paddingBottom: 10 }}
-        />
+        <KeyboardAvoidingView
+          behavior="position"
+          enabled
+          style={{ flex: 1, paddingBottom: 4, marginBottom: 2 }}
+        >
+          <FlatList
+            data={reviews}
+            //style={{ marginBottom: 4 }}
+            ListEmptyComponent={ListEmptyComponent}
+            ListHeaderComponent={ListHeaderComponent}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index}
+            contentContainerStyle={{ paddingBottom: 10 }}
+          />
         </KeyboardAvoidingView>
-      
       ) : (
         <Loader />
       )}
@@ -284,12 +303,12 @@ export default function Reviews({ navigation }) {
               onDateChange={(date) => dateHandler(date)}
             />
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: 'row', justifyContent: 'space-between' }}
             >
               <Button
                 mode="text"
                 color="#F00"
-                style={{ alignSelf: "flex-end" }}
+                style={{ alignSelf: 'flex-end' }}
                 onPress={() => setShowCalendar(false)}
               >
                 cancel
@@ -297,7 +316,7 @@ export default function Reviews({ navigation }) {
               <Button
                 mode="text"
                 color="#F00"
-                style={{ alignSelf: "flex-end" }}
+                style={{ alignSelf: 'flex-end' }}
                 onPress={() => setShowCalendar(false)}
               >
                 done

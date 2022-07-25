@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import { PrimaryColor } from "../Colors";
 import { width } from "../Dimens";
 export const styles = StyleSheet.create({
@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    // backgroundColor: "#FFF",
+    marginTop:StatusBar.currentHeight||0
   },
   formHeader: {
     padding: 8,
