@@ -14,7 +14,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 
 const ListEmptyComponent = () => (
-  <View style={{ alignItems: "center", justifyContent: "center" }}>
+  <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
     <Icon name="sad-outline" size={64} color={DARKGRAY} />
     <Text
       style={{
@@ -22,19 +22,10 @@ const ListEmptyComponent = () => (
         fontSize: 18,
         fontWeight: "bold",
         color: DARKGRAY,
+
       }}
     >
-      Sorry you don't provide any meal on this slot
-    </Text>
-    <Text
-      style={{
-        textAlign: "center",
-        fontSize: 18,
-        fontWeight: "bold",
-        color: DARKGRAY,
-      }}
-    >
-      You can now also add meals on this slot to get more income!!!
+      No order to dispatch at this time slot.
     </Text>
   </View>
 );
